@@ -51,6 +51,8 @@
     <Compile Include="wfweb\db_About.cs" />
     <Compile Include="wfweb\db_AboutCategory.cs" />
     <Compile Include="wfweb\db_AboutContent.cs" />
+    <Compile Include="wfweb\db_DiaryData.cs" />
+    <Compile Include="wfweb\db_Pilates.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
