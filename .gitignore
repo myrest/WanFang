@@ -1,0 +1,17 @@
+/Lib/Rest.Core.dll
+/Lib/WanFang.BLL.dll
+/Lib/WanFang.DAL.dll
+/Lib/WanFang.Domain.dll
+/Rest.Core/obj
+/Rest.Core/bin
+/Rest.Core/*.user
+/WanFang.BLL/WanFang.BLL.csproj.user
+/WanFang.BLL/bin
+/WanFang.BLL/obj
+/WanFang.DAL/WanFang.DAL.csproj.user
+/WanFang.DAL/bin
+/WanFang.DAL/obj
+/WanFang.Domain/WanFang.Domain.csproj.user
+/WanFang.Domain/bin
+/WanFang.Domain/obj
+/*.suo
