@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oper_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oper_psw" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Patient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chr_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PatientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PatientResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Costcenter">
+        <s:complexType />
+      </s:element>
+      <s:element name="CostcenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CostcenterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TaskSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sys_type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="para_code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oper_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="urg_flag" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TaskSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TaskSendResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TaskCancel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sys_type" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="task_no" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="oper_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="remark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TaskCancelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TaskCancelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="task_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="para_code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="send_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="send_time" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendTimeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrLISTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="task_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="para_code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oper_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="arr_time" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrLISTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArrLISTimeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScanBarcode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="task_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScanBarcodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ScanBarcodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliverInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeliverInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliverInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LabSche">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LabScheResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LabScheResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PatientFeeNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chr_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PatientFeeNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PatientFeeNoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="web_cost_basic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dept_type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="web_cost_basicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="web_cost_basicResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UserInfo" />
+  </wsdl:message>
+  <wsdl:message name="UserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="PatientSoapIn">
+    <wsdl:part name="parameters" element="tns:Patient" />
+  </wsdl:message>
+  <wsdl:message name="PatientSoapOut">
+    <wsdl:part name="parameters" element="tns:PatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CostcenterSoapIn">
+    <wsdl:part name="parameters" element="tns:Costcenter" />
+  </wsdl:message>
+  <wsdl:message name="CostcenterSoapOut">
+    <wsdl:part name="parameters" element="tns:CostcenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskSendSoapIn">
+    <wsdl:part name="parameters" element="tns:TaskSend" />
+  </wsdl:message>
+  <wsdl:message name="TaskSendSoapOut">
+    <wsdl:part name="parameters" element="tns:TaskSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskCancelSoapIn">
+    <wsdl:part name="parameters" element="tns:TaskCancel" />
+  </wsdl:message>
+  <wsdl:message name="TaskCancelSoapOut">
+    <wsdl:part name="parameters" element="tns:TaskCancelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:SendTime" />
+  </wsdl:message>
+  <wsdl:message name="SendTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:SendTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArrLISTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:ArrLISTime" />
+  </wsdl:message>
+  <wsdl:message name="ArrLISTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:ArrLISTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScanBarcodeSoapIn">
+    <wsdl:part name="parameters" element="tns:ScanBarcode" />
+  </wsdl:message>
+  <wsdl:message name="ScanBarcodeSoapOut">
+    <wsdl:part name="parameters" element="tns:ScanBarcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliverInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliverInfo" />
+  </wsdl:message>
+  <wsdl:message name="DeliverInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliverInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LabScheSoapIn">
+    <wsdl:part name="parameters" element="tns:LabSche" />
+  </wsdl:message>
+  <wsdl:message name="LabScheSoapOut">
+    <wsdl:part name="parameters" element="tns:LabScheResponse" />
+  </wsdl:message>
+  <wsdl:message name="PatientFeeNoSoapIn">
+    <wsdl:part name="parameters" element="tns:PatientFeeNo" />
+  </wsdl:message>
+  <wsdl:message name="PatientFeeNoSoapOut">
+    <wsdl:part name="parameters" element="tns:PatientFeeNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="web_cost_basicSoapIn">
+    <wsdl:part name="parameters" element="tns:web_cost_basic" />
+  </wsdl:message>
+  <wsdl:message name="web_cost_basicSoapOut">
+    <wsdl:part name="parameters" element="tns:web_cost_basicResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserInfo">
+      <wsdl:input message="tns:UserInfoSoapIn" />
+      <wsdl:output message="tns:UserInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Patient">
+      <wsdl:input message="tns:PatientSoapIn" />
+      <wsdl:output message="tns:PatientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Costcenter">
+      <wsdl:input message="tns:CostcenterSoapIn" />
+      <wsdl:output message="tns:CostcenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TaskSend">
+      <wsdl:input message="tns:TaskSendSoapIn" />
+      <wsdl:output message="tns:TaskSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TaskCancel">
+      <wsdl:input message="tns:TaskCancelSoapIn" />
+      <wsdl:output message="tns:TaskCancelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendTime">
+      <wsdl:input message="tns:SendTimeSoapIn" />
+      <wsdl:output message="tns:SendTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ArrLISTime">
+      <wsdl:input message="tns:ArrLISTimeSoapIn" />
+      <wsdl:output message="tns:ArrLISTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ScanBarcode">
+      <wsdl:input message="tns:ScanBarcodeSoapIn" />
+      <wsdl:output message="tns:ScanBarcodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliverInfo">
+      <wsdl:input message="tns:DeliverInfoSoapIn" />
+      <wsdl:output message="tns:DeliverInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LabSche">
+      <wsdl:input message="tns:LabScheSoapIn" />
+      <wsdl:output message="tns:LabScheSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PatientFeeNo">
+      <wsdl:input message="tns:PatientFeeNoSoapIn" />
+      <wsdl:output message="tns:PatientFeeNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="web_cost_basic">
+      <wsdl:input message="tns:web_cost_basicSoapIn" />
+      <wsdl:output message="tns:web_cost_basicSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInfo">
+      <soap:operation soapAction="http://tempuri.org/UserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Patient">
+      <soap:operation soapAction="http://tempuri.org/Patient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Costcenter">
+      <soap:operation soapAction="http://tempuri.org/Costcenter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TaskSend">
+      <soap:operation soapAction="http://tempuri.org/TaskSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TaskCancel">
+      <soap:operation soapAction="http://tempuri.org/TaskCancel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendTime">
+      <soap:operation soapAction="http://tempuri.org/SendTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArrLISTime">
+      <soap:operation soapAction="http://tempuri.org/ArrLISTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanBarcode">
+      <soap:operation soapAction="http://tempuri.org/ScanBarcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverInfo">
+      <soap:operation soapAction="http://tempuri.org/DeliverInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LabSche">
+      <soap:operation soapAction="http://tempuri.org/LabSche" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PatientFeeNo">
+      <soap:operation soapAction="http://tempuri.org/PatientFeeNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="web_cost_basic">
+      <soap:operation soapAction="http://tempuri.org/web_cost_basic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserInfo">
+      <soap12:operation soapAction="http://tempuri.org/UserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Patient">
+      <soap12:operation soapAction="http://tempuri.org/Patient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Costcenter">
+      <soap12:operation soapAction="http://tempuri.org/Costcenter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TaskSend">
+      <soap12:operation soapAction="http://tempuri.org/TaskSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TaskCancel">
+      <soap12:operation soapAction="http://tempuri.org/TaskCancel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendTime">
+      <soap12:operation soapAction="http://tempuri.org/SendTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ArrLISTime">
+      <soap12:operation soapAction="http://tempuri.org/ArrLISTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScanBarcode">
+      <soap12:operation soapAction="http://tempuri.org/ScanBarcode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliverInfo">
+      <soap12:operation soapAction="http://tempuri.org/DeliverInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LabSche">
+      <soap12:operation soapAction="http://tempuri.org/LabSche" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PatientFeeNo">
+      <soap12:operation soapAction="http://tempuri.org/PatientFeeNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="web_cost_basic">
+      <soap12:operation soapAction="http://tempuri.org/web_cost_basic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://10.65.1.91:1010/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://10.65.1.91:1010/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
