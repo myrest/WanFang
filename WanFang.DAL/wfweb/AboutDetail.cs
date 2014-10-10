@@ -7,70 +7,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.db_AboutCategory
+namespace WanFang.DAL.AboutDetail
 {
     #region interface
-    public interface Idb_AboutCategory_Repo
+    public interface IAboutDetail_Repo
     {
-        db_AboutCategory_Info GetBySN(long AboutCategoryId);
-        IEnumerable<db_AboutCategory_Info> GetAll();
-        IEnumerable<db_AboutCategory_Info> GetByParam(db_AboutCategory_Filter Filter, string _orderby = "");
-        IEnumerable<db_AboutCategory_Info> GetByParam(db_AboutCategory_Filter Filter, string[] fieldNames, string _orderby = "");
-        long Insert(db_AboutCategory_Info data);
-        int Update(long AboutCategoryId, db_AboutCategory_Info data, IEnumerable<string> columns);
-        int Update(db_AboutCategory_Info data);
-        int Delete(long AboutCategoryId);
+        AboutDetail_Info GetBySN(long NoPk);
+        IEnumerable<AboutDetail_Info> GetAll();
+        IEnumerable<AboutDetail_Info> GetByParam(AboutDetail_Filter Filter, string _orderby = "");
+        IEnumerable<AboutDetail_Info> GetByParam(AboutDetail_Filter Filter, string[] fieldNames, string _orderby = "");
+        long Insert(AboutDetail_Info data);
+        int Update(long NoPk, AboutDetail_Info data, IEnumerable<string> columns);
+        int Update(AboutDetail_Info data);
+        int Delete(long NoPk);
     }
     #endregion
 
     #region Implementation
-    public class db_AboutCategory_Repo
+    public class AboutDetail_Repo
     {
         #region Operation: Select
-        public db_AboutCategory_Info GetBySN(long AboutCategoryId)
+        public AboutDetail_Info GetBySN(long NoPk)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_AboutCategory")
-                .Append("WHERE AboutCategoryId=@0", AboutCategoryId);
+                .Append("SELECT * FROM AboutDetail")
+                .Append("WHERE NoPk=@0", NoPk);
 
-                var result = db.SingleOrDefault<db_AboutCategory_Info>(SQLStr);
+                var result = db.SingleOrDefault<AboutDetail_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<db_AboutCategory_Info> GetAll()
+        public IEnumerable<AboutDetail_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_AboutCategory");
-                var result = db.Query<db_AboutCategory_Info>(SQLStr);
+                    .Append("SELECT * FROM AboutDetail");
+                var result = db.Query<AboutDetail_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_AboutCategory_Info> GetByParam(db_AboutCategory_Filter Filter, string _orderby = "")
+        public IEnumerable<AboutDetail_Info> GetByParam(AboutDetail_Filter Filter, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
 
-                var result = db.Query<db_AboutCategory_Info>(SQLStr);
+                var result = db.Query<AboutDetail_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_AboutCategory_Info> GetByParam(db_AboutCategory_Filter Filter, string[] fieldNames, string _orderby = "")
+        public IEnumerable<AboutDetail_Info> GetByParam(AboutDetail_Filter Filter, string[] fieldNames, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<db_AboutCategory_Info>(SQLStr);
+                var result = db.Query<AboutDetail_Info>(SQLStr);
 
                 return result;
             }
@@ -78,7 +78,7 @@ namespace WanFang.DAL.db_AboutCategory
         #endregion
 
         #region Operation: Insert
-        public long Insert(db_AboutCategory_Info data)
+        public long Insert(AboutDetail_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -89,15 +89,15 @@ namespace WanFang.DAL.db_AboutCategory
         #endregion
 
         #region Operation: Update
-        public int Update(long AboutCategoryId, db_AboutCategory_Info data, IEnumerable<string> columns)
+        public int Update(long NoPk, AboutDetail_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, AboutCategoryId, columns);
+                return db.Update(data, NoPk, columns);
             }
         }
 
-        public int Update(db_AboutCategory_Info data)
+        public int Update(AboutDetail_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -107,11 +107,11 @@ namespace WanFang.DAL.db_AboutCategory
         #endregion
 
         #region Operation: Delete
-        public int Delete(long AboutCategoryId)
+        public int Delete(long NoPk)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_AboutCategory", "AboutCategoryId", null, AboutCategoryId);
+                return db.Delete("AboutDetail", "NoPk", null, NoPk);
             }
         }
         #endregion
@@ -120,15 +120,15 @@ namespace WanFang.DAL.db_AboutCategory
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_AboutCategory_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutDetail_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_AboutCategory_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutDetail_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_AboutCategory")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM AboutDetail")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {

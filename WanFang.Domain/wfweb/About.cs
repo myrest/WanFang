@@ -8,21 +8,21 @@ namespace WanFang.Domain
 {
     /*
     #region interface
-    public interface Idb_About_Info
+    public interface IAbout_Info
     {
         int AboutId { get; set; }
         int SortNum { get; set; }
         string Category { get; set; }
         int IsActive { get; set; }
-        DateTime lastUpdate { get; set; }
+        DateTime LastUpdate { get; set; }
     }
     #endregion
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("db_About")]
+    [Rest.Core.PetaPoco.TableName("About")]
     [Rest.Core.PetaPoco.PrimaryKey("AboutId")]
-    public class db_About_Info //: Idb_About_Info
+    public class About_Info //: IAbout_Info
     {
         #region private fields
         /// <summary>
@@ -44,24 +44,24 @@ namespace WanFang.Domain
         /// <summary>
         /// 最後更新日期
         /// </summary>
-        public DateTime lastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         #endregion
 
         #region Constructor
-        public db_About_Info()
+        public About_Info()
         {
         }
         #endregion
     }
 
-    public class db_About_Filter
+    public class About_Filter
     {
         public int? AboutId { get; set; }
         public int? SortNum { get; set; }
         public string Category { get; set; }
         public int? IsActive { get; set; }
-        public DateTime? lastUpdate { get; set; }
-        //You can copy/modify above db_About_Info field for search criteria
+        public DateTime? LastUpdate { get; set; }
+        //You can copy/modify above About_Info field for search criteria
     }
     #endregion
 }

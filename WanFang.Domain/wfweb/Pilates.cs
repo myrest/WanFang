@@ -8,28 +8,27 @@ namespace WanFang.Domain
 {
     /*
     #region interface
-    public interface Idb_Pilates_Info
+    public interface IPilates_Info
     {
         int PilatesId { get; set; }
-        string RegNo { get; set; }
-        string RegType { get; set; }
+        string RegID { get; set; }
         string RegName { get; set; }
-        DateTime RegDate { get; set; }
-        string RegtimeStart { get; set; }
-        string RegtimeEnd { get; set; }
+        string RegSubject { get; set; }
+        DateTime PublishDate { get; set; }
+        string TimeStart { get; set; }
+        string TimeEnd { get; set; }
         string Memo { get; set; }
-        string Description { get; set; }
+        string ContentBody { get; set; }
         int IsActive { get; set; }
-        string Updator { get; set; }
         DateTime LastUpdate { get; set; }
     }
     #endregion
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("db_Pilates")]
+    [Rest.Core.PetaPoco.TableName("Pilates")]
     [Rest.Core.PetaPoco.PrimaryKey("PilatesId")]
-    public class db_Pilates_Info //: Idb_Pilates_Info
+    public class Pilates_Info //: IPilates_Info
     {
         #region private fields
         /// <summary>
@@ -39,59 +38,66 @@ namespace WanFang.Domain
         /// <summary>
         /// 課程代號P:Pilates核心復健M:孕婦健康瑜珈班Q:肩頸上背疼痛復健班C:兒童背部運動及姿態矯正班O:有氧太P力
         /// </summary>
-        public string RegNo { get; set; }
+        public string RegID { get; set; }
         /// <summary>
         /// 課程名稱
         /// </summary>
-        public string RegType { get; set; }
+        public string RegName { get; set; }
         /// <summary>
         /// 課程主題
         /// </summary>
-        public string RegName { get; set; }
+        public string RegSubject { get; set; }
         /// <summary>
         /// 開課日期
         /// </summary>
-        public DateTime RegDate { get; set; }
+        public DateTime PublishDate { get; set; }
         /// <summary>
         /// 上課開始時間
         /// </summary>
-        public string RegtimeStart { get; set; }
+        public string TimeStart { get; set; }
         /// <summary>
         /// 上課結束時間
         /// </summary>
-        public string RegtimeEnd { get; set; }
+        public string TimeEnd { get; set; }
         /// <summary>
         /// 備註
         /// </summary>
         public string Memo { get; set; }
-        public string Description { get; set; }
+        /// <summary>
+        /// 內容(新)
+        /// </summary>
+        public string ContentBody { get; set; }
+        /// <summary>
+        /// 上/下架(新)
+        /// </summary>
         public int IsActive { get; set; }
-        public string Updator { get; set; }
+        /// <summary>
+        /// 更新日期
+        /// </summary>
         public DateTime LastUpdate { get; set; }
         #endregion
 
         #region Constructor
-        public db_Pilates_Info()
+        public Pilates_Info()
         {
         }
         #endregion
     }
 
-    public class db_Pilates_Filter
+    public class Pilates_Filter
     {
         public int? PilatesId { get; set; }
-        public string RegNo { get; set; }
-        public string RegType { get; set; }
+        public string RegID { get; set; }
         public string RegName { get; set; }
-        public DateTime? RegDate { get; set; }
-        public string RegtimeStart { get; set; }
-        public string RegtimeEnd { get; set; }
+        public string RegSubject { get; set; }
+        public DateTime? PublishDate { get; set; }
+        public string TimeStart { get; set; }
+        public string TimeEnd { get; set; }
         public string Memo { get; set; }
-        public string Description { get; set; }
+        public string ContentBody { get; set; }
         public int? IsActive { get; set; }
-        public string Updator { get; set; }
         public DateTime? LastUpdate { get; set; }
-        //You can copy/modify above db_Pilates_Info field for search criteria
+        //You can copy/modify above Pilates_Info field for search criteria
     }
     #endregion
 }

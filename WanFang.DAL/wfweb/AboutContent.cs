@@ -7,70 +7,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.db_DiaryData
+namespace WanFang.DAL.AboutContent
 {
     #region interface
-    public interface Idb_DiaryData_Repo
+    public interface IAboutContent_Repo
     {
-        db_DiaryData_Info GetBySN(long pd_id);
-        IEnumerable<db_DiaryData_Info> GetAll();
-        IEnumerable<db_DiaryData_Info> GetByParam(db_DiaryData_Filter Filter, string _orderby = "");
-        IEnumerable<db_DiaryData_Info> GetByParam(db_DiaryData_Filter Filter, string[] fieldNames, string _orderby = "");
-        long Insert(db_DiaryData_Info data);
-        int Update(long pd_id, db_DiaryData_Info data, IEnumerable<string> columns);
-        int Update(db_DiaryData_Info data);
-        int Delete(long pd_id);
+        AboutContent_Info GetBySN(long AboutContent);
+        IEnumerable<AboutContent_Info> GetAll();
+        IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby = "");
+        IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby = "");
+        long Insert(AboutContent_Info data);
+        int Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns);
+        int Update(AboutContent_Info data);
+        int Delete(long AboutContent);
     }
     #endregion
 
     #region Implementation
-    public class db_DiaryData_Repo
+    public class AboutContent_Repo
     {
         #region Operation: Select
-        public db_DiaryData_Info GetBySN(long pd_id)
+        public AboutContent_Info GetBySN(long AboutContent)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_DiaryData")
-                .Append("WHERE pd_id=@0", pd_id);
+                .Append("SELECT * FROM AboutContent")
+                .Append("WHERE AboutContent=@0", AboutContent);
 
-                var result = db.SingleOrDefault<db_DiaryData_Info>(SQLStr);
+                var result = db.SingleOrDefault<AboutContent_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<db_DiaryData_Info> GetAll()
+        public IEnumerable<AboutContent_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_DiaryData");
-                var result = db.Query<db_DiaryData_Info>(SQLStr);
+                    .Append("SELECT * FROM AboutContent");
+                var result = db.Query<AboutContent_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_DiaryData_Info> GetByParam(db_DiaryData_Filter Filter, string _orderby = "")
+        public IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
 
-                var result = db.Query<db_DiaryData_Info>(SQLStr);
+                var result = db.Query<AboutContent_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_DiaryData_Info> GetByParam(db_DiaryData_Filter Filter, string[] fieldNames, string _orderby = "")
+        public IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<db_DiaryData_Info>(SQLStr);
+                var result = db.Query<AboutContent_Info>(SQLStr);
 
                 return result;
             }
@@ -78,7 +78,7 @@ namespace WanFang.DAL.db_DiaryData
         #endregion
 
         #region Operation: Insert
-        public long Insert(db_DiaryData_Info data)
+        public long Insert(AboutContent_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -89,15 +89,15 @@ namespace WanFang.DAL.db_DiaryData
         #endregion
 
         #region Operation: Update
-        public int Update(long pd_id, db_DiaryData_Info data, IEnumerable<string> columns)
+        public int Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, pd_id, columns);
+                return db.Update(data, AboutContent, columns);
             }
         }
 
-        public int Update(db_DiaryData_Info data)
+        public int Update(AboutContent_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -107,11 +107,11 @@ namespace WanFang.DAL.db_DiaryData
         #endregion
 
         #region Operation: Delete
-        public int Delete(long pd_id)
+        public int Delete(long AboutContent)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_DiaryData", "pd_id", null, pd_id);
+                return db.Delete("AboutContent", "AboutContent", null, AboutContent);
             }
         }
         #endregion
@@ -120,15 +120,15 @@ namespace WanFang.DAL.db_DiaryData
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_DiaryData_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_DiaryData_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_DiaryData")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM AboutContent")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {

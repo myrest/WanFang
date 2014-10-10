@@ -44,11 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="wfweb\db_About.cs" />
-    <Compile Include="wfweb\db_AboutCategory.cs" />
-    <Compile Include="wfweb\db_AboutContent.cs" />
-    <Compile Include="wfweb\db_DiaryData.cs" />
-    <Compile Include="wfweb\db_Pilates.cs" />
+    <Compile Include="wfweb\About.cs" />
+    <Compile Include="wfweb\AboutCategory.cs" />
+    <Compile Include="wfweb\AboutContent.cs" />
+    <Compile Include="wfweb\AboutDetail.cs" />
+    <Compile Include="wfweb\DiaryData.cs" />
+    <Compile Include="wfweb\Pilates.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WanFang.DAL\WanFang.DAL.csproj">
@@ -63,7 +64,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetPath)" $(ProjectDir)..\Lib\ /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)" $(ProjectDir)..\..\WanfangUI\Lib\ /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

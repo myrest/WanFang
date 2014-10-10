@@ -8,7 +8,7 @@ namespace WanFang.Domain
 {
     /*
     #region interface
-    public interface Idb_AboutContent_Info
+    public interface IAboutContent_Info
     {
         int AboutContent { get; set; }
         int AboutCategoryId { get; set; }
@@ -31,9 +31,9 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("db_AboutContent")]
+    [Rest.Core.PetaPoco.TableName("AboutContent")]
     [Rest.Core.PetaPoco.PrimaryKey("AboutContent")]
-    public class db_AboutContent_Info //: Idb_AboutContent_Info
+    public class AboutContent_Info //: IAboutContent_Info
     {
         #region private fields
         /// <summary>
@@ -67,13 +67,13 @@ namespace WanFang.Domain
         #endregion
 
         #region Constructor
-        public db_AboutContent_Info()
+        public AboutContent_Info()
         {
         }
         #endregion
     }
 
-    public class db_AboutContent_Filter
+    public class AboutContent_Filter
     {
         public int? AboutContent { get; set; }
         public int? AboutCategoryId { get; set; }
@@ -91,7 +91,7 @@ namespace WanFang.Domain
         public int? Position3 { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
-        //You can copy/modify above db_AboutContent_Info field for search criteria
+        //You can copy/modify above AboutContent_Info field for search criteria
     }
     #endregion
 }

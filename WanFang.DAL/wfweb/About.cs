@@ -7,70 +7,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.db_Pilates
+namespace WanFang.DAL.About
 {
     #region interface
-    public interface Idb_Pilates_Repo
+    public interface IAbout_Repo
     {
-        db_Pilates_Info GetBySN(long PilatesId);
-        IEnumerable<db_Pilates_Info> GetAll();
-        IEnumerable<db_Pilates_Info> GetByParam(db_Pilates_Filter Filter, string _orderby = "");
-        IEnumerable<db_Pilates_Info> GetByParam(db_Pilates_Filter Filter, string[] fieldNames, string _orderby = "");
-        long Insert(db_Pilates_Info data);
-        int Update(long PilatesId, db_Pilates_Info data, IEnumerable<string> columns);
-        int Update(db_Pilates_Info data);
-        int Delete(long PilatesId);
+        About_Info GetBySN(long AboutId);
+        IEnumerable<About_Info> GetAll();
+        IEnumerable<About_Info> GetByParam(About_Filter Filter, string _orderby = "");
+        IEnumerable<About_Info> GetByParam(About_Filter Filter, string[] fieldNames, string _orderby = "");
+        long Insert(About_Info data);
+        int Update(long AboutId, About_Info data, IEnumerable<string> columns);
+        int Update(About_Info data);
+        int Delete(long AboutId);
     }
     #endregion
 
     #region Implementation
-    public class db_Pilates_Repo
+    public class About_Repo
     {
         #region Operation: Select
-        public db_Pilates_Info GetBySN(long PilatesId)
+        public About_Info GetBySN(long AboutId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_Pilates")
-                .Append("WHERE PilatesId=@0", PilatesId);
+                .Append("SELECT * FROM About")
+                .Append("WHERE AboutId=@0", AboutId);
 
-                var result = db.SingleOrDefault<db_Pilates_Info>(SQLStr);
+                var result = db.SingleOrDefault<About_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<db_Pilates_Info> GetAll()
+        public IEnumerable<About_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_Pilates");
-                var result = db.Query<db_Pilates_Info>(SQLStr);
+                    .Append("SELECT * FROM About");
+                var result = db.Query<About_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_Pilates_Info> GetByParam(db_Pilates_Filter Filter, string _orderby = "")
+        public IEnumerable<About_Info> GetByParam(About_Filter Filter, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
 
-                var result = db.Query<db_Pilates_Info>(SQLStr);
+                var result = db.Query<About_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<db_Pilates_Info> GetByParam(db_Pilates_Filter Filter, string[] fieldNames, string _orderby = "")
+        public IEnumerable<About_Info> GetByParam(About_Filter Filter, string[] fieldNames, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<db_Pilates_Info>(SQLStr);
+                var result = db.Query<About_Info>(SQLStr);
 
                 return result;
             }
@@ -78,7 +78,7 @@ namespace WanFang.DAL.db_Pilates
         #endregion
 
         #region Operation: Insert
-        public long Insert(db_Pilates_Info data)
+        public long Insert(About_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -89,15 +89,15 @@ namespace WanFang.DAL.db_Pilates
         #endregion
 
         #region Operation: Update
-        public int Update(long PilatesId, db_Pilates_Info data, IEnumerable<string> columns)
+        public int Update(long AboutId, About_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, PilatesId, columns);
+                return db.Update(data, AboutId, columns);
             }
         }
 
-        public int Update(db_Pilates_Info data)
+        public int Update(About_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -107,11 +107,11 @@ namespace WanFang.DAL.db_Pilates
         #endregion
 
         #region Operation: Delete
-        public int Delete(long PilatesId)
+        public int Delete(long AboutId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_Pilates", "PilatesId", null, PilatesId);
+                return db.Delete("About", "AboutId", null, AboutId);
             }
         }
         #endregion
@@ -120,15 +120,15 @@ namespace WanFang.DAL.db_Pilates
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_Pilates_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(About_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(db_Pilates_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(About_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_Pilates")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM About")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
