@@ -7,70 +7,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.DiaryData
+namespace WanFang.DAL.LogLogin
 {
     #region interface
-    public interface IDiaryData_Repo
+    public interface ILogLogin_Repo
     {
-        DiaryData_Info GetBySN(long DiaryDataID);
-        IEnumerable<DiaryData_Info> GetAll();
-        IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby = "");
-        IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby = "");
-        long Insert(DiaryData_Info data);
-        int Update(long DiaryDataID, DiaryData_Info data, IEnumerable<string> columns);
-        int Update(DiaryData_Info data);
-        int Delete(long DiaryDataID);
+        LogLogin_Info GetBySN(long LogLoginId);
+        IEnumerable<LogLogin_Info> GetAll();
+        IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby = "");
+        IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby = "");
+        long Insert(LogLogin_Info data);
+        int Update(long LogLoginId, LogLogin_Info data, IEnumerable<string> columns);
+        int Update(LogLogin_Info data);
+        int Delete(long LogLoginId);
     }
     #endregion
 
     #region Implementation
-    public class DiaryData_Repo
+    public class LogLogin_Repo
     {
         #region Operation: Select
-        public DiaryData_Info GetBySN(long DiaryDataID)
+        public LogLogin_Info GetBySN(long LogLoginId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM DiaryData")
-                .Append("WHERE DiaryDataID=@0", DiaryDataID);
+                .Append("SELECT * FROM LogLogin")
+                .Append("WHERE LogLoginId=@0", LogLoginId);
 
-                var result = db.SingleOrDefault<DiaryData_Info>(SQLStr);
+                var result = db.SingleOrDefault<LogLogin_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<DiaryData_Info> GetAll()
+        public IEnumerable<LogLogin_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM DiaryData");
-                var result = db.Query<DiaryData_Info>(SQLStr);
+                    .Append("SELECT * FROM LogLogin");
+                var result = db.Query<LogLogin_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby = "")
+        public IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
 
-                var result = db.Query<DiaryData_Info>(SQLStr);
+                var result = db.Query<LogLogin_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby = "")
+        public IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby = "")
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<DiaryData_Info>(SQLStr);
+                var result = db.Query<LogLogin_Info>(SQLStr);
 
                 return result;
             }
@@ -78,7 +78,7 @@ namespace WanFang.DAL.DiaryData
         #endregion
 
         #region Operation: Insert
-        public long Insert(DiaryData_Info data)
+        public long Insert(LogLogin_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -94,15 +94,15 @@ namespace WanFang.DAL.DiaryData
         #endregion
 
         #region Operation: Update
-        public int Update(long DiaryDataID, DiaryData_Info data, IEnumerable<string> columns)
+        public int Update(long LogLoginId, LogLogin_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, DiaryDataID, columns);
+                return db.Update(data, LogLoginId, columns);
             }
         }
 
-        public int Update(DiaryData_Info data)
+        public int Update(LogLogin_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -112,11 +112,11 @@ namespace WanFang.DAL.DiaryData
         #endregion
 
         #region Operation: Delete
-        public int Delete(long DiaryDataID)
+        public int Delete(long LogLoginId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("DiaryData", "DiaryDataID", null, DiaryDataID);
+                return db.Delete("LogLogin", "LogLoginId", null, LogLoginId);
             }
         }
         #endregion
@@ -125,15 +125,15 @@ namespace WanFang.DAL.DiaryData
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(DiaryData_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(LogLogin_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(DiaryData_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(LogLogin_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM DiaryData")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM LogLogin")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {

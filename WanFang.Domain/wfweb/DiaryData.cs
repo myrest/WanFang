@@ -31,7 +31,7 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("DiaryData")]
+    [Rest.Core.PetaPoco.TableName("db_DiaryData")]
     [Rest.Core.PetaPoco.PrimaryKey("DiaryDataID")]
     public class DiaryData_Info //: IDiaryData_Info
     {

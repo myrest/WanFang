@@ -26,7 +26,7 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("Pilates")]
+    [Rest.Core.PetaPoco.TableName("db_Pilates")]
     [Rest.Core.PetaPoco.PrimaryKey("PilatesId")]
     public class Pilates_Info //: IPilates_Info
     {

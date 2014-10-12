@@ -20,7 +20,7 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("About")]
+    [Rest.Core.PetaPoco.TableName("db_About")]
     [Rest.Core.PetaPoco.PrimaryKey("AboutId")]
     public class About_Info //: IAbout_Info
     {

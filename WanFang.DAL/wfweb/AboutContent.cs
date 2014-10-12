@@ -12,14 +12,14 @@ namespace WanFang.DAL.AboutContent
     #region interface
     public interface IAboutContent_Repo
     {
-        AboutContent_Info GetBySN(long AboutContent);
+        AboutContent_Info GetBySN(long AboutContentId);
         IEnumerable<AboutContent_Info> GetAll();
         IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby = "");
         IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby = "");
         long Insert(AboutContent_Info data);
-        int Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns);
+        int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns);
         int Update(AboutContent_Info data);
-        int Delete(long AboutContent);
+        int Delete(long AboutContentId);
     }
     #endregion
 
@@ -27,13 +27,13 @@ namespace WanFang.DAL.AboutContent
     public class AboutContent_Repo
     {
         #region Operation: Select
-        public AboutContent_Info GetBySN(long AboutContent)
+        public AboutContent_Info GetBySN(long AboutContentId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                 .Append("SELECT * FROM AboutContent")
-                .Append("WHERE AboutContent=@0", AboutContent);
+                .Append("WHERE AboutContentId=@0", AboutContentId);
 
                 var result = db.SingleOrDefault<AboutContent_Info>(SQLStr);
                 return result;
@@ -82,18 +82,23 @@ namespace WanFang.DAL.AboutContent
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                long NewID = db.Insert(data) as long? ?? 0;
+                long NewID = 0;
+                var result = db.Insert(data);
+                if (result != null)
+                {
+                    long.TryParse(result.ToString(), out NewID);
+                }
                 return NewID;
             }
         }
         #endregion
 
         #region Operation: Update
-        public int Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns)
+        public int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, AboutContent, columns);
+                return db.Update(data, AboutContentId, columns);
             }
         }
 
@@ -107,11 +112,11 @@ namespace WanFang.DAL.AboutContent
         #endregion
 
         #region Operation: Delete
-        public int Delete(long AboutContent)
+        public int Delete(long AboutContentId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("AboutContent", "AboutContent", null, AboutContent);
+                return db.Delete("AboutContent", "AboutContentId", null, AboutContentId);
             }
         }
         #endregion

@@ -10,7 +10,7 @@ namespace WanFang.Domain
     #region interface
     public interface IAboutContent_Info
     {
-        int AboutContent { get; set; }
+        int AboutContentId { get; set; }
         int AboutCategoryId { get; set; }
         string UnitName { get; set; }
         int OpenType { get; set; }
@@ -26,20 +26,21 @@ namespace WanFang.Domain
         int Position3 { get; set; }
         int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
+        string LastUpdator { get; set; }
     }
     #endregion
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("AboutContent")]
-    [Rest.Core.PetaPoco.PrimaryKey("AboutContent")]
+    [Rest.Core.PetaPoco.TableName("db_AboutContent")]
+    [Rest.Core.PetaPoco.PrimaryKey("AboutContentId")]
     public class AboutContent_Info //: IAboutContent_Info
     {
         #region private fields
         /// <summary>
         /// 流水號
         /// </summary>
-        public int AboutContent { get; set; }
+        public int AboutContentId { get; set; }
         /// <summary>
         /// 類別ID
         /// </summary>
@@ -64,6 +65,7 @@ namespace WanFang.Domain
         public int Position3 { get; set; }
         public int IsActive { get; set; }
         public DateTime LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         #endregion
 
         #region Constructor
@@ -75,7 +77,7 @@ namespace WanFang.Domain
 
     public class AboutContent_Filter
     {
-        public int? AboutContent { get; set; }
+        public int? AboutContentId { get; set; }
         public int? AboutCategoryId { get; set; }
         public string UnitName { get; set; }
         public int? OpenType { get; set; }
@@ -91,6 +93,7 @@ namespace WanFang.Domain
         public int? Position3 { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         //You can copy/modify above AboutContent_Info field for search criteria
     }
     #endregion

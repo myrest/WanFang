@@ -21,7 +21,7 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("AboutCategory")]
+    [Rest.Core.PetaPoco.TableName("db_AboutCategory")]
     [Rest.Core.PetaPoco.PrimaryKey("AboutCategoryId")]
     public class AboutCategory_Info //: IAboutCategory_Info
     {

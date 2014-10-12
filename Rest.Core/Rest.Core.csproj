@@ -59,6 +59,7 @@
     <Compile Include="Utility\Encrypt.cs" />
     <Compile Include="Utility\EnumHelper.cs" />
     <Compile Include="Utility\Extension.cs" />
+    <Compile Include="Utility\IPHelper.cs" />
     <Compile Include="Utility\JsonSerializerHelper.cs" />
     <Compile Include="Utility\ReflectionUtility.cs" />
     <Compile Include="Utility\SysLog.cs" />

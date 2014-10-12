@@ -15,3 +15,4 @@
 /WanFang.Domain/bin
 /WanFang.Domain/obj
 /*.suo
+/Tools/Config.cfg

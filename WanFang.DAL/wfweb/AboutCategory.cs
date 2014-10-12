@@ -82,7 +82,12 @@ namespace WanFang.DAL.AboutCategory
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                long NewID = db.Insert(data) as long? ?? 0;
+                long NewID = 0;
+                var result = db.Insert(data);
+                if (result != null)
+                {
+                    long.TryParse(result.ToString(), out NewID);
+                }
                 return NewID;
             }
         }

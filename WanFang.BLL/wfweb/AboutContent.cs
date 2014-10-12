@@ -12,14 +12,14 @@ namespace WanFang.BLL
     #region interface
     public interface IAboutContent_Manager
     {
-        AboutContent_Info GetBySN(long AboutContent);
+        AboutContent_Info GetBySN(long AboutContentId);
         IEnumerable<AboutContent_Info> GetAll();
         IEnumerable<AboutContent_Info> GetByParameter(AboutContent_Filter Filter, string _orderby = "");
         long Insert(AboutContent_Info data);
-        bool Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns);
+        bool Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns);
         bool Update(AboutContent_Info data);
-        int Delete(long AboutContent);
-        bool IsExist(long AboutContent);
+        int Delete(long AboutContentId);
+        bool IsExist(long AboutContentId);
     }
     #endregion
     */
@@ -34,9 +34,9 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Select
-        public AboutContent_Info GetBySN(long AboutContent)
+        public AboutContent_Info GetBySN(long AboutContentId)
         {
-            return new AboutContent_Repo().GetBySN(AboutContent);
+            return new AboutContent_Repo().GetBySN(AboutContentId);
         }
 
         public IEnumerable<AboutContent_Info> GetAll()
@@ -67,9 +67,9 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Raw Update
-        public bool Update(long AboutContent, AboutContent_Info data, IEnumerable<string> columns)
+        public bool Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns)
         {
-            return new AboutContent_Repo().Update(AboutContent, data, columns) > 0;
+            return new AboutContent_Repo().Update(AboutContentId, data, columns) > 0;
         }
 
         public bool Update(AboutContent_Info data)
@@ -79,16 +79,16 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Delete
-        public int Delete(long AboutContent)
+        public int Delete(long AboutContentId)
         {
-            return new AboutContent_Repo().Delete(AboutContent);
+            return new AboutContent_Repo().Delete(AboutContentId);
         }
         #endregion
 
         #region public functions
-        public bool IsExist(long AboutContent)
+        public bool IsExist(long AboutContentId)
         {
-            return (GetBySN(AboutContent) != null);
+            return (GetBySN(AboutContentId) != null);
         }
         #endregion
 
