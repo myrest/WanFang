@@ -32,7 +32,7 @@ namespace WanFang.DAL.About
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM About")
+                .Append("SELECT * FROM db_About")
                 .Append("WHERE AboutId=@0", AboutId);
 
                 var result = db.SingleOrDefault<About_Info>(SQLStr);
@@ -45,7 +45,7 @@ namespace WanFang.DAL.About
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM About");
+                    .Append("SELECT * FROM db_About");
                 var result = db.Query<About_Info>(SQLStr);
 
                 return result;
@@ -133,10 +133,30 @@ namespace WanFang.DAL.About
         private Rest.Core.PetaPoco.Sql ConstructSQL(About_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM About")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_About")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.AboutId.HasValue)
+                {
+                    SQLStr.Append(" AND AboutId=@0", filter.AboutId.Value);
+                }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.Category))
+                {
+                    SQLStr.Append(" AND Category=@0", filter.Category);
+                }
+                if (filter.IsActive.HasValue)
+                {
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
+                }
+                if (filter.LastUpdate.HasValue)
+                {
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 

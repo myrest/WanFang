@@ -32,7 +32,7 @@ namespace WanFang.DAL.Pilates
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM Pilates")
+                .Append("SELECT * FROM db_Pilates")
                 .Append("WHERE PilatesId=@0", PilatesId);
 
                 var result = db.SingleOrDefault<Pilates_Info>(SQLStr);
@@ -45,7 +45,7 @@ namespace WanFang.DAL.Pilates
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM Pilates");
+                    .Append("SELECT * FROM db_Pilates");
                 var result = db.Query<Pilates_Info>(SQLStr);
 
                 return result;
@@ -133,10 +133,54 @@ namespace WanFang.DAL.Pilates
         private Rest.Core.PetaPoco.Sql ConstructSQL(Pilates_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM Pilates")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_Pilates")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.PilatesId.HasValue)
+                {
+                    SQLStr.Append(" AND PilatesId=@0", filter.PilatesId.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.RegID))
+                {
+                    SQLStr.Append(" AND RegID=@0", filter.RegID);
+                }
+                if (!string.IsNullOrEmpty(filter.RegName))
+                {
+                    SQLStr.Append(" AND RegName=@0", filter.RegName);
+                }
+                if (!string.IsNullOrEmpty(filter.RegSubject))
+                {
+                    SQLStr.Append(" AND RegSubject=@0", filter.RegSubject);
+                }
+                if (filter.PublishDate.HasValue)
+                {
+                    SQLStr.Append(" AND PublishDate=@0", filter.PublishDate.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.TimeStart))
+                {
+                    SQLStr.Append(" AND TimeStart=@0", filter.TimeStart);
+                }
+                if (!string.IsNullOrEmpty(filter.TimeEnd))
+                {
+                    SQLStr.Append(" AND TimeEnd=@0", filter.TimeEnd);
+                }
+                if (!string.IsNullOrEmpty(filter.Memo))
+                {
+                    SQLStr.Append(" AND Memo=@0", filter.Memo);
+                }
+                if (!string.IsNullOrEmpty(filter.ContentBody))
+                {
+                    SQLStr.Append(" AND ContentBody=@0", filter.ContentBody);
+                }
+                if (filter.IsActive.HasValue)
+                {
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
+                }
+                if (filter.LastUpdate.HasValue)
+                {
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 

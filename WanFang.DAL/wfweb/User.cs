@@ -32,7 +32,7 @@ namespace WanFang.DAL.User
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM User")
+                .Append("SELECT * FROM db_User")
                 .Append("WHERE UserID=@0", UserID);
 
                 var result = db.SingleOrDefault<User_Info>(SQLStr);
@@ -45,7 +45,7 @@ namespace WanFang.DAL.User
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM User");
+                    .Append("SELECT * FROM db_User");
                 var result = db.Query<User_Info>(SQLStr);
 
                 return result;
@@ -133,10 +133,54 @@ namespace WanFang.DAL.User
         private Rest.Core.PetaPoco.Sql ConstructSQL(User_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM User")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_User")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.UserID.HasValue)
+                {
+                    SQLStr.Append(" AND UserID=@0", filter.UserID.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.UserName))
+                {
+                    SQLStr.Append(" AND UserName=@0", filter.UserName);
+                }
+                if (!string.IsNullOrEmpty(filter.LoginId))
+                {
+                    SQLStr.Append(" AND LoginId=@0", filter.LoginId);
+                }
+                if (!string.IsNullOrEmpty(filter.Password))
+                {
+                    SQLStr.Append(" AND Password=@0", filter.Password);
+                }
+                if (filter.PermissionType.HasValue)
+                {
+                    SQLStr.Append(" AND PermissionType=@0", filter.PermissionType.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.DeptType))
+                {
+                    SQLStr.Append(" AND DeptType=@0", filter.DeptType);
+                }
+                if (!string.IsNullOrEmpty(filter.CostName))
+                {
+                    SQLStr.Append(" AND CostName=@0", filter.CostName);
+                }
+                if (!string.IsNullOrEmpty(filter.CostCode))
+                {
+                    SQLStr.Append(" AND CostCode=@0", filter.CostCode);
+                }
+                if (!string.IsNullOrEmpty(filter.Permission))
+                {
+                    SQLStr.Append(" AND Permission=@0", filter.Permission);
+                }
+                if (filter.LastUpdate.HasValue)
+                {
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.LastUpdator))
+                {
+                    SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 

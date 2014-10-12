@@ -32,7 +32,7 @@ namespace WanFang.DAL.LogLogin
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM LogLogin")
+                .Append("SELECT * FROM db_LogLogin")
                 .Append("WHERE LogLoginId=@0", LogLoginId);
 
                 var result = db.SingleOrDefault<LogLogin_Info>(SQLStr);
@@ -45,7 +45,7 @@ namespace WanFang.DAL.LogLogin
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM LogLogin");
+                    .Append("SELECT * FROM db_LogLogin");
                 var result = db.Query<LogLogin_Info>(SQLStr);
 
                 return result;
@@ -133,10 +133,34 @@ namespace WanFang.DAL.LogLogin
         private Rest.Core.PetaPoco.Sql ConstructSQL(LogLogin_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM LogLogin")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_LogLogin")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.LogLoginId.HasValue)
+                {
+                    SQLStr.Append(" AND LogLoginId=@0", filter.LogLoginId.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.LoginId))
+                {
+                    SQLStr.Append(" AND LoginId=@0", filter.LoginId);
+                }
+                if (!string.IsNullOrEmpty(filter.Password))
+                {
+                    SQLStr.Append(" AND Password=@0", filter.Password);
+                }
+                if (filter.IsPass.HasValue)
+                {
+                    SQLStr.Append(" AND IsPass=@0", filter.IsPass.Value);
+                }
+                if (filter.CreateDateTime.HasValue)
+                {
+                    SQLStr.Append(" AND CreateDateTime=@0", filter.CreateDateTime.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.LoginIP))
+                {
+                    SQLStr.Append(" AND LoginIP=@0", filter.LoginIP);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 

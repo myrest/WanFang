@@ -32,7 +32,7 @@ namespace WanFang.DAL.AboutCategory
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM AboutCategory")
+                .Append("SELECT * FROM db_AboutCategory")
                 .Append("WHERE AboutCategoryId=@0", AboutCategoryId);
 
                 var result = db.SingleOrDefault<AboutCategory_Info>(SQLStr);
@@ -45,7 +45,7 @@ namespace WanFang.DAL.AboutCategory
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM AboutCategory");
+                    .Append("SELECT * FROM db_AboutCategory");
                 var result = db.Query<AboutCategory_Info>(SQLStr);
 
                 return result;
@@ -133,10 +133,34 @@ namespace WanFang.DAL.AboutCategory
         private Rest.Core.PetaPoco.Sql ConstructSQL(AboutCategory_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM AboutCategory")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_AboutCategory")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
+                if (filter.AboutCategoryId.HasValue)
+                {
+                    SQLStr.Append(" AND AboutCategoryId=@0", filter.AboutCategoryId.Value);
+                }
+                if (filter.AboutId.HasValue)
+                {
+                    SQLStr.Append(" AND AboutId=@0", filter.AboutId.Value);
+                }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.Category))
+                {
+                    SQLStr.Append(" AND Category=@0", filter.Category);
+                }
+                if (filter.IsActive.HasValue)
+                {
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
+                }
+                if (filter.LastUpdate.HasValue)
+                {
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 
