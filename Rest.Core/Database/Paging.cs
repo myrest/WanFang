@@ -7,6 +7,12 @@ namespace Rest.Core
 {
     public class Paging
     {
+        public Paging()
+        {
+            CurrentPage = 1;
+            ItemsPerPage = 20;
+        }
+
         /// <summary>
         /// The current page number contained in this page of result set
         /// </summary>

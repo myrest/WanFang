@@ -8,23 +8,7 @@ using Rest.Core.Utility;
 
 namespace WanFang.BLL
 {
-    /*
-    #region interface
-    public interface IUser_Manager
-    {
-        User_Info GetBySN(long UserID);
-        IEnumerable<User_Info> GetAll();
-        IEnumerable<User_Info> GetByParameter(User_Filter Filter, string _orderby = "");
-        long Insert(User_Info data);
-        bool Update(long UserID, User_Info data, IEnumerable<string> columns);
-        bool Update(User_Info data);
-        int Delete(long UserID);
-        bool IsExist(long UserID);
-    }
-    #endregion
-    */
-    #region implementation
-    public class User_Manager //: IUser_Manager
+    public class User_Manager
     {
         #region public properties
         #endregion
@@ -44,9 +28,34 @@ namespace WanFang.BLL
             return new User_Repo().GetAll();
         }
 
-        public IEnumerable<User_Info> GetByParameter(User_Filter Filter, string _orderby = "")
+        public List<User_Info> GetByParameter(User_Filter Filter)
+        {
+            return new User_Repo().GetByParam(Filter);
+        }
+
+        public List<User_Info> GetByParameter(User_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new User_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<User_Info> GetByParameter(User_Filter Filter, string _orderby)
         {
             return new User_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<User_Info> GetByParameter(User_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new User_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<User_Info> GetByParameter(User_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new User_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<User_Info> GetByParameter(User_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new User_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
         }
         #endregion
 
@@ -116,5 +125,4 @@ namespace WanFang.BLL
         #region private functions
         #endregion
     }
-    #endregion
 }

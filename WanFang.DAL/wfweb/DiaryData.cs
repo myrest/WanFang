@@ -14,8 +14,12 @@ namespace WanFang.DAL.DiaryData
     {
         DiaryData_Info GetBySN(long DiaryDataID);
         IEnumerable<DiaryData_Info> GetAll();
-        IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby = "");
-        IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby = "");
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter);
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, Paging Page);
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby);
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby, Paging Page);
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
         long Insert(DiaryData_Info data);
         int Update(long DiaryDataID, DiaryData_Info data, IEnumerable<string> columns);
         int Update(DiaryData_Info data);
@@ -52,29 +56,46 @@ namespace WanFang.DAL.DiaryData
             }
         }
 
-        public IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby = "")
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter)
         {
-            using (var db = new DBExecutor().GetDatabase())
-            {
-                var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
-
-                var result = db.Query<DiaryData_Info>(SQLStr);
-
-                return result;
-            }
+            return GetByParam(Filter, null, null, "");
         }
 
-        public IEnumerable<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby = "")
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, Paging Page)
         {
+            return GetByParam(Filter, Page, null, "");
+        }
+
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby)
+        {
+            return GetByParam(Filter, null, null, _orderby);
+        }
+
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, _orderby);
+        }
+
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<DiaryData_Info> GetByParam(DiaryData_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        {
+            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
+            if (Page == null) { Page = new Paging(); }
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<DiaryData_Info>(SQLStr);
+                var result = db.Page<DiaryData_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<DiaryData_Info>(result);
 
-                return result;
+                return result.Items;
             }
         }
+
         #endregion
 
         #region Operation: Insert

@@ -8,23 +8,7 @@ using Rest.Core.Utility;
 
 namespace WanFang.BLL
 {
-    /*
-    #region interface
-    public interface IDiaryData_Manager
-    {
-        DiaryData_Info GetBySN(long DiaryDataID);
-        IEnumerable<DiaryData_Info> GetAll();
-        IEnumerable<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, string _orderby = "");
-        long Insert(DiaryData_Info data);
-        bool Update(long DiaryDataID, DiaryData_Info data, IEnumerable<string> columns);
-        bool Update(DiaryData_Info data);
-        int Delete(long DiaryDataID);
-        bool IsExist(long DiaryDataID);
-    }
-    #endregion
-    */
-    #region implementation
-    public class DiaryData_Manager //: IDiaryData_Manager
+    public class DiaryData_Manager
     {
         #region public properties
         #endregion
@@ -44,9 +28,34 @@ namespace WanFang.BLL
             return new DiaryData_Repo().GetAll();
         }
 
-        public IEnumerable<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, string _orderby = "")
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter)
+        {
+            return new DiaryData_Repo().GetByParam(Filter);
+        }
+
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new DiaryData_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, string _orderby)
         {
             return new DiaryData_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new DiaryData_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new DiaryData_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<DiaryData_Info> GetByParameter(DiaryData_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new DiaryData_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
         }
         #endregion
 
@@ -95,5 +104,4 @@ namespace WanFang.BLL
         #region private functions
         #endregion
     }
-    #endregion
 }

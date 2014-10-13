@@ -8,23 +8,7 @@ using Rest.Core.Utility;
 
 namespace WanFang.BLL
 {
-    /*
-    #region interface
-    public interface ILogLogin_Manager
-    {
-        LogLogin_Info GetBySN(long LogLoginId);
-        IEnumerable<LogLogin_Info> GetAll();
-        IEnumerable<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, string _orderby = "");
-        long Insert(LogLogin_Info data);
-        bool Update(long LogLoginId, LogLogin_Info data, IEnumerable<string> columns);
-        bool Update(LogLogin_Info data);
-        int Delete(long LogLoginId);
-        bool IsExist(long LogLoginId);
-    }
-    #endregion
-    */
-    #region implementation
-    public class LogLogin_Manager //: ILogLogin_Manager
+    public class LogLogin_Manager
     {
         #region public properties
         #endregion
@@ -44,9 +28,34 @@ namespace WanFang.BLL
             return new LogLogin_Repo().GetAll();
         }
 
-        public IEnumerable<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, string _orderby = "")
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter)
+        {
+            return new LogLogin_Repo().GetByParam(Filter);
+        }
+
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new LogLogin_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, string _orderby)
         {
             return new LogLogin_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new LogLogin_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new LogLogin_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<LogLogin_Info> GetByParameter(LogLogin_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new LogLogin_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
         }
         #endregion
 
@@ -95,5 +104,4 @@ namespace WanFang.BLL
         #region private functions
         #endregion
     }
-    #endregion
 }

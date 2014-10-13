@@ -14,8 +14,12 @@ namespace WanFang.DAL.AboutContent
     {
         AboutContent_Info GetBySN(long AboutContentId);
         IEnumerable<AboutContent_Info> GetAll();
-        IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby = "");
-        IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby = "");
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter);
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page);
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby);
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page);
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
         long Insert(AboutContent_Info data);
         int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns);
         int Update(AboutContent_Info data);
@@ -52,29 +56,46 @@ namespace WanFang.DAL.AboutContent
             }
         }
 
-        public IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby = "")
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter)
         {
-            using (var db = new DBExecutor().GetDatabase())
-            {
-                var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
-
-                var result = db.Query<AboutContent_Info>(SQLStr);
-
-                return result;
-            }
+            return GetByParam(Filter, null, null, "");
         }
 
-        public IEnumerable<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby = "")
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page)
         {
+            return GetByParam(Filter, Page, null, "");
+        }
+
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby)
+        {
+            return GetByParam(Filter, null, null, _orderby);
+        }
+
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, _orderby);
+        }
+
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        {
+            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
+            if (Page == null) { Page = new Paging(); }
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<AboutContent_Info>(SQLStr);
+                var result = db.Page<AboutContent_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<AboutContent_Info>(result);
 
-                return result;
+                return result.Items;
             }
         }
+
         #endregion
 
         #region Operation: Insert

@@ -14,8 +14,12 @@ namespace WanFang.DAL.LogLogin
     {
         LogLogin_Info GetBySN(long LogLoginId);
         IEnumerable<LogLogin_Info> GetAll();
-        IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby = "");
-        IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby = "");
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter);
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, Paging Page);
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby);
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby, Paging Page);
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
         long Insert(LogLogin_Info data);
         int Update(long LogLoginId, LogLogin_Info data, IEnumerable<string> columns);
         int Update(LogLogin_Info data);
@@ -52,29 +56,46 @@ namespace WanFang.DAL.LogLogin
             }
         }
 
-        public IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby = "")
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter)
         {
-            using (var db = new DBExecutor().GetDatabase())
-            {
-                var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
-
-                var result = db.Query<LogLogin_Info>(SQLStr);
-
-                return result;
-            }
+            return GetByParam(Filter, null, null, "");
         }
 
-        public IEnumerable<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby = "")
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, Paging Page)
         {
+            return GetByParam(Filter, Page, null, "");
+        }
+
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby)
+        {
+            return GetByParam(Filter, null, null, _orderby);
+        }
+
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, _orderby);
+        }
+
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<LogLogin_Info> GetByParam(LogLogin_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        {
+            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
+            if (Page == null) { Page = new Paging(); }
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<LogLogin_Info>(SQLStr);
+                var result = db.Page<LogLogin_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<LogLogin_Info>(result);
 
-                return result;
+                return result.Items;
             }
         }
+
         #endregion
 
         #region Operation: Insert

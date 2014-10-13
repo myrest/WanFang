@@ -14,8 +14,12 @@ namespace WanFang.DAL.User
     {
         User_Info GetBySN(long UserID);
         IEnumerable<User_Info> GetAll();
-        IEnumerable<User_Info> GetByParam(User_Filter Filter, string _orderby = "");
-        IEnumerable<User_Info> GetByParam(User_Filter Filter, string[] fieldNames, string _orderby = "");
+        List<User_Info> GetByParam(User_Filter Filter);
+        List<User_Info> GetByParam(User_Filter Filter, Paging Page);
+        List<User_Info> GetByParam(User_Filter Filter, string _orderby);
+        List<User_Info> GetByParam(User_Filter Filter, string _orderby, Paging Page);
+        List<User_Info> GetByParam(User_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<User_Info> GetByParam(User_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
         long Insert(User_Info data);
         int Update(long UserID, User_Info data, IEnumerable<string> columns);
         int Update(User_Info data);
@@ -52,29 +56,46 @@ namespace WanFang.DAL.User
             }
         }
 
-        public IEnumerable<User_Info> GetByParam(User_Filter Filter, string _orderby = "")
+        public List<User_Info> GetByParam(User_Filter Filter)
         {
-            using (var db = new DBExecutor().GetDatabase())
-            {
-                var SQLStr = ConstructSQL(Filter, new string[] { "*" }, _orderby);
-
-                var result = db.Query<User_Info>(SQLStr);
-
-                return result;
-            }
+            return GetByParam(Filter, null, null, "");
         }
 
-        public IEnumerable<User_Info> GetByParam(User_Filter Filter, string[] fieldNames, string _orderby = "")
+        public List<User_Info> GetByParam(User_Filter Filter, Paging Page)
         {
+            return GetByParam(Filter, Page, null, "");
+        }
+
+        public List<User_Info> GetByParam(User_Filter Filter, string _orderby)
+        {
+            return GetByParam(Filter, null, null, _orderby);
+        }
+
+        public List<User_Info> GetByParam(User_Filter Filter, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, null, _orderby);
+        }
+
+        public List<User_Info> GetByParam(User_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        {
+            return GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<User_Info> GetByParam(User_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        {
+            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
+            if (Page == null) { Page = new Paging(); }
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Query<User_Info>(SQLStr);
+                var result = db.Page<User_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<User_Info>(result);
 
-                return result;
+                return result.Items;
             }
         }
+
         #endregion
 
         #region Operation: Insert

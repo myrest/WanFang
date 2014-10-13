@@ -8,23 +8,7 @@ using Rest.Core.Utility;
 
 namespace WanFang.BLL
 {
-    /*
-    #region interface
-    public interface IPilates_Manager
-    {
-        Pilates_Info GetBySN(long PilatesId);
-        IEnumerable<Pilates_Info> GetAll();
-        IEnumerable<Pilates_Info> GetByParameter(Pilates_Filter Filter, string _orderby = "");
-        long Insert(Pilates_Info data);
-        bool Update(long PilatesId, Pilates_Info data, IEnumerable<string> columns);
-        bool Update(Pilates_Info data);
-        int Delete(long PilatesId);
-        bool IsExist(long PilatesId);
-    }
-    #endregion
-    */
-    #region implementation
-    public class Pilates_Manager //: IPilates_Manager
+    public class Pilates_Manager
     {
         #region public properties
         #endregion
@@ -44,9 +28,34 @@ namespace WanFang.BLL
             return new Pilates_Repo().GetAll();
         }
 
-        public IEnumerable<Pilates_Info> GetByParameter(Pilates_Filter Filter, string _orderby = "")
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter)
+        {
+            return new Pilates_Repo().GetByParam(Filter);
+        }
+
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new Pilates_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter, string _orderby)
         {
             return new Pilates_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new Pilates_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new Pilates_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<Pilates_Info> GetByParameter(Pilates_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new Pilates_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
         }
         #endregion
 
@@ -95,5 +104,4 @@ namespace WanFang.BLL
         #region private functions
         #endregion
     }
-    #endregion
 }

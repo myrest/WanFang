@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Rest.Core">
-      <HintPath>..\Lib\Rest.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +50,10 @@
     <Compile Include="wfweb\User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
+      <Project>{3A850565-71B6-4B0C-B255-2D2A57E37B8B}</Project>
+      <Name>Rest.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WanFang.Domain\WanFang.Domain.csproj">
       <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
       <Name>WanFang.Domain</Name>

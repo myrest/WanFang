@@ -8,23 +8,7 @@ using Rest.Core.Utility;
 
 namespace WanFang.BLL
 {
-    /*
-    #region interface
-    public interface IAboutCategory_Manager
-    {
-        AboutCategory_Info GetBySN(long AboutCategoryId);
-        IEnumerable<AboutCategory_Info> GetAll();
-        IEnumerable<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, string _orderby = "");
-        long Insert(AboutCategory_Info data);
-        bool Update(long AboutCategoryId, AboutCategory_Info data, IEnumerable<string> columns);
-        bool Update(AboutCategory_Info data);
-        int Delete(long AboutCategoryId);
-        bool IsExist(long AboutCategoryId);
-    }
-    #endregion
-    */
-    #region implementation
-    public class AboutCategory_Manager //: IAboutCategory_Manager
+    public class AboutCategory_Manager
     {
         #region public properties
         #endregion
@@ -44,9 +28,34 @@ namespace WanFang.BLL
             return new AboutCategory_Repo().GetAll();
         }
 
-        public IEnumerable<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, string _orderby = "")
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter)
+        {
+            return new AboutCategory_Repo().GetByParam(Filter);
+        }
+
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, Rest.Core.Paging Page)
+        {
+            return new AboutCategory_Repo().GetByParam(Filter, Page);
+        }
+
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, string _orderby)
         {
             return new AboutCategory_Repo().GetByParam(Filter, _orderby);
+        }
+
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, string _orderby, Rest.Core.Paging Page)
+        {
+            return new AboutCategory_Repo().GetByParam(Filter, _orderby, Page);
+        }
+
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, Rest.Core.Paging Page, string[] fieldNames, string _orderby)
+        {
+            return new AboutCategory_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
+        }
+
+        public List<AboutCategory_Info> GetByParameter(AboutCategory_Filter Filter, string[] fieldNames, string _orderby, Rest.Core.Paging Page)
+        {
+            return new AboutCategory_Repo().GetByParam(Filter, fieldNames, _orderby, Page);
         }
         #endregion
 
@@ -95,5 +104,4 @@ namespace WanFang.BLL
         #region private functions
         #endregion
     }
-    #endregion
 }
