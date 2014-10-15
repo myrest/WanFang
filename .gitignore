@@ -16,3 +16,10 @@
 /WanFang.Domain/obj
 /*.suo
 /Tools/Config.cfg
+/WanFang.Core/obj
+/WanFang.Core/bin
+/WanFang.Website/obj
+/WanFang.Website/bin
+/WanFang.Website/WanFang.Website.Publish.xml
+/WanFang.Website/WanFang.Website.csproj.user
+/WanFang.Website/*.user
