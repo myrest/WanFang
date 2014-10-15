@@ -20,24 +20,18 @@ namespace WanFang.BLL
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page)
         {
-            return new AboutBindingListing_Repo().GetByParam(Filter, Page, null, "");
+            return new AboutBindingListing_Repo().GetByParam(Filter, Page, "");
         }
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby)
         {
-            return new AboutBindingListing_Repo().GetByParam(Filter, null, null, _orderby);
+            return new AboutBindingListing_Repo().GetByParam(Filter, null, _orderby);
         }
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page)
         {
-            return new AboutBindingListing_Repo().GetByParam(Filter, Page, null, _orderby);
+            return new AboutBindingListing_Repo().GetByParam(Filter, Page, _orderby);
         }
-
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
-        {
-            return new AboutBindingListing_Repo().GetByParam(Filter, Page, fieldNames, _orderby);
-        }
-
 
     }
 }

@@ -8,17 +8,16 @@ namespace WanFang.Domain
 {
     /*
     #region interface
-    public interface IAboutContent_Info
+    public interface IAboutService_Info
     {
-        int AboutContentId { get; set; }
-        int AboutId { get; set; }
-        int AboutCategoryId { get; set; }
-        string UnitName { get; set; }
-        int OpenType { get; set; }
-        string OpenUrl { get; set; }
-        string Content1 { get; set; }
-        string Content2 { get; set; }
-        string Content3 { get; set; }
+        int AboutServiceId { get; set; }
+        int SortNum { get; set; }
+        string Description { get; set; }
+        int DisplayType { get; set; }
+        string Link { get; set; }
+        string ContentBody1 { get; set; }
+        string ContentBody2 { get; set; }
+        string ContentBody3 { get; set; }
         string Image1 { get; set; }
         string Image2 { get; set; }
         string Image3 { get; set; }
@@ -33,61 +32,65 @@ namespace WanFang.Domain
     */
 
     #region Implementation
-    [Rest.Core.PetaPoco.TableName("db_AboutContent")]
-    [Rest.Core.PetaPoco.PrimaryKey("AboutContentId")]
-    public class AboutContent_Info //: IAboutContent_Info
+    [Rest.Core.PetaPoco.TableName("db_AboutService")]
+    [Rest.Core.PetaPoco.PrimaryKey("AboutServiceId")]
+    public class AboutService_Info //: IAboutService_Info
     {
         #region private fields
+        public int AboutServiceId { get; set; }
         /// <summary>
-        /// 流水號
+        /// 順序(新)
         /// </summary>
-        public int AboutContentId { get; set; }
-        public int AboutId { get; set; }
+        public int SortNum { get; set; }
         /// <summary>
-        /// 類別ID
+        /// 系列名稱(新)
         /// </summary>
-        public int AboutCategoryId { get; set; }
+        public string Description { get; set; }
         /// <summary>
-        /// 單元名稱
+        /// 上/下架(新)
         /// </summary>
-        public string UnitName { get; set; }
+        public int DisplayType { get; set; }
         /// <summary>
-        /// 開啟方式
+        /// 更新日期(新)
         /// </summary>
-        public int OpenType { get; set; }
-        public string OpenUrl { get; set; }
-        public string Content1 { get; set; }
-        public string Content2 { get; set; }
-        public string Content3 { get; set; }
+        public string Link { get; set; }
+        public string ContentBody1 { get; set; }
+        public string ContentBody2 { get; set; }
+        public string ContentBody3 { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }
         public int Position1 { get; set; }
         public int Position2 { get; set; }
         public int Position3 { get; set; }
+        /// <summary>
+        /// 上/下架(新)
+        /// </summary>
         public int IsActive { get; set; }
+        /// <summary>
+        /// 更新日期(新)
+        /// </summary>
         public DateTime LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         #endregion
 
         #region Constructor
-        public AboutContent_Info()
+        public AboutService_Info()
         {
         }
         #endregion
     }
 
-    public class AboutContent_Filter
+    public class AboutService_Filter
     {
-        public int? AboutContentId { get; set; }
-        public int? AboutId { get; set; }
-        public int? AboutCategoryId { get; set; }
-        public string UnitName { get; set; }
-        public int? OpenType { get; set; }
-        public string OpenUrl { get; set; }
-        public string Content1 { get; set; }
-        public string Content2 { get; set; }
-        public string Content3 { get; set; }
+        public int? AboutServiceId { get; set; }
+        public int? SortNum { get; set; }
+        public string Description { get; set; }
+        public int? DisplayType { get; set; }
+        public string Link { get; set; }
+        public string ContentBody1 { get; set; }
+        public string ContentBody2 { get; set; }
+        public string ContentBody3 { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }
@@ -97,7 +100,7 @@ namespace WanFang.Domain
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
-        //You can copy/modify above AboutContent_Info field for search criteria
+        //You can copy/modify above AboutService_Info field for search criteria
     }
     #endregion
 }

@@ -14,36 +14,30 @@ namespace WanFang.DAL.Binding
         #region Operation: Select
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter)
         {
-            return GetByParam(Filter, null, null, "");
+            return GetByParam(Filter, null, "");
         }
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page)
         {
-            return GetByParam(Filter, Page, null, "");
+            return GetByParam(Filter, Page, "");
         }
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby)
         {
-            return GetByParam(Filter, null, null, _orderby);
+            return GetByParam(Filter, null, _orderby);
         }
 
         public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page)
         {
-            return GetByParam(Filter, Page, null, _orderby);
+            return GetByParam(Filter, Page, _orderby);
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string _orderby)
         {
-            return GetByParam(Filter, Page, fieldNames, _orderby);
-        }
-
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
-        {
-            if (fieldNames == null) { fieldNames = new string[] { "*" }; }
             if (Page == null) { Page = new Paging(); }
             using (var db = new DBExecutor().GetDatabase())
             {
-                var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
+                var SQLStr = ConstructSQL(Filter, _orderby);
 
                 var result = db.Page<AboutContent_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
                 Page.Convert<AboutContent_Info>(result);
@@ -55,15 +49,10 @@ namespace WanFang.DAL.Binding
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter)
-        {
-            return ConstructSQL(filter, new string[] { "*" }, "");
-        }
-
-        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT b.Category as AboutName,b.Category as CategoryName," + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_AboutContent a")
+                .Append("SELECT b.Category as AboutName,b.Category as CategoryName, a.* FROM db_AboutContent a ")
                 .Append(@"inner join db_About b on a.AboutId = b.AboutId 
                           inner join db_AboutCategory c on c.AboutCategoryId = a.AboutCategoryId")
                 .Append("WHERE 1=1 ");

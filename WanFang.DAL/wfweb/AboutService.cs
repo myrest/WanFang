@@ -7,81 +7,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.AboutContent
+namespace WanFang.DAL.AboutService
 {
     #region interface
-    public interface IAboutContent_Repo
+    public interface IAboutService_Repo
     {
-        AboutContent_Info GetBySN(long AboutContentId);
-        IEnumerable<AboutContent_Info> GetAll();
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter);
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page);
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby);
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page);
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
-        List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
-        long Insert(AboutContent_Info data);
-        int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns);
-        int Update(AboutContent_Info data);
-        int Delete(long AboutContentId);
+        AboutService_Info GetBySN(long AboutServiceId);
+        IEnumerable<AboutService_Info> GetAll();
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter);
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter, Paging Page);
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter, string _orderby);
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter, string _orderby, Paging Page);
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<AboutService_Info> GetByParam(AboutService_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
+        long Insert(AboutService_Info data);
+        int Update(long AboutServiceId, AboutService_Info data, IEnumerable<string> columns);
+        int Update(AboutService_Info data);
+        int Delete(long AboutServiceId);
     }
     #endregion
 
     #region Implementation
-    public class AboutContent_Repo
+    public class AboutService_Repo
     {
         #region Operation: Select
-        public AboutContent_Info GetBySN(long AboutContentId)
+        public AboutService_Info GetBySN(long AboutServiceId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_AboutContent")
-                .Append("WHERE AboutContentId=@0", AboutContentId);
+                .Append("SELECT * FROM db_AboutService")
+                .Append("WHERE AboutServiceId=@0", AboutServiceId);
 
-                var result = db.SingleOrDefault<AboutContent_Info>(SQLStr);
+                var result = db.SingleOrDefault<AboutService_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<AboutContent_Info> GetAll()
+        public IEnumerable<AboutService_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_AboutContent");
-                var result = db.Query<AboutContent_Info>(SQLStr);
+                    .Append("SELECT * FROM db_AboutService");
+                var result = db.Query<AboutService_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter)
         {
             return GetByParam(Filter, null, null, "");
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter, Paging Page)
         {
             return GetByParam(Filter, Page, null, "");
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter, string _orderby)
         {
             return GetByParam(Filter, null, null, _orderby);
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string _orderby, Paging Page)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, null, _orderby);
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, fieldNames, _orderby);
         }
 
-        public List<AboutContent_Info> GetByParam(AboutContent_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        public List<AboutService_Info> GetByParam(AboutService_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
         {
             if (fieldNames == null) { fieldNames = new string[] { "*" }; }
             if (Page == null) { Page = new Paging(); }
@@ -89,8 +89,8 @@ namespace WanFang.DAL.AboutContent
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Page<AboutContent_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
-                Page.Convert<AboutContent_Info>(result);
+                var result = db.Page<AboutService_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<AboutService_Info>(result);
 
                 return result.Items;
             }
@@ -99,7 +99,7 @@ namespace WanFang.DAL.AboutContent
         #endregion
 
         #region Operation: Insert
-        public long Insert(AboutContent_Info data)
+        public long Insert(AboutService_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -115,15 +115,15 @@ namespace WanFang.DAL.AboutContent
         #endregion
 
         #region Operation: Update
-        public int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns)
+        public int Update(long AboutServiceId, AboutService_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, AboutContentId, columns);
+                return db.Update(data, AboutServiceId, columns);
             }
         }
 
-        public int Update(AboutContent_Info data)
+        public int Update(AboutService_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -133,11 +133,11 @@ namespace WanFang.DAL.AboutContent
         #endregion
 
         #region Operation: Delete
-        public int Delete(long AboutContentId)
+        public int Delete(long AboutServiceId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("AboutContent", "AboutContentId", null, AboutContentId);
+                return db.Delete("AboutService", "AboutServiceId", null, AboutServiceId);
             }
         }
         #endregion
@@ -146,53 +146,49 @@ namespace WanFang.DAL.AboutContent
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutService_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutContent_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(AboutService_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_AboutContent")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_AboutService")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
-                if (filter.AboutContentId.HasValue)
+                if (filter.AboutServiceId.HasValue)
                 {
-                    SQLStr.Append(" AND AboutContentId=@0", filter.AboutContentId.Value);
+                    SQLStr.Append(" AND AboutServiceId=@0", filter.AboutServiceId.Value);
                 }
-                if (filter.AboutId.HasValue)
+                if (filter.SortNum.HasValue)
                 {
-                    SQLStr.Append(" AND AboutId=@0", filter.AboutId.Value);
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
                 }
-                if (filter.AboutCategoryId.HasValue)
+                if (!string.IsNullOrEmpty(filter.Description))
                 {
-                    SQLStr.Append(" AND AboutCategoryId=@0", filter.AboutCategoryId.Value);
+                    SQLStr.Append(" AND Description=@0", filter.Description);
                 }
-                if (!string.IsNullOrEmpty(filter.UnitName))
+                if (filter.DisplayType.HasValue)
                 {
-                    SQLStr.Append(" AND UnitName=@0", filter.UnitName);
+                    SQLStr.Append(" AND DisplayType=@0", filter.DisplayType.Value);
                 }
-                if (filter.OpenType.HasValue)
+                if (!string.IsNullOrEmpty(filter.Link))
                 {
-                    SQLStr.Append(" AND OpenType=@0", filter.OpenType.Value);
+                    SQLStr.Append(" AND Link=@0", filter.Link);
                 }
-                if (!string.IsNullOrEmpty(filter.OpenUrl))
+                if (!string.IsNullOrEmpty(filter.ContentBody1))
                 {
-                    SQLStr.Append(" AND OpenUrl=@0", filter.OpenUrl);
+                    SQLStr.Append(" AND ContentBody1=@0", filter.ContentBody1);
                 }
-                if (!string.IsNullOrEmpty(filter.Content1))
+                if (!string.IsNullOrEmpty(filter.ContentBody2))
                 {
-                    SQLStr.Append(" AND Content1=@0", filter.Content1);
+                    SQLStr.Append(" AND ContentBody2=@0", filter.ContentBody2);
                 }
-                if (!string.IsNullOrEmpty(filter.Content2))
+                if (!string.IsNullOrEmpty(filter.ContentBody3))
                 {
-                    SQLStr.Append(" AND Content2=@0", filter.Content2);
-                }
-                if (!string.IsNullOrEmpty(filter.Content3))
-                {
-                    SQLStr.Append(" AND Content3=@0", filter.Content3);
+                    SQLStr.Append(" AND ContentBody3=@0", filter.ContentBody3);
                 }
                 if (!string.IsNullOrEmpty(filter.Image1))
                 {
