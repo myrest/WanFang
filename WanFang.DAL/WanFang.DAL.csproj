@@ -44,7 +44,7 @@
     <Compile Include="wfweb\About.cs" />
     <Compile Include="wfweb\AboutCategory.cs" />
     <Compile Include="wfweb\AboutContent.cs" />
-    <Compile Include="wfweb\Binding\AboutBindingListing.cs" />
+    <Compile Include="wfweb\Binding\AboutBinding.cs" />
     <Compile Include="wfweb\DiaryData.cs" />
     <Compile Include="wfweb\LogLogin.cs" />
     <Compile Include="wfweb\Pilates.cs" />

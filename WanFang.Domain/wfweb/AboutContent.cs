@@ -11,6 +11,7 @@ namespace WanFang.Domain
     public interface IAboutContent_Info
     {
         int AboutContentId { get; set; }
+        int AboutId { get; set; }
         int AboutCategoryId { get; set; }
         string UnitName { get; set; }
         int OpenType { get; set; }
@@ -41,6 +42,7 @@ namespace WanFang.Domain
         /// 流水號
         /// </summary>
         public int AboutContentId { get; set; }
+        public int AboutId { get; set; }
         /// <summary>
         /// 類別ID
         /// </summary>
@@ -78,6 +80,7 @@ namespace WanFang.Domain
     public class AboutContent_Filter
     {
         public int? AboutContentId { get; set; }
+        public int? AboutId { get; set; }
         public int? AboutCategoryId { get; set; }
         public string UnitName { get; set; }
         public int? OpenType { get; set; }
