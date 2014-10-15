@@ -1,0 +1,65 @@
+<head>
+<meta http-equiv="content-type" content="text/xml; charset=utf-8" />
+<title>The Coolest DHTML Calendar - Online Demo</title>
+<link rel="stylesheet" type="text/css" media="all" href="skins/aqua/theme.css" title="Aqua" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue.css" title="winter" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-blue2.css" title="blue" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-brown.css" title="summer" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-green.css" title="green" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-1.css" title="win2k-1" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-2.css" title="win2k-2" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-win2k-cold-2.css" title="win2k-cold-2" />
+<link rel="alternate stylesheet" type="text/css" media="all" href="calendar-system.css" title="system" />
+
+<script type="text/javascript" src="calendar.js"></script>
+<script type="text/javascript" src="lang/calendar-en.js"></script>
+
+<script type="text/javascript">
+
+var MINUTE = 60 * 1000;
+var HOUR = 60 * MINUTE;
+var DAY = 24 * HOUR;
+var WEEK = 7 * DAY;
+
+function isDisabled(date) {
+  var today = new Date();
+  return (Math.abs(date.getTime() - today.getTime()) / DAY) > 10;
+}
+
+function flatSelected(cal, date) {
+  var el = document.getElementById("preview");
+  el.innerHTML = date;
+}
+
+function showFlatCalendar() {
+  var parent = document.getElementById("display");
+
+  // construct a calendar giving only the "selected" handler.
+  var cal = new Calendar(0, null, flatSelected);
+
+  // hide week numbers
+  cal.weekNumbers = false;
+
+  // We want some dates to be disabled; see function isDisabled above
+  cal.setDisabledHandler(isDisabled);
+  cal.setDateFormat("%A, %B %e");
+
+  // this call must be the last as it might use data initialized above; if
+  // we specify a parent, as opposite to the "showCalendar" function above,
+  // then we create a flat calendar -- not popup.  Hidden, though, but...
+  cal.create(parent);
+
+  // ... we can show it here.
+  cal.show();
+}
+</script>
+
+</head>
+<body onload="showFlatCalendar()">
+
+
+      <!-- the calendar will be inserted here -->
+      <div id="display" style="float: right; clear: both;"></div>
+      <div id="preview" style="font-size: 80%; text-align: center; padding: 2px">&nbsp;</div>
+

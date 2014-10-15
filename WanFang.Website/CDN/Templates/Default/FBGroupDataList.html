@@ -1,0 +1,56 @@
+﻿<textarea title="留個言吧......" placeholder="留個言吧......" class="NewFBMessage"></textarea>
+<input type="button" value=" 留言 " class="fbSendmessage" />
+{for item in FbData.data}
+<table class="fbmainmsg">
+    <tr>
+        <td class="fbmainimg">
+            <img src="http://graph.facebook.com/${item.from.id}/picture" class="fbmainimg"  alt=""  />
+        </td>
+        <td>
+            <span class="fbmainname">${item.from.name}</span>
+            <br />
+            ${new Date(item.created_time)}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            ${item.message}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            {var likes = (item.likes != undefined)?item.likes.data.length:0} Likes:${likes}
+        </td>
+    </tr>
+    <tr style="vertical-align: top; background-color:#f6f7f8">
+        <td colspan="2">
+            <table>
+            <!--Comment start -->
+        {if (item.comments != undefined)}
+            {for comment in item.comments.data}
+                <tr>
+                    <td>
+                        <img class="fbsubimg" src="http://graph.facebook.com/${comment.from.id}/picture" alt="" />
+                    </td>
+                    <td class="fbsubmsg">
+                        <span class="fbsubname">${comment.from.name}</span>
+                        <span>${comment.message}</span>
+                        <br />
+                        ${new Date(comment.created_time)} · Likes:${comment.like_count}
+                    </td>
+                </tr>
+            {/for}
+        {/if}
+            <!--Comment end -->
+                <tr>
+                    <td colspan="2">
+                        <img src="https://graph.facebook.com/me/picture?access_token=${token}" class="fbsubimg"  alt=""  />
+                        <textarea title="留言..." placeholder="留言..." class="NewFBComment"></textarea>
+                        <input type="button" value=" 留言 " class="fbSendComment" id="${item.id}" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{/for} 

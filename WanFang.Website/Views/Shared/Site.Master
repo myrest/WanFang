@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <% Html.RenderPartial("~/Views/Shared/UserControls/CssReferences.ascx"); %>
+    <asp:ContentPlaceHolder ID="header" runat="server" />
+</head>
+<body>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    <div id="dialog">
+    </div>
+    <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
+    <asp:ContentPlaceHolder ID="JSContent" runat="server" />
+</body>
+</html>

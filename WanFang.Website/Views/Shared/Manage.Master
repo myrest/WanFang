@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="WanFang.Core.MVC.Extensions" %>
+<%@ Import Namespace="WanFang.Domain" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <asp:ContentPlaceHolder ID="header" runat="server" />
+    <% Html.RenderPartial("~/Views/Shared/UserControls/CssReferences.ascx"); %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" href="/CDN/css/style.css" rel="stylesheet" />
+    <link href="/CDN/Plugins/Manage/skins/aqua/theme.css" rel="stylesheet" type="text/css">
+    <title>萬芳醫院後端系統 </title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="inside1">
+            <div id="header">
+                <div id="header_box">
+                    <div class="header_login">
+                        <img src="/CDN/Images/manage/manage-top.jpg" /></div>
+                </div>
+                <!--header -->
+            </div>
+            <% Html.RenderPartial("~/Views/Shared/ManageControls/ManageLeftMenu.ascx"); %>
+            <div id="contentpage">
+                <form id="form1" action="#">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                </form>
+                <!--contentpage end-->
+            </div>
+            <!--inside1 end-->
+        </div>
+        <% Html.RenderPartial("~/Views/Shared/ManageControls/ManageFooter.ascx"); %>
+        <!--contentpage end-->
+    </div>
+    <!--inside1 end-->
+    <div id="dialog">
+    </div>
+    <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
+    <script src="/CDN/Js/Manage/manage.js"></script>
+    <!-- script language="JavaScript" src="fckeditor/fckeditor.js"></script -->
+    <script src="/CDN/Plugins/Manage/ckeditor/ckeditor.js"></script>
+    <script src="/CDN/Plugins/Manage/calendar.js"></script>
+    <script src="/CDN/Plugins/Manage/calendar-setup.js"></script>
+    <script src="/CDN/Plugins/Manage/lang/calendar-big5-utf8.js"></script>
+    <script src="/CDN/Js/Manage/menu.js"></script>
+    <script src="/CDN/Js/Manage/w.js"></script>
+    <asp:ContentPlaceHolder ID="JSContent" runat="server" />
+</body>
+</html>
