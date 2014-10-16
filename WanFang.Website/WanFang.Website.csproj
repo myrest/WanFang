@@ -61,16 +61,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Rest.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Lib\Rest.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -82,6 +76,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -98,15 +93,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="WanFang.BLL">
-      <HintPath>..\Lib\WanFang.BLL.dll</HintPath>
-    </Reference>
-    <Reference Include="WanFang.DAL">
-      <HintPath>..\Lib\WanFang.DAL.dll</HintPath>
-    </Reference>
-    <Reference Include="WanFang.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\Lib\WanFang.Domain.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ManageController.cs" />
@@ -1288,13 +1274,28 @@
     <Content Include="Configuration\SystemSetting.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WanFang.Core\WanFang.Core.csproj">
-      <Project>{8fff0967-6cdc-404d-a0f8-1d2d75756e9b}</Project>
-      <Name>WanFang.Core</Name>
-    </ProjectReference>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rest.Core\Rest.Core.csproj">
+      <Project>{3A850565-71B6-4B0C-B255-2D2A57E37B8B}</Project>
+      <Name>Rest.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WanFang.BLL\WanFang.BLL.csproj">
+      <Project>{6BF2BD19-7878-437A-BC42-DBD0646A1BAC}</Project>
+      <Name>WanFang.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WanFang.Core\WanFang.Core.csproj">
+      <Project>{8FFF0967-6CDC-404D-A0F8-1D2D75756E9B}</Project>
+      <Name>WanFang.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WanFang.Domain\WanFang.Domain.csproj">
+      <Project>{527FE3A5-3A71-4AB7-86F9-3A6B48ADD98E}</Project>
+      <Name>WanFang.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

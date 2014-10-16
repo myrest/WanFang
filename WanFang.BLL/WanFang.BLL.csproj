@@ -55,8 +55,13 @@
     <Compile Include="wfweb\AboutService.cs" />
     <Compile Include="wfweb\AboutTeam.cs" />
     <Compile Include="wfweb\Binding\AboutBindingListing.cs" />
+    <Compile Include="wfweb\CostKeyword.cs" />
     <Compile Include="wfweb\DiaryData.cs" />
+    <Compile Include="wfweb\Edu.cs" />
+    <Compile Include="wfweb\Guide.cs" />
+    <Compile Include="wfweb\HomePage.cs" />
     <Compile Include="wfweb\LogLogin.cs" />
+    <Compile Include="wfweb\NewsData.cs" />
     <Compile Include="wfweb\Pilates.cs" />
     <Compile Include="wfweb\User.cs" />
   </ItemGroup>
