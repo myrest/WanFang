@@ -15,6 +15,7 @@ namespace WanFang.Domain
         string Category { get; set; }
         int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
+        string LastUpdator { get; set; }
     }
     #endregion
     */
@@ -45,6 +46,7 @@ namespace WanFang.Domain
         /// 最後更新日期
         /// </summary>
         public DateTime LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         #endregion
 
         #region Constructor
@@ -61,6 +63,7 @@ namespace WanFang.Domain
         public string Category { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         //You can copy/modify above About_Info field for search criteria
     }
     #endregion

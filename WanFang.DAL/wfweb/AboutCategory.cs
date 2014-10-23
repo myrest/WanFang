@@ -182,6 +182,10 @@ namespace WanFang.DAL.AboutCategory
                 {
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
                 }
+                if (!string.IsNullOrEmpty(filter.LastUpdator))
+                {
+                    SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
+                }
                 if (_orderby != "")
                     SQLStr.Append("ORDER BY @0", _orderby);
 
