@@ -22,5 +22,27 @@ namespace WanFang.Core.MVC.Extensions
         {
             return url.Action(actionName, controllerName, new { culture = culture, id = id });//(culture, new { controller = controllerName, action = actionName });
         }
+
+        public static string GenerIsActive(bool isActive, bool TextOnly = false)
+        {
+            if (TextOnly)
+            {
+                return (isActive) ? "上架" : "下架";
+            }
+            else
+            {
+                string rtn = "<select name=\"IsActive\">";
+                rtn += "<option value=\"1\" " + (isActive ? " selected " : "") + ">上架</option>";
+                rtn += "<option value=\"0\" " + (!isActive ? " selected " : "") + ">下架</option>";
+                rtn += "</select>";
+                return rtn;
+            }
+        }
+
+        public static string GenerIsActive(int isActive, bool TextOnly = false)
+        {
+            return GenerIsActive((isActive > 0), TextOnly);
+        }
+
     }
 }

@@ -137,7 +137,7 @@ namespace WanFang.DAL.HomePage
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("HomePage", "HomePageId", null, HomePageId);
+                return db.Delete("db_HomePage", "HomePageId", null, HomePageId);
             }
         }
         #endregion

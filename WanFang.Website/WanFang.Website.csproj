@@ -98,7 +98,9 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\Service\AboutServiceController.cs" />
     <Compile Include="Controllers\Service\ManageLoginServiceController.cs" />
+    <Compile Include="Controllers\Service\DeleteServiceController.cs" />
     <Compile Include="Models\Default\DefaultModel.cs" />
     <Content Include="CDN\CSS\common.css" />
     <Compile Include="Global.asax.cs">
@@ -1198,6 +1200,8 @@
     <Content Include="Scripts\ckeditor\skins\v2\skin.js" />
     <Content Include="Scripts\ckeditor\skins\v2\templates.css" />
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
+    <Content Include="Views\About\Copy %282%29 of Index.aspx" />
+    <Content Include="Views\About\EditAbout.aspx" />
     <Content Include="Views\About\Index.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />

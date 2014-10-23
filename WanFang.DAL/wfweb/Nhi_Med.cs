@@ -137,7 +137,7 @@ namespace WanFang.DAL.Nhi_Med
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("Nhi_Med", "MedicationID", null, MedicationID);
+                return db.Delete("db_Nhi_Med", "MedicationID", null, MedicationID);
             }
         }
         #endregion

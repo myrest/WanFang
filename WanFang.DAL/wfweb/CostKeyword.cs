@@ -137,7 +137,7 @@ namespace WanFang.DAL.CostKeyword
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("CostKeyword", "CostKeywordId", null, CostKeywordId);
+                return db.Delete("db_CostKeyword", "CostKeywordId", null, CostKeywordId);
             }
         }
         #endregion

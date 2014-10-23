@@ -24,14 +24,26 @@
 </div>
 <div id="mainpage">
     <!--main begin-->
+    <script>
+        function DeleteSelected() {
+            var param = $('input[name="id"]:checked').serialize();
+            utility.service("DeleteService/DeleteAbout", param, "POST", function (data) {
+                if (data.code > 0) {
+                    document.location.reload(true);
+                } else {
+                    utility.showPopUp(data.msg, 1);
+                }
+            });
+        }
+    </script>
     <input type="hidden" name="u" value="ok">
     <table class="ww100 magTop10" border="0" cellpadding="0" cellspacing="0">
         <tr>                    <td>
                 <input name="button" type="button" class="submit" value="全選" onclick="selectAll(this.form);">
-                <input name="Del" type="button" class="submit" value="刪除" onclick="delSelect(this.form);">
-                <input name="button2" type="button" class="submit" value="取消全選" onclick="selectNone(this.form);">                        --點選以下項目來進行維護</td>
+                <input name="Del" type="button" class="submit" value="刪除" onclick="DeleteSelected();">
+                <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">                        --點選以下項目來進行維護</td>
             <td class="w70 txt_r">
-                <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = 'm2-1a.aspx';" value="新增資料"></td>
+                <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/About/EditAbout/';" value="新增資料"></td>
         </tr>
     </table>
     <table class="ww100" border="0" cellpadding="2" cellspacing="1">
@@ -42,54 +54,23 @@
             <td class="w80">更新日期</td>
             <td class="w70">編輯</td>
         </tr>
+        <%
+            int i = 0;
+            foreach(var x in data)
+            {
+                i++;
+                %>
         <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">01</td>                    <td>萬芳年代表</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
+            <input type="checkbox" name="id" value="<%=x.AboutId %>" /></td>
+            <td class="txt_c"><%=i %></td>                    <td><% =x.Category %></td>
+            <td class="txt_c"><%=(x.IsActive > 0) ? "上架" : "下架" %></td>
+            <td class="txt_c"><%=x.LastUpdate %>6</td>
             <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯"></td>
+            <input name="bt_edit" type="button" class="submit" onclick="window.location='/About/EditAbout/<%=x.AboutId %>';" value="編輯"></td>
         </tr>
-        <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">02</td>                    <td>萬芳願景</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
-            <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯" /></td>
-        </tr>
-        <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">03</td>                    <td>榮耀與肯定</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
-            <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯" /></td>
-        </tr>
-        <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">04</td>                    <td>研究教學</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
-            <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯" /></td>
-        </tr>
-        <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">05</td>                    <td>服務未來</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
-            <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯" /></td>
-        </tr>
-        <tr class="top mous01 line-d va_m">                    <td>
-                <input type="checkbox" name="nid" id="nid" /></td>
-            <td class="txt_c">06</td>                    <td>萬芳特色</td>
-            <td class="txt_c">上架</td>
-            <td class="txt_c">2014/09/26</td>
-            <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-1a.aspx';" value="編輯" /></td>
-        </tr>
+                <%
+            }
+        %>
     </table>            <br />
     <span class="red">[注意事項]
     </span><br />            1. 不分頁<br />            2. 排序：順序（由小至大）<br />

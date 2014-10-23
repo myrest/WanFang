@@ -137,7 +137,7 @@ namespace WanFang.DAL.Guide
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("Guide", "GuideId", null, GuideId);
+                return db.Delete("db_Guide", "GuideId", null, GuideId);
             }
         }
         #endregion

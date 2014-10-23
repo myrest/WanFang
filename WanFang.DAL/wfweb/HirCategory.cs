@@ -137,7 +137,7 @@ namespace WanFang.DAL.HirCategory
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("HirCategory", "HirCategoryId", null, HirCategoryId);
+                return db.Delete("db_HirCategory", "HirCategoryId", null, HirCategoryId);
             }
         }
         #endregion

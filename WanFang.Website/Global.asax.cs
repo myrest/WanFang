@@ -32,7 +32,7 @@ namespace WanFang.Website
             routes.MapRoute(
                 "BlankRoot", // Route name
                 "", // URL with parameters
-                new { controller = "Default", action = "Index" }// Parameter defaults
+                new { controller = "Manage", action = "Index" }// Parameter defaults
             );
 
             routes.MapRoute("image", // Route name

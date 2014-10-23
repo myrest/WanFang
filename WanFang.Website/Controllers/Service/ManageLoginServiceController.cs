@@ -30,10 +30,6 @@ namespace WanFang.Website.Controllers.Service
         private void MakeTrading(string LoginId)
         {
             Trading trading = new Trading() { };
-            if (sessionData == null && sessionData.trading != null)
-            {
-                trading = sessionData.trading;
-            }
             var user = UserMan.GetByParameter(new User_Filter()
             {
                 LoginId = LoginId

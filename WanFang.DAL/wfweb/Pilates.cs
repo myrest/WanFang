@@ -137,7 +137,7 @@ namespace WanFang.DAL.Pilates
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("Pilates", "PilatesId", null, PilatesId);
+                return db.Delete("db_Pilates", "PilatesId", null, PilatesId);
             }
         }
         #endregion

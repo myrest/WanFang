@@ -137,7 +137,7 @@ namespace WanFang.DAL.LogLogin
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("LogLogin", "LogLoginId", null, LogLoginId);
+                return db.Delete("db_LogLogin", "LogLoginId", null, LogLoginId);
             }
         }
         #endregion

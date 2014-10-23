@@ -137,7 +137,7 @@ namespace WanFang.DAL.Edu
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("Edu", "EduId", null, EduId);
+                return db.Delete("db_Edu", "EduId", null, EduId);
             }
         }
         #endregion

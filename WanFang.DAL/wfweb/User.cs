@@ -137,7 +137,7 @@ namespace WanFang.DAL.User
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("User", "UserID", null, UserID);
+                return db.Delete("db_User", "UserID", null, UserID);
             }
         }
         #endregion

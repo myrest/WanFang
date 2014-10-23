@@ -137,7 +137,7 @@ namespace WanFang.DAL.DiaryData
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("DiaryData", "DiaryDataID", null, DiaryDataID);
+                return db.Delete("db_DiaryData", "DiaryDataID", null, DiaryDataID);
             }
         }
         #endregion

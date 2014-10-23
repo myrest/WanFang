@@ -137,7 +137,7 @@ namespace WanFang.DAL.AboutContent
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("AboutContent", "AboutContentId", null, AboutContentId);
+                return db.Delete("db_AboutContent", "AboutContentId", null, AboutContentId);
             }
         }
         #endregion
