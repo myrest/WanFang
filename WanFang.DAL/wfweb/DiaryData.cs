@@ -223,7 +223,7 @@ namespace WanFang.DAL.DiaryData
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate);
                 }
                 if (_orderby != "")
-                    SQLStr.Append("ORDER BY @0", _orderby);
+                    SQLStr.OrderBy(_orderby);
 
             }
             return SQLStr;

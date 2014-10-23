@@ -223,7 +223,7 @@ namespace WanFang.DAL.NewsData
                     SQLStr.Append(" AND LastUpadtor=@0", filter.LastUpadtor);
                 }
                 if (_orderby != "")
-                    SQLStr.Append("ORDER BY @0", _orderby);
+                    SQLStr.OrderBy(_orderby);
 
             }
             return SQLStr;

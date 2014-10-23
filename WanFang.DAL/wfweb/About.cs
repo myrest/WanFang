@@ -183,7 +183,7 @@ namespace WanFang.DAL.About
                     SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
                 }
                 if (_orderby != "")
-                    SQLStr.Append("ORDER BY @0", _orderby);
+                    SQLStr.OrderBy(_orderby);
 
             }
             return SQLStr;

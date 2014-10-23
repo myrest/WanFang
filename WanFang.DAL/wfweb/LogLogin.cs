@@ -183,7 +183,7 @@ namespace WanFang.DAL.LogLogin
                     SQLStr.Append(" AND LoginIP=@0", filter.LoginIP);
                 }
                 if (_orderby != "")
-                    SQLStr.Append("ORDER BY @0", _orderby);
+                    SQLStr.OrderBy(_orderby);
 
             }
             return SQLStr;

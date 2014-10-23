@@ -203,7 +203,7 @@ namespace WanFang.DAL.Pilates
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
                 }
                 if (_orderby != "")
-                    SQLStr.Append("ORDER BY @0", _orderby);
+                    SQLStr.OrderBy(_orderby);
 
             }
             return SQLStr;

@@ -13,10 +13,10 @@
             <li><a href="m1-1.aspx">首頁及時資訊管理</a></li></ul>
     </li>
     <!--關於萬芳-->
-    <li class="<%=menus[1] %>"><a href="m2-1.aspx">關於萬芳管理</a>
+    <li class="<%=menus[1] %>"><a href="#">關於萬芳管理</a>
         <ul>
             <li><a href="m2-1.aspx">關於萬芳管理</a>
-                <li class="menu_s"><a href="m2-1.aspx">關於萬芳類別管理</a></li>
+                <li class="menu_s"><a href="/About/Index">關於萬芳類別管理</a></li>
                 <li class="menu_s"><a href="m2-12.aspx">關於萬芳系列管理</a></li>
                 <li class="menu_s"><a href="m2-13.aspx">關於萬芳圖文管理</a></li>
             </li>
