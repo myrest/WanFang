@@ -44,5 +44,25 @@ namespace WanFang.Core.MVC.Extensions
             return GenerIsActive((isActive > 0), TextOnly);
         }
 
+        public static string GenerFilterIsActive(int? isActive)
+        {
+            bool? active = null;
+            if (isActive.HasValue)
+            {
+                active = (isActive.Value > 0);
+            }
+            return GenerFilterIsActive(active);
+        }
+
+        public static string GenerFilterIsActive(bool? isActive)
+        {
+            string rtn = "<select name=\"IsActive\">";
+            rtn += "<option value=\"\" " + (!isActive.HasValue ? " selected " : "") + ">全部顯示</option>";
+            rtn += "<option value=\"1\" " + (isActive.HasValue && isActive.Value ? " selected " : "") + ">上架</option>";
+            rtn += "<option value=\"0\" " + (isActive.HasValue && !isActive.Value ? " selected " : "") + ">下架</option>";
+            rtn += "</select>";
+            return rtn;
+            
+        }
     }
 }

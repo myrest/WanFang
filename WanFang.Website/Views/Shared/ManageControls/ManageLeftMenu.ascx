@@ -17,8 +17,8 @@
         <ul>
             <li><a href="m2-1.aspx">關於萬芳管理</a>
                 <li class="menu_s"><a href="/About/Index">關於萬芳類別管理</a></li>
-                <li class="menu_s"><a href="m2-12.aspx">關於萬芳系列管理</a></li>
-                <li class="menu_s"><a href="m2-13.aspx">關於萬芳圖文管理</a></li>
+                <li class="menu_s"><a href="/About/Categoary">關於萬芳系列管理</a></li>
+                <li class="menu_s"><a href="/About/Content">關於萬芳圖文管理</a></li>
             </li>
             <li><a href="m2-2.aspx">管理團隊管理</a></li>
             <li><a href="m2-3.aspx">服務專區管理</a></li>

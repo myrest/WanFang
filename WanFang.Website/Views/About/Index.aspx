@@ -7,6 +7,18 @@
     var data = man.GetByParameter(new WanFang.Domain.About_Filter() { }, page, null, "SortNum");
     
 %>
+<script>
+    function DeleteSelected() {
+        var param = $('input[name="id"]:checked').serialize();
+        utility.service("DeleteService/DeleteAbout", param, "POST", function (data) {
+            if (data.code > 0) {
+                document.location.reload(true);
+            } else {
+                utility.showPopUp(data.msg, 1);
+            }
+        });
+    }
+</script>
 <div id="title">
     <div class="float-l">            <h1>
             <div class="float-l">
@@ -24,18 +36,6 @@
 </div>
 <div id="mainpage">
     <!--main begin-->
-    <script>
-        function DeleteSelected() {
-            var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteAbout", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
-            });
-        }
-    </script>
     <input type="hidden" name="u" value="ok">
     <table class="ww100 magTop10" border="0" cellpadding="0" cellspacing="0">
         <tr>                    <td>

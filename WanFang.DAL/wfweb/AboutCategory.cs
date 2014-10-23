@@ -172,7 +172,7 @@ namespace WanFang.DAL.AboutCategory
                 }
                 if (!string.IsNullOrEmpty(filter.Category))
                 {
-                    SQLStr.Append(" AND Category=@0", filter.Category);
+                    SQLStr.Append(" AND Category like @0", "%" + filter.Category + "%");
                 }
                 if (filter.IsActive.HasValue)
                 {

@@ -55,15 +55,31 @@ namespace WanFang.Website.Controllers.Service
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        public JsonResult Logout()
+        [HttpPost]
+        public JsonResult SaveAboutCategoary(AboutCategory_Info data)
         {
-            if (sessionData != null && sessionData.trading != null)
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (data.Category.Trim().Length == 0)
             {
-                sessionData.Logout();
+                result.setErrorMessage("名稱不得為空白");
             }
-            ResultBase r = new ResultBase();
-            r.setMessage("您已登出。");
-            return Json(r, JsonRequestBehavior.AllowGet);
+            if (result.JsonReturnCode > -1)
+            {
+                data.LastUpdate = DateTime.Now;
+                data.LastUpdator = sessionData.trading.LoginId;
+                data.Category = data.Category.Trim();
+                if (data.AboutCategoryId > 0)
+                {
+                    AboutCatMan.Update(data);
+                }
+                else
+                {
+                    AboutCatMan.Insert(data);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
     }
 }

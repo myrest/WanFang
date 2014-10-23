@@ -24,7 +24,7 @@
             </div>
             <% Html.RenderPartial("~/Views/Shared/ManageControls/ManageLeftMenu.ascx"); %>
             <div id="contentpage">
-                <form id="form1" action="#">
+                <form id="form1" action="#" method="post">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 </form>

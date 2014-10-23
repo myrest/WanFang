@@ -4,6 +4,9 @@ using Rest.Core.Utility;
 using WanFang.Core.Constancy;
 using WanFang.BLL;
 using System;
+using System.Linq;
+using WanFang.Domain;
+using System.Collections.Generic;
 
 
 namespace WanFang.Website.Controllers
@@ -14,6 +17,8 @@ namespace WanFang.Website.Controllers
         // GET: /Default/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(AboutController));
         private static readonly About_Manager AboutMan = new About_Manager();
+        private static readonly AboutCategory_Manager AboutCateMan = new AboutCategory_Manager();
+        private static readonly AboutContent_Manager AboutContMan = new AboutContent_Manager();
 
         public AboutController()
             : base(Permission.Private)
@@ -21,7 +26,7 @@ namespace WanFang.Website.Controllers
             ViewData["MenuItem"] = 0;
         }
 
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
             ViewData["MenuItem"] = 1;
             return View();
@@ -33,6 +38,52 @@ namespace WanFang.Website.Controllers
             ViewData["Model"] = model;
             return View(model);
         }
-             
+
+        public ActionResult Categoary(AboutCategory_Filter filter, Rest.Core.Paging Page)
+        {
+            if (filter.Category == "請輸入系列名稱搜尋") filter.Category = null;
+            ViewData["MenuItem"] = 1;
+            ViewData["Filter"] = filter;
+
+            Rest.Core.Paging page = new Rest.Core.Paging() { };
+            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+            List<AboutCategory_Info> data = AboutCateMan.GetByParameter(filter, page, null, "SortNum");
+            List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
+            ViewData["Model"] = data;
+            ViewData["About"] = About;
+            ViewData["Page"] = page;
+            return View();
+        }
+
+        public ActionResult EditAboutCategoary(string id)
+        {
+            var model = AboutCateMan.GetBySN(Convert.ToInt32(id));
+            List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
+            ViewData["Model"] = model;
+            ViewData["About"] = About;
+            return View(model);
+        }
+
+        public ActionResult Content(string id, AboutContent_Filter filter, Rest.Core.Paging Page)
+        {
+            if (filter.UnitName == "請輸入單元名稱搜尋") filter.UnitName = null;
+            if (!string.IsNullOrEmpty(id)) filter = new AboutContent_Filter()
+            {
+                IsActive = Convert.ToInt32(false)
+            };
+            ViewData["MenuItem"] = 1;
+            ViewData["Filter"] = filter;
+
+            Rest.Core.Paging page = new Rest.Core.Paging() { };
+            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+            List<AboutContent_Info> data = AboutContMan.GetByParameter(filter, page, null, "AboutId, AboutCategoryId");
+            List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
+            List<AboutCategory_Info> Categoary = AboutCateMan.GetAll().OrderBy(x => x.SortNum).ToList();
+            ViewData["Model"] = data;
+            ViewData["About"] = About;
+            ViewData["Categoary"] = Categoary;
+            ViewData["Page"] = page;
+            return View();
+        }
     }
 }

@@ -66,15 +66,30 @@ namespace WanFang.Website.Controllers.Service
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        public JsonResult Logout()
+        [HttpPost]
+        public JsonResult DeleteAboutCategoary(string[] id)
         {
-            if (sessionData != null && sessionData.trading != null)
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
             {
-                sessionData.Logout();
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    var condata = AboutContMan.GetByParameter(new AboutContent_Filter()
+                    {
+                        AboutId = sn
+                    });
+                    if (condata != null && condata.Count > 0)
+                    {
+                        result.setErrorMessage("其下有[萬芳圖文]資料，無法刪除。");
+                        break;
+                    }
+                    AboutCatMan.Delete(sn);
+                }
             }
-            ResultBase r = new ResultBase();
-            r.setMessage("您已登出。");
-            return Json(r, JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
     }
 }

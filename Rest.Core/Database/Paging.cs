@@ -10,7 +10,7 @@ namespace Rest.Core
         public Paging()
         {
             CurrentPage = 1;
-            ItemsPerPage = 20;
+            ItemsPerPage = 10;
         }
 
         /// <summary>
