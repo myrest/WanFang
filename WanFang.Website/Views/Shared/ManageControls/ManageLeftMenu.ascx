@@ -20,8 +20,8 @@
                 <li class="menu_s"><a href="/About/Categoary">關於萬芳系列管理</a></li>
                 <li class="menu_s"><a href="/About/Content">關於萬芳圖文管理</a></li>
             </li>
-            <li><a href="m2-2.aspx">管理團隊管理</a></li>
-            <li><a href="m2-3.aspx">服務專區管理</a></li>
+            <li><a href="/About/Team">管理團隊管理</a></li>
+            <li><a href="/About/Service">服務專區管理</a></li>
         </ul>
     </li>
     <!--最新消息-->

@@ -151,156 +151,12 @@
                         value="編輯">
                         </td>
                 </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳願景</td>
-                    <td class="line-d">&nbsp;</td>
-                    <td>萬芳願景</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit4" onclick="javascript: window.location = 'm2-13a.aspx';" value="審核中" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">榮耀與肯定</td>
-                    <td class="line-d">&nbsp;</td>
-                    <td>榮耀與肯定</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">研究教學</td>
-                    <td class="line-d">&nbsp;</td>
-                    <td>研究教學</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">服務未來</td>
-                    <td class="line-d">&nbsp;</td>
-                    <td>服務未來</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳特色</td>
-                    <td class="line-d">品質介紹</td>
-                    <td class="line-d">品質介紹</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳特色</td>
-                    <td class="line-d">病人安全</td>
-                    <td class="line-d">病人安全</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳特色</td>
-                    <td class="line-d">醫院評鑑</td>
-                    <td class="line-d">醫院評鑑</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳特色</td>
-                    <td class="line-d">社區服務</td>
-                    <td class="line-d">社區服務</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-                <tr class="top mous01 line-d va_m">
-                    <td class="line-d">
-                        <input type="checkbox" name="nid" id="nid" /></td>
-                    <td class="txt_c">萬芳特色</td>
-                    <td class="line-d">人文藝術</td>
-                    <td class="line-d">人文藝術</td>
-                    <td class="txt_c">上架</td>
-                    <td class="txt_c">2014/09/26</td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'm2-13a.aspx';" value="編輯" /></td>
-                </tr>
-            </table>        <br />
-        <div class="m_page">
             <%
-                Rest.Core.Paging Page = ViewData["Page"] as Rest.Core.Paging;
-                int CurrentPage = Convert.ToInt32(Page.CurrentPage);
-            %>
-            <script>
-                page = {
-                    goprev: function () {
-                        var pagenum = parseInt($('#CurrentPage').val(), 10) - 1;
-                        if (pagenum < 1) pagenum = 1;
-                        $('#CurrentPage').val(pagenum);
-                        $('#form1').submit();
-                    },
-                    gonext: function () {
-                        var pagenum = parseInt($('#CurrentPage').val(), 10) + 1;
-                        if (pagenum < <%= Page.TotalPages %> ) pagenum = <%= Page.TotalPages %> ;
-                        $('#CurrentPage').val(pagenum);
-                        $('#form1').submit();
-                    },
-                    topage: function () {
-                        $this = $(this);
-                        var pagenum = $this.attr('p');
-                        $('#CurrentPage').val(pagenum);
-                        $('#form1').submit();
-                    }
-                };
-                $(function () {
-                    $('.prev').click(page.goprev);
-                    $('.next').click(page.gonext);
-                    $('.toapge').click(page.topage);
-                });
-            </script>
-            <input type="hidden" name="CurrentPage" id="CurrentPage" value="<%=CurrentPage %>" />
-            <!-- &nbsp;<a href="#">&nbsp;第一頁&nbsp;</a> -->
-            &nbsp; <a href="#" class="prev">&#171;上一頁</a>&nbsp;
-            <%
-                for (int i = 1; i <= Page.TotalPages; i++)
-                {
-                    if (i == Page.CurrentPage)
-                    {
-                        Response.Write("<span class=\"on\">&nbsp;" + i.ToString() + "&nbsp;</span>&nbsp;");
-                    }
-                    else
-                    {
-                        Response.Write("<a href=\"#\" class=\"toapge\" p=\"" + i.ToString() + "\">&nbsp;" + i.ToString() + "&nbsp;</a> ");
-                    }
                 }
             %>
-            <a href="#" class="next">下一頁&#187;</a>&nbsp;<!-- <a href="#">&nbsp;最後一頁&nbsp;</a> -->
-            <%=Page.CurrentPage %>/<%=Page.TotalPages %>
+            </table>        <br />
+        <div class="m_page">
+        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br />
@@ -309,7 +165,6 @@
         <span class="red">3. 系列底下有對應資料時，該筆不允許刪除</span>
         <!--main end-->
     </div>
-    <!--new 關於萬芳／p1_about.aspx-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
 </asp:Content>

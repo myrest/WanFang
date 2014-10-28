@@ -54,6 +54,8 @@ namespace WanFang.Core
 
         public bool IsDeptOnly { get; set; }
 
+        public Dictionary<string, string> UploadFiles { get; set; }
+
         public List<string> Permissions { get; set; }
 
     }

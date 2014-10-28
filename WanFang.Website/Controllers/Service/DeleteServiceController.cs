@@ -16,15 +16,13 @@ namespace WanFang.Website.Controllers.Service
 {
     public class DeleteServiceController : BaseController
     {
-        //
-        // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(DeleteServiceController));
         private static readonly About_Manager AboutMan = new About_Manager();
         private static readonly AboutCategory_Manager AboutCatMan = new AboutCategory_Manager();
         private static readonly AboutContent_Manager AboutContMan = new AboutContent_Manager();
+        private static readonly AboutTeam_Manager AboutTeamMan = new AboutTeam_Manager();
 
         private static readonly User_Manager UserMan = new User_Manager();
-        private static readonly LogLogin_Manager LogLoginMan = new LogLogin_Manager();
 
         public DeleteServiceController()
             : base(Permission.Public)
@@ -87,6 +85,40 @@ namespace WanFang.Website.Controllers.Service
                         break;
                     }
                     AboutCatMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteAboutContent(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    AboutContMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteAboutTeam(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    AboutTeamMan.Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

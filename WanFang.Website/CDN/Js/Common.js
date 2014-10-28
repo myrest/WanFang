@@ -46,7 +46,78 @@ var utility = {
     , ecb: function (data) {
         utility.showPopUp(data.msg, 1);
     }
-    , service: function (mvcUrl, parameter, httpMethod, callBack, errorCallback, responseDataType) {
+    , serviceasync: function (mvcUrl, parameter, callBack, errCallBack) {
+        var cb = function (data) {
+            if (callBack) {
+                callBack(data);
+            }
+        };
+        var ecb = function (data) {
+            if (errCallBack) {
+                errCallBack(data);
+            }
+        }
+
+        if (mvcUrl.indexOf('http') != 0) {
+            mvcUrl = '/' + mvcUrl;
+        }
+
+        $("#loading").remove();
+        $('<div id="loading" class="loading" />').appendTo($('body'));
+
+        $.ajax({
+            url: mvcUrl,
+            data: parameter,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (response) {
+                if (response.sysCode == undefined) {
+                    if (callBack) {
+                        callBack(response);
+                    }
+                } else {
+                    var rd = '/';
+                    switch (response.sysCode) {
+                        case 100:
+                            alert('Got System Error [SessionLost]');
+                            break;
+                        case 200:
+                            alert('Got System Error [SystemKickOut]');
+                            break;
+                        case 300:
+                            alert('Got System Error');
+                            break;
+                        case 400:
+                            alert('You do not have the permission.');
+                            rd = '';
+                            break;
+                        default:
+                            alert('Got System Error [Unknow]');
+                            break;
+                    }
+                    window.location = rd;
+                }
+            },
+            error: function (response) {
+                if (errorCallback) {
+                    errorCallback(response);
+                } else {
+                    if (typeof (response) != 'object') {
+                        alert('Got Error [ ' + response + ']');
+                    } else {
+                        alert('[ ' + paramObj.url + ' ] status code [ ' + response.status + ']');
+                    }
+                }
+            },
+            complete: function () {
+                $("#loading").remove();
+                utility.stopRequest = false;
+            }
+        });
+    }
+    , service: function (mvcUrl, parameter, httpMethod, callBack, errorCallback, responseDataType, isAsync) {
         if (mvcUrl.indexOf('http') != 0) {
             mvcUrl = '/' + mvcUrl;
         }
@@ -54,6 +125,11 @@ var utility = {
             return;
         } else {
             utility.stopRequest = true;
+        }
+        if (isAsync === false) {
+            isAsync = false;
+        } else {
+            isAsync = true;
         }
 
         $("#loading").remove();
@@ -65,6 +141,7 @@ var utility = {
             type: httpMethod,
             traditional: true,
             dataType: "json",
+            async: isAsync,
             success: function (response) {
                 if (response.sysCode == undefined) {
                     if (callBack) {

@@ -40,6 +40,7 @@ namespace WanFang.Website.Controllers.Service
             trading.UserID = user.UserID;
             trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
             trading.IsDeptOnly = (user.PermissionType == 0);
+            trading.UploadFiles = new System.Collections.Generic.Dictionary<string, string>() { };
             sessionData.trading = trading;
         }
 

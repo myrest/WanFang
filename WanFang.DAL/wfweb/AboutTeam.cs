@@ -172,7 +172,7 @@ namespace WanFang.DAL.AboutTeam
                 }
                 if (!string.IsNullOrEmpty(filter.UserName))
                 {
-                    SQLStr.Append(" AND UserName=@0", filter.UserName);
+                    SQLStr.Append(" AND UserName like @0", "%" + filter.UserName + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Introduction))
                 {
