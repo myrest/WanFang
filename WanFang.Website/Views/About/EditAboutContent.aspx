@@ -27,7 +27,6 @@
     <script>
         $(function () {
             $('#AboutId').change(ChangeDDL);
-            $('[type=file]').change(UploadFile);
         });
 
         var DDLMenu = <%=DDlstr %>;
@@ -58,25 +57,6 @@
                     utility.showPopUp(data.msg, 1);
                 }
             });
-        }
-
-        function UploadFile() {
-            var $this = $(this);
-            var prefix = $this.attr('id');
-            var $file = $this[0].files;
-            if ($file.length > 0) {
-                var data = new FormData();
-                data.append('Uploadfile', $file[0]);
-                data.append('PrefixInfo', prefix);
-                utility.serviceasync("FileUploadService/UploadFile", data, function (data) {
-                    if (data.code < 1) {
-                        utility.showPopUp(data.msg, 1);
-                        $this.val('');
-                    }else{
-                        $this.next().attr('href',data.tmpfn);
-                    }
-                });
-            }
         }
 
         function GoBack() {

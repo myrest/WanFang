@@ -636,6 +636,10 @@ $(function () {
         mouseenter: function () { $(this).addClass('ui-state-hover'); },
         mouseleave: function () { $(this).removeClass('ui-state-hover'); }
     });
+
+    $('[type=file]').change(RestFileUpload.UploadFile);
+    $('.deleteimage').click(RestFileUpload.DeleteFile);
+
     //#region Trim to remove extra space
     $(document).on("blur", "input:text", function () {
         $(this).val($.trim($(this).val()));
@@ -912,4 +916,37 @@ $.fn.serializeObject = function () {
 };
 $.fn.isDefaultValue = function () {
     return (this.val() == this.attr('defaultValue'));
+}
+
+
+/*File upload*/
+RestFileUpload = {
+    UploadFile: function () {
+        var $this = $(this);
+        var prefix = $this.attr('id');
+        var $file = $this[0].files;
+        if ($file.length > 0) {
+            var data = new FormData();
+            data.append('Uploadfile', $file[0]);
+            data.append('PrefixInfo', prefix);
+            utility.serviceasync("FileUploadService/UploadFile", data, function (data) {
+                if (data.code < 1) {
+                    utility.showPopUp(data.msg, 1);
+                    $this.val('');
+                } else {
+                    $this.next().attr('href', data.tmpfn);
+                }
+            });
+        }
+    }
+    , DeleteFile: function () {
+        var $this = $(this);
+        var prefix = $this.attr('target');
+        var param = { PrefixInfo: prefix };
+        utility.service("FileUploadService/DeleteFile", param, "POST", function (data) {
+            $this.prev().attr('href', 'javascript:void(0);');
+            $this.prev().prev().val('');
+            utility.showPopUp(data.msg, 1);
+        });
+    }
 }

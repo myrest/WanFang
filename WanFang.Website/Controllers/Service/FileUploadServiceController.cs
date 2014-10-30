@@ -33,6 +33,39 @@ namespace WanFang.Website.Controllers.Service
         {
         }
 
+        private string GetTempPathFileName(string flename)
+        {
+            return string.Format("{0}{1}/{2}", Server.MapPath("~/"), "UploadTemp", flename);
+        }
+
+        private string GetFullPathFileName(string flename)
+        {
+            return string.Format("{0}{1}/{2}", Server.MapPath("~/"), "Upload", flename);
+        }
+
+        private string GetWebFileName(string flename)
+        {
+            return string.Format("/{1}/{2}", "Upload", flename);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteFile(string PrefixInfo)
+        {
+            ResultBase result = new ResultBase();
+            //check is there are uploaded file.
+            if (sessionData.trading.UploadFiles.Any(x => x.Key == PrefixInfo && x.Value != "DELETE"))
+            {
+                string filename = sessionData.trading.UploadFiles[PrefixInfo];
+                if (System.IO.File.Exists(GetTempPathFileName(filename)))
+                {
+                    System.IO.File.Delete(GetTempPathFileName(filename));
+                }
+            }
+            sessionData.trading.UploadFiles[PrefixInfo] = "DELETE";
+            result.setMessage("檔案已刪除。");
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
         [HttpPost]
         public JsonResult UploadFile(HttpPostedFileBase Uploadfile, string PrefixInfo)
         {
@@ -61,7 +94,6 @@ namespace WanFang.Website.Controllers.Service
 
         private UploadFileResult CheckAndSaveUploadFile(HttpPostedFileBase Uploadfile, string PreFix)
         {
-            //This must be get the Topic SN from SessionData.
             UploadFileResult result = new UploadFileResult() { };
             if (Uploadfile != null)
             {
@@ -73,7 +105,7 @@ namespace WanFang.Website.Controllers.Service
                     result.FileSize = ConvertFileSize(Uploadfile.ContentLength);
                     result.TempFileName = "/UploadTemp/" + FileName;//Server given name.
 
-                    Uploadfile.SaveAs(string.Format("{0}{1}/{2}", Server.MapPath("~/"), "UploadTemp", FileName));
+                    Uploadfile.SaveAs(GetTempPathFileName(FileName));
                     result.setMessage("Done");
                 }
                 catch (Exception ex)

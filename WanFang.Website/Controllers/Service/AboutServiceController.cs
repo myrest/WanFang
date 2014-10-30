@@ -125,7 +125,7 @@ namespace WanFang.Website.Controllers.Service
             Prefix = "ContentImage1";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
-                if (string.Compare("Delete", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
                 {
                     NewData.Image1 = string.Empty;
                 }
@@ -142,7 +142,7 @@ namespace WanFang.Website.Controllers.Service
             Prefix = "ContentImage2";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
-                if (string.Compare("Delete", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
                 {
                     NewData.Image2 = string.Empty;
                 }
@@ -159,7 +159,7 @@ namespace WanFang.Website.Controllers.Service
             Prefix = "ContentImage3";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
-                if (string.Compare("Delete", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
                 {
                     NewData.Image3 = string.Empty;
                 }
@@ -220,7 +220,7 @@ namespace WanFang.Website.Controllers.Service
             Prefix = "TeamPhoto1";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
-                if (string.Compare("Delete", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
                 {
                     NewData.Photo1 = string.Empty;
                 }
@@ -234,10 +234,10 @@ namespace WanFang.Website.Controllers.Service
                 NewData.Photo1 = OldData.Photo1;
             }
 
-            Prefix = "TeamPhoto1";
+            Prefix = "TeamPhoto2";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
-                if (string.Compare("Delete", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
                 {
                     NewData.Photo2 = string.Empty;
                 }
@@ -255,7 +255,7 @@ namespace WanFang.Website.Controllers.Service
         private string CopyFile(string Source)
         {
             string NewName = "/Upload/" + Path.GetFileName(Source);
-            Source = string.Format("{0}{1}/{2}", Server.MapPath("~/"), "UploadTemp", Source);
+            Source = string.Format("{0}/{1}", Server.MapPath("~/"), Source);
             string Target = string.Format("{0}{1}", Server.MapPath("~/"), NewName);
             FileInfo f = new FileInfo(Source);
             f.MoveTo(Target);

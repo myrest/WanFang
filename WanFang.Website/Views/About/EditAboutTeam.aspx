@@ -10,10 +10,6 @@
         }
     %>
     <script>
-        $(function () {
-            $('[type=file]').change(UploadFile);
-        });
-
         function Save() {
             var param = $('#form1 :not([name^=ContentBody])').serialize();
             var inst = FCKeditorAPI.GetInstance("ContentBody");
@@ -26,23 +22,6 @@
                     utility.showPopUp(data.msg, 1);
                 }
             });
-        }
-
-        function UploadFile() {
-            var $this = $(this);
-            var prefix = $this.attr('id');
-            var $file = $this[0].files;
-            if ($file.length > 0) {
-                var data = new FormData();
-                data.append('Uploadfile', $file[0]);
-                data.append('PrefixInfo', prefix);
-                utility.serviceasync("FileUploadService/UploadFile", data, function (data) {
-                    if (data.code < 1) {
-                        utility.showPopUp(data.msg, 1);
-                        $this.val('');
-                    }
-                });
-            }
         }
 
         function GoBack() {
@@ -109,13 +88,17 @@
                             <tr class="no_line">
                                 <td class="w50">清單圖：</td>
                                 <td>
-                                    <input type="file" id="TeamPhoto1" size="30" />---[<a href="#">預覽</a>][<a href="#">刪</a>] <span class="red">建議尺寸：寬120px，高145px</span></td>
+                                    <input type="file" id="TeamPhoto1" size="30" />
+                                    <%=UrlExtension.PreviewImage(Model.Photo1, "TeamPhoto1")%>
+                                    <span class="red">建議尺寸：寬120px，高145px</span></td>
                             </tr>
                             <tr class="no_line">
                                 <td>內容圖：</td>
                                 <td>
                                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                                    <input type="file" id="TeamPhoto1" size="30" />---[<a href="#">預覽</a>][<a href="#">刪</a>] <span class="red">建議尺寸：寬230px，高346px</span></td>
+                                    <input type="file" id="TeamPhoto2" size="30" />
+                                    <%=UrlExtension.PreviewImage(Model.Photo2, "TeamPhoto2")%>
+                                    <span class="red">建議尺寸：寬230px，高346px</span></td>
                             </tr>
                         </table>
                     </td>
