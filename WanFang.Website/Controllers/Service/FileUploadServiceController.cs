@@ -71,7 +71,7 @@ namespace WanFang.Website.Controllers.Service
                     result.FileName = Uploadfile.FileName;//User's uploaded file name.
                     result.FileType = Uploadfile.ContentType;
                     result.FileSize = ConvertFileSize(Uploadfile.ContentLength);
-                    result.TempFileName = FileName;//Server given name.
+                    result.TempFileName = "/UploadTemp/" + FileName;//Server given name.
 
                     Uploadfile.SaveAs(string.Format("{0}{1}/{2}", Server.MapPath("~/"), "UploadTemp", FileName));
                     result.setMessage("Done");

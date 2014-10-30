@@ -72,6 +72,8 @@
                     if (data.code < 1) {
                         utility.showPopUp(data.msg, 1);
                         $this.val('');
+                    }else{
+                        $this.next().attr('href',data.tmpfn);
                     }
                 });
             }
@@ -177,7 +179,9 @@
                             <tr class="no_line">
                                 <td valign="top">&nbsp;</td>
                                 <td>圖1：
-                                    <input type="file" id="ContentImage1" size="30" />---[<a href="#">預覽</a>][<a href="#">刪</a>] </td>
+                                    <input type="file" id="ContentImage1" size="30"/>
+                                    <%=UrlExtension.PreviewImage(Model.Image1, "ContentImage1")%>
+                                    </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
@@ -202,7 +206,9 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>圖2：
-                                    <input type="file" id="ContentImage2" size="30" />---[<a href="#">預覽</a>][<a href="#">刪</a>] </td>
+                                    <input type="file" id="ContentImage2" size="30" />
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage2")%>
+                                    </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
@@ -228,7 +234,9 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>圖3：
-                                    <input type="file" id="ContentImage3" size="30" />---[<a href="#">預覽</a>][<a href="#">刪</a>] </td>
+                                    <input type="file" id="ContentImage3" size="30" />
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage3")%>
+                                    </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>

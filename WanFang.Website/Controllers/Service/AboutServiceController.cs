@@ -254,10 +254,11 @@ namespace WanFang.Website.Controllers.Service
 
         private string CopyFile(string Source)
         {
+            string NewName = "/Upload/" + Path.GetFileName(Source);
             Source = string.Format("{0}{1}/{2}", Server.MapPath("~/"), "UploadTemp", Source);
-            string NewName = string.Format("{0}{1}/{2}", Server.MapPath("~/"), "Upload", Path.GetFileName(Source));
+            string Target = string.Format("{0}{1}", Server.MapPath("~/"), NewName);
             FileInfo f = new FileInfo(Source);
-            f.MoveTo(NewName);
+            f.MoveTo(Target);
             return NewName;
         }
     }

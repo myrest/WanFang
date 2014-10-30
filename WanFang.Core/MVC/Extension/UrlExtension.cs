@@ -23,6 +23,7 @@ namespace WanFang.Core.MVC.Extensions
             return url.Action(actionName, controllerName, new { culture = culture, id = id });//(culture, new { controller = controllerName, action = actionName });
         }
 
+        #region 上下架設定
         public static string GenerIsActive(bool isActive, bool TextOnly = false)
         {
             if (TextOnly)
@@ -62,7 +63,24 @@ namespace WanFang.Core.MVC.Extensions
             rtn += "<option value=\"0\" " + (isActive.HasValue && !isActive.Value ? " selected " : "") + ">下架</option>";
             rtn += "</select>";
             return rtn;
-            
+
         }
+        #endregion
+
+        #region 檔案處理
+        public static string PreviewImage(string ImageFileName, string TargetID)
+        {
+            string rtn = string.Empty;
+            if (!string.IsNullOrEmpty(ImageFileName))
+            {
+                rtn = "---[<a class=\"previewimage\" target=\"_blank\" href=\"" + ImageFileName + "\">預覽</a>][<a href=\"javascript:void(0);\" class=\"deleteimage clickable \" target=\"" + TargetID + "\">刪</a>]";
+            }
+            else
+            {
+                rtn = "---[<a class=\"previewimage\" target=\"_blank\">預覽</a>][<a class=\"deleteimage\" target=\"" + TargetID + "\">刪</a>]";
+            }
+            return rtn;
+        }
+        #endregion
     }
 }
