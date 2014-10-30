@@ -1,10 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Manage.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="WanFang.Core.MVC.Extensions" %>
+<%@ Import Namespace="Rest.Core.Utility" %>
+<%@ Import Namespace="WanFang.Domain.Constancy" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
         WanFang.Domain.User_Info Model = ViewData["Model"] as WanFang.Domain.User_Info;
-        //List<WanFang.Domain.Webservice.CostInformation> Cost = ViewData["AllCost"] as List<WanFang.Domain.Webservice.CostInformation>;
+        WS_Dept_type WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(Model.DeptName);
+        string DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(WSDept);
+        
         Dictionary<string, string> Dept = ViewData["AllDept"] as Dictionary<string, string>;
         if (Model == null)
         {
@@ -119,7 +124,7 @@
                       foreach (var item in Dept)
                       {
                           string selected = string.Empty;
-                          if (item.Value == Model.DeptName) selected = "selected";
+                          if (item.Value == DeptName) selected = "selected";
                           Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
                       }
                   %>
@@ -129,7 +134,7 @@
                   <option>請選擇</option>
                   <%
                       WanFang.BLL.WebService_Manage service = new WanFang.BLL.WebService_Manage();
-                      var cost = service.GetAllDetailCostcerter(Rest.Core.Utility.EnumHelper.GetEnumByName<WanFang.Domain.Constancy.WS_Dept_type>(Model.DeptName));
+                      var cost = service.GetAllDetailCostcerter(WSDept);
                       foreach (var item in cost)
                       {
                           string selected = string.Empty;
