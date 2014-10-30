@@ -53,6 +53,12 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("密碼不得為空白");
             }
+            if (data.DeptName == "請選擇") data.DeptName = string.Empty;
+            if (data.CostName == "請選擇") data.CostName = string.Empty;
+            if (data.PermissionType == 0 && data.DeptName == string.Empty)
+            {
+                result.setErrorMessage("當 [ 管理權限 ] 設為 [ 權限1 ] 時，診別為必選。");
+            }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;

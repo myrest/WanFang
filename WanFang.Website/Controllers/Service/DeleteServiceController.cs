@@ -23,6 +23,9 @@ namespace WanFang.Website.Controllers.Service
         private static readonly AboutTeam_Manager AboutTeamMan = new AboutTeam_Manager();
 
         private static readonly User_Manager UserMan = new User_Manager();
+        private static readonly WebDownload_Manager WebDownloadman = new WebDownload_Manager();
+        private static readonly CostUnit_Manager CostUnitMan = new CostUnit_Manager();
+        private static readonly CostNews_Manager CostNewsman = new CostNews_Manager();
 
         public DeleteServiceController()
             : base(Permission.Public)
@@ -119,6 +122,74 @@ namespace WanFang.Website.Controllers.Service
                 {
                     int sn = Convert.ToInt32(x);
                     AboutTeamMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteUser(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    UserMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteDownLoad(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    WebDownloadman.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCostUnit(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    CostUnitMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNews(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    CostNewsman.Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

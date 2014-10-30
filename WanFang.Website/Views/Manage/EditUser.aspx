@@ -7,8 +7,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
         WanFang.Domain.User_Info Model = ViewData["Model"] as WanFang.Domain.User_Info;
+        if (Model == null) Model = new WanFang.Domain.User_Info();
         WS_Dept_type WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(Model.DeptName);
-        string DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(WSDept);
+        string DeptName = (string.IsNullOrEmpty(Model.DeptName)) ? "" : EnumHelper.GetEnumDescription<WS_Dept_type>(WSDept);
         
         Dictionary<string, string> Dept = ViewData["AllDept"] as Dictionary<string, string>;
         if (Model == null)
@@ -124,7 +125,7 @@
                       foreach (var item in Dept)
                       {
                           string selected = string.Empty;
-                          if (item.Value == DeptName) selected = "selected";
+                          if (Model.UserID > 0 && item.Value == DeptName) selected = "selected";
                           Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
                       }
                   %>
@@ -138,7 +139,7 @@
                       foreach (var item in cost)
                       {
                           string selected = string.Empty;
-                          if (item.CostName.Trim() == Model.CostName.Trim())
+                          if (!string.IsNullOrEmpty(Model.CostName) && item.CostName.Trim() == Model.CostName.Trim())
                           {
                               selected = "selected";
                           }

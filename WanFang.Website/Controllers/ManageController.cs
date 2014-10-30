@@ -6,6 +6,7 @@ using WanFang.BLL;
 using WanFang.Domain;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using WanFang.Domain.Webservice;
 using WanFang.Domain.Constancy;
 
@@ -51,10 +52,19 @@ namespace WanFang.Website.Controllers
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
             List<User_Info> data = man.GetByParameter(filter, page, null, "LoginId");
+
             //Modify DeptCode To DeptName
             data.ForEach(x =>
             {
-                x.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(x.DeptName));
+                if (x.PermissionType == 0)
+                {
+                    x.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(x.DeptName));
+                    x.Permission = string.Empty;
+                }
+                else
+                {
+                    x.DeptName = string.Empty;
+                }
             });
 
             ViewData["Model"] = data;

@@ -162,9 +162,9 @@ namespace WanFang.DAL.Edu
                 {
                     SQLStr.Append(" AND EduId=@0", filter.EduId.Value);
                 }
-                if (!string.IsNullOrEmpty(filter.CostName))
+                if (!string.IsNullOrEmpty(filter.EduType))
                 {
-                    SQLStr.Append(" AND CostName=@0", filter.CostName);
+                    SQLStr.Append(" AND EduType=@0", filter.EduType);
                 }
                 if (filter.EduDate.HasValue)
                 {

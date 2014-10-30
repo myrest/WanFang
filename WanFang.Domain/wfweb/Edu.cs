@@ -11,7 +11,7 @@ namespace WanFang.Domain
     public interface IEdu_Info
     {
         int EduId { get; set; }
-        string CostName { get; set; }
+        string EduType { get; set; }
         DateTime EduDate { get; set; }
         string DateStart { get; set; }
         string DateEnd { get; set; }
@@ -38,7 +38,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 衛教類別
         /// </summary>
-        public string CostName { get; set; }
+        public string EduType { get; set; }
         /// <summary>
         /// 衛教日期
         /// </summary>
@@ -84,7 +84,7 @@ namespace WanFang.Domain
     public class Edu_Filter
     {
         public int? EduId { get; set; }
-        public string CostName { get; set; }
+        public string EduType { get; set; }
         public DateTime? EduDate { get; set; }
         public string DateStart { get; set; }
         public string DateEnd { get; set; }

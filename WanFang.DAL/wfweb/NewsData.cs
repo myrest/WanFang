@@ -166,9 +166,9 @@ namespace WanFang.DAL.NewsData
                 {
                     SQLStr.Append(" AND PublishDate=@0", filter.PublishDate.Value);
                 }
-                if (!string.IsNullOrEmpty(filter.CostName))
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND CostName=@0", filter.CostName);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
                 if (!string.IsNullOrEmpty(filter.Cost))
                 {

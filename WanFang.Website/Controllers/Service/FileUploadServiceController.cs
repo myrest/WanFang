@@ -168,6 +168,14 @@ namespace WanFang.Website.Controllers.Service
             {
                 MaxUploadKB = 3 * 1024;
             }
+            else if (PrefixInfo.StartsWith("Edu"))
+            {
+                MaxUploadKB = 300;
+            }
+            else if (PrefixInfo.StartsWith("NewsDataImage"))
+            {
+                MaxUploadKB = 300;
+            }
             else
             {
                 throw new Exception("上傳檔案類型[" + PrefixInfo + "]還沒設定檔案大小限制。");

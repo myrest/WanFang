@@ -12,7 +12,7 @@ namespace WanFang.Domain
     {
         int NewsId { get; set; }
         DateTime PublishDate { get; set; }
-        string CostName { get; set; }
+        string DeptName { get; set; }
         string Cost { get; set; }
         string Title { get; set; }
         string Author { get; set; }
@@ -47,7 +47,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 發表科別中文名稱
         /// </summary>
-        public string CostName { get; set; }
+        public string DeptName { get; set; }
         /// <summary>
         /// 發表科別代號
         /// </summary>
@@ -110,7 +110,7 @@ namespace WanFang.Domain
     {
         public int? NewsId { get; set; }
         public DateTime? PublishDate { get; set; }
-        public string CostName { get; set; }
+        public string DeptName { get; set; }
         public string Cost { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
