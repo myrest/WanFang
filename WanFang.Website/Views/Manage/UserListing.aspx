@@ -1,7 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Manage.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!--new 後臺員工帳號專區-->
+    <%
+        List<WanFang.Domain.User_Info> Model = ViewData["Model"] as List<WanFang.Domain.User_Info>;
+        WanFang.Domain.User_Filter filter = ViewData["Filter"] as WanFang.Domain.User_Filter;
+    %>
+    <script>
+        function DeleteSelected() {
+            var param = $('input[name="id"]:checked').serialize();
+            utility.service("DeleteService/DeleteUser", param, "POST", function (data) {
+                if (data.code > 0) {
+                    document.location.reload(true);
+                } else {
+                    utility.showPopUp(data.msg, 1);
+                }
+            });
+        }
+    </script>
     <div id="title">
         <div class="float-l">
             <h1>
@@ -22,20 +37,21 @@
         <div class="bg-s">
             <p>
                 關鍵字：
-                <input name="Keywords" type="text" placeholder="請輸入帳號搜尋" />
-                <input type="submit" class="submit" value="搜尋" id="Search" />
+                <input name="LoginId" type="text" value="請輸入帳號搜尋" onclick="this.value = '';" size="30"
+                    id="LoginId" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
         <table class="ww100 magTop10" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <input type="button" class="submit" value="全選" onclick="selectAll(this.form);">
-                    <input type="button" class="submit" value="刪除" onclick="delSelect(this.form);">
-                    <input type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
+                    <input name="button" type="button" class="submit" value="全選" onclick="selectAll(this.form);">
+                    <input name="Del" type="button" class="submit" value="刪除" onclick="DeleteSelected();">
+                    <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input id="Add" type="button" class="submit3" value="新增資料" onclick="User.AddNew">
+                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Manage/EditUser/';" value="新增資料">
                 </td>
             </tr>
         </table>
@@ -66,286 +82,44 @@
                     編輯
                 </td>
             </tr>
+            <%
+                foreach (var item in Model)
+                {
+            %>
             <tr class="line-d top va_m mous01">
                 <td class="va_m">
-                    <input type="checkbox" name="nid" id="nid" />
+                    <input type="checkbox" name="id" value="<%=item.UserID %>" />
                 </td>
                 <td class="txt_c">
-                    員工1
+                    <%=item.UserName %>
                 </td>
                 <td class="txt_c">
-                    test1
+                    <%=item.LoginId %>
                 </td>
                 <td class="txt_c">
-                    &nbsp;
+                    <%=item.DeptType %>
                 </td>
                 <td class="txt_c">
-                    &nbsp;
+                    <%=item.CostName %>
                 </td>
                 <td>
-                    首頁及時資訊管理
+                    <%=item.Permission %>
                 </td>
                 <td class="txt_c">
-                    2014/09/26
+                    <%=item.LastUpdate %>
                 </td>
                 <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Manage/EditUser/<%=item.UserID %>';" value="編輯">
                 </td>
             </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工2
-                </td>
-                <td class="txt_c">
-                    test2
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td>
-                    最新消息管理,預約及查詢管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工3
-                </td>
-                <td class="txt_c">
-                    test3
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td>
-                    最新消息管理,預約及查詢管理,團隊介紹管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工4
-                </td>
-                <td class="txt_c">
-                    test4
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td>
-                    最新消息管理,預約及查詢管理,就醫指南管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工5
-                </td>
-                <td class="txt_c">
-                    test5
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td class="txt_c">
-                    &nbsp;
-                </td>
-                <td>
-                    最新消息管理,預約及查詢管理,就醫指南管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工6
-                </td>
-                <td class="txt_c">
-                    test6
-                </td>
-                <td class="txt_c">
-                    內科
-                </td>
-                <td class="txt_c">
-                    消化內科
-                </td>
-                <td>
-                    特色醫療管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工7
-                </td>
-                <td class="txt_c">
-                    test7
-                </td>
-                <td class="txt_c">
-                    內科
-                </td>
-                <td class="txt_c">
-                    腎臟內科
-                </td>
-                <td>
-                    特色醫療管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工8
-                </td>
-                <td class="txt_c">
-                    test8
-                </td>
-                <td class="txt_c">
-                    內科
-                </td>
-                <td class="txt_c">
-                    胸腔內科
-                </td>
-                <td>
-                    特色醫療管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工9
-                </td>
-                <td class="txt_c">
-                    test9
-                </td>
-                <td class="txt_c">
-                    內科
-                </td>
-                <td class="txt_c">
-                    神經內科
-                </td>
-                <td>
-                    特色醫療管理
-                </td>
-                <td class="txt_c">
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
-            <tr class="line-d top va_m mous01">
-                <td class="txt_c">
-                    <input type="checkbox" name="nid" id="nid" />
-                </td>
-                <td class="txt_c">
-                    員工10
-                </td>
-                <td class="txt_c">
-                    test10
-                </td>
-                <td class="txt_c">
-                    內科
-                </td>
-                <td class="txt_c">
-                    心臟內科
-                </td>
-                <td>
-                    特色醫療管理
-                </td>
-                <td>
-                    2014/09/26
-                </td>
-                <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="javascript: window.location = 'L1-1a.aspx';"
-                        value="編輯" />
-                </td>
-            </tr>
+            <%
+                }
+            %>
         </table>
         <br />
         <div class="m_page">
-            <!-- &nbsp;<a href="#">&nbsp;第一頁&nbsp;</a> -->
-            &nbsp;<a href="#">&#171;上一頁</a>&nbsp;<span class="on">&nbsp;1&nbsp;</span>&nbsp;<a
-                href="#">&nbsp;2&nbsp;</a> <a href="#">&nbsp;3&nbsp;</a>&nbsp;<a href="#">&nbsp;4&nbsp;</a>&nbsp;<a
-                    href="#">&nbsp;5&nbsp;</a>&nbsp;<a href="#">&nbsp;6&nbsp;</a>&nbsp;<a href="#">&nbsp;7&nbsp;</a>&nbsp;<a
-                        href="#">&nbsp;8&nbsp;</a>&nbsp;<a href="#">&nbsp;9&nbsp;</a>&nbsp;<a href="#">&nbsp;10&nbsp;</a>&nbsp;<a
-                            href="#">下一頁&#187;</a>&nbsp;<!-- <a href="#">&nbsp;最後一頁&nbsp;</a> -->
-            1/12</div>
+        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
+        </div>
         <br />
         <span class="red">[注意事項]</span><br />
         1. 每10筆分1頁<br />

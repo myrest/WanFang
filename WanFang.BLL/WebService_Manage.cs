@@ -68,5 +68,15 @@ namespace WanFang.BLL
             }
 
         }
+
+        public Dictionary<string,string> GetAllDept()
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>() { };
+            Enum.GetValues(typeof(WS_Dept_type)).Cast<WS_Dept_type>().ToList().ForEach(x =>
+            {
+                result.Add(x.ToString(), EnumHelper.GetEnumDescription<WS_Dept_type>(x));
+            });
+            return result;
+        }
     }
 }

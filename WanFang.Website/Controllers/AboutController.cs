@@ -24,12 +24,11 @@ namespace WanFang.Website.Controllers
         public AboutController()
             : base(Permission.Private)
         {
-            ViewData["MenuItem"] = 0;
+            ViewData["MenuItem"] = 1;
         }
 
         public ActionResult Index()
         {
-            ViewData["MenuItem"] = 1;
             return View();
         }
 
@@ -43,7 +42,6 @@ namespace WanFang.Website.Controllers
         public ActionResult Categoary(AboutCategory_Filter filter, Rest.Core.Paging Page)
         {
             if (filter.Category == "請輸入系列名稱搜尋") filter.Category = null;
-            ViewData["MenuItem"] = 1;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -72,7 +70,6 @@ namespace WanFang.Website.Controllers
             {
                 IsActive = Convert.ToInt32(false)
             };
-            ViewData["MenuItem"] = 1;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -115,7 +112,6 @@ namespace WanFang.Website.Controllers
             {
                 IsActive = Convert.ToInt32(false)
             };
-            ViewData["MenuItem"] = 1;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
