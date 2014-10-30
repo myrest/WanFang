@@ -7,81 +7,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.Edu
+namespace WanFang.DAL.CostUnit
 {
     #region interface
-    public interface IEdu_Repo
+    public interface ICostUnit_Repo
     {
-        Edu_Info GetBySN(long EduId);
-        IEnumerable<Edu_Info> GetAll();
-        List<Edu_Info> GetByParam(Edu_Filter Filter);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
-        long Insert(Edu_Info data);
-        int Update(long EduId, Edu_Info data, IEnumerable<string> columns);
-        int Update(Edu_Info data);
-        int Delete(long EduId);
+        CostUnit_Info GetBySN(long CostUnitId);
+        IEnumerable<CostUnit_Info> GetAll();
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter);
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, Paging Page);
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string _orderby);
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string _orderby, Paging Page);
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
+        long Insert(CostUnit_Info data);
+        int Update(long CostUnitId, CostUnit_Info data, IEnumerable<string> columns);
+        int Update(CostUnit_Info data);
+        int Delete(long CostUnitId);
     }
     #endregion
 
     #region Implementation
-    public class Edu_Repo
+    public class CostUnit_Repo
     {
         #region Operation: Select
-        public Edu_Info GetBySN(long EduId)
+        public CostUnit_Info GetBySN(long CostUnitId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_Edu")
-                .Append("WHERE EduId=@0", EduId);
+                .Append("SELECT * FROM db_CostUnit")
+                .Append("WHERE CostUnitId=@0", CostUnitId);
 
-                var result = db.SingleOrDefault<Edu_Info>(SQLStr);
+                var result = db.SingleOrDefault<CostUnit_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<Edu_Info> GetAll()
+        public IEnumerable<CostUnit_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_Edu");
-                var result = db.Query<Edu_Info>(SQLStr);
+                    .Append("SELECT * FROM db_CostUnit");
+                var result = db.Query<CostUnit_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter)
         {
             return GetByParam(Filter, null, null, "");
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, Paging Page)
         {
             return GetByParam(Filter, Page, null, "");
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string _orderby)
         {
             return GetByParam(Filter, null, null, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby, Paging Page)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, null, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, fieldNames, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        public List<CostUnit_Info> GetByParam(CostUnit_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
         {
             if (fieldNames == null) { fieldNames = new string[] { "*" }; }
             if (Page == null) { Page = new Paging(); }
@@ -89,8 +89,8 @@ namespace WanFang.DAL.Edu
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Page<Edu_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
-                Page.Convert<Edu_Info>(result);
+                var result = db.Page<CostUnit_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<CostUnit_Info>(result);
 
                 return result.Items;
             }
@@ -99,7 +99,7 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Insert
-        public long Insert(Edu_Info data)
+        public long Insert(CostUnit_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -115,15 +115,15 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Update
-        public int Update(long EduId, Edu_Info data, IEnumerable<string> columns)
+        public int Update(long CostUnitId, CostUnit_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, EduId, columns);
+                return db.Update(data, CostUnitId, columns);
             }
         }
 
-        public int Update(Edu_Info data)
+        public int Update(CostUnit_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -133,11 +133,11 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Delete
-        public int Delete(long EduId)
+        public int Delete(long CostUnitId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_Edu", "EduId", null, EduId);
+                return db.Delete("db_CostUnit", "CostUnitId", null, CostUnitId);
             }
         }
         #endregion
@@ -146,53 +146,53 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Edu_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(CostUnit_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Edu_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(CostUnit_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_Edu")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_CostUnit")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
-                if (filter.EduId.HasValue)
+                if (filter.CostUnitId.HasValue)
                 {
-                    SQLStr.Append(" AND EduId=@0", filter.EduId.Value);
+                    SQLStr.Append(" AND CostUnitId=@0", filter.CostUnitId.Value);
                 }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
-                if (filter.EduDate.HasValue)
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND EduDate=@0", filter.EduDate.Value);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
-                if (!string.IsNullOrEmpty(filter.DateStart))
+                if (!string.IsNullOrEmpty(filter.UnitName))
                 {
-                    SQLStr.Append(" AND DateStart=@0", filter.DateStart);
+                    SQLStr.Append(" AND UnitName=@0", filter.UnitName);
                 }
-                if (!string.IsNullOrEmpty(filter.DateEnd))
+                if (!string.IsNullOrEmpty(filter.ContentBody))
                 {
-                    SQLStr.Append(" AND DateEnd=@0", filter.DateEnd);
+                    SQLStr.Append(" AND ContentBody=@0", filter.ContentBody);
                 }
-                if (!string.IsNullOrEmpty(filter.Title))
+                if (!string.IsNullOrEmpty(filter.Image1))
                 {
-                    SQLStr.Append(" AND Title=@0", filter.Title);
+                    SQLStr.Append(" AND Image1=@0", filter.Image1);
                 }
-                if (!string.IsNullOrEmpty(filter.Place))
+                if (!string.IsNullOrEmpty(filter.Image2))
                 {
-                    SQLStr.Append(" AND Place=@0", filter.Place);
+                    SQLStr.Append(" AND Image2=@0", filter.Image2);
                 }
-                if (!string.IsNullOrEmpty(filter.Teacher))
+                if (!string.IsNullOrEmpty(filter.Image3))
                 {
-                    SQLStr.Append(" AND Teacher=@0", filter.Teacher);
+                    SQLStr.Append(" AND Image3=@0", filter.Image3);
                 }
-                if (!string.IsNullOrEmpty(filter.Notes))
+                if (filter.IsActive.HasValue)
                 {
-                    SQLStr.Append(" AND Notes=@0", filter.Notes);
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
                 }
                 if (filter.LastUpdate.HasValue)
                 {

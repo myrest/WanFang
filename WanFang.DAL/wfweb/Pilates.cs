@@ -198,9 +198,17 @@ namespace WanFang.DAL.Pilates
                 {
                     SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
                 }
+                if (filter.HasTail.HasValue)
+                {
+                    SQLStr.Append(" AND HasTail=@0", filter.HasTail.Value);
+                }
                 if (filter.LastUpdate.HasValue)
                 {
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.LastUpdator))
+                {
+                    SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
                 }
                 if (_orderby != "")
                     SQLStr.OrderBy(_orderby);

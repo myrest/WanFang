@@ -97,7 +97,7 @@
                     <%=item.LoginId %>
                 </td>
                 <td class="txt_c">
-                    <%=item.DeptType %>
+                    <%=item.DeptName %>
                 </td>
                 <td class="txt_c">
                     <%=item.CostName %>

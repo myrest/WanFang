@@ -7,81 +7,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WanFang.DAL.Edu
+namespace WanFang.DAL.WebDownload
 {
     #region interface
-    public interface IEdu_Repo
+    public interface IWebDownload_Repo
     {
-        Edu_Info GetBySN(long EduId);
-        IEnumerable<Edu_Info> GetAll();
-        List<Edu_Info> GetByParam(Edu_Filter Filter);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
-        List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
-        long Insert(Edu_Info data);
-        int Update(long EduId, Edu_Info data, IEnumerable<string> columns);
-        int Update(Edu_Info data);
-        int Delete(long EduId);
+        WebDownload_Info GetBySN(long WebDownLoadID);
+        IEnumerable<WebDownload_Info> GetAll();
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter);
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, Paging Page);
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string _orderby);
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string _orderby, Paging Page);
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
+        List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
+        long Insert(WebDownload_Info data);
+        int Update(long WebDownLoadID, WebDownload_Info data, IEnumerable<string> columns);
+        int Update(WebDownload_Info data);
+        int Delete(long WebDownLoadID);
     }
     #endregion
 
     #region Implementation
-    public class Edu_Repo
+    public class WebDownload_Repo
     {
         #region Operation: Select
-        public Edu_Info GetBySN(long EduId)
+        public WebDownload_Info GetBySN(long WebDownLoadID)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT * FROM db_Edu")
-                .Append("WHERE EduId=@0", EduId);
+                .Append("SELECT * FROM db_WebDownload")
+                .Append("WHERE WebDownLoadID=@0", WebDownLoadID);
 
-                var result = db.SingleOrDefault<Edu_Info>(SQLStr);
+                var result = db.SingleOrDefault<WebDownload_Info>(SQLStr);
                 return result;
             }
         }
 
-        public IEnumerable<Edu_Info> GetAll()
+        public IEnumerable<WebDownload_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                    .Append("SELECT * FROM db_Edu");
-                var result = db.Query<Edu_Info>(SQLStr);
+                    .Append("SELECT * FROM db_WebDownload");
+                var result = db.Query<WebDownload_Info>(SQLStr);
 
                 return result;
             }
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter)
         {
             return GetByParam(Filter, null, null, "");
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, Paging Page)
         {
             return GetByParam(Filter, Page, null, "");
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string _orderby)
         {
             return GetByParam(Filter, null, null, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string _orderby, Paging Page)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, null, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, string[] fieldNames, string _orderby, Paging Page)
         {
             return GetByParam(Filter, Page, fieldNames, _orderby);
         }
 
-        public List<Edu_Info> GetByParam(Edu_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
+        public List<WebDownload_Info> GetByParam(WebDownload_Filter Filter, Paging Page, string[] fieldNames, string _orderby)
         {
             if (fieldNames == null) { fieldNames = new string[] { "*" }; }
             if (Page == null) { Page = new Paging(); }
@@ -89,8 +89,8 @@ namespace WanFang.DAL.Edu
             {
                 var SQLStr = ConstructSQL(Filter, fieldNames, _orderby);
 
-                var result = db.Page<Edu_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
-                Page.Convert<Edu_Info>(result);
+                var result = db.Page<WebDownload_Info>(Page.CurrentPage, Page.ItemsPerPage, SQLStr);
+                Page.Convert<WebDownload_Info>(result);
 
                 return result.Items;
             }
@@ -99,7 +99,7 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Insert
-        public long Insert(Edu_Info data)
+        public long Insert(WebDownload_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -115,15 +115,15 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Update
-        public int Update(long EduId, Edu_Info data, IEnumerable<string> columns)
+        public int Update(long WebDownLoadID, WebDownload_Info data, IEnumerable<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Update(data, EduId, columns);
+                return db.Update(data, WebDownLoadID, columns);
             }
         }
 
-        public int Update(Edu_Info data)
+        public int Update(WebDownload_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -133,11 +133,11 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region Operation: Delete
-        public int Delete(long EduId)
+        public int Delete(long WebDownLoadID)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_Edu", "EduId", null, EduId);
+                return db.Delete("db_WebDownload", "WebDownLoadID", null, WebDownLoadID);
             }
         }
         #endregion
@@ -146,53 +146,37 @@ namespace WanFang.DAL.Edu
         #endregion
 
         #region private function
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Edu_Filter filter)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(WebDownload_Filter filter)
         {
             return ConstructSQL(filter, new string[] { "*" }, "");
         }
 
-        private Rest.Core.PetaPoco.Sql ConstructSQL(Edu_Filter filter, string[] fieldNames, string _orderby)
+        private Rest.Core.PetaPoco.Sql ConstructSQL(WebDownload_Filter filter, string[] fieldNames, string _orderby)
         {
             var SQLStr = Rest.Core.PetaPoco.Sql.Builder
-                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_Edu")
+                .Append("SELECT " + FieldNameArrayToFieldNameString(fieldNames) + " FROM db_WebDownload")
                 .Append("WHERE 1=1 ");
             if (filter != null)
             {
-                if (filter.EduId.HasValue)
+                if (filter.WebDownLoadID.HasValue)
                 {
-                    SQLStr.Append(" AND EduId=@0", filter.EduId.Value);
+                    SQLStr.Append(" AND WebDownLoadID=@0", filter.WebDownLoadID.Value);
                 }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
-                if (filter.EduDate.HasValue)
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND EduDate=@0", filter.EduDate.Value);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
-                if (!string.IsNullOrEmpty(filter.DateStart))
+                if (!string.IsNullOrEmpty(filter.DocumentName))
                 {
-                    SQLStr.Append(" AND DateStart=@0", filter.DateStart);
+                    SQLStr.Append(" AND DocumentName=@0", filter.DocumentName);
                 }
-                if (!string.IsNullOrEmpty(filter.DateEnd))
+                if (filter.IsActive.HasValue)
                 {
-                    SQLStr.Append(" AND DateEnd=@0", filter.DateEnd);
-                }
-                if (!string.IsNullOrEmpty(filter.Title))
-                {
-                    SQLStr.Append(" AND Title=@0", filter.Title);
-                }
-                if (!string.IsNullOrEmpty(filter.Place))
-                {
-                    SQLStr.Append(" AND Place=@0", filter.Place);
-                }
-                if (!string.IsNullOrEmpty(filter.Teacher))
-                {
-                    SQLStr.Append(" AND Teacher=@0", filter.Teacher);
-                }
-                if (!string.IsNullOrEmpty(filter.Notes))
-                {
-                    SQLStr.Append(" AND Notes=@0", filter.Notes);
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
                 }
                 if (filter.LastUpdate.HasValue)
                 {

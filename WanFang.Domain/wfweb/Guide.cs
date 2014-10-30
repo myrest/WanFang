@@ -11,6 +11,7 @@ namespace WanFang.Domain
     public interface IGuide_Info
     {
         int GuideId { get; set; }
+        int SortNum { get; set; }
         string ItemName { get; set; }
         int DisplayType { get; set; }
         string Link { get; set; }
@@ -40,6 +41,10 @@ namespace WanFang.Domain
         /// 流水號
         /// </summary>
         public int GuideId { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int SortNum { get; set; }
         /// <summary>
         /// 項目名稱
         /// </summary>
@@ -109,6 +114,7 @@ namespace WanFang.Domain
     public class Guide_Filter
     {
         public int? GuideId { get; set; }
+        public int? SortNum { get; set; }
         public string ItemName { get; set; }
         public int? DisplayType { get; set; }
         public string Link { get; set; }

@@ -11,7 +11,7 @@ namespace WanFang.Domain
     public interface IEdu_Info
     {
         int EduId { get; set; }
-        string EduType { get; set; }
+        string CostName { get; set; }
         DateTime EduDate { get; set; }
         string DateStart { get; set; }
         string DateEnd { get; set; }
@@ -19,7 +19,7 @@ namespace WanFang.Domain
         string Place { get; set; }
         string Teacher { get; set; }
         string Notes { get; set; }
-        string LastUpdate { get; set; }
+        DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
     }
     #endregion
@@ -38,7 +38,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 衛教類別
         /// </summary>
-        public string EduType { get; set; }
+        public string CostName { get; set; }
         /// <summary>
         /// 衛教日期
         /// </summary>
@@ -70,7 +70,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 更新日期
         /// </summary>
-        public string LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         #endregion
 
@@ -84,7 +84,7 @@ namespace WanFang.Domain
     public class Edu_Filter
     {
         public int? EduId { get; set; }
-        public string EduType { get; set; }
+        public string CostName { get; set; }
         public DateTime? EduDate { get; set; }
         public string DateStart { get; set; }
         public string DateEnd { get; set; }
@@ -92,7 +92,7 @@ namespace WanFang.Domain
         public string Place { get; set; }
         public string Teacher { get; set; }
         public string Notes { get; set; }
-        public string LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above Edu_Info field for search criteria
     }

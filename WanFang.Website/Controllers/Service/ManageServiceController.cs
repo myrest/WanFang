@@ -59,6 +59,16 @@ namespace WanFang.Website.Controllers.Service
                 data.LastUpdator = sessionData.trading.LoginId;
                 if (data.UserID > 0)
                 {
+                    var oldUser = UserMan.GetBySN(data.UserID);
+                    if (string.IsNullOrEmpty(data.Password))
+                    {
+                        data.Password = oldUser.Password;
+                        data.LoginId = oldUser.LoginId;
+                    }
+                    else
+                    {
+                        data.Password = Encrypt.EncryptPassword(data.Password, data.LoginId);
+                    }
                     UserMan.Update(data);
                 }
                 else

@@ -38,9 +38,16 @@ namespace WanFang.Website.Controllers.Service
             trading.LoginId = LoginId;
             trading.UserName = user.UserName;
             trading.UserID = user.UserID;
-            trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
+            if (user.Permission != null)
+            {
+                trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
+            }
             trading.IsDeptOnly = (user.PermissionType == 0);
             trading.UploadFiles = new System.Collections.Generic.Dictionary<string, string>() { };
+            if (string.IsNullOrEmpty(user.DeptName))
+            {
+                trading.Dept = EnumHelper.GetEnumByName<WS_Dept_type>(user.DeptName);
+            }
             sessionData.trading = trading;
         }
 

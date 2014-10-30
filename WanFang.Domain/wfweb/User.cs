@@ -15,10 +15,11 @@ namespace WanFang.Domain
         string LoginId { get; set; }
         string Password { get; set; }
         int PermissionType { get; set; }
-        string DeptType { get; set; }
+        string DeptName { get; set; }
         string CostName { get; set; }
-        string CostCode { get; set; }
         string Permission { get; set; }
+        int IsVerifier { get; set; }
+        int IsSuperUser { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
     }
@@ -51,19 +52,17 @@ namespace WanFang.Domain
         /// <summary>
         /// 診別
         /// </summary>
-        public string DeptType { get; set; }
+        public string DeptName { get; set; }
         /// <summary>
         /// 權限
         /// </summary>
         public string CostName { get; set; }
         /// <summary>
-        /// 最後更新日期
-        /// </summary>
-        public string CostCode { get; set; }
-        /// <summary>
         /// 密鑰
         /// </summary>
         public string Permission { get; set; }
+        public int IsVerifier { get; set; }
+        public int IsSuperUser { get; set; }
         /// <summary>
         /// 最後更新日期
         /// </summary>
@@ -85,10 +84,11 @@ namespace WanFang.Domain
         public string LoginId { get; set; }
         public string Password { get; set; }
         public int? PermissionType { get; set; }
-        public string DeptType { get; set; }
+        public string DeptName { get; set; }
         public string CostName { get; set; }
-        public string CostCode { get; set; }
         public string Permission { get; set; }
+        public int? IsVerifier { get; set; }
+        public int? IsSuperUser { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above User_Info field for search criteria

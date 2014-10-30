@@ -162,6 +162,10 @@ namespace WanFang.DAL.Guide
                 {
                     SQLStr.Append(" AND GuideId=@0", filter.GuideId.Value);
                 }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
                 if (!string.IsNullOrEmpty(filter.ItemName))
                 {
                     SQLStr.Append(" AND ItemName=@0", filter.ItemName);

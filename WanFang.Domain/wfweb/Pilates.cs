@@ -20,7 +20,9 @@ namespace WanFang.Domain
         string Memo { get; set; }
         string ContentBody { get; set; }
         int IsActive { get; set; }
+        int HasTail { get; set; }
         DateTime LastUpdate { get; set; }
+        string LastUpdator { get; set; }
     }
     #endregion
     */
@@ -72,9 +74,17 @@ namespace WanFang.Domain
         /// </summary>
         public int IsActive { get; set; }
         /// <summary>
+        /// 前台是否顯示問題
+        /// </summary>
+        public int HasTail { get; set; }
+        /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime LastUpdate { get; set; }
+        /// <summary>
+        /// 更新人員
+        /// </summary>
+        public string LastUpdator { get; set; }
         #endregion
 
         #region Constructor
@@ -96,7 +106,9 @@ namespace WanFang.Domain
         public string Memo { get; set; }
         public string ContentBody { get; set; }
         public int? IsActive { get; set; }
+        public int? HasTail { get; set; }
         public DateTime? LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         //You can copy/modify above Pilates_Info field for search criteria
     }
     #endregion

@@ -13,7 +13,7 @@
     %>
     <script>
         $(function () {
-            $('#DeptType').change(ChangeDept);
+            $('#DeptName').change(ChangeDept);
         });
 
         function ChangeDept() {
@@ -35,7 +35,16 @@
             });
         }
         function Save() {
-            var param = $('#form1').serialize();
+            var param = $('#form1 :not([name=Permission])').serialize();
+            var allpermiss = "";
+            $('input[name="Permission"]:checked').each(function () {
+                allpermiss += "," + this.value;
+            });
+            if (allpermiss.length > 0) {
+                allpermiss = allpermiss.substring(1, allpermiss.length);
+            }
+            param += "&Permission=" + allpermiss;
+
             utility.service("ManageService/SaveUser", param, "POST", function (data) {
                 if (data.code > 0) {
                     utility.showPopUp("資料已儲存", 1, GoBack);
@@ -77,7 +86,9 @@
                 <tr class="va_m line-d">
                     <td class="line-d0">登入帳號<span class="red">*</span></td>
                     <td class="txt_l">
-                        <input name="LoginId" type="text" maxlength="20" value="<%=Model.LoginId %>" /></td>
+                        <input name="LoginId" type="text" maxlength="20" value="<%=Model.LoginId %>" 
+                        <% if (Model.UserID > 0) Response.Write(" readonly "); %>
+                        /></td>
                 </tr>
                 <tr class="va_m line-d">
                     <td class="line-d0">登入密碼<span class="red">*</span></td>
@@ -85,6 +96,12 @@
                         <input name="Password" type="password" maxlength="20" />
                         <%if (Model.UserID > 0) Response.Write(" 不更改時，請留空白"); %>
                         </td>
+                </tr>
+                <tr class="va_m line-d">
+                    <td class="line-d0">特別設定</td>
+                    <td class="txt_l">
+                        <input type="checkbox" value="1" name="IsVerifier" <%=Model.IsVerifier == 0?"":"checked" %> />具有審核權
+                    </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 w150 top">管理權限<span class="red">*</span>
@@ -96,35 +113,65 @@
                                 <td class="top"><input type="radio" name="PermissionType" value="0" <%=(Model.PermissionType==0?"checked":"") %> />權限1：</td>
                                 <td class="top">科別管理權限<br />
                                     門診：
-              <select name="DeptType" id="DeptType">
+              <select name="DeptName" id="DeptName">
                   <option>請選擇</option>
                   <%
                       foreach (var item in Dept)
                       {
-                          Response.Write(string.Format("<option value=\"{0}\">{1}</option>", item.Key, item.Value));
+                          string selected = string.Empty;
+                          if (item.Value == Model.DeptName) selected = "selected";
+                          Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
                       }
                   %>
               </select>
                                     科別：
               <select name="CostName" id="CostName">
-                  <option selected="selected">請選擇</option>
+                  <option>請選擇</option>
+                  <%
+                      WanFang.BLL.WebService_Manage service = new WanFang.BLL.WebService_Manage();
+                      var cost = service.GetAllDetailCostcerter(Rest.Core.Utility.EnumHelper.GetEnumByName<WanFang.Domain.Constancy.WS_Dept_type>(Model.DeptName));
+                      foreach (var item in cost)
+                      {
+                          string selected = string.Empty;
+                          if (item.CostName.Trim() == Model.CostName.Trim())
+                          {
+                              selected = "selected";
+                          }
+                          Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
+                      }
+                  %>
               </select>
                                 </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top"><input type="radio" name="PermissionType" value="1" <%=(Model.PermissionType==1?"checked":"") %> />權限2：</td>
                                 <td class="top">
-                                    <input name="Permission" type="checkbox" value="首頁及時資訊管理" />首頁及時資訊管理<br />
-                                    <input name="Permission" type="checkbox" value="關於萬芳管理" />關於萬芳管理<br />
-                                    <input name="Permission" type="checkbox" value="最新消息管理" />最新消息管理<br />
-                                    <input name="Permission" type="checkbox" value="預約及查詢管理" />預約及查詢管理<br />
-                                    <input name="Permission" type="checkbox" value="就醫指南管理" />就醫指南管理<br />
-                                    <input name="Permission" type="checkbox" value="團隊介紹管理" />團隊介紹管理<br />
-                                    <input name="Permission" type="checkbox" value="衛教園區管理" />衛教園區管理<br />
-                                    <input name="Permission" type="checkbox" value="人員募集管理" />人員募集管理<br />
-                                    <input name="Permission" type="checkbox" value="健保專區管理" />健保專區管理<br />
-                                    <input name="Permission" type="checkbox" value="詢問台管理" />詢問台管理<br />
-                                    <input name="Permission" type="checkbox" value="表尾資料管理" />表尾資料管理<br />
+                                <%
+                                    List<string> permisses = new List<string>()
+                                    {
+                                        "首頁及時資訊管理"
+                                        ,"關於萬芳管理"
+                                        ,"最新消息管理"
+                                        ,"預約及查詢管理"
+                                        ,"就醫指南管理"
+                                        ,"團隊介紹管理"
+                                        ,"衛教園區管理"
+                                        ,"人員募集管理"
+                                        ,"健保專區管理"
+                                        ,"詢問台管理"
+                                        ,"表尾資料管理"
+                                    };
+
+                                    foreach (string perstr in permisses)
+                                    {
+                                        string ischecked = string.Empty;
+                                        if (Model.Permission != null && Model.Permission.Contains(perstr))
+                                        {
+                                            ischecked = "checked";
+                                        }
+                                        Response.Write(string.Format("<input name=\"Permission\" type=\"checkbox\" value=\"{0}\" {1} />{0}<br />\n\r", perstr, ischecked));
+                                    }
+                                %>
                                 </td>
                             </tr>
                         </table>

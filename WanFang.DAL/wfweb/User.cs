@@ -178,21 +178,25 @@ namespace WanFang.DAL.User
                 {
                     SQLStr.Append(" AND PermissionType=@0", filter.PermissionType.Value);
                 }
-                if (!string.IsNullOrEmpty(filter.DeptType))
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND DeptType=@0", filter.DeptType);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
-                if (!string.IsNullOrEmpty(filter.CostCode))
-                {
-                    SQLStr.Append(" AND CostCode=@0", filter.CostCode);
-                }
                 if (!string.IsNullOrEmpty(filter.Permission))
                 {
                     SQLStr.Append(" AND Permission=@0", filter.Permission);
+                }
+                if (filter.IsVerifier.HasValue)
+                {
+                    SQLStr.Append(" AND IsVerifier=@0", filter.IsVerifier.Value);
+                }
+                if (filter.IsSuperUser.HasValue)
+                {
+                    SQLStr.Append(" AND IsSuperUser=@0", filter.IsSuperUser.Value);
                 }
                 if (filter.LastUpdate.HasValue)
                 {
