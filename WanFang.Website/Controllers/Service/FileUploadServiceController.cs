@@ -22,8 +22,6 @@ namespace WanFang.Website.Controllers.Service
 {
     public class FileUploadServiceController : BaseController
     {
-        //限制300kb
-        private static readonly long MaxLengthLimitKB = 300;
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(FileUploadServiceController));
@@ -102,7 +100,7 @@ namespace WanFang.Website.Controllers.Service
                     string FileName = PreFix + DateTime.Now.ToString("yyyyMMddHHmmssf") + Path.GetExtension(Uploadfile.FileName);
                     result.FileName = Uploadfile.FileName;//User's uploaded file name.
                     result.FileType = Uploadfile.ContentType;
-                    result.FileSize = ConvertFileSize(Uploadfile.ContentLength);
+                    result.FileSize = ConvertFileSize(Uploadfile.ContentLength, PreFix);
                     result.TempFileName = "/UploadTemp/" + FileName;//Server given name.
 
                     Uploadfile.SaveAs(GetTempPathFileName(FileName));
@@ -142,13 +140,46 @@ namespace WanFang.Website.Controllers.Service
             return result;
         }
 
-        private string ConvertFileSize(decimal FileSize)
+        private string ConvertFileSize(decimal FileSize, string PrefixInfo)
         {
+            long MaxUploadKB = 0;
+            #region 上傳檔案大小限制
+            if (PrefixInfo.StartsWith("ContentImage"))
+            {
+                MaxUploadKB = 300;
+            }
+            else if (PrefixInfo.StartsWith("TeamPhoto"))
+            {
+                MaxUploadKB = 300;
+            }
+            else if (PrefixInfo.StartsWith("CostUnitImage"))
+            {
+                MaxUploadKB = 300;
+            }
+            else if (PrefixInfo.StartsWith("WebDownLoadFile"))
+            {
+                MaxUploadKB = 3 * 1024;
+            }
+            else if (PrefixInfo.StartsWith("CostNews"))
+            {
+                MaxUploadKB = 3 * 1024;
+            }
+            else if (PrefixInfo.StartsWith("DownLoadImage"))
+            {
+                MaxUploadKB = 3 * 1024;
+            }
+            else
+            {
+                throw new Exception("上傳檔案類型[" + PrefixInfo + "]還沒設定檔案大小限制。");
+            }
+            #endregion
+
+
             decimal k = 1024;
             decimal m = k * 1024;
-            if (FileSize > k * MaxLengthLimitKB)
+            if (FileSize > k * MaxUploadKB)
             {
-                throw new Exception(string.Format("上傳檔案大小超過限制{0}KB", MaxLengthLimitKB));
+                throw new Exception(string.Format("上傳檔案大小超過限制{0}KB", MaxUploadKB));
             }
             else
             {

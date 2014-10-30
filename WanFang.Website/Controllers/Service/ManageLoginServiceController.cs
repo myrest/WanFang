@@ -44,7 +44,7 @@ namespace WanFang.Website.Controllers.Service
             }
             trading.IsDeptOnly = (user.PermissionType == 0);
             trading.UploadFiles = new System.Collections.Generic.Dictionary<string, string>() { };
-            if (string.IsNullOrEmpty(user.DeptName))
+            if (!string.IsNullOrEmpty(user.DeptName))
             {
                 trading.Dept = EnumHelper.GetEnumByName<WS_Dept_type>(user.DeptName);
             }

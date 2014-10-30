@@ -162,6 +162,10 @@ namespace WanFang.DAL.CostUnit
                 {
                     SQLStr.Append(" AND CostUnitId=@0", filter.CostUnitId.Value);
                 }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
@@ -172,7 +176,7 @@ namespace WanFang.DAL.CostUnit
                 }
                 if (!string.IsNullOrEmpty(filter.UnitName))
                 {
-                    SQLStr.Append(" AND UnitName=@0", filter.UnitName);
+                    SQLStr.Append(" AND UnitName like @0", "%" + filter.UnitName + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.ContentBody))
                 {

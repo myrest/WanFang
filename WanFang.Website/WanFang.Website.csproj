@@ -98,9 +98,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page9Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\Service\AboutServiceController.cs" />
+    <Compile Include="Controllers\Service\Page9ServiceController.cs" />
     <Compile Include="Controllers\Service\ManageServiceController.cs" />
     <Compile Include="Controllers\Service\FileUploadServiceController.cs" />
     <Compile Include="Controllers\Service\ManageLoginServiceController.cs" />
@@ -1362,10 +1364,17 @@
     <Content Include="Views\About\Index.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
+    <Content Include="Views\Manage\PermissionDeny.aspx" />
     <Content Include="Views\Manage\EditUser.aspx" />
     <Content Include="Views\Manage\Index.aspx" />
     <Content Include="Views\Manage\UserListing.aspx" />
     <Content Include="Views\Manage\Welcome.aspx" />
+    <Content Include="Views\Page9\EditNews.aspx" />
+    <Content Include="Views\Page9\News.aspx" />
+    <Content Include="Views\Page9\DownLoad.aspx" />
+    <Content Include="Views\Page9\EditDownload.aspx" />
+    <Content Include="Views\Page9\EditCostUnit.aspx" />
+    <Content Include="Views\Page9\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\ManageControls\ManageFooter.ascx" />
     <Content Include="Views\Shared\ManageControls\ManageLeftMenu.ascx" />

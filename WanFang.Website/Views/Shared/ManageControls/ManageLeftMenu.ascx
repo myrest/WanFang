@@ -70,11 +70,11 @@
         </ul>
     </li>
     <!--特色醫療-->
-    <li class="<%=menus[9] %>"><a href="m10-1.aspx">特色醫療管理</a>
+    <li class="<%=menus[9] %>"><a>特色醫療管理</a>
         <ul>
-            <li><a href="m10-1.aspx">單元管理</a></li>
-            <li><a href="m10-2.aspx">檔案下載管理</a></li>
-            <li><a href="m10-3.aspx">最新消息管理</a></li>
+            <li><a href="/Page9/Index">單元管理</a></li>
+            <li><a href="/Page9/DownLoad">檔案下載管理</a></li>
+            <li><a href="/Page9/News">最新消息管理</a></li>
         </ul>
     </li>
     <!--尋問台-->

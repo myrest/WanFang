@@ -11,6 +11,7 @@ namespace WanFang.Domain
     public interface ICostUnit_Info
     {
         int CostUnitId { get; set; }
+        int SortNum { get; set; }
         string CostName { get; set; }
         string DeptName { get; set; }
         string UnitName { get; set; }
@@ -35,6 +36,7 @@ namespace WanFang.Domain
         /// 順序(特色醫療單元管理)
         /// </summary>
         public int CostUnitId { get; set; }
+        public int SortNum { get; set; }
         /// <summary>
         /// 單元名稱(特色醫療單元管理)
         /// </summary>
@@ -81,6 +83,7 @@ namespace WanFang.Domain
     public class CostUnit_Filter
     {
         public int? CostUnitId { get; set; }
+        public int? SortNum { get; set; }
         public string CostName { get; set; }
         public string DeptName { get; set; }
         public string UnitName { get; set; }

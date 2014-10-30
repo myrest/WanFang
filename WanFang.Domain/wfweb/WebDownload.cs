@@ -11,8 +11,10 @@ namespace WanFang.Domain
     public interface IWebDownload_Info
     {
         int WebDownLoadID { get; set; }
+        int SortNum { get; set; }
         string CostName { get; set; }
         string DeptName { get; set; }
+        string File1 { get; set; }
         string DocumentName { get; set; }
         int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
@@ -32,6 +34,10 @@ namespace WanFang.Domain
         /// </summary>
         public int WebDownLoadID { get; set; }
         /// <summary>
+        /// 排序
+        /// </summary>
+        public int SortNum { get; set; }
+        /// <summary>
         /// 門診
         /// </summary>
         public string CostName { get; set; }
@@ -39,6 +45,10 @@ namespace WanFang.Domain
         /// 科別
         /// </summary>
         public string DeptName { get; set; }
+        /// <summary>
+        /// 檔案路徑
+        /// </summary>
+        public string File1 { get; set; }
         /// <summary>
         /// 檔案名稱
         /// </summary>
@@ -67,8 +77,10 @@ namespace WanFang.Domain
     public class WebDownload_Filter
     {
         public int? WebDownLoadID { get; set; }
+        public int? SortNum { get; set; }
         public string CostName { get; set; }
         public string DeptName { get; set; }
+        public string File1 { get; set; }
         public string DocumentName { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }

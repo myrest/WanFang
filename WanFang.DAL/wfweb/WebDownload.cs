@@ -162,6 +162,10 @@ namespace WanFang.DAL.WebDownload
                 {
                     SQLStr.Append(" AND WebDownLoadID=@0", filter.WebDownLoadID.Value);
                 }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
@@ -169,6 +173,10 @@ namespace WanFang.DAL.WebDownload
                 if (!string.IsNullOrEmpty(filter.DeptName))
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);
+                }
+                if (!string.IsNullOrEmpty(filter.File1))
+                {
+                    SQLStr.Append(" AND File1=@0", filter.File1);
                 }
                 if (!string.IsNullOrEmpty(filter.DocumentName))
                 {
