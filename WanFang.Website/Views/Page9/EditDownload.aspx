@@ -30,7 +30,7 @@
         }
 
         function GoBack() {
-            var redirto = utility.getRedirUrl('Page9', 'Index') + '?' + (new Date()).getMilliseconds();
+            var redirto = utility.getRedirUrl('Page9', 'Download') + '?' + (new Date()).getMilliseconds();
             window.location.href = redirto;
         }
     </script>

@@ -25,3 +25,5 @@
 /WanFang.Website/*.user
 /TestResults
 /WanFang.Core/*.user
+/WanFang.Website/Upload
+/WanFang.Website/UploadTemp

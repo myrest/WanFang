@@ -69,6 +69,7 @@ namespace WanFang.Website.Controllers.Service
 
         private void checkUploadfiles(CostUnit_Info NewData, CostUnit_Info OldData)
         {
+            if (OldData == null) OldData = new CostUnit_Info();
             string Prefix = string.Empty;
             Prefix = "CostUnitImage1";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
