@@ -11,8 +11,8 @@ namespace WanFang.Domain
     public interface ICostKeyword_Info
     {
         int CostKeywordId { get; set; }
-        string Cost { get; set; }
-        string Dept { get; set; }
+        string CostName { get; set; }
+        string DeptName { get; set; }
         string KeyWord { get; set; }
         int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
@@ -27,12 +27,33 @@ namespace WanFang.Domain
     public class CostKeyword_Info //: ICostKeyword_Info
     {
         #region private fields
+        /// <summary>
+        /// 流水號
+        /// </summary>
         public int CostKeywordId { get; set; }
-        public string Cost { get; set; }
-        public string Dept { get; set; }
+        /// <summary>
+        /// 科別
+        /// </summary>
+        public string CostName { get; set; }
+        /// <summary>
+        /// 診別
+        /// </summary>
+        public string DeptName { get; set; }
+        /// <summary>
+        /// 關鍵字
+        /// </summary>
         public string KeyWord { get; set; }
+        /// <summary>
+        /// 上下架
+        /// </summary>
         public int IsActive { get; set; }
+        /// <summary>
+        /// 最後更新日期
+        /// </summary>
         public DateTime LastUpdate { get; set; }
+        /// <summary>
+        /// 最後更新人員
+        /// </summary>
         public string LastUpdator { get; set; }
         #endregion
 
@@ -46,8 +67,8 @@ namespace WanFang.Domain
     public class CostKeyword_Filter
     {
         public int? CostKeywordId { get; set; }
-        public string Cost { get; set; }
-        public string Dept { get; set; }
+        public string CostName { get; set; }
+        public string DeptName { get; set; }
         public string KeyWord { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }

@@ -10,7 +10,7 @@
 <ul id="menu">
     <li class="<%=menus[0] %>"><a href="javascript:void(0);">首頁及時資訊管理</a>
         <ul>
-            <li><a href="m1-1.aspx">首頁及時資訊管理</a></li></ul>
+            <li><a href="http://192.168.52.110:1002/manage/m1-1.aspx">首頁及時資訊管理</a></li></ul>
     </li>
     <!--關於萬芳-->
     <li class="<%=menus[1] %>"><a href="javascript:void(0);">關於萬芳管理</a>
@@ -26,28 +26,28 @@
     <!--最新消息-->
     <li class="<%=menus[2] %>"><a href="javascript:void(0);">最新消息管理</a>
         <ul>
-            <!--<li><a href="m3-1.aspx">最新消息類別管理</a></li>-->
-            <li><a href="m3-2.aspx">最新消息項目管理</a></li>
+            <!--<li><a href="http://192.168.52.110:1002/manage/m3-1.aspx">最新消息類別管理</a></li>-->
+            <li><a href="http://192.168.52.110:1002/manage/m3-2.aspx">最新消息項目管理</a></li>
         </ul>
     </li>
     <!--預約查詢系統-->
     <li class="<%=menus[3] %>"><a href="javascript:void(0);">預約及查詢管理</a>
         <ul>
-            <li><a href="m4-1.aspx">其他課程管理</a></li>
-            <!--<li><a href="m4-2.aspx">報名管理</a></li>-->
+            <li><a href="http://192.168.52.110:1002/manage/m4-1.aspx">其他課程管理</a></li>
+            <!--<li><a href="http://192.168.52.110:1002/manage/m4-2.aspx">報名管理</a></li>-->
         </ul>
     </li>
     <!--就醫指南-->
     <li class="<%=menus[4] %>"><a href="javascript:void(0);">就醫指南管理</a>
         <ul>
-            <li><a href="m5-1.aspx">就醫指南管理</a></li></ul>
+            <li><a href="http://192.168.52.110:1002/manage/m5-1.aspx">就醫指南管理</a></li></ul>
     </li>
     <!--團隊介紹-->
     <li class="<%=menus[5] %>"><a href="javascript:void(0);">團隊介紹管理</a>
         <ul>
-            <li><a href="m6-1.aspx">科別關鍵字管理</a></li>
-            <li><a href="m6-2.aspx">醫師詳細介紹管理</a></li>
-            <li><a href="m6-3.aspx">團隊介紹管理</a></li><!-- 多的 -->
+            <li><a href="/page5/CostKeyword">科別關鍵字管理</a></li>
+            <li><a href="/page5/Doc">醫師詳細介紹管理</a></li>
+            <li><a href="/page5/TeamIntroduce">團隊介紹管理</a></li>
         </ul>
     </li>
     <!--衛教園區-->
@@ -60,13 +60,13 @@
     <!--人員募集-->
     <li class="<%=menus[7] %>"><a href="javascript:void(0);">人員募集管理</a>
         <ul>
-            <li><a href="m8-2.aspx">人員募集類別管理</a></li><li><a href="m8-1.aspx">人員募集項目管理</a></li></ul>
+            <li><a href="http://192.168.52.110:1002/manage/m8-2.aspx">人員募集類別管理</a></li><li><a href="http://192.168.52.110:1002/manage/m8-1.aspx">人員募集項目管理</a></li></ul>
     </li>
     <!--健保專區-->
     <li class="<%=menus[8] %>"><a href="javascript:void(0);">健保專區管理</a>
         <ul>
-            <li><a href="m9-1.aspx">健保專區項目管理</a></li>
-            <li><a href="m9-2.aspx">藥品公告專區管理</a></li>
+            <li><a href="http://192.168.52.110:1002/manage/m9-1.aspx">健保專區項目管理</a></li>
+            <li><a href="http://192.168.52.110:1002/manage/m9-2.aspx">藥品公告專區管理</a></li>
         </ul>
     </li>
     <!--特色醫療-->
@@ -80,15 +80,15 @@
     <!--尋問台-->
     <li class="<%=menus[10] %>"><a href="javascript:void(0);">詢問台管理</a>
         <ul>
-            <li><a href="m11-1.aspx">就醫問答集管理</a></li>
-            <li><a href="m11-2.aspx">健康諮詢查詢管理</a></li>
-            <li><a href="m11-3.aspx">健保部分給付問答集管理</a></li>
+            <li><a href="http://192.168.52.110:1002/manage/m11-1.aspx">就醫問答集管理</a></li>
+            <li><a href="http://192.168.52.110:1002/manage/m11-2.aspx">健康諮詢查詢管理</a></li>
+            <li><a href="http://192.168.52.110:1002/manage/m11-3.aspx">健保部分給付問答集管理</a></li>
         </ul>
     </li>
     <!--表尾資料管理-->
     <li class="<%=menus[11] %>"><a href="javascript:void(0);">表尾資料管理</a>
         <ul>
-            <li><a href="m12-1.aspx">表尾資料管理</a></li></ul>
+            <li><a href="http://192.168.52.110:1002/manage/m12-1.aspx">表尾資料管理</a></li></ul>
     </li>
     <!--員工帳號管理-->
     <li class="<%=menus[12] %>"><a href="#">員工帳號管理</a>

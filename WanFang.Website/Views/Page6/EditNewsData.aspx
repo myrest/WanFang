@@ -141,7 +141,7 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m">顯示在團隊介紹</td>
                     <td class="txt_l">
-                        <input name="IsShowOnTeam" type="checkbox" value="1" /><%=(Model.IsShowOnTeam == 1) ?"checked" : ""  %>
+                        <input name="IsShowOnTeam" type="checkbox" value="1" <%=(Model.IsShowOnTeam == 1) ?"checked" : ""  %> />
                         顯示
                     </td>
                 </tr>

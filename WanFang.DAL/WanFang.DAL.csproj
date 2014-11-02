@@ -51,6 +51,7 @@
     <Compile Include="wfweb\CostNews.cs" />
     <Compile Include="wfweb\CostUnit.cs" />
     <Compile Include="wfweb\DiaryData.cs" />
+    <Compile Include="wfweb\Doc.cs" />
     <Compile Include="wfweb\Edu.cs" />
     <Compile Include="wfweb\Guide.cs" />
     <Compile Include="wfweb\HirCategory.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="wfweb\NewsData.cs" />
     <Compile Include="wfweb\Nhi_Med.cs" />
     <Compile Include="wfweb\Pilates.cs" />
+    <Compile Include="wfweb\TeamIntroduce.cs" />
     <Compile Include="wfweb\User.cs" />
     <Compile Include="wfweb\WebDownload.cs" />
   </ItemGroup>

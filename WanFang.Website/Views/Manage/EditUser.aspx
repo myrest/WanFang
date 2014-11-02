@@ -25,7 +25,7 @@
         function ChangeDept() {
             $this = $(this);
             var CostName = $this.val();
-            var param = { CostName: CostName };
+            var param = { CostCode: CostName };
             utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
                 if (data.code > 0) {
                     $('#CostName').html('');

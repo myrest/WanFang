@@ -162,17 +162,17 @@ namespace WanFang.DAL.CostKeyword
                 {
                     SQLStr.Append(" AND CostKeywordId=@0", filter.CostKeywordId.Value);
                 }
-                if (!string.IsNullOrEmpty(filter.Cost))
+                if (!string.IsNullOrEmpty(filter.CostName))
                 {
-                    SQLStr.Append(" AND Cost=@0", filter.Cost);
+                    SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
-                if (!string.IsNullOrEmpty(filter.Dept))
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND Dept=@0", filter.Dept);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
                 if (!string.IsNullOrEmpty(filter.KeyWord))
                 {
-                    SQLStr.Append(" AND KeyWord=@0", filter.KeyWord);
+                    SQLStr.Append(" AND KeyWord like @0", "%" + filter.KeyWord + "%");
                 }
                 if (filter.IsActive.HasValue)
                 {

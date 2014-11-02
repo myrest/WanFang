@@ -98,11 +98,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page5Controller.cs" />
     <Compile Include="Controllers\Page6Controller.cs" />
     <Compile Include="Controllers\Page9Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\Service\AboutServiceController.cs" />
+    <Compile Include="Controllers\Service\Page5ServiceController.cs" />
     <Compile Include="Controllers\Service\Page6ServiceController.cs" />
     <Compile Include="Controllers\Service\Page9ServiceController.cs" />
     <Compile Include="Controllers\Service\ManageServiceController.cs" />
@@ -1371,6 +1373,8 @@
     <Content Include="Views\Manage\Index.aspx" />
     <Content Include="Views\Manage\UserListing.aspx" />
     <Content Include="Views\Manage\Welcome.aspx" />
+    <Content Include="Views\Page5\Doc.aspx" />
+    <Content Include="Views\Page5\EditDoc.aspx" />
     <Content Include="Views\Page6\EditEdu.aspx" />
     <Content Include="Views\Page6\Edu.aspx" />
     <Content Include="Views\Page6\EditNewsData.aspx" />
