@@ -176,6 +176,16 @@
                         </select></td>
                 </tr>
                 <tr class="line-d">
+                    <td class="line-d0 va_m">核定日期</td>
+                    <td class="txt_l">
+                        <%
+                            DateTime newdt = DateTime.MinValue;
+                            DateTime.TryParse("1974/01/01", out newdt);
+                        %>
+                        <input name="conf_date" type="text" value="<%=(Model.conf_date == newdt) ? "" : Model.conf_date.ToString("yyyy/MM/dd") %>" size="50" maxlength="255" />
+                    </td>
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 top">主治項目<!-- 新欄位--><span class="red">*</span></td>
                     <td>
                         <input name="MainMajor1" type="text" value="<%=Model.MainMajor1 %>" size="50" maxlength="255" />

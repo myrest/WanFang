@@ -60,7 +60,7 @@ namespace WanFang.Website.Controllers
         {
             //Clear old data.
             ClearOldData("DocPic");
-            var model = NewsDataMan.GetBySN(Convert.ToInt32(id));
+            var model = DocMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
             return View();
         }
@@ -84,10 +84,7 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditCostKeyword(string id)
         {
-            var model = EduMan.GetBySN(Convert.ToInt32(id));
-            WebService_Manage service = new WanFang.BLL.WebService_Manage();
-            var Dept = service.GetAllDept();
-            ViewData["AllDept"] = Dept;
+            var model = CostKeyMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
             return View();
         }

@@ -27,6 +27,9 @@ namespace WanFang.Website.Controllers.Service
         private static readonly CostUnit_Manager CostUnitMan = new CostUnit_Manager();
         private static readonly CostNews_Manager CostNewsman = new CostNews_Manager();
 
+        private static readonly Doc_Manager DocMan = new Doc_Manager();
+        private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
+
         public DeleteServiceController()
             : base(Permission.Public)
         {
@@ -190,6 +193,40 @@ namespace WanFang.Website.Controllers.Service
                 {
                     int sn = Convert.ToInt32(x);
                     CostNewsman.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteDoc(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    DocMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCostKeyword(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    CostKeyMan.Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

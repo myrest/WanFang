@@ -1373,6 +1373,8 @@
     <Content Include="Views\Manage\Index.aspx" />
     <Content Include="Views\Manage\UserListing.aspx" />
     <Content Include="Views\Manage\Welcome.aspx" />
+    <Content Include="Views\Page5\EditCostKeyword.aspx" />
+    <Content Include="Views\Page5\CostKeyword.aspx" />
     <Content Include="Views\Page5\Doc.aspx" />
     <Content Include="Views\Page5\EditDoc.aspx" />
     <Content Include="Views\Page6\EditEdu.aspx" />

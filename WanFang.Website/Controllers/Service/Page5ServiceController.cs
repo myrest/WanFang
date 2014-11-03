@@ -21,6 +21,7 @@ namespace WanFang.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(Page5ServiceController));
         private static readonly Doc_Manager DocMan = new Doc_Manager();
+        private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
 
         public Page5ServiceController()
             : base(Permission.Public)
@@ -36,6 +37,12 @@ namespace WanFang.Website.Controllers.Service
         [HttpPost]
         public JsonResult SaveDoc(Doc_Info data)
         {
+            if (data.conf_date == DateTime.MinValue)
+            {
+                DateTime newdt = DateTime.MinValue;
+                DateTime.TryParse("1974/01/01", out newdt);
+                data.conf_date = newdt;
+            }
             //data.DeptName = getDeptName(sessionData.trading.Dept.Value);
             ResultBase result = new ResultBase();
             result.setMessage("Done");
@@ -123,6 +130,42 @@ namespace WanFang.Website.Controllers.Service
             {
                 NewData.pic = OldData.pic;
             }
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public JsonResult SaveCostKeyword(CostKeyword_Info data)
+        {
+            //data.DeptName = getDeptName(sessionData.trading.Dept.Value);
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (string.IsNullOrEmpty(data.DeptName) || data.DeptName.StartsWith("請選擇"))
+            {
+                result.setErrorMessage("門診類別為必選");
+            }
+            if (string.IsNullOrEmpty(data.CostName) || data.CostName.StartsWith("請選擇"))
+            {
+                result.setErrorMessage("科別為必選");
+            }
+            if (string.IsNullOrEmpty(data.KeyWord))
+            {
+                result.setErrorMessage("關鍵字不得為空白");
+            }
+            if (result.JsonReturnCode > -1)
+            {
+                data.DeptName = getDeptName(EnumHelper.GetEnumByName<WS_Dept_type>(data.DeptName));
+                data.LastUpdate = DateTime.Now;
+                data.LastUpdator = sessionData.trading.LoginId;
+                if (data.CostKeywordId > 0)
+                {
+                    CostKeyMan.Update(data);
+                }
+                else
+                {
+                    CostKeyMan.Insert(data);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
         }
 
         private string CopyFile(string Source)
