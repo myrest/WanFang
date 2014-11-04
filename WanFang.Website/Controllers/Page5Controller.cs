@@ -96,10 +96,7 @@ namespace WanFang.Website.Controllers
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-            List<TeamIntroduce_Info> data = TeamMan.GetByParameter(filter, page, null, "DocId desc");
-            WebService_Manage service = new WanFang.BLL.WebService_Manage();
-            var Dept = service.GetAllDept();
-            ViewData["AllDept"] = Dept;
+            List<TeamIntroduce_Info> data = TeamMan.GetByParameter(filter, page, null, "TeamIntroduceId desc");
             ViewData["Model"] = data;
             ViewData["Page"] = page;
             return View();
@@ -111,11 +108,6 @@ namespace WanFang.Website.Controllers
             ClearOldData("TeamIntroduceImage");
             var model = NewsDataMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
-
-            WebService_Manage service = new WanFang.BLL.WebService_Manage();
-            var Dept = service.GetAllDept();
-            ViewData["AllDept"] = Dept;
-
             return View();
         }
 

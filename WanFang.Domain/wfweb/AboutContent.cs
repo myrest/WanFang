@@ -46,7 +46,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 類別ID
         /// </summary>
-        public int AboutCategoryId { get; set; }
+        public int? AboutCategoryId { get; set; }
         /// <summary>
         /// 單元名稱
         /// </summary>

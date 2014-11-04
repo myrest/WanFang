@@ -101,6 +101,10 @@ namespace WanFang.DAL.AboutContent
         #region Operation: Insert
         public long Insert(AboutContent_Info data)
         {
+            if (data.AboutCategoryId.Value == 0)
+            {
+                data.AboutCategoryId = null;
+            }
             using (var db = new DBExecutor().GetDatabase())
             {
                 long NewID = 0;
@@ -117,6 +121,10 @@ namespace WanFang.DAL.AboutContent
         #region Operation: Update
         public int Update(long AboutContentId, AboutContent_Info data, IEnumerable<string> columns)
         {
+            if (data.AboutCategoryId.Value == 0)
+            {
+                data.AboutCategoryId = null;
+            }
             using (var db = new DBExecutor().GetDatabase())
             {
                 return db.Update(data, AboutContentId, columns);

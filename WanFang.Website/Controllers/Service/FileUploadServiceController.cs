@@ -180,6 +180,10 @@ namespace WanFang.Website.Controllers.Service
             {
                 MaxUploadKB = 300;
             }
+            else if (PrefixInfo.StartsWith("TeamIntroduceImage"))
+            {
+                MaxUploadKB = 300;
+            }
             else
             {
                 throw new Exception("上傳檔案類型[" + PrefixInfo + "]還沒設定檔案大小限制。");
