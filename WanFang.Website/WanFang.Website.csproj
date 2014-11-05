@@ -98,12 +98,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page4Controller.cs" />
+    <Compile Include="Controllers\Page3Controller.cs" />
+    <Compile Include="Controllers\Page2Controller.cs" />
+    <Compile Include="Controllers\Page0Controller.cs" />
     <Compile Include="Controllers\Page5Controller.cs" />
     <Compile Include="Controllers\Page6Controller.cs" />
     <Compile Include="Controllers\Page9Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\Service\AboutServiceController.cs" />
+    <Compile Include="Controllers\Service\Page4ServiceController.cs" />
+    <Compile Include="Controllers\Service\Page3ServiceController.cs" />
+    <Compile Include="Controllers\Service\Page2ServiceController.cs" />
+    <Compile Include="Controllers\Service\Page0ServiceController.cs" />
     <Compile Include="Controllers\Service\Page5ServiceController.cs" />
     <Compile Include="Controllers\Service\Page6ServiceController.cs" />
     <Compile Include="Controllers\Service\Page9ServiceController.cs" />
@@ -1373,6 +1381,9 @@
     <Content Include="Views\Manage\Index.aspx" />
     <Content Include="Views\Manage\UserListing.aspx" />
     <Content Include="Views\Manage\Welcome.aspx" />
+    <Content Include="Views\Page0\EditHomePage.aspx" />
+    <Content Include="Views\Page2\EditDiaryData.aspx" />
+    <Content Include="Views\Page2\DiaryData.aspx" />
     <Content Include="Views\Page5\EditCostKeyword.aspx" />
     <Content Include="Views\Page5\CostKeyword.aspx" />
     <Content Include="Views\Page5\Doc.aspx" />

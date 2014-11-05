@@ -25,7 +25,8 @@ namespace WanFang.Domain
         string DiaryType { get; set; }
         string DiaryTypeCode { get; set; }
         string TopThreeColumn { get; set; }
-        string LastUpdate { get; set; }
+        DateTime LastUpdate { get; set; }
+        string LastUpdator { get; set; }
     }
     #endregion
     */
@@ -99,7 +100,8 @@ namespace WanFang.Domain
         /// <summary>
         /// 更新日期
         /// </summary>
-        public string LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         #endregion
 
         #region Constructor
@@ -126,7 +128,8 @@ namespace WanFang.Domain
         public string DiaryType { get; set; }
         public string DiaryTypeCode { get; set; }
         public string TopThreeColumn { get; set; }
-        public string LastUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
+        public string LastUpdator { get; set; }
         //You can copy/modify above DiaryData_Info field for search criteria
     }
     #endregion

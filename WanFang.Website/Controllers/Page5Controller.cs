@@ -91,7 +91,7 @@ namespace WanFang.Website.Controllers
 
         public ActionResult TeamIntroduce(TeamIntroduce_Filter filter, Rest.Core.Paging Page)
         {
-            if (filter.WebMenuName.StartsWith("請輸入")) filter.WebMenuName = null;
+            if (!string.IsNullOrEmpty(filter.ContentBody) && filter.ContentBody.StartsWith("請輸入")) filter.ContentBody = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };

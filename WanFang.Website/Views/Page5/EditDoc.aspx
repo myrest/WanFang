@@ -178,11 +178,7 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m">核定日期</td>
                     <td class="txt_l">
-                        <%
-                            DateTime newdt = DateTime.MinValue;
-                            DateTime.TryParse("1974/01/01", out newdt);
-                        %>
-                        <input name="conf_date" type="text" value="<%=(Model.conf_date == newdt) ? "" : Model.conf_date.ToString("yyyy/MM/dd") %>" size="50" maxlength="255" />
+                        <input name="conf_date" type="text" value="<%=Model.conf_date ?? "" %>" size="50" maxlength="255" />
                     </td>
                 </tr>
                 <tr class="line-d">

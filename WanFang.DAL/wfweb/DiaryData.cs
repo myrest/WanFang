@@ -137,7 +137,7 @@ namespace WanFang.DAL.DiaryData
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_DiaryData", "DiaryDataID", null, DiaryDataID);
+                return db.Delete("DiaryData", "DiaryDataID", null, DiaryDataID);
             }
         }
         #endregion
@@ -218,9 +218,13 @@ namespace WanFang.DAL.DiaryData
                 {
                     SQLStr.Append(" AND TopThreeColumn=@0", filter.TopThreeColumn);
                 }
-                if (!string.IsNullOrEmpty(filter.LastUpdate))
+                if (filter.LastUpdate.HasValue)
                 {
-                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate);
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.LastUpdator))
+                {
+                    SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
                 }
                 if (_orderby != "")
                     SQLStr.OrderBy(_orderby);

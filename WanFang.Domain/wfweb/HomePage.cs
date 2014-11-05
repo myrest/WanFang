@@ -38,7 +38,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 顯示時間
         /// </summary>
-        public DateTime DisplayDateTime { get; set; }
+        public DateTime? DisplayDateTime { get; set; }
         public DateTime LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         #endregion

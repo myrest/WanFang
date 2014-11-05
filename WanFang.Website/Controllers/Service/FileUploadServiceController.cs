@@ -144,19 +144,7 @@ namespace WanFang.Website.Controllers.Service
         {
             long MaxUploadKB = 0;
             #region 上傳檔案大小限制
-            if (PrefixInfo.StartsWith("ContentImage"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("TeamPhoto"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("CostUnitImage"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("WebDownLoadFile"))
+            if (PrefixInfo.StartsWith("WebDownLoadFile"))
             {
                 MaxUploadKB = 3 * 1024;
             }
@@ -168,25 +156,9 @@ namespace WanFang.Website.Controllers.Service
             {
                 MaxUploadKB = 3 * 1024;
             }
-            else if (PrefixInfo.StartsWith("Edu"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("NewsDataImage"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("DocPic"))
-            {
-                MaxUploadKB = 300;
-            }
-            else if (PrefixInfo.StartsWith("TeamIntroduceImage"))
-            {
-                MaxUploadKB = 300;
-            }
             else
             {
-                throw new Exception("上傳檔案類型[" + PrefixInfo + "]還沒設定檔案大小限制。");
+                MaxUploadKB = 300;
             }
             #endregion
 

@@ -10,7 +10,7 @@
 <ul id="menu">
     <li class="<%=menus[0] %>"><a href="javascript:void(0);">首頁及時資訊管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m1-1.aspx">首頁及時資訊管理</a></li></ul>
+            <li><a href="/Page0/EditHomePage">首頁及時資訊管理</a></li></ul>
     </li>
     <!--關於萬芳-->
     <li class="<%=menus[1] %>"><a href="javascript:void(0);">關於萬芳管理</a>
@@ -26,8 +26,7 @@
     <!--最新消息-->
     <li class="<%=menus[2] %>"><a href="javascript:void(0);">最新消息管理</a>
         <ul>
-            <!--<li><a href="http://192.168.52.110:1002/manage/m3-1.aspx">最新消息類別管理</a></li>-->
-            <li><a href="http://192.168.52.110:1002/manage/m3-2.aspx">最新消息項目管理</a></li>
+            <li><a href="/Page2/DiaryData">最新消息項目管理</a></li>
         </ul>
     </li>
     <!--預約查詢系統-->

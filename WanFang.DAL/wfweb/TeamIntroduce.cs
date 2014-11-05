@@ -137,7 +137,7 @@ namespace WanFang.DAL.TeamIntroduce
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                return db.Delete("db_TeamIntroduce", "TeamIntroduceId", null, TeamIntroduceId);
+                return db.Delete("TeamIntroduce", "TeamIntroduceId", null, TeamIntroduceId);
             }
         }
         #endregion
@@ -162,6 +162,10 @@ namespace WanFang.DAL.TeamIntroduce
                 {
                     SQLStr.Append(" AND TeamIntroduceId=@0", filter.TeamIntroduceId.Value);
                 }
+                if (!string.IsNullOrEmpty(filter.Dept))
+                {
+                    SQLStr.Append(" AND Dept=@0", filter.Dept);
+                }
                 if (!string.IsNullOrEmpty(filter.DeptName))
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);
@@ -180,7 +184,7 @@ namespace WanFang.DAL.TeamIntroduce
                 }
                 if (!string.IsNullOrEmpty(filter.WebMenuName))
                 {
-                    SQLStr.Append(" AND WebMenuName Like @0", "%" + filter.WebMenuName + "%");
+                    SQLStr.Append(" AND WebMenuName=@0", filter.WebMenuName);
                 }
                 if (!string.IsNullOrEmpty(filter.ContentBody))
                 {

@@ -168,7 +168,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 核定日期
         /// </summary>
-        public DateTime conf_date { get; set; }
+        public DateTime? conf_date { get; set; }
         /// <summary>
         /// 現職
         /// </summary>
