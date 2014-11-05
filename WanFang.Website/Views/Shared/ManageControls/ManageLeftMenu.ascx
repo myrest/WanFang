@@ -32,8 +32,7 @@
     <!--預約查詢系統-->
     <li class="<%=menus[3] %>"><a href="javascript:void(0);">預約及查詢管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m4-1.aspx">其他課程管理</a></li>
-            <!--<li><a href="http://192.168.52.110:1002/manage/m4-2.aspx">報名管理</a></li>-->
+            <li><a href="/Page3/Pilates">其他課程管理</a></li>
         </ul>
     </li>
     <!--就醫指南-->

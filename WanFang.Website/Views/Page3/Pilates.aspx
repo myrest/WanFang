@@ -2,13 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
-        List<WanFang.Domain.DiaryData_Info> Model = ViewData["Model"] as List<WanFang.Domain.DiaryData_Info>;
-        WanFang.Domain.DiaryData_Filter filter = ViewData["Filter"] as WanFang.Domain.DiaryData_Filter;
+        List<WanFang.Domain.Pilates_Info> Model = ViewData["Model"] as List<WanFang.Domain.Pilates_Info>;
+        WanFang.Domain.Pilates_Filter filter = ViewData["Filter"] as WanFang.Domain.Pilates_Filter;
     %>
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteDiaryData", param, "POST", function (data) {
+            utility.service("DeleteService/DeletePilates", param, "POST", function (data) {
                 if (data.code > 0) {
                     document.location.reload(true);
                 } else {
@@ -23,13 +23,10 @@
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
-                <div class="tt-r">
-                    最新消息項目管理</div>
-            </h1>
+                <div class="tt-r">其他課程管理</div>            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a
-                href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp最新消息管理&nbsp&#187&nbsp最新消息項目管理
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
         </div>
         <p class="clear">
         </p>
@@ -38,17 +35,8 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
-                類 別：
-                <select name="pd_type" id="pd_type">
-                    <option selected="selected">全部顯示</option>
-                    <option>訊息公告</option>
-                    <option>新聞稿</option>
-                    <option>我們的榮耀</option>
-                </select>
-            </p>
-            <p>
                 關鍵字：
-                <input name="Subject" type="text" value="請輸入發布主題搜尋" onclick="this.value = '';" size="30"
+                <input name="Subject" type="text" value="請輸入課程主題搜尋" onclick="this.value = '';" size="30"
                     id="Subject" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
@@ -62,20 +50,24 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input type="button" class="submit3" onclick="window.location = '/Page2/EditDiaryData/';"
+                    <input type="button" class="submit3" onclick="window.location = '/Page3/EditPilates/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page2/DiaryData/Pending';"
+                    <input type="button" class="submit3" onclick="window.location = '/Page3/Pilates/Pending';"
                         value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
+                <tr class="form-content txt_c h30">
                     <td class="w20">&nbsp;</td>
-                    <td>類別名稱</td>
-                    <td>發布日期</td>
-                    <td>發布主題</td>
-                    <td>點閱率</td>
+                    <td class="w30">課程代號</td>
+                    <td class="w70">課程名稱</td>
+                    <td>課程主題</td>
+                    <td class="w70">開課日期</td>
+                    <td class="w50">上課開始時間</td>
+                    <td class="w50">上課結束時間</td>
+                    <td>備註</td>
+                    <td class="txt_c">上/下架</td>
                     <td class="w70">編輯</td>
                 </tr>            <%
                 foreach (var item in Model)
@@ -83,14 +75,18 @@
             %>
                 <tr class="top mous01 line-d va_m">
                     <td>
-                        <input type="checkbox" name="id" value="<%=item.DiaryDataID %>" />
+                        <input type="checkbox" name="id" value="<%=item.PilatesId %>" />
                     </td>
-                    <td class="txt_c"><%=item.DiaryType %></td>
-                    <td class="txt_c"><%=item.PublishDate %></td>
-                    <td><%=item.Subject %></td>
-                    <td class="txt_c"><%=item.Hit %></td>
+                    <td class="txt_c"><%=item.RegID.Substring(0,1) %></td>
+                    <td class="txt_c"><%=item.RegName %></td>
+                    <td class="line-d"><%=item.RegSubject %></td>
+                    <td class="txt_c"><%=item.PublishDate.ToString("yyyy/MM/dd") %></td>
+                    <td class="txt_c"><%=item.TimeStart %></td>
+                    <td class="txt_c"><%=item.TimeEnd %></td>
+                    <td class="txt_c"><%=item.Memo %></td>
+                    <td class="txt_c"><%=(item.IsActive > 0) ? "上架" : "下架"%></td>
                     <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page2/EditDiaryData/<%=item.DiaryDataID %>';"
+                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
                             value="編輯">
                     </td>
                 </tr>            <%
@@ -104,7 +100,7 @@
         <br />
         <span class="red">[注意事項]</span><br>
         1. 每10筆分1頁<br>
-        2. 發布日期（由大至小）
+        2. 排序：課程代號（由小至大） → 開課日期（由大至小）
         <br />
         <!--main end-->
     </div>

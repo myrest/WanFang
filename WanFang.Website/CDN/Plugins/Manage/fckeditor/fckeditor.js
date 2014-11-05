@@ -299,7 +299,8 @@ FCKeditor.prototype._HTMLEncode = function( text )
 
 function FCKeditor_IsCompatibleBrowser()
 {
-	var sAgent = navigator.userAgent.toLowerCase() ;
+	var sAgent = navigator.userAgent.toLowerCase();
+	if (sAgent.indexOf("msie 1") != -1) return true;
 
 	// Internet Explorer 5.5+
 	if ( /*@cc_on!@*/false && sAgent.indexOf("mac") == -1 )

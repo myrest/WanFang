@@ -1374,6 +1374,8 @@
     <Content Include="Views\About\EditAboutCategoary.aspx" />
     <Content Include="Views\About\EditAbout.aspx" />
     <Content Include="Views\About\Index.aspx" />
+    <Content Include="Views\Page3\Pilates.aspx" />
+    <Content Include="Views\Page3\EditPilates.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
     <Content Include="Views\Default\Index.aspx" />
     <Content Include="Views\Manage\PermissionDeny.aspx" />

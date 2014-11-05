@@ -49,9 +49,9 @@
                     <td class="line-d0 va_m">類別名稱<span class="red">*</span></td>
                     <td class="txt_l">
                         <select name="DiaryType">
-                            <option selected="selected">訊息公告</option>
-                            <option>新聞稿</option>
-                            <option>我們的榮耀</option>
+                            <option <%=(Model.DiaryType == "訊息公告")?"selected":"" %>>訊息公告</option>
+                            <option <%=(Model.DiaryType == "新聞稿")?"selected":"" %>>新聞稿</option>
+                            <option <%=(Model.DiaryType == "我們的榮耀")?"selected":"" %>>我們的榮耀</option>
                         </select></td>
                     <!--新聞類型-->
                 </tr>                <tr class="line-d">
@@ -120,7 +120,7 @@
                 <tr class="line-d">
                     <td class="line-d0 top">檔案上傳</td>
                     <td class="txt_l">
-                        <input type="file" id="DiaryDataUploadFile" size="30"/>
+                        <input type="file" id="DiaryDataFileDocument" size="30"/>
                         <%=UrlExtension.PreviewImage(Model.FileDocument, "DiaryDataFileDocument")%>
                     </td>
                 </tr>
@@ -141,9 +141,9 @@
                 <tr class="line-d">
                     <td class="line-d0 top">是否放在頭條首頁</td>
                     <td class="txt_l">
-                        <select name="link" id="link">
-                            <option value="Y" <%=(Model.IsShowInHeader == 1)?"checked":"" %> >首頁</option>
-                            <option value="N" <%=(Model.IsShowInHeader == 0)?"checked":"" %>>非首頁</option>
+                        <select name="IsShowInHeader">
+                            <option value="1" <%=(Model.IsShowInHeader == 1)?"selected":"" %> >首頁</option>
+                            <option value="0" <%=(Model.IsShowInHeader == 0)?"selected":"" %>>非首頁</option>
                         </select>
                     </td>
                 </tr>                <tr class="line-d">
