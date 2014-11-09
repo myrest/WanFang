@@ -270,6 +270,10 @@ namespace WanFang.DAL.Nhi_Med
                 {
                     SQLStr.Append(" AND SideEffect=@0", filter.SideEffect);
                 }
+                if (!string.IsNullOrEmpty(filter.Notification))
+                {
+                    SQLStr.Append(" AND Notification=@0", filter.Notification);
+                }
                 if (filter.LastUpdate.HasValue)
                 {
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);

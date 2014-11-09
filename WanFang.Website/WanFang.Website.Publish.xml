@@ -171,7 +171,7 @@
     <file relUrl="Scripts/ckeditor/skins/kama/dialog.css" publishTime="10/08/2014 22:00:46" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/specialchar/dialogs/lang/he.js" publishTime="10/08/2014 22:00:45" />
     <file relUrl="bin/WanFang.BLL.dll" publishTime="11/05/2014 13:46:35" />
-    <file relUrl="Views/Shared/ManageControls/ManageLeftMenu.ascx" publishTime="11/05/2014 15:40:30" />
+    <file relUrl="Views/Shared/ManageControls/ManageLeftMenu.ascx" publishTime="11/05/2014 16:42:12" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/devtools/plugin.js" publishTime="10/08/2014 22:00:44" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js" publishTime="10/30/2014 10:04:04" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js" publishTime="10/30/2014 10:04:05" />
@@ -181,6 +181,7 @@
     <file relUrl="Scripts/ckeditor/lang/sv.js" publishTime="10/08/2014 22:00:46" />
     <file relUrl="CDN/Plugins/Manage/fckeditor/fckconfig.js" publishTime="10/17/2012 19:37:00" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/showblocks/images/block_h2.png" publishTime="10/08/2014 22:00:44" />
+    <file relUrl="Views/Page5/TeamIntroduce.aspx" publishTime="11/05/2014 17:00:45" />
     <file relUrl="CDN/Js/Manage/jquery.colorbox-min.js" publishTime="10/08/2014 22:00:43" />
     <file relUrl="Scripts/ckeditor/plugins/placeholder/lang/no.js" publishTime="10/08/2014 22:00:46" />
     <file relUrl="CDN/Plugins/Manage/fckeditor/editor/dialog/fck_template/images/template1.gif" publishTime="10/18/2011 10:32:12" />
@@ -203,10 +204,11 @@
     <file relUrl="Views/Manage/Index.aspx" publishTime="10/12/2014 21:31:10" />
     <file relUrl="Scripts/ckeditor/plugins/iframe/dialogs/iframe.js" publishTime="10/08/2014 22:00:46" />
     <file relUrl="Scripts/ckeditor/lang/ms.js" publishTime="10/08/2014 22:00:46" />
+    <file relUrl="Views/Page4/EditGuide.aspx" publishTime="11/05/2014 17:04:01" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="09/25/2014 14:27:58" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/uicolor/lang/pt-br.js" publishTime="10/08/2014 22:00:45" />
     <file relUrl="Views/Page9/EditDownload.aspx" publishTime="10/31/2014 23:07:13" />
-    <file relUrl="bin/WanFang.Website.dll" publishTime="11/05/2014 15:39:20" />
+    <file relUrl="bin/WanFang.Website.dll" publishTime="11/05/2014 17:21:11" />
     <file relUrl="Scripts/ckeditor/plugins/smiley/images/shades_smile.gif" publishTime="10/08/2014 22:00:46" />
     <file relUrl="Scripts/ckeditor/plugins/wsc/dialogs/ciframe.html" publishTime="10/08/2014 22:00:46" />
     <file relUrl="Scripts/ckeditor/plugins/specialchar/dialogs/specialchar.js" publishTime="10/08/2014 22:00:46" />
@@ -336,6 +338,7 @@
     <file relUrl="CDN/Plugins/Manage/fckeditor/editor/dialog/fck_about/sponsors/spellchecker_net.gif" publishTime="10/18/2011 10:32:08" />
     <file relUrl="Scripts/ckeditor/plugins/specialchar/lang/pt-br.js" publishTime="10/08/2014 22:00:46" />
     <file relUrl="Views/Default/Index.aspx" publishTime="10/13/2014 00:16:55" />
+    <file relUrl="Views/Page4/Guide.aspx" publishTime="11/05/2014 16:45:16" />
     <file relUrl="Scripts/ckeditor/lang/mk.js" publishTime="10/08/2014 22:00:46" />
     <file relUrl="CDN/Plugins/Manage/fckeditor/editor/images/smiley/msn/cake.gif" publishTime="10/18/2011 10:32:30" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/placeholder/lang/fr.js" publishTime="10/08/2014 22:00:44" />
@@ -492,7 +495,7 @@
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/specialchar/dialogs/lang/tr.js" publishTime="10/08/2014 22:00:45" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/pagebreak/images/pagebreak.gif" publishTime="10/08/2014 22:00:44" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/wsc/dialogs/tmpFrameset.html" publishTime="10/08/2014 22:00:45" />
-    <file relUrl="bin/WanFang.Website.pdb" publishTime="11/05/2014 15:39:20" />
+    <file relUrl="bin/WanFang.Website.pdb" publishTime="11/05/2014 17:21:11" />
     <file relUrl="CDN/Js/Manage/menu.js" publishTime="10/13/2014 01:03:11" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js" publishTime="10/30/2014 10:04:06" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/skins/bootstrapck/editor_gecko.css" publishTime="10/08/2014 22:00:45" />
@@ -1065,6 +1068,7 @@
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/smiley/images/tongue_smile.gif" publishTime="10/08/2014 22:00:45" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/uicolor/lang/uk.js" publishTime="10/08/2014 22:00:45" />
     <file relUrl="Scripts/ckeditor/plugins/xml/plugin.js" publishTime="10/08/2014 22:00:46" />
+    <file relUrl="Views/Page5/EditTeamIntroduce.aspx" publishTime="11/05/2014 17:24:30" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/placeholder/lang/fa.js" publishTime="10/08/2014 22:00:44" />
     <file relUrl="CDN/Plugins/Manage/ckeditor/plugins/showblocks/images/block_address.png" publishTime="10/08/2014 22:00:44" />
     <file relUrl="Scripts/ckeditor/plugins/specialchar/lang/no.js" publishTime="10/08/2014 22:00:46" />

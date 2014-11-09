@@ -178,7 +178,7 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m">核定日期</td>
                     <td class="txt_l">
-                        <input name="conf_date" type="text" value="<%=Model.conf_date ?? "" %>" size="50" maxlength="255" />
+                        <input name="conf_date" type="text" value="<%=(Model.conf_date.HasValue) ? Model.conf_date.Value.ToString("yyyy/MM/dd") : ""%>" size="50" maxlength="255" />
                     </td>
                 </tr>
                 <tr class="line-d">

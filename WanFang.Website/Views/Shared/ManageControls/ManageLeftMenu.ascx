@@ -38,7 +38,7 @@
     <!--就醫指南-->
     <li class="<%=menus[4] %>"><a href="javascript:void(0);">就醫指南管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m5-1.aspx">就醫指南管理</a></li></ul>
+            <li><a href="/Page4/Guide">就醫指南管理</a></li></ul>
     </li>
     <!--團隊介紹-->
     <li class="<%=menus[5] %>"><a href="javascript:void(0);">團隊介紹管理</a>

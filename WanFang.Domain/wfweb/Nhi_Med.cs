@@ -38,6 +38,7 @@ namespace WanFang.Domain
         string Suit { get; set; }
         string Usage { get; set; }
         string SideEffect { get; set; }
+        string Notification { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
     }
@@ -162,6 +163,10 @@ namespace WanFang.Domain
         /// 新副作用
         /// </summary>
         public string SideEffect { get; set; }
+        /// <summary>
+        /// 禁忌及其他注意事項(新)
+        /// </summary>
+        public string Notification { get; set; }
         public DateTime LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         #endregion
@@ -203,6 +208,7 @@ namespace WanFang.Domain
         public string Suit { get; set; }
         public string Usage { get; set; }
         public string SideEffect { get; set; }
+        public string Notification { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above Nhi_Med_Info field for search criteria

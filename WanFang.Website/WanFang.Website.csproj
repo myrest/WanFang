@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page8Controller.cs" />
     <Compile Include="Controllers\Page4Controller.cs" />
     <Compile Include="Controllers\Page3Controller.cs" />
     <Compile Include="Controllers\Page2Controller.cs" />
@@ -1374,6 +1375,10 @@
     <Content Include="Views\About\EditAboutCategoary.aspx" />
     <Content Include="Views\About\EditAbout.aspx" />
     <Content Include="Views\About\Index.aspx" />
+    <Content Include="Views\Page8\Nhi_p.aspx" />
+    <Content Include="Views\Page8\EditNhi_p.aspx" />
+    <Content Include="Views\Page4\Guide.aspx" />
+    <Content Include="Views\Page4\EditGuide.aspx" />
     <Content Include="Views\Page3\Pilates.aspx" />
     <Content Include="Views\Page3\EditPilates.aspx" />
     <Content Include="Views\Default\Admin.aspx" />
@@ -1386,6 +1391,8 @@
     <Content Include="Views\Page0\EditHomePage.aspx" />
     <Content Include="Views\Page2\EditDiaryData.aspx" />
     <Content Include="Views\Page2\DiaryData.aspx" />
+    <Content Include="Views\Page5\TeamIntroduce.aspx" />
+    <Content Include="Views\Page5\EditTeamIntroduce.aspx" />
     <Content Include="Views\Page5\EditCostKeyword.aspx" />
     <Content Include="Views\Page5\CostKeyword.aspx" />
     <Content Include="Views\Page5\Doc.aspx" />
