@@ -188,7 +188,7 @@ namespace WanFang.DAL.TeamIntroduce
                 }
                 if (!string.IsNullOrEmpty(filter.ContentBody))
                 {
-                    SQLStr.Append(" AND ContentBody=@0", filter.ContentBody);
+                    SQLStr.Append(" AND ContentBody like @0", "%" + filter.ContentBody + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Image1))
                 {

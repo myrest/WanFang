@@ -9,6 +9,11 @@
         if (Model == null) Model = new List<WanFang.Domain.NewsData_Info>();
     %>
     <script>
+        $(function () {
+            $('#Dept').change(function () {
+                $('#DeptName').val($('#Dept option:selected').text());
+            });
+        });
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
             utility.service("DeleteService/DeleteNewsData", param, "POST", function (data) {
@@ -42,7 +47,8 @@
         <div class="bg-s">
             <p>
                 科&nbsp;&nbsp;&nbsp;&nbsp;別：
-              <select name="DeptName" id="DeptName">
+                <input type="hidden" id="DeptName" name="DeptName" />
+              <select name="Dept" id="Dept">
                   <option>請選擇</option>
                   <%
                       foreach (var item in Dept)

@@ -180,7 +180,7 @@ namespace WanFang.DAL.Doc
                 }
                 if (!string.IsNullOrEmpty(filter.DocName))
                 {
-                    SQLStr.Append(" AND DocName=@0", filter.DocName);
+                    SQLStr.Append(" AND (DocName like @0 or DocCode like  @0) ", "%" + filter.DocName + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.DocNameE))
                 {

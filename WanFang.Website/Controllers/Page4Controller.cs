@@ -39,7 +39,7 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Guide(Guide_Filter filter, Rest.Core.Paging Page)
         {
-            var PermissionCheck = CheckPermission("預約及查詢管理");
+            var PermissionCheck = CheckPermission("就醫指南管理");
             if (PermissionCheck != null) return PermissionCheck;
 
             if (!string.IsNullOrEmpty(filter.ItemName) && filter.ItemName.StartsWith("請輸入")) filter.ItemName = null;

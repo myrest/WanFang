@@ -78,8 +78,8 @@
             </p>
             <p>
                 關鍵字：
-                <input name="KeyWord" type="text" value="請輸入關鍵字搜尋" onclick="this.value = '';" size="30"
-                    id="KeyWord" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="ContentBody" type="text" value="請輸入關鍵字搜尋" onclick="this.value = '';" size="30"
+                    id="ContentBody" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>

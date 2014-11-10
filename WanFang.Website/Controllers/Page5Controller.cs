@@ -45,6 +45,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Doc(Doc_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("團隊介紹管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (filter.DocName == "請輸入醫師中文名字或醫師員編搜尋") filter.DocName = null;
             ViewData["Filter"] = filter;
 
@@ -67,6 +70,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult CostKeyword(CostKeyword_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("團隊介紹管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (filter.KeyWord == "請輸入關鍵字搜尋") filter.KeyWord = null;
             ViewData["Filter"] = filter;
 
@@ -91,6 +97,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult TeamIntroduce(TeamIntroduce_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("團隊介紹管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.ContentBody) && filter.ContentBody.StartsWith("請輸入")) filter.ContentBody = null;
             ViewData["Filter"] = filter;
 

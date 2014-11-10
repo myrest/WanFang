@@ -9,7 +9,7 @@
     %>
     <script>
         $(function () {
-            $('#DeptName').change(ChangeDept);
+            $('#Dept').change(ChangeDept);
         });
 
         function DeleteSelected() {
@@ -64,7 +64,7 @@
         <div class="bg-s">
             <p>
                 門診類別：
-              <select name="DeptName" id="DeptName">
+              <select name="Dept" id="Dept">
                   <option>請選擇</option>
                   <%
                       foreach (var item in Dept)
