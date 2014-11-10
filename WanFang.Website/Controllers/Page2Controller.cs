@@ -39,6 +39,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult DiaryData(DiaryData_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("最新消息管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.Subject) && filter.Subject.StartsWith("請輸入")) filter.Subject = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };

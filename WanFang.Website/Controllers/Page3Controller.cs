@@ -28,6 +28,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Pilates(Pilates_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("預約及查詢管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.RegSubject) && filter.RegSubject.StartsWith("請輸入")) filter.RegSubject = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };

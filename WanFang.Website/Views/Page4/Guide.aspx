@@ -38,8 +38,8 @@
         <div class="bg-s">
             <p>
                 關鍵字：
-                <input name="Subject" type="text" value="請輸入項目名稱搜尋" onclick="this.value = '';" size="30"
-                    id="Subject" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="ItemName" type="text" value="請輸入項目名稱搜尋" onclick="this.value = '';" size="30"
+                    id="ItemName" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>

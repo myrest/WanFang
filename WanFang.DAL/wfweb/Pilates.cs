@@ -172,7 +172,7 @@ namespace WanFang.DAL.Pilates
                 }
                 if (!string.IsNullOrEmpty(filter.RegSubject))
                 {
-                    SQLStr.Append(" AND RegSubject=@0", filter.RegSubject);
+                    SQLStr.Append(" AND RegSubject like @0", "%" + filter.RegSubject + "%");
                 }
                 if (filter.PublishDate.HasValue)
                 {

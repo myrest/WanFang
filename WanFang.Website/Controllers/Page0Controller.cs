@@ -28,6 +28,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditHomePage()
         {
+            var PermissionCheck = CheckPermission("首頁及時資訊管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             var model = HomeMan.GetAll().FirstOrDefault();
             if (model == null)
             {

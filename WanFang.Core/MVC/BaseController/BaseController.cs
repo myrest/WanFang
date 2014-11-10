@@ -22,6 +22,22 @@ namespace WanFang.Core.MVC.BaseController
             ControllerPermision = permission;
         }
 
+        protected ActionResult CheckPermission(string UnitName)
+        {
+            if (sessionData.trading.IsDeptOnly)
+            {
+                return View("~/Views/Manage/PermissionDeny.aspx");
+            }
+            else
+            {
+                if (!sessionData.trading.Permissions.Contains(UnitName))
+                {
+                    return View("~/Views/Manage/PermissionDeny.aspx");
+                }
+            }
+            return null;
+        }
+
         protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.Result = Json("Got Server Error, Please check with Administrator. Thansk!", JsonRequestBehavior.AllowGet);

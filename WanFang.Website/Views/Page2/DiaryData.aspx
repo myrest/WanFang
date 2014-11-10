@@ -39,8 +39,8 @@
         <div class="bg-s">
             <p>
                 類 別：
-                <select name="pd_type" id="pd_type">
-                    <option selected="selected">全部顯示</option>
+                <select name="DiaryType">
+                    <option>全部顯示</option>
                     <option>訊息公告</option>
                     <option>新聞稿</option>
                     <option>我們的榮耀</option>

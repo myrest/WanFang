@@ -29,11 +29,15 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Index()
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             return View();
         }
 
         public ActionResult EditAbout(string id)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             var model = AboutMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
             return View(model);
@@ -41,6 +45,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Categoary(AboutCategory_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             if (filter.Category == "請輸入系列名稱搜尋") filter.Category = null;
             ViewData["Filter"] = filter;
 
@@ -56,6 +62,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditAboutCategoary(string id)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             var model = AboutCateMan.GetBySN(Convert.ToInt32(id));
             List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
             ViewData["Model"] = model;
@@ -65,6 +73,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Content(string id, AboutContent_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             if (filter.UnitName == "請輸入單元名稱搜尋") filter.UnitName = null;
             if (!string.IsNullOrEmpty(id)) filter = new AboutContent_Filter()
             {
@@ -86,6 +96,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditAboutContent(string id)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             //Clear old information
             if (sessionData.trading.UploadFiles != null && sessionData.trading.UploadFiles.Count > 0)
             {
@@ -107,6 +119,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Team(string id, AboutTeam_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             if (filter.UserName == "請輸入姓名搜尋") filter.UserName = null;
             if (!string.IsNullOrEmpty(id)) filter = new AboutTeam_Filter()
             {
@@ -124,6 +138,8 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditAboutTeam(string id)
         {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
             //Clear old information
             if (sessionData.trading.UploadFiles != null && sessionData.trading.UploadFiles.Count > 0)
             {

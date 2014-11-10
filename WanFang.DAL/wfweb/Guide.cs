@@ -168,7 +168,7 @@ namespace WanFang.DAL.Guide
                 }
                 if (!string.IsNullOrEmpty(filter.ItemName))
                 {
-                    SQLStr.Append(" AND ItemName=@0", filter.ItemName);
+                    SQLStr.Append(" AND ItemName like @0", "%" + filter.ItemName + "%");
                 }
                 if (filter.DisplayType.HasValue)
                 {

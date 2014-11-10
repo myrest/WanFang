@@ -94,8 +94,8 @@
             </p>
             <p>
                 關鍵字：
-                <input name="Category" type="text" value="請輸入系列名稱搜尋" onclick="this.value = '';" size="30"
-                    id="Category" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="UnitName" type="text" value="請輸入系列名稱搜尋" onclick="this.value = '';" size="30"
+                    id="UnitName" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>

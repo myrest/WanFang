@@ -168,7 +168,7 @@ namespace WanFang.DAL.DiaryData
                 }
                 if (!string.IsNullOrEmpty(filter.Subject))
                 {
-                    SQLStr.Append(" AND Subject=@0", filter.Subject);
+                    SQLStr.Append(" AND Subject like @0", "%" + filter.Subject + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.ContentBody))
                 {

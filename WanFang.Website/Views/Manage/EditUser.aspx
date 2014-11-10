@@ -166,6 +166,7 @@
                                         ,"健保專區管理"
                                         ,"詢問台管理"
                                         ,"表尾資料管理"
+                                        ,"員工帳號管理"
                                     };
 
                                     foreach (string perstr in permisses)
