@@ -170,9 +170,17 @@ namespace WanFang.DAL.Question
                 {
                     SQLStr.Append(" AND Q_type=@0", filter.Q_type);
                 }
-                if (!string.IsNullOrEmpty(filter.Q_object))
+                if (!string.IsNullOrEmpty(filter.DeptName))
                 {
-                    SQLStr.Append(" AND Q_object=@0", filter.Q_object);
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
+                }
+                if (!string.IsNullOrEmpty(filter.Dept))
+                {
+                    SQLStr.Append(" AND Dept=@0", filter.Dept);
+                }
+                if (!string.IsNullOrEmpty(filter.CostName))
+                {
+                    SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
                 if (!string.IsNullOrEmpty(filter.Q_title))
                 {

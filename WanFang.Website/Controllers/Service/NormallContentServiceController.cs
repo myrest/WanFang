@@ -15,52 +15,52 @@ using System.IO;
 
 namespace WanFang.Website.Controllers.Service
 {
-    public class Page4ServiceController : BaseController
+    public class NormallContentServiceController : BaseController
     {
         //
         // GET: /LoginServiced/
-        private static readonly SysLog Log = SysLog.GetLogger(typeof(Page4ServiceController));
+        private static readonly SysLog Log = SysLog.GetLogger(typeof(NormallContentServiceController));
 
-        private static readonly Guide_Manager DiaryMan = new Guide_Manager();
+        private static readonly NormallContent_Manager NcMan = new NormallContent_Manager();
 
-        public Page4ServiceController()
+        public NormallContentServiceController()
             : base(Permission.Public)
         {
         }
 
         [ValidateInput(false)]
         [HttpPost]
-        public JsonResult SaveGuide(Guide_Info data)
+        public JsonResult SaveNormallContent(NormallContent_Info data)
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
-            if (string.IsNullOrEmpty(data.ItemName))
+            if (string.IsNullOrEmpty(data.UnitName))
             {
-                result.setErrorMessage("項目名稱不得為空白");
+                result.setErrorMessage("單元名稱不得為空白");
             }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
-                var olddata = DiaryMan.GetBySN(data.GuideId);
+                var olddata = NcMan.GetBySN(data.NormallContentId);
                 checkUploadfiles(data, olddata);
-                if (data.GuideId > 0)
+                if (data.NormallContentId > 0)
                 {
-                    DiaryMan.Update(data);
+                    NcMan.Update(data);
                 }
                 else
                 {
-                    DiaryMan.Insert(data);
+                    NcMan.Insert(data);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        private void checkUploadfiles(Guide_Info NewData, Guide_Info OldData)
+        private void checkUploadfiles(NormallContent_Info NewData, NormallContent_Info OldData)
         {
-            if (OldData == null) OldData = new Guide_Info();
+            if (OldData == null) OldData = new NormallContent_Info();
             string Prefix = string.Empty;
-            Prefix = "GuideImage1";
+            Prefix = "NormallContentImage1";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
@@ -77,7 +77,7 @@ namespace WanFang.Website.Controllers.Service
                 NewData.Image1 = OldData.Image1;
             }
 
-            Prefix = "GuideImage2";
+            Prefix = "NormallContentImage2";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
@@ -94,7 +94,7 @@ namespace WanFang.Website.Controllers.Service
                 NewData.Image2 = OldData.Image2;
             }
 
-            Prefix = "GuideImage3";
+            Prefix = "NormallContentImage3";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)

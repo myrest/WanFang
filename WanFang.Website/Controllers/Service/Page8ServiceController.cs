@@ -39,54 +39,54 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("特材類型為必選");
             }
-            if (!string.IsNullOrEmpty(data.nhi_type))
+            if (string.IsNullOrEmpty(data.nhi_type))
             {
                 result.setErrorMessage("品項名稱不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.nhi_cname))
+            if (string.IsNullOrEmpty(data.nhi_cname))
             {
                 result.setErrorMessage("中文品名不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.nhi_ename))
+            if (string.IsNullOrEmpty(data.nhi_ename))
             {
                 result.setErrorMessage("英文品名 / 許可證號不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.fee_code))
+            if (string.IsNullOrEmpty(data.fee_code))
             {
                 result.setErrorMessage("院內代碼不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.HealthCode))
+            if (string.IsNullOrEmpty(data.HealthCode))
             {
                 result.setErrorMessage("健保代碼不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.mark_name))
+            if (string.IsNullOrEmpty(data.mark_name))
             {
                 result.setErrorMessage("品項代碼 / 廠牌名稱不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.unit))
+            if (string.IsNullOrEmpty(data.unit))
             {
                 result.setErrorMessage("計價單位不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.nhi_cost))
+            if (string.IsNullOrEmpty(data.nhi_cost))
             {
                 result.setErrorMessage("健保金額不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.self_cost))
+            if (string.IsNullOrEmpty(data.self_cost))
             {
                 result.setErrorMessage("自費金額不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.price_dif))
+            if (string.IsNullOrEmpty(data.price_dif))
             {
                 result.setErrorMessage("自付差額不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.warnings))
+            if (string.IsNullOrEmpty(data.warnings))
             {
                 result.setErrorMessage("警語不得為空白");
             }
-            /*if (data.PublishDate == DateTime.MinValue)
+            if (data.nhi_date == DateTime.MinValue)
             {
                 result.setErrorMessage("發布日期格式錯誤，正確格式為YYYY/MM/DD");
-            }*/
+            }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;
@@ -112,94 +112,94 @@ namespace WanFang.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
-            if (!string.IsNullOrEmpty(data.PNameOld))
+            if (string.IsNullOrEmpty(data.PNameOld))
             {
                 result.setErrorMessage("中文品名_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.PCodeOld))
+            if (string.IsNullOrEmpty(data.PCodeOld))
             {
                 result.setErrorMessage("院內碼_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.CodeOld))
+            if (string.IsNullOrEmpty(data.CodeOld))
             {
                 result.setErrorMessage("健保代碼_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.ScientificNameOld))
+            if (string.IsNullOrEmpty(data.ScientificNameOld))
             {
                 result.setErrorMessage("學品名_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.PNameAndNumOld))
+            if (string.IsNullOrEmpty(data.PNameAndNumOld))
             {
                 result.setErrorMessage("商品名/含量_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.CompanyNameOld))
+            if (string.IsNullOrEmpty(data.CompanyNameOld))
             {
                 result.setErrorMessage("藥商名稱 _舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.SuitOld))
+            if (string.IsNullOrEmpty(data.SuitOld))
             {
                 result.setErrorMessage("適應症 _舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.UsageOld))
+            if (string.IsNullOrEmpty(data.UsageOld))
             {
                 result.setErrorMessage("用法用量_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.SideEffectOld))
+            if (string.IsNullOrEmpty(data.SideEffectOld))
             {
                 result.setErrorMessage("副作用_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.NotificationOld))
+            if (string.IsNullOrEmpty(data.NotificationOld))
             {
                 result.setErrorMessage("禁忌及其他注意事項_舊不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.PName))
+            if (string.IsNullOrEmpty(data.PName))
             {
                 result.setErrorMessage("中文品名_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.PCode))
+            if (string.IsNullOrEmpty(data.PCode))
             {
                 result.setErrorMessage("院內碼_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.Code))
+            if (string.IsNullOrEmpty(data.Code))
             {
                 result.setErrorMessage("健保代碼_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.ScientificName))
+            if (string.IsNullOrEmpty(data.ScientificName))
             {
                 result.setErrorMessage("學品名_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.PNameEng))
+            if (string.IsNullOrEmpty(data.PNameEng))
             {
                 result.setErrorMessage("商品名/含量_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.CompanyName))
+            if (string.IsNullOrEmpty(data.CompanyName))
             {
                 result.setErrorMessage("藥商名稱 _新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.Suit))
+            if (string.IsNullOrEmpty(data.Suit))
             {
                 result.setErrorMessage("適應症 _新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.Usage))
+            if (string.IsNullOrEmpty(data.Usage))
             {
                 result.setErrorMessage("用法用量_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.SideEffect))
+            if (string.IsNullOrEmpty(data.SideEffect))
             {
                 result.setErrorMessage("副作用_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.Notification))
+            if (string.IsNullOrEmpty(data.Notification))
             {
                 result.setErrorMessage("禁忌及其他注意事項_新不得為空白");
             }
-            if (!string.IsNullOrEmpty(data.ModifiedContent))
+            if (string.IsNullOrEmpty(data.ModifiedContent))
             {
                 result.setErrorMessage("異動內容不得為空白");
             }
-            /*if (data.PublishDate == DateTime.MinValue)
+            if (data.PublishDate == DateTime.MinValue)
             {
                 result.setErrorMessage("發布日期格式錯誤，正確格式為YYYY/MM/DD");
-            }*/
+            }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;
@@ -271,8 +271,11 @@ namespace WanFang.Website.Controllers.Service
             string NewName = "/Upload/" + Path.GetFileName(Source);
             Source = string.Format("{0}/{1}", Server.MapPath("~/"), Source);
             string Target = string.Format("{0}{1}", Server.MapPath("~/"), NewName);
-            FileInfo f = new FileInfo(Source);
-            f.MoveTo(Target);
+            if (System.IO.File.Exists(Source))
+            {
+                FileInfo f = new FileInfo(Source);
+                f.MoveTo(Target);
+            }
             return NewName;
         }
 

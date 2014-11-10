@@ -35,38 +35,43 @@ namespace WanFang.Website.Controllers
             }
         }
 
-        public ActionResult Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
+        private ActionResult GetContent(string id, NormallContent_Filter filter, Rest.Core.Paging Page, string Catgoary)
         {
-            ViewData["MenuItem"] = 8;
+            filter.ContentName = Catgoary;
             if (!string.IsNullOrEmpty(filter.UnitName) && filter.UnitName.StartsWith("請輸入")) filter.UnitName = null;
             if (!string.IsNullOrEmpty(id)) filter = new NormallContent_Filter()
             {
                 IsActive = Convert.ToInt32(false)
             };
             ViewData["Filter"] = filter;
-
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-            List<NormallContent_Info> data = NContMan.GetByParameter(filter, page, null, "AboutId, AboutCategoryId");
-            List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
-            List<AboutCategory_Info> Categoary = AboutCateMan.GetAll().OrderBy(x => x.SortNum).ToList();
+            List<NormallContent_Info> data = NContMan.GetByParameter(filter, page, null, "NormallContentId desc");
             ViewData["Model"] = data;
-            ViewData["About"] = About;
-            ViewData["Categoary"] = Categoary;
             ViewData["Page"] = page;
-            return View();
+            return View("~/Views/NormallContent/Content.aspx");
         }
 
-        public ActionResult EditNormallContent(string id)
+        public ActionResult Page8Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
         {
             ViewData["MenuItem"] = 8;
+            ViewData["Header1"] = "健保專區圖文管理";
+            ViewData["Header2"] = "健保專區管理";
+            ViewData["EditPage"] = "EditPage8Content";
+            ActionResult result = GetContent(id, filter, Page, ViewData["Header1"].ToString());
+            return result;
+        }
+
+        public ActionResult EditPage8Content(string id)
+        {
+            ClearOldData("NormallContent");
+            ViewData["MenuItem"] = 8;
+            ViewData["Header1"] = "健保專區圖文管理";
+            ViewData["Header2"] = "健保專區管理";
+            ViewData["GoBack"] = "Page8Content";
             var model = NContMan.GetBySN(Convert.ToInt32(id));
-            List<About_Info> About = AboutMan.GetAll().OrderBy(x => x.SortNum).ToList();
-            List<AboutCategory_Info> Categoary = AboutCateMan.GetAll().OrderBy(x => x.SortNum).ToList();
             ViewData["Model"] = model;
-            ViewData["About"] = About;
-            ViewData["Categoary"] = Categoary;
-            return View(model);
+            return View("~/Views/NormallContent/EditContent.aspx");
         }
     }
 }

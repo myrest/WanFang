@@ -63,8 +63,9 @@
     <!--健保專區-->
     <li class="<%=menus[8] %>"><a href="javascript:void(0);">健保專區管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m9-1.aspx">健保專區項目管理</a></li>
-            <li><a href="http://192.168.52.110:1002/manage/m9-2.aspx">藥品公告專區管理</a></li>
+            <li><a href="/Page8/Nhi_p">健保專區項目管理</a></li>
+            <li><a href="/Page8/Nhi_Med">藥品公告專區管理</a></li>
+            <li><a href="/NormallContent/Page8Content">健保專區圖文管理</a></li>
         </ul>
     </li>
     <!--特色醫療-->
@@ -78,9 +79,9 @@
     <!--尋問台-->
     <li class="<%=menus[10] %>"><a href="javascript:void(0);">詢問台管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m11-1.aspx">就醫問答集管理</a></li>
-            <li><a href="http://192.168.52.110:1002/manage/m11-2.aspx">健康諮詢查詢管理</a></li>
-            <li><a href="http://192.168.52.110:1002/manage/m11-3.aspx">健保部分給付問答集管理</a></li>
+            <li><a href="/Page10/Op_Qa">就醫問答集管理</a></li>
+            <li><a href="/Page10/Question">健康諮詢查詢管理</a></li>
+            <li><a href="/Page10/Nhi_Qa">健保部分給付問答集管理</a></li>
         </ul>
     </li>
     <!--表尾資料管理-->

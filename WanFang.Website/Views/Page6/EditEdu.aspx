@@ -38,9 +38,19 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m">衛教類別<span class="red">*</span></td>
                     <td class="txt_l">
-                        <select name="EduType"><%=Model.EduType %>
+                        <select name="EduType">
                             <option value="營養保健" <%=(Model.EduType == "營養保健")?"selected" : "" %>>營養保健</option>
+                            <option value="門診團衛" <%=(Model.EduType == "門診團衛")?"selected" : "" %>>門診團衛</option>
                             <option value="親子教室" <%=(Model.EduType == "親子教室")?"selected" : "" %>>親子教室</option>
+                            <option value="體重控制" <%=(Model.EduType == "體重控制")?"selected" : "" %>>體重控制</option>
+                            <option value="糖尿病保健" <%=(Model.EduType == "糖尿病保健")?"selected" : "" %>>糖尿病保健</option>
+                            <option value="產前夫婦保健" <%=(Model.EduType == "產前夫婦保健")?"selected" : "" %>>產前夫婦保健</option>
+                            <option value="腎臟保健講座" <%=(Model.EduType == "腎臟保健講座")?"selected" : "" %>>腎臟保健講座</option>
+                            <option value="母乳支持團體" <%=(Model.EduType == "母乳支持團體")?"selected" : "" %>>母乳支持團體</option>
+                            <option value="中醫衛教" <%=(Model.EduType == "中醫衛教")?"selected" : "" %>>中醫衛教</option>
+                            <option value="藥品團衛" <%=(Model.EduType == "藥品團衛")?"selected" : "" %>>藥品團衛</option>
+                            <option value="社區衛教" <%=(Model.EduType == "社區衛教")?"selected" : "" %>>社區衛教</option>
+                            <option value="專題講座" <%=(Model.EduType == "專題講座")?"selected" : "" %>>專題講座</option>
                         </select>
                     </td>
                 </tr>

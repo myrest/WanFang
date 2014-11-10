@@ -38,7 +38,17 @@
                         <select name="edutype" id="edutype">
                             <option selected="selected">請選擇</option>
                             <option>營養保健</option>
+                            <option>門診團衛</option>
                             <option>親子教室</option>
+                            <option>體重控制</option>
+                            <option>糖尿病保健</option>
+                            <option>產前夫婦保健</option>
+                            <option>腎臟保健講座</option>
+                            <option>母乳支持團體</option>
+                            <option>中醫衛教</option>
+                            <option>藥品團衛</option>
+                            <option>社區衛教</option>
+                            <option>專題講座</option>
                         </select>
             </p>            <p>
                 關鍵字：

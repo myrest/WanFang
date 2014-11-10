@@ -2,13 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
-        List<WanFang.Domain.Nhi_p_Info> Model = ViewData["Model"] as List<WanFang.Domain.Nhi_p_Info>;
-        WanFang.Domain.Nhi_p_Filter filter = ViewData["Filter"] as WanFang.Domain.Nhi_p_Filter;
+        List<WanFang.Domain.Nhi_Med_Info> Model = ViewData["Model"] as List<WanFang.Domain.Nhi_Med_Info>;
+        WanFang.Domain.Nhi_Med_Filter filter = ViewData["Filter"] as WanFang.Domain.Nhi_Med_Filter;
     %>
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteNhi_p", param, "POST", function (data) {
+            utility.service("DeleteService/DeleteNhi_Med", param, "POST", function (data) {
                 if (data.code > 0) {
                     document.location.reload(true);
                 } else {
@@ -24,12 +24,12 @@
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
                 <div class="tt-r">
-                    健保專區項目管理</div>
+                    藥品公告專區管理</div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
             <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a
-                href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp後端管理系統&nbsp&#187&nbsp健保專區項目管理
+                href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp健保專區管理&nbsp&#187&nbsp藥品公告專區管理
         </div>
         <p class="clear">
         </p>
@@ -38,19 +38,9 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
-                    特材類型：
-                          <select name="nhi_code">
-                              <option>請選擇</option>
-                              <option>A:塗藥血管支架</option>
-                              <option>B:陶瓷人工髖關節組件</option>
-                              <option>C:特殊功能人工水晶體</option>
-                              <option>E:自費特材品項 </option>
-                              <option>F:人工心律調節器 </option>
-                          </select>            </p>
-            <p>
                 關鍵字：
-                <input name="Subject" type="text" value="請輸入中文品名搜尋" onclick="this.value = '';" size="30"
-                    id="Subject" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="CodeOld" type="text" value="請輸入健保代碼或中文品名搜尋" onclick="this.value = '';" size="30"
+                    id="CodeOld" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -63,9 +53,9 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input type="button" class="submit3" onclick="window.location = '/Page8/EditNhi_p/';"
+                    <input type="button" class="submit3" onclick="window.location = '/Page8/EditNhi_Med/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page8/Nhi_p/Pending';"
+                    <input type="button" class="submit3" onclick="window.location = '/Page8/Nhi_Med/Pending';"
                         value="待審核">
                 </td>
             </tr>
@@ -73,11 +63,10 @@
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
                 <tr class="form-content h30 txt_c">
                     <td class="w20">&nbsp;</td>
-                    <td class="w60">發佈日期</td>
-                    <td>特材類型</td>
+                    <td class="w100">發佈日期</td>
+                    <td class="w100">健保代碼</td>
                     <td>中文品名</td>
-                    <td class="w40">點閱數</td><!--點閱數 id=hit-->
-                    <td class="w80">更新日期</td>
+                    <td class="w100">更新日期</td>
                     <td class="w70">編輯</td>
                 </tr>            <%
                 foreach (var item in Model)
@@ -85,15 +74,14 @@
             %>
                 <tr class="mous01 top line-d va_m">
                     <td>
-                        <input type="checkbox" name="id" value="<%=item.nhi_pId %>" />
+                        <input type="checkbox" name="id" value="<%=item.MedicationID %>" />
                     </td>
-                    <td class="txt_c"><%=item.nhi_date %></td>
-                    <td class="txt_c"><%=item.nhi_code%></td>
-                    <td><%=item.nhi_type%></td>
-                    <td class="txt_c"><%=item.hit %></td>
+                    <td class="txt_c"><%=item.PublishDate.ToString("yyyy/MM/dd") %></td>
+                    <td class="txt_c"><%=item.CodeOld %></td>
+                    <td><%=item.PNameOld %></td>
                     <td class="txt_c"><%=item.LastUpdate %></td>
                     <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_p/<%=item.nhi_pId %>';"
+                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_Med/<%=item.MedicationID %>';"
                             value="編輯">
                     </td>
                 </tr>            <%

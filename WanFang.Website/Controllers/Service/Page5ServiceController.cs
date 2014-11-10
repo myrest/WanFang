@@ -287,8 +287,11 @@ namespace WanFang.Website.Controllers.Service
             string NewName = "/Upload/" + Path.GetFileName(Source);
             Source = string.Format("{0}/{1}", Server.MapPath("~/"), Source);
             string Target = string.Format("{0}{1}", Server.MapPath("~/"), NewName);
-            FileInfo f = new FileInfo(Source);
-            f.MoveTo(Target);
+            if (System.IO.File.Exists(Source))
+            {
+                FileInfo f = new FileInfo(Source);
+                f.MoveTo(Target);
+            }
             return NewName;
         }
     }

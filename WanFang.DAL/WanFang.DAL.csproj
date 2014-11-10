@@ -53,6 +53,7 @@
     <Compile Include="wfweb\DiaryData.cs" />
     <Compile Include="wfweb\Doc.cs" />
     <Compile Include="wfweb\Edu.cs" />
+    <Compile Include="wfweb\Footer.cs" />
     <Compile Include="wfweb\Guide.cs" />
     <Compile Include="wfweb\HirCategory.cs" />
     <Compile Include="wfweb\HirDetail.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="wfweb\Nhi_Med.cs" />
     <Compile Include="wfweb\Nhi_p.cs" />
     <Compile Include="wfweb\Nhi_Qa.cs" />
+    <Compile Include="wfweb\NormallContent.cs" />
     <Compile Include="wfweb\Op_Qa.cs" />
     <Compile Include="wfweb\Pilates.cs" />
     <Compile Include="wfweb\Question.cs" />

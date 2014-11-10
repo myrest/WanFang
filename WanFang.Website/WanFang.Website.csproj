@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page10Controller.cs" />
+    <Compile Include="Controllers\NormallContentController.cs" />
     <Compile Include="Controllers\Page8Controller.cs" />
     <Compile Include="Controllers\Page4Controller.cs" />
     <Compile Include="Controllers\Page3Controller.cs" />
@@ -109,6 +111,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\Service\AboutServiceController.cs" />
+    <Compile Include="Controllers\Service\Page10ServiceController.cs" />
+    <Compile Include="Controllers\Service\NormallContentServiceController.cs" />
+    <Compile Include="Controllers\Service\Page8ServiceController.cs" />
     <Compile Include="Controllers\Service\Page4ServiceController.cs" />
     <Compile Include="Controllers\Service\Page3ServiceController.cs" />
     <Compile Include="Controllers\Service\Page2ServiceController.cs" />
@@ -1375,6 +1380,14 @@
     <Content Include="Views\About\EditAboutCategoary.aspx" />
     <Content Include="Views\About\EditAbout.aspx" />
     <Content Include="Views\About\Index.aspx" />
+    <Content Include="Views\Page10\EditQuestion.aspx" />
+    <Content Include="Views\Page10\Question.aspx" />
+    <Content Include="Views\Page10\Op_Qa.aspx" />
+    <Content Include="Views\Page10\EditOp_Qa.aspx" />
+    <Content Include="Views\NormallContent\Content.aspx" />
+    <Content Include="Views\NormallContent\EditContent.aspx" />
+    <Content Include="Views\Page8\Nhi_Med.aspx" />
+    <Content Include="Views\Page8\EditNhi_Med.aspx" />
     <Content Include="Views\Page8\Nhi_p.aspx" />
     <Content Include="Views\Page8\EditNhi_p.aspx" />
     <Content Include="Views\Page4\Guide.aspx" />

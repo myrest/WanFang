@@ -46,7 +46,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 發佈日期
         /// </summary>
-        public DateTime nhi_date { get; set; }
+        public DateTime? nhi_date { get; set; }
         /// <summary>
         ///  特材類型
         /// </summary>

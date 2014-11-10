@@ -13,7 +13,9 @@ namespace WanFang.Domain
         int QuestionId { get; set; }
         DateTime Q_time { get; set; }
         string Q_type { get; set; }
-        string Q_object { get; set; }
+        string DeptName { get; set; }
+        string Dept { get; set; }
+        string CostName { get; set; }
         string Q_title { get; set; }
         string Q_question { get; set; }
         string Q_ans { get; set; }
@@ -44,9 +46,17 @@ namespace WanFang.Domain
         /// </summary>
         public string Q_type { get; set; }
         /// <summary>
+        /// 診別名稱
+        /// </summary>
+        public string DeptName { get; set; }
+        /// <summary>
+        /// 診別代碼
+        /// </summary>
+        public string Dept { get; set; }
+        /// <summary>
         /// 科別(原相關科別)
         /// </summary>
-        public string Q_object { get; set; }
+        public string CostName { get; set; }
         /// <summary>
         /// 提問標題
         /// </summary>
@@ -86,7 +96,9 @@ namespace WanFang.Domain
         public int? QuestionId { get; set; }
         public DateTime? Q_time { get; set; }
         public string Q_type { get; set; }
-        public string Q_object { get; set; }
+        public string DeptName { get; set; }
+        public string Dept { get; set; }
+        public string CostName { get; set; }
         public string Q_title { get; set; }
         public string Q_question { get; set; }
         public string Q_ans { get; set; }

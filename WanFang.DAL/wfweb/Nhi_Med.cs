@@ -172,7 +172,7 @@ namespace WanFang.DAL.Nhi_Med
                 }
                 if (!string.IsNullOrEmpty(filter.CodeOld))
                 {
-                    SQLStr.Append(" AND CodeOld=@0", filter.CodeOld);
+                    SQLStr.Append(" AND (CodeOld like @0 or PNameOld like @0)", "%" + filter.CodeOld + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.PCodeOld))
                 {
