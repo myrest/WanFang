@@ -84,5 +84,43 @@ namespace WanFang.Website.Controllers.Service
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
+
+        [HttpPost]
+        public JsonResult ChangePassword(string oldpw, string newpw, string repw)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (string.IsNullOrEmpty(oldpw))
+            {
+                result.setErrorMessage("原登入密碼不得為空白");
+            }
+            if (string.IsNullOrEmpty(newpw))
+            {
+                result.setErrorMessage("新密碼不得為空白");
+            }
+            if (string.IsNullOrEmpty(repw))
+            {
+                result.setErrorMessage("確認新密碼不得為空白");
+            }
+            if (newpw != repw)
+            {
+                result.setErrorMessage("新密碼與確認新密碼不符");
+            }
+            if (result.JsonReturnCode > -1)
+            {
+                var oldUser = UserMan.GetBySN(sessionData.trading.UserID);
+                bool LoginResult = UserMan.Login(oldUser.LoginId, oldpw);
+                if (!LoginResult)
+                {
+                    result.setErrorMessage("原登入密碼錯誤");
+                }
+                else
+                {
+                    UserMan.ChangePassword(sessionData.trading.UserID, newpw, sessionData.trading.UserName);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
     }
 }

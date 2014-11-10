@@ -379,7 +379,11 @@ var utility = {
     }
     , logout: function () {
         var cb = function () { window.parent.location = '/'; }
-        utility.ajaxQuiet("LoginService/Logout", null, cb);
+        utility.ajaxQuiet("ManageLoginService/Logout", null, cb);
+    }
+    , logoutToHomePage: function () {
+        var cb = function () { window.parent.location = 'http://www.wanfang.gov.tw'; }
+        utility.ajaxQuiet("ManageLoginService/Logout", null, cb);
     }
     , CheckOnFocus: function () {//設定欄位初始值
         var $this = $(this);

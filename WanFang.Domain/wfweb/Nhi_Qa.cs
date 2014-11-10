@@ -15,6 +15,7 @@ namespace WanFang.Domain
         string Description { get; set; }
         string nhi_con { get; set; }
         DateTime nhi_date { get; set; }
+        int hit { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
     }
@@ -48,6 +49,10 @@ namespace WanFang.Domain
         /// </summary>
         public DateTime nhi_date { get; set; }
         /// <summary>
+        /// 點閱數
+        /// </summary>
+        public int hit { get; set; }
+        /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime LastUpdate { get; set; }
@@ -68,6 +73,7 @@ namespace WanFang.Domain
         public string Description { get; set; }
         public string nhi_con { get; set; }
         public DateTime? nhi_date { get; set; }
+        public int? hit { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above Nhi_Qa_Info field for search criteria

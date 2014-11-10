@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WanFang.DAL.HirDetail;
 
 namespace WanFang.DAL.HirCategory
 {
@@ -127,6 +128,10 @@ namespace WanFang.DAL.HirCategory
         {
             using (var db = new DBExecutor().GetDatabase())
             {
+                var SQLStr = Rest.Core.PetaPoco.Sql.Builder
+                .Append("Update db_HirDetail set HirName = @0", data.CategoryName)
+                .Append("WHERE HirCategoryId=@0", data.HirCategoryId);
+                db.Execute(SQLStr);
                 return db.Update(data);
             }
         }

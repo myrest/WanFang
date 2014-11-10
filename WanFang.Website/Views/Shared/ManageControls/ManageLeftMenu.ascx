@@ -58,7 +58,9 @@
     <!--人員募集-->
     <li class="<%=menus[7] %>"><a href="javascript:void(0);">人員募集管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m8-2.aspx">人員募集類別管理</a></li><li><a href="http://192.168.52.110:1002/manage/m8-1.aspx">人員募集項目管理</a></li></ul>
+            <li><a href="/Page7/HirCategory">人員募集類別管理</a></li>
+            <li><a href="/Page7/HirDetail">人員募集項目管理</a></li>
+            <li><a href="/NormallContent/Page7Content">人員募集圖文管理</a></li></ul>
     </li>
     <!--健保專區-->
     <li class="<%=menus[8] %>"><a href="javascript:void(0);">健保專區管理</a>
@@ -87,7 +89,7 @@
     <!--表尾資料管理-->
     <li class="<%=menus[11] %>"><a href="javascript:void(0);">表尾資料管理</a>
         <ul>
-            <li><a href="http://192.168.52.110:1002/manage/m12-1.aspx">表尾資料管理</a></li></ul>
+            <li><a href="/Page11/EditFooter">表尾資料管理</a></li></ul>
     </li>
     <!--員工帳號管理-->
     <li class="<%=menus[12] %>"><a href="#">員工帳號管理</a>
@@ -97,10 +99,10 @@
     <!--密碼變更-->
     <li class="<%=menus[13] %>"><a href="javascript:void(0);">密碼變更</a>
         <ul>
-            <li><a href="L2-1.aspx">密碼變更</a></li></ul>
+            <li><a href="/Manage/ChangePassword">密碼變更</a></li></ul>
     </li>
     <!--登出-->
-    <li><a href="index.aspx" class="">登出</a></li>
+    <li><a href="#" onclick="javascript:utility.logout();" class="">登出</a></li>
     <!--登出到首頁-->
-    <li><a href="../index.aspx" class="">登出至首頁</a></li>
+    <li><a href="#" onclick="javascript:utility.logoutToHomePage();" class="">登出至首頁</a></li>
 </ul>

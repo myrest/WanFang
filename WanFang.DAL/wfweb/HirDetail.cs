@@ -162,13 +162,21 @@ namespace WanFang.DAL.HirDetail
                 {
                     SQLStr.Append(" AND HirDetailId=@0", filter.HirDetailId.Value);
                 }
-                if (!string.IsNullOrEmpty(filter.HirCode))
+                if (filter.HirCategoryId.HasValue)
                 {
-                    SQLStr.Append(" AND HirCode=@0", filter.HirCode);
+                    SQLStr.Append(" AND HirCategoryId=@0", filter.HirCategoryId.Value);
                 }
                 if (!string.IsNullOrEmpty(filter.HirName))
                 {
                     SQLStr.Append(" AND HirName=@0", filter.HirName);
+                }
+                if (!string.IsNullOrEmpty(filter.Dept))
+                {
+                    SQLStr.Append(" AND Dept=@0", filter.Dept);
+                }
+                if (!string.IsNullOrEmpty(filter.DeptName))
+                {
+                    SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
                 if (!string.IsNullOrEmpty(filter.CostName))
                 {

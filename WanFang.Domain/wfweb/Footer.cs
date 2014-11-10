@@ -13,7 +13,7 @@ namespace WanFang.Domain
         int FooterId { get; set; }
         string FooterText { get; set; }
         string FooterTextMail { get; set; }
-        DateTime LasterUpdate { get; set; }
+        DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
     }
     #endregion
@@ -34,7 +34,7 @@ namespace WanFang.Domain
         /// </summary>
         public string FooterText { get; set; }
         public string FooterTextMail { get; set; }
-        public DateTime LasterUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         #endregion
 
@@ -50,7 +50,7 @@ namespace WanFang.Domain
         public int? FooterId { get; set; }
         public string FooterText { get; set; }
         public string FooterTextMail { get; set; }
-        public DateTime? LasterUpdate { get; set; }
+        public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above Footer_Info field for search criteria
     }

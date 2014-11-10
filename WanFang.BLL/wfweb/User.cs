@@ -119,6 +119,23 @@ namespace WanFang.BLL
             }
         }
 
+        public bool ChangePassword(int UserId, string Password, string Updator)
+        {
+            var user = new User_Repo().GetBySN(UserId);
+            if (user != null)
+            {
+                string encPwd = Encrypt.EncryptPassword(Password, user.LoginId);
+                user.Password = encPwd;
+                user.LastUpdator = Updator;
+                user.LastUpdate = DateTime.Now;
+                return (new User_Repo().Update(user) > 0);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         #endregion
 

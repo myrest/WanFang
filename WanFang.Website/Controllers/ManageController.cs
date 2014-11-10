@@ -27,7 +27,7 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Index(string id)
         {
-            if (sessionData.trading != null)
+            if (sessionData.trading != null && sessionData.trading.UserID > 0)
             {
                 return RedirectToAction("Welcome", "Manage");
             }
@@ -86,5 +86,13 @@ namespace WanFang.Website.Controllers
             ViewData["AllDept"] = Dept;
             return View(model);
         }
+
+        public ActionResult ChangePassword()
+        {
+            ViewData["MenuItem"] = 13;
+            ViewData["UserName"] = sessionData.trading.UserName;
+            return View();
+        }
+
     }
 }

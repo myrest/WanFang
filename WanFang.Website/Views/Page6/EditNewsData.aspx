@@ -42,11 +42,11 @@
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
                 <div class="tt-r">
-                    最新消息管理</div>
+                    醫療衛教管理</div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp;特色醫療管理&nbsp&#187&nbsp;最新消息管理</div>
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp;特色醫療管理&nbsp&#187&nbsp;醫療衛教管理</div>
         <p class="clear">
         </p>
     </div>

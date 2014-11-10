@@ -170,9 +170,9 @@ namespace WanFang.DAL.Footer
                 {
                     SQLStr.Append(" AND FooterTextMail=@0", filter.FooterTextMail);
                 }
-                if (filter.LasterUpdate.HasValue)
+                if (filter.LastUpdate.HasValue)
                 {
-                    SQLStr.Append(" AND LasterUpdate=@0", filter.LasterUpdate.Value);
+                    SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);
                 }
                 if (!string.IsNullOrEmpty(filter.LastUpdator))
                 {

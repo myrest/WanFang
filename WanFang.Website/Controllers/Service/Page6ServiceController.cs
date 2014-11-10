@@ -166,6 +166,14 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("衛教地點不得為空白");
             }
+            if (string.IsNullOrEmpty(data.DateStart))
+            {
+                result.setErrorMessage("衛教起始時間不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.DateEnd))
+            {
+                result.setErrorMessage("衛教結束時間不得為空白");
+            }
             if (data.EduDate == DateTime.MinValue)
             {
                 result.setErrorMessage("衛教日期格式錯誤，格式為 YYYY/MM/DD");

@@ -73,5 +73,28 @@ namespace WanFang.Website.Controllers
             ViewData["Model"] = model;
             return View("~/Views/NormallContent/EditContent.aspx");
         }
+
+        public ActionResult Page7Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
+        {
+            ViewData["MenuItem"] = 7;
+            ViewData["Header1"] = "人員募集圖文管理";
+            ViewData["Header2"] = "人員募集管理";
+            ViewData["EditPage"] = "EditPage7Content";
+            ActionResult result = GetContent(id, filter, Page, ViewData["Header1"].ToString());
+            return result;
+        }
+
+        public ActionResult EditPage7Content(string id)
+        {
+            ClearOldData("NormallContent");
+            ViewData["MenuItem"] = 7;
+            ViewData["Header1"] = "人員募集圖文管理";
+            ViewData["Header2"] = "人員募集管理";
+            ViewData["GoBack"] = "Page7Content";
+            var model = NContMan.GetBySN(Convert.ToInt32(id));
+            ViewData["Model"] = model;
+            return View("~/Views/NormallContent/EditContent.aspx");
+        }
+
     }
 }

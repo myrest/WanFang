@@ -178,6 +178,10 @@ namespace WanFang.DAL.Nhi_Qa
                 {
                     SQLStr.Append(" AND nhi_date=@0", filter.nhi_date.Value);
                 }
+                if (filter.hit.HasValue)
+                {
+                    SQLStr.Append(" AND hit=@0", filter.hit.Value);
+                }
                 if (filter.LastUpdate.HasValue)
                 {
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);

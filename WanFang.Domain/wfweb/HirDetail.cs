@@ -11,8 +11,10 @@ namespace WanFang.Domain
     public interface IHirDetail_Info
     {
         int HirDetailId { get; set; }
-        string HirCode { get; set; }
+        int HirCategoryId { get; set; }
         string HirName { get; set; }
+        string Dept { get; set; }
+        string DeptName { get; set; }
         string CostName { get; set; }
         string JobTitle { get; set; }
         int Nums { get; set; }
@@ -39,11 +41,19 @@ namespace WanFang.Domain
         /// <summary>
         /// 職缺類別代號
         /// </summary>
-        public string HirCode { get; set; }
+        public int HirCategoryId { get; set; }
         /// <summary>
         /// 職缺類別
         /// </summary>
         public string HirName { get; set; }
+        /// <summary>
+        /// 診別代碼
+        /// </summary>
+        public string Dept { get; set; }
+        /// <summary>
+        /// 診別
+        /// </summary>
+        public string DeptName { get; set; }
         /// <summary>
         /// 職缺單位(職缺科別改名稱)
         /// </summary>
@@ -89,8 +99,10 @@ namespace WanFang.Domain
     public class HirDetail_Filter
     {
         public int? HirDetailId { get; set; }
-        public string HirCode { get; set; }
+        public int? HirCategoryId { get; set; }
         public string HirName { get; set; }
+        public string Dept { get; set; }
+        public string DeptName { get; set; }
         public string CostName { get; set; }
         public string JobTitle { get; set; }
         public int? Nums { get; set; }
