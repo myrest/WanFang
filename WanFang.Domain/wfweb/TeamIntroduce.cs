@@ -17,6 +17,7 @@ namespace WanFang.Domain
         string CostId { get; set; }
         string WebMenuCode { get; set; }
         string WebMenuName { get; set; }
+        string Description { get; set; }
         string ContentBody { get; set; }
         string Image1 { get; set; }
         string Image2 { get; set; }
@@ -60,6 +61,10 @@ namespace WanFang.Domain
         /// 網頁選單名稱ex:本科介紹
         /// </summary>
         public string WebMenuName { get; set; }
+        /// <summary>
+        /// 簡述
+        /// </summary>
+        public string Description { get; set; }
         /// <summary>
         /// 內容
         /// </summary>
@@ -107,6 +112,7 @@ namespace WanFang.Domain
         public string CostId { get; set; }
         public string WebMenuCode { get; set; }
         public string WebMenuName { get; set; }
+        public string Description { get; set; }
         public string ContentBody { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }

@@ -52,9 +52,12 @@
         }
 
         function Save() {
+            var CostName = $('#CostName option:selected').text();
+            $('#CostName').html('');
+            $('#CostName').append(new Option(CostName, CostName, true, true));
             var param = $('#form1 :not([name^=Content])').serialize();
-            //var inst = FCKeditorAPI.GetInstance("Content1");
-            //param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
+            var inst = FCKeditorAPI.GetInstance("Content1");
+            param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
 
             utility.service("Page5Service/SaveTeamIntroduce", param, "POST", function (data) {
                 if (data.code > 0) {
@@ -137,6 +140,12 @@
                     <td class="line-d0 top">網頁選單名稱<span class="red">*</span></td>
                     <td>
                         <input name="WebMenuName" type="text" value="<%=Model.WebMenuName %>" size="50" maxlength="255" /></td>
+                </tr>
+                <tr class="line-d">
+                    <td class="line-d0 top">簡述<span class="red">*</span></td>
+                    <td>
+                        <textarea name="Description"  style="width: 100%" rows="4" cols="20"><%=Model.Description %></textarea>
+                    </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 w150 top">內容<span class="red">*</span></td>

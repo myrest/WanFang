@@ -115,7 +115,7 @@ namespace WanFang.Website.Controllers
         {
             //Clear old data.
             ClearOldData("TeamIntroduceImage");
-            var model = NewsDataMan.GetBySN(Convert.ToInt32(id));
+            var model = TeamMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
             return View();
         }
