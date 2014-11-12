@@ -57,8 +57,10 @@
                     <td>類別名稱</td>
                     <td class="w80">上/下架</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -74,7 +76,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page7/EditHirCategory/<%=item.HirCategoryId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>
@@ -86,7 +89,8 @@
         <span class="red">[注意事項]</span><br />
         1. 不分頁<br />
         2. 排序：順序（由小至大）<br />
-        <span class="red">3. 類別底下有對應資料時，該筆不允許刪除</span>
+        <span class="red">3. 類別底下有對應資料時，該筆不允許刪除</span>
+
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">

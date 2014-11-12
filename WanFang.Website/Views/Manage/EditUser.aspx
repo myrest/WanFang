@@ -116,8 +116,8 @@
                     <td class="txt_l">
                         <table class="ww100" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="top"><input type="radio" name="PermissionType" value="0" <%=(Model.PermissionType==0?"checked":"") %> />權限1：</td>
-                                <td class="top">科別管理權限<br />
+                                <td class="top"><input type="radio" name="PermissionType" value="0" <%=(Model.PermissionType==0?"checked":"") %> />私領域：</td>
+                                <td class="top">
                                     門診：
               <select name="DeptName" id="DeptName">
                   <option>請選擇</option>
@@ -147,10 +147,12 @@
                       }
                   %>
               </select>
+              <br />
+              限定使用[特色醫療管理]
                                 </td>
                             </tr>
                             <tr class="no_line">
-                                <td class="top"><input type="radio" name="PermissionType" value="1" <%=(Model.PermissionType==1?"checked":"") %> />權限2：</td>
+                                <td class="top"><input type="radio" name="PermissionType" value="1" <%=(Model.PermissionType==1?"checked":"") %> />公領域：</td>
                                 <td class="top">
                                 <%
                                     List<string> permisses = new List<string>()

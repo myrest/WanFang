@@ -40,6 +40,10 @@
     <!--main begin-->
         <div class="bg-s">
             <p>
+                上下架：<%int? a = null; %>
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(a) %>
+            </p>
+            <p>
                 關鍵字：
                 <input name="Category" type="text" value="請輸入單元名稱搜尋" onclick="this.value = '';" size="30"
                     id="Category" onkeydown="if(event.keyCode==13){this.form.submit();}" />
@@ -52,7 +56,9 @@
                 <input name="Del" type="button" class="submit" value="刪除" onclick="DeleteSelected();">
                 <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">                        --點選以下項目來進行維護</td>
             <td class="w70 txt_r">
-                <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Page9/EditCostUnit/';" value="新增資料"></td>
+                <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Page9/EditCostUnit/';" value="新增資料">
+                <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                </td>
         </tr>
     </table>
 <p class="clear"></p>
@@ -65,7 +71,7 @@
                     <td>單元名稱</td>
                     <td class="w100">上/下架</td>
                     <td class="w100">更新日期</td>
-                    <td class="w70">編輯</td>
+                    <td class="w80">編輯</td>
                 </tr>
         <%
             foreach (var item in data)
@@ -100,7 +106,8 @@
             1. 不分頁<br />
             2. 順序(由小至大)
             <br />
-            <span class="red">3. 單元名稱底下有對應資料時，該筆不允許刪除</span>    <!--main end-->
+            <span class="red">3. 單元名稱底下有對應資料時，該筆不允許刪除</span>
+    <!--main end-->
 </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">

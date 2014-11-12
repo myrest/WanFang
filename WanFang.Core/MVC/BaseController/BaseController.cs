@@ -47,6 +47,15 @@ namespace WanFang.Core.MVC.BaseController
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
+            ViewData["Verify"] = false;
+            if (sessionData != null && sessionData.trading != null && sessionData.trading.IsVerifier)
+            {
+                string Verify = filterContext.RequestContext.HttpContext.Request["Verify"];
+                if (!string.IsNullOrEmpty(Verify))
+                {
+                    ViewData["Verify"] = true;
+                }
+            }
             base.OnResultExecuting(filterContext);
             //add P3P header to make sure the pages inside other frames able to use cookies
             filterContext.HttpContext.Response.AddHeader("p3p", "CP=\"CAO PSA OUR\"");

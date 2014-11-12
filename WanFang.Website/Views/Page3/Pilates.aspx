@@ -23,10 +23,12 @@
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
-                <div class="tt-r">其他課程管理</div>            </h1>
+                <div class="tt-r">其他課程管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
+
         </div>
         <p class="clear">
         </p>
@@ -34,6 +36,10 @@
     <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
+            <p>
+                上下架：
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
             <p>
                 關鍵字：
                 <input name="RegSubject" type="text" value="請輸入課程主題搜尋" onclick="this.value = '';" size="30"
@@ -52,8 +58,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page3/EditPilates/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page3/Pilates/Pending';"
-                        value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
                 </td>
             </tr>
         </table>
@@ -68,8 +73,9 @@
                     <td class="w50">上課結束時間</td>
                     <td>備註</td>
                     <td class="txt_c">上/下架</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -89,7 +95,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

@@ -109,7 +109,7 @@
                 </td>
                 <td class=" txt_r">                    <input type="button" class="submit3" onclick="window.location = '/About/EditAboutContent/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/About/Content/Pending';" value="待審核">                </td>
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">                </td>
             </tr>
         </table>
             <table class="ww100" border="0" cellpadding="2" cellspacing="1">
@@ -120,7 +120,7 @@
                     <td>單元名稱</td>
                     <td class="w80">上/下架</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
+                    <td class="w80">編輯</td>
                 </tr>
             <%
                 foreach (var item in Model)
@@ -149,6 +149,8 @@
                     <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>';"
                         value="編輯">
+                    <input name="bt_edit" type="button" class="submit4" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>?Verify=1';"
+                        value="審核">
                         </td>
                 </tr>
             <%

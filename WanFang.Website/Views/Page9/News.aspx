@@ -55,8 +55,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page9/EditNews/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page9/News/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>

@@ -30,7 +30,8 @@
         <div id="nav" class="txt_r">
             <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp衛教園區管理&nbsp&#187&nbsp健康促進衛教活動管理</div>
         <p class="clear"></p>
-    </div>    <div id="mainpage">
+    </div>
+    <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
             <p>
@@ -50,7 +51,8 @@
                             <option>社區衛教</option>
                             <option>專題講座</option>
                         </select>
-            </p>            <p>
+            </p>
+            <p>
                 關鍵字：
                 <input name="Title" type="text" value="請輸入衛教標題搜尋" onclick="this.value = '';" size="30"
                     id="Title" onkeydown="if(event.keyCode==13){this.form.submit();}" />
@@ -68,8 +70,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page6/EditEdu/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page6/Edu/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -81,8 +81,9 @@
                     <td>衛教標題</td>
                     <td class="w100">衛教主講者</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -99,7 +100,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page6/EditEdu/<%=item.EduId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

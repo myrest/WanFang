@@ -49,11 +49,11 @@
                     <td class="line-d0 va_m">特材類型<span class="red">*</span></td>
                     <td class="txt_l">
                         <select name="nhi_code" id="nhi_code">
-                            <option <%=(Model.nhi_code == "A:塗藥血管支架") ? "selected" : "" %>>A:塗藥血管支架</option>
-                            <option <%=(Model.nhi_code == "B:陶瓷人工髖關節組件") ? "selected" : "" %>>B:陶瓷人工髖關節組件</option>
-                            <option <%=(Model.nhi_code == "C:特殊功能人工水晶體") ? "selected" : "" %>>C:特殊功能人工水晶體</option>
-                            <option <%=(Model.nhi_code == "E:自費特材品項") ? "selected" : "" %>>E:自費特材品項 </option>
-                            <option <%=(Model.nhi_code == "F:人工心律調節器") ? "selected" : "" %>>F:人工心律調節器 </option>
+                            <option <%=(Model.nhi_code == "塗藥血管支架") ? "selected" : "" %>>塗藥血管支架</option>
+                            <option <%=(Model.nhi_code == "陶瓷人工髖關節組件") ? "selected" : "" %>>陶瓷人工髖關節組件</option>
+                            <option <%=(Model.nhi_code == "特殊功能人工水晶體") ? "selected" : "" %>>特殊功能人工水晶體</option>
+                            <option <%=(Model.nhi_code == "自費特材品項") ? "selected" : "" %>>自費特材品項 </option>
+                            <option <%=(Model.nhi_code == "人工心律調節器") ? "selected" : "" %>>人工心律調節器 </option>
                         </select></td>
                 </tr>                <tr class="line-d">
                     <td class="line-d0 va_m">品項名稱<span class="red">*</span></td>

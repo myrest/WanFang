@@ -71,15 +71,11 @@ namespace WanFang.Website.Controllers
             return View(model);
         }
 
-        public ActionResult Content(string id, AboutContent_Filter filter, Rest.Core.Paging Page)
+        public ActionResult Content(AboutContent_Filter filter, Rest.Core.Paging Page)
         {
             var PermissionCheck = CheckPermission("關於萬芳管理");
             if (PermissionCheck != null) return PermissionCheck;
-            if (filter.UnitName == "請輸入單元名稱搜尋") filter.UnitName = null;
-            if (!string.IsNullOrEmpty(id)) filter = new AboutContent_Filter()
-            {
-                IsActive = Convert.ToInt32(false)
-            };
+            if (!string.IsNullOrEmpty(filter.UnitName) && filter.UnitName.StartsWith("請輸入")) filter.UnitName = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -121,11 +117,7 @@ namespace WanFang.Website.Controllers
         {
             var PermissionCheck = CheckPermission("關於萬芳管理");
             if (PermissionCheck != null) return PermissionCheck;
-            if (filter.UserName == "請輸入姓名搜尋") filter.UserName = null;
-            if (!string.IsNullOrEmpty(id)) filter = new AboutTeam_Filter()
-            {
-                IsActive = Convert.ToInt32(false)
-            };
+            if (!string.IsNullOrEmpty(filter.UserName) && filter.UserName.StartsWith("請輸入")) filter.UserName = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };

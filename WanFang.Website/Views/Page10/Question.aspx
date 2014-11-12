@@ -66,8 +66,10 @@
                     類　別：
                   <select name="op_type">
                       <option>請選擇</option>
-                      <option>營養諮詢</option>                  </select>
-                </p>            <p>
+                      <option>營養諮詢</option>
+                  </select>
+                </p>
+            <p>
                 門診類別：
               <select name="DeptName" id="DeptName">
                   <option>請選擇</option>
@@ -79,7 +81,8 @@
                       }
                   %>
               </select>
-              科別：              <select name="CostName" id="CostName">
+              科別：
+              <select name="CostName" id="CostName">
                   <option>請選擇</option>
               </select>
 
@@ -103,8 +106,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page10/EditQuestion/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page10/Question/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -116,8 +117,10 @@
                     <td class="w80">科別</td>
                     <td>提問標題</td>
                     <td class="w60">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -134,7 +137,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditQuestion/<%=item.QuestionId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

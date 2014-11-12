@@ -57,7 +57,7 @@ namespace WanFang.Core.MVC.Extensions
 
         public static string GenerFilterIsActive(bool? isActive)
         {
-            string rtn = "<select name=\"IsActive\">";
+            string rtn = "<select name=\"IsActive\" id=\"IsActive\">";
             rtn += "<option value=\"\" " + (!isActive.HasValue ? " selected " : "") + ">全部顯示</option>";
             rtn += "<option value=\"1\" " + (isActive.HasValue && isActive.Value ? " selected " : "") + ">上架</option>";
             rtn += "<option value=\"0\" " + (isActive.HasValue && !isActive.Value ? " selected " : "") + ">下架</option>";

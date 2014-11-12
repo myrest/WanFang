@@ -38,6 +38,10 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
+                上下架：
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
+            <p>
                 關鍵字：
                 <input name="DocumentName" type="text" value="請輸入檔案名稱搜尋" onclick="this.value = '';" size="30"
                     id="DocumentName" onkeydown="if(event.keyCode==13){this.form.submit();}" />
@@ -52,9 +56,11 @@
                     <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
                     --點選以下項目來進行維護
                 </td>
-                <td class=" txt_r">                    <input type="button" class="submit3" onclick="window.location = '/Page9/EditDownLoad/';"
+                <td class=" txt_r">
+                    <input type="button" class="submit3" onclick="window.location = '/Page9/EditDownLoad/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page9/DownLoad/Pending';" value="待審核">                </td>
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                </td>
             </tr>
         </table>
             <table class="ww100" border="0" cellpadding="2" cellspacing="1">
@@ -66,8 +72,9 @@
                     <td>檔案名稱</td>
                     <td class="w40">上/下架</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -82,17 +89,20 @@
                     <td class="txt_c"><%=item.LastUpdate%></td>
                     <td class="txt_c">
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page9/EditDownLoad/<%=item.WebDownLoadID %>';" value="編輯"></td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
-            </table>        <br />
+            </table>
+        <br />
         <div class="m_page">
         <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br>
             1. 每10筆分1頁<br>
-            2. 順序(由小至大) <br />        <!--main end-->
+            2. 順序(由小至大) <br />
+        <!--main end-->
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">

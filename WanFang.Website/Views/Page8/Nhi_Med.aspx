@@ -55,8 +55,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page8/EditNhi_Med/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page8/Nhi_Med/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -67,8 +65,9 @@
                     <td class="w100">健保代碼</td>
                     <td>中文品名</td>
                     <td class="w100">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -84,7 +83,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_Med/<%=item.MedicationID %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

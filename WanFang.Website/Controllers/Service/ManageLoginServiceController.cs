@@ -38,16 +38,32 @@ namespace WanFang.Website.Controllers.Service
             trading.LoginId = LoginId;
             trading.UserName = user.UserName;
             trading.UserID = user.UserID;
-            if (user.Permission != null)
+            trading.IsVerifier = (user.IsVerifier == 1);
+            if (user.PermissionType == 0)
             {
-                trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
+                trading.IsDeptOnly = true;
+                if (!string.IsNullOrEmpty(user.DeptName))
+                {
+                    trading.Dept = EnumHelper.GetEnumByName<WS_Dept_type>(user.DeptName);
+                }
+                else
+                {
+                    throw new Exception("私領域權限未設定");
+                }
             }
-            trading.IsDeptOnly = (user.PermissionType == 0);
+            else
+            {
+                trading.IsDeptOnly = false;
+                if (user.Permission != null)
+                {
+                    trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
+                }
+                else
+                {
+                    throw new Exception("公領域權限未設定");
+                }
+            }
             trading.UploadFiles = new System.Collections.Generic.Dictionary<string, string>() { };
-            if (!string.IsNullOrEmpty(user.DeptName))
-            {
-                trading.Dept = EnumHelper.GetEnumByName<WS_Dept_type>(user.DeptName);
-            }
             sessionData.trading = trading;
         }
 

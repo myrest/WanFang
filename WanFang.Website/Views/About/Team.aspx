@@ -56,9 +56,11 @@
                     <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
                     --點選以下項目來進行維護
                 </td>
-                <td class=" txt_r">                    <input type="button" class="submit3" onclick="window.location = '/About/EditAboutTeam/';"
+                <td class=" txt_r">
+                    <input type="button" class="submit3" onclick="window.location = '/About/EditAboutTeam/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/About/Team/Pending';" value="待審核">                </td>
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                </td>
             </tr>
         </table>
             <table class="ww100" border="0" cellpadding="2" cellspacing="1">
@@ -69,7 +71,7 @@
                     <td>姓名</td>
                     <td class="w80">上/下架</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
+                    <td class="w80">編輯</td>
                 </tr>
             <%
                 foreach (var item in Model)
@@ -91,7 +93,8 @@
             <%
                 }
             %>
-            </table>        <br />
+            </table>
+        <br />
         <div class="m_page">
         <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>

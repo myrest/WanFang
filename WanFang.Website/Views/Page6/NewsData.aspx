@@ -77,8 +77,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page6/EditNewsData/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page6/NewsData/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -90,8 +88,9 @@
                     <td>標題</td>
                     <td class="w40">點閱數</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -108,7 +107,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page6/EditNewsData/<%=item.NewsId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

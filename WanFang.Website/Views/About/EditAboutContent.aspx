@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
         WanFang.Domain.AboutContent_Info Model = ViewData["Model"] as WanFang.Domain.AboutContent_Info;
         List<WanFang.Domain.About_Info> About = ViewData["About"] as List<WanFang.Domain.About_Info>;
         List<WanFang.Domain.AboutCategory_Info> Categoary = ViewData["Categoary"] as List<WanFang.Domain.AboutCategory_Info>;
@@ -252,7 +253,16 @@
                 </tr>
             </table>
         <div class="txt_c mag15" id="sendadd">
-            <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
+        <%
+            if (IsVerifer)
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+            else
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+        %>
         </div>
         <!--main end-->
     </div>

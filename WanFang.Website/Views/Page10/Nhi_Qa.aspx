@@ -57,8 +57,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page10/EditNhi_Qa/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page10/Nhi_Qa/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -69,8 +67,9 @@
                     <td>問題標題</td>
                     <td class="w40">點閱數</td>
                     <td class="w40">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -86,7 +85,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditNhi_Qa/<%=item.Nhi_QaId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

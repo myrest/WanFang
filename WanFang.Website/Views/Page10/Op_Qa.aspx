@@ -37,6 +37,10 @@
     <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
+            <p>
+                上下架：
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
                 <p>
                     類　別：
                   <select name="op_type">
@@ -46,7 +50,8 @@
                       <option>住院</option>
                       <option>檢查</option>
                   </select>
-                </p>            <p>
+                </p>
+            <p>
                 關鍵字：
                 <input name="op_title" type="text" value="請輸入問題標題搜尋" onclick="this.value = '';" size="30"
                     id="op_title" onkeydown="if(event.keyCode==13){this.form.submit();}" />
@@ -64,8 +69,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page10/EditOp_Qa/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page10/Op_Qa/Pending';"
-                        value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
                 </td>
             </tr>
         </table>
@@ -77,8 +81,9 @@
                     <td class="w40">點閱數</td><!--id="hit"-->
                     <td class="w40">上/下架</td>
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -95,7 +100,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditOp_Qa/<%=item.Op_QaId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

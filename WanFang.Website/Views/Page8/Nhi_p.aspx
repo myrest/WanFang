@@ -46,7 +46,8 @@
                               <option>特殊功能人工水晶體</option>
                               <option>自費特材品項 </option>
                               <option>人工心律調節器 </option>
-                          </select>            </p>
+                          </select>
+            </p>
             <p>
                 關鍵字：
                 <input name="nhi_cname" type="text" value="請輸入中文品名搜尋" onclick="this.value = '';" size="30"
@@ -65,8 +66,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page8/EditNhi_p/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page8/Nhi_p/Pending';"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -78,8 +77,9 @@
                     <td>中文品名</td>
                     <td class="w40">點閱數</td><!--點閱數 id=hit-->
                     <td class="w80">更新日期</td>
-                    <td class="w70">編輯</td>
-                </tr>            <%
+                    <td class="w80">編輯</td>
+                </tr>
+            <%
                 foreach (var item in Model)
                 {
             %>
@@ -96,7 +96,8 @@
                         <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_p/<%=item.nhi_pId %>';"
                             value="編輯">
                     </td>
-                </tr>            <%
+                </tr>
+            <%
                 }
             %>
         </table>

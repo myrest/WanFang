@@ -37,6 +37,10 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
+                上下架：
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
+            <p>
                 關鍵字：
                 <input name="ItemName" type="text" value="請輸入項目名稱搜尋" onclick="this.value = '';" size="30"
                     id="ItemName" onkeydown="if(event.keyCode==13){this.form.submit();}" />
@@ -54,8 +58,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page4/EditGuide/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page4/Guide/Pending';"
-                        value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
                 </td>
             </tr>
         </table>

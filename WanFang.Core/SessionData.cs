@@ -44,6 +44,7 @@ namespace WanFang.Core
         {
             LoginId = default(string);
             UserID = 0;
+            IsVerifier = false;
         }
 
         public string LoginId { get; set; }
@@ -59,6 +60,8 @@ namespace WanFang.Core
         public Dictionary<string, string> UploadFiles { get; set; }
 
         public List<string> Permissions { get; set; }
+
+        public bool IsVerifier { get; set; }
 
     }
 }

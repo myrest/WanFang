@@ -63,6 +63,10 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
+                上下架：
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
+            <p>
                 門診類別：
               <select name="Dept" id="Dept">
                   <option>請選擇</option>
@@ -74,7 +78,8 @@
                       }
                   %>
               </select>
-              科別：              <select name="CostName" id="CostName">
+              科別：
+              <select name="CostName" id="CostName">
                   <option>請選擇</option>
               </select>
 
@@ -97,8 +102,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page5/EditCostKeyword/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="window.location = '/Page5/EditCostKeyword/Pending';"
-                        value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
                 </td>
             </tr>
         </table>
@@ -109,7 +113,7 @@
               <td >科別</td>
               <td class="w60">上/下架</td>
               <td class="w80">更新日期</td>
-              <td class="w70">編輯</td>
+              <td class="w80">編輯</td>
             </tr>
             <%
                 foreach (var item in Model)
@@ -127,7 +131,8 @@
                 <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page5/EditCostKeyword/<%=item.CostKeywordId %>';"
                     value="編輯">
               </td>
-            </tr>            <%
+            </tr>
+            <%
                 }
             %>
         </table>

@@ -52,7 +52,7 @@
             <td class="w80">順序</td>                    <td>類別名稱</td>
             <td class="w80">上/下架</td>
             <td class="w80">更新日期</td>
-            <td class="w70">編輯</td>
+            <td class="w80">編輯</td>
         </tr>
         <%
             int i = 0;
