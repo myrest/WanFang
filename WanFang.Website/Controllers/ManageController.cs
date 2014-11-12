@@ -44,6 +44,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult UserListing(User_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("員工帳號管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             ViewData["MenuItem"] = 12;
             if (filter.LoginId == "請輸入帳號搜尋") filter.LoginId = null;
             ViewData["Filter"] = filter;

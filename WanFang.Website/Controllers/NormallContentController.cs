@@ -54,6 +54,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Page8Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("健保專區管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             ViewData["MenuItem"] = 8;
             ViewData["Header1"] = "健保專區圖文管理";
             ViewData["Header2"] = "健保專區管理";
@@ -76,6 +79,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Page7Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("人員募集管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             ViewData["MenuItem"] = 7;
             ViewData["Header1"] = "人員募集圖文管理";
             ViewData["Header2"] = "人員募集管理";
@@ -91,6 +97,31 @@ namespace WanFang.Website.Controllers
             ViewData["Header1"] = "人員募集圖文管理";
             ViewData["Header2"] = "人員募集管理";
             ViewData["GoBack"] = "Page7Content";
+            var model = NContMan.GetBySN(Convert.ToInt32(id));
+            ViewData["Model"] = model;
+            return View("~/Views/NormallContent/EditContent.aspx");
+        }
+
+        public ActionResult Page6Content(string id, NormallContent_Filter filter, Rest.Core.Paging Page)
+        {
+            var PermissionCheck = CheckPermission("衛教園區管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
+            ViewData["MenuItem"] = 6;
+            ViewData["Header1"] = "衛教園區圖文管理";
+            ViewData["Header2"] = "衛教園區管理";
+            ViewData["EditPage"] = "EditPage6Content";
+            ActionResult result = GetContent(id, filter, Page, ViewData["Header1"].ToString());
+            return result;
+        }
+
+        public ActionResult EditPage6Content(string id)
+        {
+            ClearOldData("NormallContent");
+            ViewData["MenuItem"] = 6;
+            ViewData["Header1"] = "衛教園區圖文管理";
+            ViewData["Header2"] = "衛教園區管理";
+            ViewData["GoBack"] = "Page6Content";
             var model = NContMan.GetBySN(Convert.ToInt32(id));
             ViewData["Model"] = model;
             return View("~/Views/NormallContent/EditContent.aspx");

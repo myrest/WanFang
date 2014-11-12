@@ -28,6 +28,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult EditFooter()
         {
+            var PermissionCheck = CheckPermission("表尾資料管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             var model = FooterMan.GetAll().FirstOrDefault();
             if (model == null)
             {

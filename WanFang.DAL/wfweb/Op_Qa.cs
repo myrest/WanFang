@@ -168,7 +168,7 @@ namespace WanFang.DAL.Op_Qa
                 }
                 if (!string.IsNullOrEmpty(filter.op_title))
                 {
-                    SQLStr.Append(" AND op_title=@0", filter.op_title);
+                    SQLStr.Append(" AND op_title like @0", "%" + filter.op_title + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Description))
                 {

@@ -53,6 +53,7 @@
         <ul>
             <li><a href="/Page6/NewsData">醫療衛教管理</a></li>
             <li><a href="/Page6/Edu">健康促進衛教活動管理</a></li>
+            <li><a href="/NormallContent/Page6Content">衛教園區圖文管理</a></li>
         </ul>
     </li>
     <!--人員募集-->

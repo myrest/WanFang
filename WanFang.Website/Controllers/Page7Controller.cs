@@ -29,6 +29,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult HirCategory(HirCategory_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("人員募集管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             //if (!string.IsNullOrEmpty(filter.op_title) && filter.op_title.StartsWith("請輸入")) filter.op_title = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -49,7 +52,10 @@ namespace WanFang.Website.Controllers
 
         public ActionResult HirDetail(HirDetail_Filter filter, Rest.Core.Paging Page)
         {
-            if (!string.IsNullOrEmpty(filter.HirName) && filter.HirName.StartsWith("請")) filter.HirName = null;
+            var PermissionCheck = CheckPermission("人員募集管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
+            if (!string.IsNullOrEmpty(filter.JobTitle) && filter.JobTitle.StartsWith("請")) filter.JobTitle = null;
             if (!string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請輸入")) filter.CostName = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };

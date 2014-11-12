@@ -164,7 +164,7 @@ namespace WanFang.DAL.Nhi_Qa
                 }
                 if (!string.IsNullOrEmpty(filter.nhi_title))
                 {
-                    SQLStr.Append(" AND nhi_title=@0", filter.nhi_title);
+                    SQLStr.Append(" AND nhi_title like @0", "%" + filter.nhi_title + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Description))
                 {

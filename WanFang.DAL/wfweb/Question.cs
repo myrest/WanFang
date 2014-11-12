@@ -188,7 +188,7 @@ namespace WanFang.DAL.Question
                 }
                 if (!string.IsNullOrEmpty(filter.Q_question))
                 {
-                    SQLStr.Append(" AND Q_question=@0", filter.Q_question);
+                    SQLStr.Append(" AND Q_question like @0", "%" + filter.Q_question + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Q_ans))
                 {

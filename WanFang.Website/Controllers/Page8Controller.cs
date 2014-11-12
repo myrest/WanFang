@@ -40,6 +40,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Nhi_p(Nhi_p_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("健保專區管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.nhi_cname) && filter.nhi_cname.StartsWith("請輸入")) filter.nhi_cname = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -61,6 +64,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Nhi_Med(Nhi_Med_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("健保專區管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.CodeOld) && filter.CodeOld.StartsWith("請輸入")) filter.CodeOld = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };

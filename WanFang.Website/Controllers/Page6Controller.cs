@@ -70,6 +70,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Edu(Edu_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("衛教園區管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (filter.Title == "請輸入衛教標題搜尋") filter.Title = null;
             ViewData["Filter"] = filter;
 

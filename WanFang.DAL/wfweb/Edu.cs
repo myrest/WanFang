@@ -180,7 +180,7 @@ namespace WanFang.DAL.Edu
                 }
                 if (!string.IsNullOrEmpty(filter.Title))
                 {
-                    SQLStr.Append(" AND Title=@0", filter.Title);
+                    SQLStr.Append(" AND Title like @0", "%" + filter.Title + "%");
                 }
                 if (!string.IsNullOrEmpty(filter.Place))
                 {

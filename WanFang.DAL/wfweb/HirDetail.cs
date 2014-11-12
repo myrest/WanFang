@@ -184,7 +184,7 @@ namespace WanFang.DAL.HirDetail
                 }
                 if (!string.IsNullOrEmpty(filter.JobTitle))
                 {
-                    SQLStr.Append(" AND JobTitle=@0", filter.JobTitle);
+                    SQLStr.Append(" AND (JobTitle like @0 or CostName like @0 )", "%" + filter.JobTitle + "%");
                 }
                 if (filter.Nums.HasValue)
                 {

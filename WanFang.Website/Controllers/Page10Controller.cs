@@ -41,6 +41,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Op_Qa(Op_Qa_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("詢問台管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.op_title) && filter.op_title.StartsWith("請輸入")) filter.op_title = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -62,6 +65,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Question(Question_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("詢問台管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.Q_question) && filter.Q_question.StartsWith("請輸入")) filter.Q_question = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -83,6 +89,9 @@ namespace WanFang.Website.Controllers
 
         public ActionResult Nhi_Qa(Nhi_Qa_Filter filter, Rest.Core.Paging Page)
         {
+            var PermissionCheck = CheckPermission("詢問台管理");
+            if (PermissionCheck != null) return PermissionCheck;
+
             if (!string.IsNullOrEmpty(filter.nhi_title) && filter.nhi_title.StartsWith("請輸入")) filter.nhi_title = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
