@@ -178,6 +178,10 @@ namespace WanFang.DAL.AboutTeam
                 {
                     SQLStr.Append(" AND Introduction=@0", filter.Introduction);
                 }
+                if (!string.IsNullOrEmpty(filter.Description))
+                {
+                    SQLStr.Append(" AND Description=@0", filter.Description);
+                }
                 if (!string.IsNullOrEmpty(filter.ContentBody))
                 {
                     SQLStr.Append(" AND ContentBody=@0", filter.ContentBody);

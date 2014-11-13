@@ -15,6 +15,7 @@ namespace WanFang.Domain
         string StrName { get; set; }
         string UserName { get; set; }
         string Introduction { get; set; }
+        string Description { get; set; }
         string ContentBody { get; set; }
         string Photo1 { get; set; }
         string Photo2 { get; set; }
@@ -48,6 +49,10 @@ namespace WanFang.Domain
         /// 簡介(新)
         /// </summary>
         public string Introduction { get; set; }
+        /// <summary>
+        /// 簡述
+        /// </summary>
+        public string Description { get; set; }
         /// <summary>
         /// 內容(新)
         /// </summary>
@@ -88,6 +93,7 @@ namespace WanFang.Domain
         public string StrName { get; set; }
         public string UserName { get; set; }
         public string Introduction { get; set; }
+        public string Description { get; set; }
         public string ContentBody { get; set; }
         public string Photo1 { get; set; }
         public string Photo2 { get; set; }

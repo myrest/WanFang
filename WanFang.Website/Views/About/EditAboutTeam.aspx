@@ -68,6 +68,12 @@
                         <input type="text" name="Introduction" size="100" maxlength="255"  value="<%=Model.Introduction %>"/></td>
                 </tr>
                 <tr class="line-d">
+                    <td class="line-d0 top">簡述<span class="red">*</span></td>
+                    <td>
+                        <textarea name="Description"  style="width: 100%" rows="4" cols="20"><%=Model.Description %></textarea>
+                    </td>
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 top">內容</td>
                     <td class="txt_l">
                         <script type="text/javascript">
