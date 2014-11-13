@@ -85,10 +85,10 @@
                 {
             %>
             <tr class="top mous01 line-d va_m">
-                <td>
+                <td class="txt_c">
                     <input type="checkbox" name="id" value="<%=item.GuideId %>" />
                 </td>
-                <td class="txt_c">
+                <td>
                     <%=item.ItemName %>
                 </td>
                 <td class="txt_c">

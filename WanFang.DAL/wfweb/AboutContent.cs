@@ -101,7 +101,7 @@ namespace WanFang.DAL.AboutContent
         #region Operation: Insert
         public long Insert(AboutContent_Info data)
         {
-            if (data.AboutCategoryId.Value == 0)
+            if (data.AboutCategoryId.HasValue && data.AboutCategoryId.Value == 0)
             {
                 data.AboutCategoryId = null;
             }

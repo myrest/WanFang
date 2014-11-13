@@ -45,7 +45,6 @@
                     <option>全部顯示</option>
                     <option>訊息公告</option>
                     <option>新聞稿</option>
-                    <option>我們的榮耀</option>
                 </select>
             </p>
             <p>
@@ -102,7 +101,7 @@
                     <%=item.DiaryType %>
                 </td>
                 <td class="txt_c">
-                    <%=item.PublishDate %>
+                    <%=item.PublishDate.ToString("yyyy/MM/dd") %>
                 </td>
                 <td>
                     <%=item.Subject %>

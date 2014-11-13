@@ -86,7 +86,7 @@ namespace WanFang.Domain
         /// </summary>
         public int Hit { get; set; }
         /// <summary>
-        /// 新聞類型
+        /// 類別名稱
         /// </summary>
         public string DiaryType { get; set; }
         /// <summary>

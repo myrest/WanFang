@@ -105,9 +105,9 @@
                     <input type="checkbox" name="id" value="<%=item.nhi_pId %>" />
                 </td>
                 <td class="txt_c">
-                    <%=item.nhi_date %>
+                    <%=(item.nhi_date.HasValue) ? item.nhi_date.Value.ToString("yyyy/MM/dd") : ""%>
                 </td>
-                <td class="txt_c">
+                <td>
                     <%=item.nhi_code%>
                 </td>
                 <td>

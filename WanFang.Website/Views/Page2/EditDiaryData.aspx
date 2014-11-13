@@ -51,7 +51,6 @@
                         <select name="DiaryType">
                             <option <%=(Model.DiaryType == "訊息公告")?"selected":"" %>>訊息公告</option>
                             <option <%=(Model.DiaryType == "新聞稿")?"selected":"" %>>新聞稿</option>
-                            <option <%=(Model.DiaryType == "我們的榮耀")?"selected":"" %>>我們的榮耀</option>
                         </select></td>
                     <!--新聞類型-->
                 </tr>                <tr class="line-d">

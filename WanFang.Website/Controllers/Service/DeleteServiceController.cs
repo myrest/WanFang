@@ -387,12 +387,23 @@ namespace WanFang.Website.Controllers.Service
             //check is there are any data under the categoary.
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+            var hcm = new HirCategory_Manager();
+            var hcd = new HirDetail_Manager();
             if (id != null)
             {
                 foreach (string x in id)
                 {
                     int sn = Convert.ToInt32(x);
-                    new HirCategory_Manager().Delete(sn);
+                    var data = hcd.GetByParameter(new HirDetail_Filter()
+                    {
+                        HirCategoryId = sn
+                    });
+                    if (data != null && data.Count > 0)
+                    {
+                        result.setErrorMessage("其下有[" + data.FirstOrDefault().HirName + "]資料，無法刪除。");
+                        break;
+                    }
+                    hcm.Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

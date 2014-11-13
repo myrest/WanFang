@@ -133,7 +133,7 @@
                         <table class="ww100" border="0" cellspacing="0" cellpadding="2">
                             <tr class="no_line">
                                 <td nowrap="nowrap" class="line-d w60 top">
-                                    <input name="OpenType" type="radio" value="0" checked />
+                                    <input name="OpenType" type="radio" value="0" <%=(Model.OpenType == 0) ? "checked" : "" %> />
                                     連結：</td>
                                 <td class="line-d top">
                                     <input name="OpenUrl" type="text" value="<%=Model.OpenUrl %>" size="100" maxlength="255" />
@@ -142,7 +142,7 @@
                             </tr>
                             <tr class="no_line">
                                 <td class="top">
-                                    <input name="OpenType" type="radio" value="1" checked="checked" />
+                                    <input name="OpenType" type="radio" value="1" <%=(Model.OpenType == 1) ? "checked" : "" %> />
                                     內容：</td>
                                 <td>
                                     <div class="red cp">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
@@ -167,8 +167,8 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td class="line-d">
-                                    <input type="radio" name="Position1" value="0" checked />圖片置於「左側」
-                    <input type="radio" name="Position1" value="1" />圖片置於「右側」
+<input type="radio" name="Position1" value="0" <%=(Model.Position1 == 0) ? "checked" : ""%> />圖片置於「左側」
+<input type="radio" name="Position1" value="1" <%=(Model.Position1 == 1) ? "checked" : ""%>/>圖片置於「右側」
                                 </td>
                             </tr>
                             <tr class="no_line">
@@ -194,10 +194,9 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td class="line-d">
-                                    <input type="radio" name="Position2" value="0" checked />
-                                    圖片置於「左側」
-                      <input type="radio" name="Position2" value="1" />
-                                    圖片置於「右側」 </td>
+<input type="radio" name="Position2" value="0" <%=(Model.Position2 == 0) ? "checked" : ""%> />圖片置於「左側」
+<input type="radio" name="Position2" value="1" <%=(Model.Position2 == 1) ? "checked" : ""%>/>圖片置於「右側」
+                            </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
@@ -222,10 +221,9 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>
-                                    <input type="radio" name="Position3" value="0" checked />
-                                    圖片置於「左側」
-                      <input type="radio" name="Position3" value="1" />
-                                    圖片置於「右側」 </td>
+<input type="radio" name="Position3" value="0" <%=(Model.Position3 == 0) ? "checked" : ""%> />圖片置於「左側」
+<input type="radio" name="Position3" value="1" <%=(Model.Position3 == 1) ? "checked" : ""%>/>圖片置於「右側」
+                                </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
