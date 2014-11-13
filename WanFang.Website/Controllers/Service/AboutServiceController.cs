@@ -88,9 +88,23 @@ namespace WanFang.Website.Controllers.Service
         [HttpPost]
         public JsonResult SaveAboutContent(AboutContent_Info data)
         {
-            //check is there are any data under the categoary.
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = AboutContMan.GetBySN(data.AboutContentId);
+                verdata.IsActive = 1;
+                AboutContMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
+            //check is there are any data under the categoary.
             if (data.UnitName == null || data.UnitName.Trim().Length == 0)
             {
                 result.setErrorMessage("單元名稱不得為空白");

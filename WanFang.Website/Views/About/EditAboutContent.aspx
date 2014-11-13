@@ -244,7 +244,7 @@
                 <tr class="line-d top">
                     <td class="line-d0">上/下架</td>
                     <td class="txt_l">
-                    <% =UrlExtension.GenerIsActive(Model.IsActive)%>
+                    <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -256,7 +256,8 @@
         <%
             if (IsVerifer)
             {
-                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
             }
             else
             {
