@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteDiaryData", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteDiaryData", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -68,31 +70,51 @@
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
-                    <td class="w20">&nbsp;</td>
-                    <td>類別名稱</td>
-                    <td>發布日期</td>
-                    <td>發布主題</td>
-                    <td>點閱率</td>
-                    <td class="w80">編輯</td>
-                </tr>
+            <tr class="form-content h30 txt_c">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td>
+                    類別名稱
+                </td>
+                <td>
+                    發布日期
+                </td>
+                <td>
+                    發布主題
+                </td>
+                <td>
+                    點閱率
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="top mous01 line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.DiaryDataID %>" />
-                    </td>
-                    <td class="txt_c"><%=item.DiaryType %></td>
-                    <td class="txt_c"><%=item.PublishDate %></td>
-                    <td><%=item.Subject %></td>
-                    <td class="txt_c"><%=item.Hit %></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page2/EditDiaryData/<%=item.DiaryDataID %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="top mous01 line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.DiaryDataID %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.DiaryType %>
+                </td>
+                <td class="txt_c">
+                    <%=item.PublishDate %>
+                </td>
+                <td>
+                    <%=item.Subject %>
+                </td>
+                <td class="txt_c">
+                    <%=item.Hit %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page2/EditDiaryData/<%=item.DiaryDataID %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

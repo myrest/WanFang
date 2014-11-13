@@ -23,13 +23,16 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteAboutContent", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteAboutContent", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
+
         }
         var DDLMenu = <%=DDlstr %>;
         function ChangeDDL(){
@@ -73,7 +76,7 @@
                 <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
             </p>
             <p>
-                類　別：
+                類 別：
                 <select name="AboutId" id="AboutId">
                     <option>全部顯示</option>
                     <%
@@ -107,58 +110,87 @@
                     <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
                     --點選以下項目來進行維護
                 </td>
-                <td class=" txt_r">                    <input type="button" class="submit3" onclick="window.location = '/About/EditAboutContent/';"
+                <td class=" txt_r">
+                    <input type="button" class="submit3" onclick="window.location = '/About/EditAboutContent/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">                </td>
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
+                </td>
             </tr>
         </table>
-            <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
-                    <td class="w20">&nbsp;</td>
-                    <td>類別名稱</td>
-                    <td>系列名稱</td>
-                    <td>單元名稱</td>
-                    <td class="w80">上/下架</td>
-                    <td class="w80">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
+        <table class="ww100" border="0" cellpadding="2" cellspacing="1">
+            <tr class="form-content h30 txt_c">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td>
+                    類別名稱
+                </td>
+                <td>
+                    系列名稱
+                </td>
+                <td>
+                    單元名稱
+                </td>
+                <td class="w80">
+                    上/下架
+                </td>
+                <td class="w80">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
                     string AboutName = string.Empty;
                     string AboutCategoaryName = string.Empty;
-                    var AboutData = About.Where(x=> x.AboutId == item.AboutId).FirstOrDefault();
+                    var AboutData = About.Where(x => x.AboutId == item.AboutId).FirstOrDefault();
                     if (AboutData != null)
                     {
                         AboutName = AboutData.Category;
                     }
-                    var AboutCategoaryData = Categoary.Where(x=>x.AboutCategoryId == item.AboutCategoryId).FirstOrDefault();
+                    var AboutCategoaryData = Categoary.Where(x => x.AboutCategoryId == item.AboutCategoryId).FirstOrDefault();
                     if (AboutCategoaryData != null)
                     {
                         AboutCategoaryName = AboutCategoaryData.Category;
                     }
             %>
-                <tr class="top mous01 line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.AboutContentId %>" /></td>
-                    <td class="txt_c"><%=AboutName %></td>
-                    <td><%=AboutCategoaryName %></td>
-                    <td><%=item.UnitName %></td>
-                    <td class="txt_c"><%=WanFang.Core.MVC.Extensions.UrlExtension.GenerIsActive(item.IsActive, true)%></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
+            <tr class="top mous01 line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.AboutContentId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=AboutName %>
+                </td>
+                <td>
+                    <%=AboutCategoaryName %>
+                </td>
+                <td>
+                    <%=item.UnitName %>
+                </td>
+                <td class="txt_c">
+                    <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerIsActive(item.IsActive, true)%>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>';"
                         value="編輯">
                     <input name="bt_edit" type="button" class="submit4" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>?Verify=1';"
                         value="審核">
-                        </td>
-                </tr>
+                </td>
+            </tr>
             <%
                 }
             %>
-            </table>        <br />
+        </table>
+        <br />
         <div class="m_page">
-        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
+            <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br />

@@ -14,12 +14,14 @@
 
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteQuestion", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteQuestion", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
 
@@ -62,36 +64,34 @@
     <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
-                <p>
-                    類　別：
-                  <select name="op_type">
-                      <option>請選擇</option>
-                      <option>營養諮詢</option>
-                  </select>
-                </p>
+            <p>
+                類 別：
+                <select name="op_type">
+                    <option>請選擇</option>
+                    <option>營養諮詢</option>
+                </select>
+            </p>
             <p>
                 門診類別：
-              <select name="DeptName" id="DeptName">
-                  <option>請選擇</option>
-                  <%
-                      foreach (var item in Dept)
-                      {
-                          string selected = string.Empty;
-                          Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
-                      }
-                  %>
-              </select>
-              科別：
-              <select name="CostName" id="CostName">
-                  <option>請選擇</option>
-              </select>
-
+                <select name="DeptName" id="DeptName">
+                    <option>請選擇</option>
+                    <%
+                        foreach (var item in Dept)
+                        {
+                            string selected = string.Empty;
+                            Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
+                        }
+                    %>
+                </select>
+                科別：
+                <select name="CostName" id="CostName">
+                    <option>請選擇</option>
+                </select>
             </p>
-
             <p>
                 關鍵字：
-                <input name="Q_question" type="text" value="請輸入提問標題搜尋" onclick="this.value = '';" size="30"
-                    id="Q_question" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="Q_question" type="text" value="請輸入提問標題搜尋" onclick="this.value = '';"
+                    size="30" id="Q_question" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -110,34 +110,57 @@
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content txt_c h30">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w60">發佈日期</td>
-                    <td class="w60">諮詢類別</td>
-                    <td class="w80">科別</td>
-                    <td>提問標題</td>
-                    <td class="w60">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
-
+            <tr class="form-content txt_c h30">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w60">
+                    發佈日期
+                </td>
+                <td class="w60">
+                    諮詢類別
+                </td>
+                <td class="w80">
+                    科別
+                </td>
+                <td>
+                    提問標題
+                </td>
+                <td class="w60">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="mous01 top line-d va_m line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.QuestionId %>" />
-                    </td>
-                    <td class="txt_c"><%=item.Q_time.ToString("yyyy/MM/dd") %></td>
-                    <td class="txt_c"><%=item.Q_type %></td>
-                    <td class="txt_c"><%=item.CostName %></td>
-                    <td><%=item.Q_title %></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditQuestion/<%=item.QuestionId %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="mous01 top line-d va_m line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.QuestionId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.Q_time.ToString("yyyy/MM/dd") %>
+                </td>
+                <td class="txt_c">
+                    <%=item.Q_type %>
+                </td>
+                <td class="txt_c">
+                    <%=item.CostName %>
+                </td>
+                <td>
+                    <%=item.Q_title %>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditQuestion/<%=item.QuestionId %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

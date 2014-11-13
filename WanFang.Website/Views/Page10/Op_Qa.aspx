@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteOp_Qa", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteOp_Qa", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -41,16 +43,16 @@
                 上下架：
                 <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
             </p>
-                <p>
-                    類　別：
-                  <select name="op_type">
-                      <option>請選擇</option>
-                      <option>掛號</option>
-                      <option>門診</option>
-                      <option>住院</option>
-                      <option>檢查</option>
-                  </select>
-                </p>
+            <p>
+                類 別：
+                <select name="op_type">
+                    <option>請選擇</option>
+                    <option>掛號</option>
+                    <option>門診</option>
+                    <option>住院</option>
+                    <option>檢查</option>
+                </select>
+            </p>
             <p>
                 關鍵字：
                 <input name="op_title" type="text" value="請輸入問題標題搜尋" onclick="this.value = '';" size="30"
@@ -69,38 +71,64 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page10/EditOp_Qa/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w80">類別名稱</td>
-                    <td>問題標題</td>
-                    <td class="w40">點閱數</td><!--id="hit"-->
-                    <td class="w40">上/下架</td>
-                    <td class="w80">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
+            <tr class="form-content h30 txt_c">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w80">
+                    類別名稱
+                </td>
+                <td>
+                    問題標題
+                </td>
+                <td class="w40">
+                    點閱數
+                </td>
+                <!--id="hit"-->
+                <td class="w40">
+                    上/下架
+                </td>
+                <td class="w80">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="line-d mous01 top va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.Op_QaId %>" />
-                    </td>
-                    <td class="txt_c"><%=item.op_type %></td>
-                    <td><%=item.op_title %></td>
-                    <td class="txt_c"><%=item.hit %></td>
-                    <td class="txt_c"><%=(item.IsActive > 0) ? "上架" : "下架"%></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditOp_Qa/<%=item.Op_QaId %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="line-d mous01 top va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.Op_QaId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.op_type %>
+                </td>
+                <td>
+                    <%=item.op_title %>
+                </td>
+                <td class="txt_c">
+                    <%=item.hit %>
+                </td>
+                <td class="txt_c">
+                    <%=(item.IsActive > 0) ? "上架" : "下架"%>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page10/EditOp_Qa/<%=item.Op_QaId %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

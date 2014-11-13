@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeletePilates", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeletePilates", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -23,12 +25,13 @@
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
-                <div class="tt-r">其他課程管理</div>
+                <div class="tt-r">
+                    其他課程管理</div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
-
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a
+                href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
         </div>
         <p class="clear">
         </p>
@@ -42,8 +45,8 @@
             </p>
             <p>
                 關鍵字：
-                <input name="RegSubject" type="text" value="請輸入課程主題搜尋" onclick="this.value = '';" size="30"
-                    id="RegSubject" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="RegSubject" type="text" value="請輸入課程主題搜尋" onclick="this.value = '';"
+                    size="30" id="RegSubject" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -58,44 +61,81 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page3/EditPilates/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content txt_c h30">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w30">課程代號</td>
-                    <td class="w70">課程名稱</td>
-                    <td>課程主題</td>
-                    <td class="w70">開課日期</td>
-                    <td class="w50">上課開始時間</td>
-                    <td class="w50">上課結束時間</td>
-                    <td>備註</td>
-                    <td class="txt_c">上/下架</td>
-                    <td class="w80">編輯</td>
-                </tr>
+            <tr class="form-content txt_c h30">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w30">
+                    課程代號
+                </td>
+                <td class="w70">
+                    課程名稱
+                </td>
+                <td>
+                    課程主題
+                </td>
+                <td class="w70">
+                    開課日期
+                </td>
+                <td class="w50">
+                    上課開始時間
+                </td>
+                <td class="w50">
+                    上課結束時間
+                </td>
+                <td>
+                    備註
+                </td>
+                <td class="txt_c">
+                    上/下架
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="top mous01 line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.PilatesId %>" />
-                    </td>
-                    <td class="txt_c"><%=item.RegID.Substring(0,1) %></td>
-                    <td class="txt_c"><%=item.RegName %></td>
-                    <td class="line-d"><%=item.RegSubject %></td>
-                    <td class="txt_c"><%=item.PublishDate.ToString("yyyy/MM/dd") %></td>
-                    <td class="txt_c"><%=item.TimeStart %></td>
-                    <td class="txt_c"><%=item.TimeEnd %></td>
-                    <td class="txt_c"><%=item.Memo %></td>
-                    <td class="txt_c"><%=(item.IsActive > 0) ? "上架" : "下架"%></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="top mous01 line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.PilatesId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.RegID.Substring(0,1) %>
+                </td>
+                <td class="txt_c">
+                    <%=item.RegName %>
+                </td>
+                <td class="line-d">
+                    <%=item.RegSubject %>
+                </td>
+                <td class="txt_c">
+                    <%=item.PublishDate.ToString("yyyy/MM/dd") %>
+                </td>
+                <td class="txt_c">
+                    <%=item.TimeStart %>
+                </td>
+                <td class="txt_c">
+                    <%=item.TimeEnd %>
+                </td>
+                <td class="txt_c">
+                    <%=item.Memo %>
+                </td>
+                <td class="txt_c">
+                    <%=(item.IsActive > 0) ? "上架" : "下架"%>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

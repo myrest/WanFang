@@ -10,12 +10,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteHirDetail", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteHirDetail", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -43,22 +45,22 @@
                 上下架：
                 <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
             </p>
-                <p>
-                    職缺類別：
-                          <select name="HirName">
-                              <option selected="selected">請選擇</option>
-                              <%
-                                  foreach (var item in categoary)
-                                  {
-                                      Response.Write(string.Format("<option>{0}</option>", item.CategoryName));
-                                  }
-                              %>
-                          </select>
-                </p>
+            <p>
+                職缺類別：
+                <select name="HirName">
+                    <option selected="selected">請選擇</option>
+                    <%
+                        foreach (var item in categoary)
+                        {
+                            Response.Write(string.Format("<option>{0}</option>", item.CategoryName));
+                        }
+                    %>
+                </select>
+            </p>
             <p>
                 關鍵字：
-                <input name="JobTitle" type="text" value="請輸入職缺科別或職缺名稱搜尋" onclick="this.value = '';" size="30"
-                    id="JobTitle" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="JobTitle" type="text" value="請輸入職缺科別或職缺名稱搜尋" onclick="this.value = '';"
+                    size="30" id="JobTitle" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -73,40 +75,69 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page7/EditHirDetail/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w60">發佈日期</td>
-                    <td>職缺類別</td>
-                    <td>職缺科別</td>
-                    <td>職缺名稱</td>
-                    <td class="w60">職缺數量</td>
-                    <td class="w80">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
+            <tr class="form-content h30 txt_c">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w60">
+                    發佈日期
+                </td>
+                <td>
+                    職缺類別
+                </td>
+                <td>
+                    職缺科別
+                </td>
+                <td>
+                    職缺名稱
+                </td>
+                <td class="w60">
+                    職缺數量
+                </td>
+                <td class="w80">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="mous01 top line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.HirDetailId %>" />
-                    </td>
-                    <td class="txt_c"><%=item.PublishDate.ToString("yyyy/MM/dd") %></td>
-                    <td class="txt_c"><%=item.HirName%></td>
-                    <td class="txt_c"><%=item.CostName %></td>
-                    <td><%=item.JobTitle %></td>
-                    <td class="txt_c"><%=item.Nums %></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="mous01 top line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.HirDetailId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.PublishDate.ToString("yyyy/MM/dd") %>
+                </td>
+                <td class="txt_c">
+                    <%=item.HirName%>
+                </td>
+                <td class="txt_c">
+                    <%=item.CostName %>
+                </td>
+                <td>
+                    <%=item.JobTitle %>
+                </td>
+                <td class="txt_c">
+                    <%=item.Nums %>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

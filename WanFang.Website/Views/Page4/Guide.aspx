@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteGuide", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteGuide", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -58,7 +60,8 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page4/EditGuide/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>

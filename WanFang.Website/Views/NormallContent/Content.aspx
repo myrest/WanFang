@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteNormallContent", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteNormallContent", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -59,40 +61,58 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/NormallContent/<%=ViewData["EditPage"].ToString() %>/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
-            <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content txt_c h30">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w60">單元名稱</td>
-                    <td class="w80">上/下架</td>
-                    <td class="w80">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
+        <table class="ww100" border="0" cellpadding="2" cellspacing="1">
+            <tr class="form-content txt_c h30">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w60">
+                    單元名稱
+                </td>
+                <td class="w80">
+                    上/下架
+                </td>
+                <td class="w80">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="top mous01 line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.NormallContentId %>" /></td>
-                    <td class="txt_c"><%=item.UnitName %></td>
-                    <td class="txt_c"><%=WanFang.Core.MVC.Extensions.UrlExtension.GenerIsActive(item.IsActive, true)%></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
+            <tr class="top mous01 line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.NormallContentId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.UnitName %>
+                </td>
+                <td class="txt_c">
+                    <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerIsActive(item.IsActive, true)%>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/NormallContent/<%=ViewData["EditPage"].ToString() %>/<%=item.NormallContentId %>';"
                         value="編輯">
-                        </td>
-                </tr>
+                </td>
+            </tr>
             <%
                 }
             %>
-            </table>
+        </table>
         <br />
         <div class="m_page">
-        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
+            <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br />

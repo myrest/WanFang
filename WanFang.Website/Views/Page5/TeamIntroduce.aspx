@@ -14,12 +14,14 @@
 
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteTeamIntroduce", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteTeamIntroduce", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
 
@@ -48,11 +50,13 @@
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
-                <div class="tt-r">團隊介紹</div>
+                <div class="tt-r">
+                    團隊介紹</div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx" >後端管理系統</a>&nbsp&#187&nbsp團隊介紹
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a
+                href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp團隊介紹
         </div>
         <p class="clear">
         </p>
@@ -66,26 +70,25 @@
             </p>
             <p>
                 門診類別：
-              <select name="DeptName" id="DeptName">
-                  <option>請選擇</option>
-                  <%
-                      foreach (var item in Dept)
-                      {
-                          string selected = string.Empty;
-                          Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
-                      }
-                  %>
-              </select>
-              科別：
-              <select name="CostName" id="CostName">
-                  <option>請選擇</option>
-              </select>
-
+                <select name="DeptName" id="DeptName">
+                    <option>請選擇</option>
+                    <%
+                        foreach (var item in Dept)
+                        {
+                            string selected = string.Empty;
+                            Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
+                        }
+                    %>
+                </select>
+                科別：
+                <select name="CostName" id="CostName">
+                    <option>請選擇</option>
+                </select>
             </p>
             <p>
                 關鍵字：
-                <input name="ContentBody" type="text" value="請輸入關鍵字搜尋" onclick="this.value = '';" size="30"
-                    id="ContentBody" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="ContentBody" type="text" value="請輸入關鍵字搜尋" onclick="this.value = '';"
+                    size="30" id="ContentBody" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -100,36 +103,56 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page5/EditTeamIntroduce/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();" value="待審核">
+                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
             <tr class="form-content h30 txt_c">
-              <td class="w20">&nbsp;</td>
-              <td>門診類別</td>
-              <td >科別</td>
-              <td class="w60">上/下架</td>
-              <td class="w80">更新日期</td>
-              <td class="w80">編輯</td>
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td>
+                    門診類別
+                </td>
+                <td>
+                    科別
+                </td>
+                <td class="w60">
+                    上/下架
+                </td>
+                <td class="w80">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
             </tr>
-
             <%
                 foreach (var item in Model)
                 {
             %>
             <tr class="mous01 top line-d va_m">
-              <td>
-                <input type="checkbox" name="id" value="<%=item.TeamIntroduceId %>" />
-              </td>
-              <td class="txt_c"><%=item.DeptName %></td>
-              <td class="txt_c"><%=item.CostName %></td>
-              <td class="txt_c"><%=(item.IsActive > 0) ? "上架" : "下架"%></td>
-              <td class="txt_c"><%=item.LastUpdate %></td>
-              <td class="txt_c">
-                <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page5/EditTeamIntroduce/<%=item.TeamIntroduceId %>';"
-                    value="編輯">
-              </td>
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.TeamIntroduceId %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.DeptName %>
+                </td>
+                <td class="txt_c">
+                    <%=item.CostName %>
+                </td>
+                <td class="txt_c">
+                    <%=(item.IsActive > 0) ? "上架" : "下架"%>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page5/EditTeamIntroduce/<%=item.TeamIntroduceId %>';"
+                        value="編輯">
+                </td>
             </tr>
             <%
                 }

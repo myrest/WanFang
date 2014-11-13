@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteNhi_Med", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteNhi_Med", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -39,8 +41,8 @@
         <div class="bg-s">
             <p>
                 關鍵字：
-                <input name="CodeOld" type="text" value="請輸入健保代碼或中文品名搜尋" onclick="this.value = '';" size="30"
-                    id="CodeOld" onkeydown="if(event.keyCode==13){this.form.submit();}" />
+                <input name="CodeOld" type="text" value="請輸入健保代碼或中文品名搜尋" onclick="this.value = '';"
+                    size="30" id="CodeOld" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
         </div>
@@ -59,31 +61,51 @@
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
-                <tr class="form-content h30 txt_c">
-                    <td class="w20">&nbsp;</td>
-                    <td class="w100">發佈日期</td>
-                    <td class="w100">健保代碼</td>
-                    <td>中文品名</td>
-                    <td class="w100">更新日期</td>
-                    <td class="w80">編輯</td>
-                </tr>
+            <tr class="form-content h30 txt_c">
+                <td class="w20">
+                    &nbsp;
+                </td>
+                <td class="w100">
+                    發佈日期
+                </td>
+                <td class="w100">
+                    健保代碼
+                </td>
+                <td>
+                    中文品名
+                </td>
+                <td class="w100">
+                    更新日期
+                </td>
+                <td class="w80">
+                    編輯
+                </td>
+            </tr>
             <%
                 foreach (var item in Model)
                 {
             %>
-                <tr class="mous01 top line-d va_m">
-                    <td>
-                        <input type="checkbox" name="id" value="<%=item.MedicationID %>" />
-                    </td>
-                    <td class="txt_c"><%=item.PublishDate.ToString("yyyy/MM/dd") %></td>
-                    <td class="txt_c"><%=item.CodeOld %></td>
-                    <td><%=item.PNameOld %></td>
-                    <td class="txt_c"><%=item.LastUpdate %></td>
-                    <td class="txt_c">
-                        <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_Med/<%=item.MedicationID %>';"
-                            value="編輯">
-                    </td>
-                </tr>
+            <tr class="mous01 top line-d va_m">
+                <td>
+                    <input type="checkbox" name="id" value="<%=item.MedicationID %>" />
+                </td>
+                <td class="txt_c">
+                    <%=item.PublishDate.ToString("yyyy/MM/dd") %>
+                </td>
+                <td class="txt_c">
+                    <%=item.CodeOld %>
+                </td>
+                <td>
+                    <%=item.PNameOld %>
+                </td>
+                <td class="txt_c">
+                    <%=item.LastUpdate %>
+                </td>
+                <td class="txt_c">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page8/EditNhi_Med/<%=item.MedicationID %>';"
+                        value="編輯">
+                </td>
+            </tr>
             <%
                 }
             %>

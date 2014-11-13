@@ -10,12 +10,15 @@
 <script>
     function DeleteSelected() {
         var param = $('input[name="id"]:checked').serialize();
-        utility.service("DeleteService/DeleteAbout", param, "POST", function (data) {
-            if (data.code > 0) {
-                document.location.reload(true);
-            } else {
-                utility.showPopUp(data.msg, 1);
-            }
+
+        utility.showPopUp('您確定要刪除嗎？', 3, function () {
+            utility.service("DeleteService/DeleteAbout", param, "POST", function (data) {
+                if (data.code > 0) {
+                    document.location.reload(true);
+                } else {
+                    utility.showPopUp(data.msg, 1);
+                }
+            });
         });
     }
 </script>

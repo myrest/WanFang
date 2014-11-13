@@ -9,12 +9,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteAboutCategoary", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteAboutCategoary", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -76,7 +78,8 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class="w70 txt_r">
-                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/About/EditAboutCategoary/';" value="新增資料">
+                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/About/EditAboutCategoary/';"
+                        value="新增資料">
                 </td>
             </tr>
         </table>
@@ -121,7 +124,9 @@
                 <td class="txt_c">
                     <%=item.Category %>
                 </td>
-                <td class="txt_c"><%=(item.IsActive > 0) ? "上架" : "下架"%></td>
+                <td class="txt_c">
+                    <%=(item.IsActive > 0) ? "上架" : "下架"%>
+                </td>
                 <td class="txt_c">
                     <%=item.LastUpdate %>
                 </td>
@@ -136,7 +141,7 @@
         </table>
         <br />
         <div class="m_page">
-        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
+            <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br />

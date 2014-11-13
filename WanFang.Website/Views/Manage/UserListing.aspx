@@ -8,12 +8,14 @@
     <script>
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
-            utility.service("DeleteService/DeleteUser", param, "POST", function (data) {
-                if (data.code > 0) {
-                    document.location.reload(true);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
+            utility.showPopUp('您確定要刪除嗎？', 3, function () {
+                utility.service("DeleteService/DeleteUser", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        document.location.reload(true);
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
             });
         }
     </script>
@@ -51,7 +53,8 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Manage/EditUser/';" value="新增資料">
+                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Manage/EditUser/';"
+                        value="新增資料">
                 </td>
             </tr>
         </table>
@@ -109,7 +112,8 @@
                     <%=item.LastUpdate %>
                 </td>
                 <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Manage/EditUser/<%=item.UserID %>';" value="編輯">
+                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Manage/EditUser/<%=item.UserID %>';"
+                        value="編輯">
                 </td>
             </tr>
             <%
@@ -118,7 +122,7 @@
         </table>
         <br />
         <div class="m_page">
-        <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
+            <% Html.RenderPartial("~/Views/Shared/UserControls/PagingBar.ascx"); %>
         </div>
         <br />
         <span class="red">[注意事項]</span><br />

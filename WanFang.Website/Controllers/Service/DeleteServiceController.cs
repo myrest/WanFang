@@ -24,11 +24,7 @@ namespace WanFang.Website.Controllers.Service
 
         private static readonly User_Manager UserMan = new User_Manager();
         private static readonly WebDownload_Manager WebDownloadman = new WebDownload_Manager();
-        private static readonly CostUnit_Manager CostUnitMan = new CostUnit_Manager();
         private static readonly CostNews_Manager CostNewsman = new CostNews_Manager();
-
-        private static readonly Doc_Manager DocMan = new Doc_Manager();
-        private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
 
         public DeleteServiceController()
             : base(Permission.Public)
@@ -165,23 +161,6 @@ namespace WanFang.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult DeleteCostUnit(string[] id)
-        {
-            //check is there are any data under the categoary.
-            ResultBase result = new ResultBase();
-            result.setMessage("Done");
-            if (id != null)
-            {
-                foreach (string x in id)
-                {
-                    int sn = Convert.ToInt32(x);
-                    CostUnitMan.Delete(sn);
-                }
-            }
-            return Json(result, JsonRequestBehavior.DenyGet);
-        }
-
-        [HttpPost]
         public JsonResult DeleteNews(string[] id)
         {
             //check is there are any data under the categoary.
@@ -199,7 +178,7 @@ namespace WanFang.Website.Controllers.Service
         }
 
         [HttpPost]
-        public JsonResult DeleteDoc(string[] id)
+        public JsonResult DeleteEdu(string[] id)
         {
             //check is there are any data under the categoary.
             ResultBase result = new ResultBase();
@@ -209,7 +188,126 @@ namespace WanFang.Website.Controllers.Service
                 foreach (string x in id)
                 {
                     int sn = Convert.ToInt32(x);
-                    DocMan.Delete(sn);
+                    new Edu_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNormallContent(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new NormallContent_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNhi_Qa(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Nhi_Qa_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteOp_Qa(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Op_Qa_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteQuestion(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Question_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteDiaryData(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new DiaryData_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeletePilates(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Pilates_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteGuide(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Guide_Manager().Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
@@ -226,10 +324,147 @@ namespace WanFang.Website.Controllers.Service
                 foreach (string x in id)
                 {
                     int sn = Convert.ToInt32(x);
-                    CostKeyMan.Delete(sn);
+                    new CostKeyword_Manager().Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
+
+        [HttpPost]
+        public JsonResult DeleteDoc(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Doc_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteTeamIntroduce(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new TeamIntroduce_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNewsData(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new NewsData_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteHirCategory(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new HirCategory_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteHirDetail(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new HirDetail_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNhi_Med(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Nhi_Med_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteNhi_p(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new Nhi_p_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCostUnit(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    new CostUnit_Manager().Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
     }
 }
