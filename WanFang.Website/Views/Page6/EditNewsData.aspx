@@ -13,6 +13,12 @@
         {
             Model = new WanFang.Domain.NewsData_Info();
         }
+        else
+        {
+            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("\n", "");
+            Model.ContentBody = Model.ContentBody.Replace("\r", "");
+        }
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
     %>
     <script>

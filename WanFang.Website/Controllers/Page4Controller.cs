@@ -41,12 +41,11 @@ namespace WanFang.Website.Controllers
         {
             var PermissionCheck = CheckPermission("就醫指南管理");
             if (PermissionCheck != null) return PermissionCheck;
-
             if (!string.IsNullOrEmpty(filter.ItemName) && filter.ItemName.StartsWith("請輸入")) filter.ItemName = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-            List<Guide_Info> data = GuideMan.GetByParameter(filter, page, null, "GuideId desc");
+            List<Guide_Info> data = GuideMan.GetByParameter(filter, page, null, "SortNum");
             ViewData["Model"] = data;
             ViewData["Page"] = page;
             return View();

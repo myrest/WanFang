@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.Nhi_Qa_Info();
         }
+        else
+        {
+            Model.nhi_con = Model.nhi_con.Replace("\n\r", "");
+            Model.nhi_con = Model.nhi_con.Replace("\n", "");
+            Model.nhi_con = Model.nhi_con.Replace("\r", "");
+        }
     %>
     <script>
         function Save() {

@@ -10,6 +10,18 @@
         {
             Model = new WanFang.Domain.Guide_Info();
         }
+        else
+        {
+            Model.ContentBody1 = Model.ContentBody1.Replace("\n\r", "");
+            Model.ContentBody1 = Model.ContentBody1.Replace("\n", "");
+            Model.ContentBody1 = Model.ContentBody1.Replace("\r", "");
+            Model.ContentBody2 = Model.ContentBody1.Replace("\n\r", "");
+            Model.ContentBody2 = Model.ContentBody1.Replace("\n", "");
+            Model.ContentBody2 = Model.ContentBody1.Replace("\r", "");
+            Model.ContentBody3 = Model.ContentBody1.Replace("\n\r", "");
+            Model.ContentBody3 = Model.ContentBody1.Replace("\n", "");
+            Model.ContentBody3 = Model.ContentBody1.Replace("\r", "");
+        }
     %>
     <script>
         function Save() {
@@ -20,7 +32,11 @@
             param += "&ContentBody2" + "=" + encodeURIComponent(inst.GetHTML());
             inst = FCKeditorAPI.GetInstance("Content2");
             param += "&ContentBody3" + "=" + encodeURIComponent(inst.GetHTML());
-
+            alert(param);
+            return;
+            if (param.indexOf('\n\r') > 0) {
+                alert('xxxxxxxxxxxxxxx');
+            }
             utility.service("Page4Service/SaveGuide", param, "POST", function (data) {
                 if (data.code > 0) {
                     utility.showPopUp("資料已儲存", 1, GoBack);
@@ -59,6 +75,14 @@
                 </td>
                 <td class="txt_l">
                     <input name="ItemName" type="text" value="<%=Model.ItemName %>" size="70">
+                </td>
+            </tr>
+            <tr class="line-d">
+                <td class="line-d0 va_m w100">
+                    排序<span class="red">*</span>
+                </td>
+                <td class="txt_l">
+                    <input name="SortNum" type="text" value="<%=Model.SortNum %>" size="70">
                 </td>
             </tr>
             <tr class="line-d">

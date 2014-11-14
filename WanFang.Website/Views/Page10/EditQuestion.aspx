@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.Question_Info();
         }
+        else
+        {
+            Model.Q_ans = Model.Q_ans.Replace("\n\r", "");
+            Model.Q_ans = Model.Q_ans.Replace("\n", "");
+            Model.Q_ans = Model.Q_ans.Replace("\r", "");
+        }
 
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(EnumHelper.GetEnumByName<WS_Dept_type>(Model.Dept));

@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.Nhi_p_Info();
         }
+        else
+        {
+            Model.warnings = Model.warnings.Replace("\n\r", "");
+            Model.warnings = Model.warnings.Replace("\n", "");
+            Model.warnings = Model.warnings.Replace("\r", "");
+        }
     %>
     <script>
         function Save() {

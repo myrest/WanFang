@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.CostNews_Info();
         }
+        else
+        {
+            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("\n", "");
+            Model.ContentBody = Model.ContentBody.Replace("\r", "");
+        }
         WS_Dept_type WSDept = (WS_Dept_type)ViewData["Dept"];
         string DeptName = ViewData["DeptName"].ToString();
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);

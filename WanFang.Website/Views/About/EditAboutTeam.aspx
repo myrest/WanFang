@@ -8,6 +8,12 @@
         {
             Model = new WanFang.Domain.AboutTeam_Info();
         }
+        else
+        {
+            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("\n", "");
+            Model.ContentBody = Model.ContentBody.Replace("\r", "");
+        }
     %>
     <script>
         function Save() {

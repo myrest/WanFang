@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.HirDetail_Info();
         }
+        else
+        {
+            Model.Condition = Model.Condition.Replace("\n\r", "");
+            Model.Condition = Model.Condition.Replace("\n", "");
+            Model.Condition = Model.Condition.Replace("\r", "");
+        }
         var categoary = new WanFang.BLL.HirCategory_Manager().GetAll();
 
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();

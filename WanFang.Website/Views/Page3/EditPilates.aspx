@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.Pilates_Info();
         }
+        else
+        {
+            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("\n", "");
+            Model.ContentBody = Model.ContentBody.Replace("\r", "");
+        }
     %>
     <script>
         function Save() {

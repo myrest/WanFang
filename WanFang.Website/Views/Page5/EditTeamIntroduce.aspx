@@ -10,6 +10,12 @@
         {
             Model = new WanFang.Domain.TeamIntroduce_Info();
         }
+        else
+        {
+            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("\n", "");
+            Model.ContentBody = Model.ContentBody.Replace("\r", "");
+        }
         List<WanFang.Domain.Webservice.CostDetailInformation> AllCost = new List<WanFang.Domain.Webservice.CostDetailInformation>() { };
         var ALLDept = new WanFang.BLL.WebService_Manage().GetAllDept();
         var DeptCode = ALLDept.Where(x => x.Value == Model.DeptName).FirstOrDefault().Key;

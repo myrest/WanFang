@@ -71,6 +71,9 @@
                     &nbsp;
                 </td>
                 <td>
+                    排序
+                </td>
+                <td>
                     項目名稱
                 </td>
                 <td class="w80">
@@ -87,6 +90,9 @@
             <tr class="top mous01 line-d va_m">
                 <td class="txt_c">
                     <input type="checkbox" name="id" value="<%=item.GuideId %>" />
+                </td>
+                <td>
+                    <%=item.SortNum %>
                 </td>
                 <td>
                     <%=item.ItemName %>
