@@ -5,9 +5,14 @@
     int CurrentMenuNum = (int)ViewData["MenuItem"];
     string[] menus = new string[14];
     menus[CurrentMenuNum] = "Menu_Default";
-    
+
+    bool IsDeptOnly = (bool)ViewData["IsDeptOnly"];
+   
 %>
 <ul id="menu">
+<%if (!IsDeptOnly)
+  {
+      %>
     <li class="<%=menus[0] %>"><a href="javascript:void(0);">首頁及時資訊管理</a>
         <ul>
             <li><a href="/Page0/EditHomePage">首頁及時資訊管理</a></li></ul>
@@ -71,6 +76,11 @@
             <li><a href="/NormallContent/Page8Content">健保專區圖文管理</a></li>
         </ul>
     </li>
+      <%
+  }
+  else
+  {
+    %>
     <!--特色醫療-->
     <li class="<%=menus[9] %>"><a href="javascript:void(0);">特色醫療管理</a>
         <ul>
@@ -79,6 +89,12 @@
             <li><a href="/Page9/News">最新消息管理</a></li>
         </ul>
     </li>
+    <%
+  }
+
+  if (!IsDeptOnly)
+  {
+    %>
     <!--尋問台-->
     <li class="<%=menus[10] %>"><a href="javascript:void(0);">詢問台管理</a>
         <ul>
@@ -97,6 +113,9 @@
         <ul>
             <li><a href="/Manage/UserListing">員工帳號管理</a></li></ul>
     </li>
+    <%
+  }
+    %>
     <!--密碼變更-->
     <li class="<%=menus[13] %>"><a href="javascript:void(0);">密碼變更</a>
         <ul>

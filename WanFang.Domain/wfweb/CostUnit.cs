@@ -19,6 +19,7 @@ namespace WanFang.Domain
         string Image1 { get; set; }
         string Image2 { get; set; }
         string Image3 { get; set; }
+        int IsHomePage { get; set; }
         int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
@@ -60,6 +61,10 @@ namespace WanFang.Domain
         /// </summary>
         public string Image3 { get; set; }
         /// <summary>
+        /// 是否為首頁
+        /// </summary>
+        public int IsHomePage { get; set; }
+        /// <summary>
         /// 圖片上傳4(特色醫療單元管理)
         /// </summary>
         public int IsActive { get; set; }
@@ -91,6 +96,7 @@ namespace WanFang.Domain
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }
+        public int? IsHomePage { get; set; }
         public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }

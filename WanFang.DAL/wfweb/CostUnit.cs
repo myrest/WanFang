@@ -194,6 +194,10 @@ namespace WanFang.DAL.CostUnit
                 {
                     SQLStr.Append(" AND Image3=@0", filter.Image3);
                 }
+                if (filter.IsHomePage.HasValue)
+                {
+                    SQLStr.Append(" AND IsHomePage=@0", filter.IsHomePage.Value);
+                }
                 if (filter.IsActive.HasValue)
                 {
                     SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);

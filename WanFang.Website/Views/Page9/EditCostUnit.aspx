@@ -155,6 +155,15 @@
             </tr>
             <tr class="line-d top">
                 <td class="line-d0">
+                    是否為首頁
+                </td>
+                <td class="txt_l">
+                    <input type="radio" value="1" name="IsHomePage" <%=(Model.IsHomePage) == 1 ? "checked" : "" %>/>是
+                    <input type="radio" value="0" name="IsHomePage" <%=(Model.IsHomePage) == 0 ? "checked" : "" %>/>否
+                </td>
+            </tr>
+            <tr class="line-d top">
+                <td class="line-d0">
                     上/下架
                 </td>
                 <td class="txt_l">
