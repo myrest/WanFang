@@ -178,6 +178,16 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("衛教日期格式錯誤，格式為 YYYY/MM/DD");
             }
+            string timesample = "2000/01/01 {0}";
+            DateTime temptime;
+            if (!DateTime.TryParse(string.Format(timesample, data.DateStart), out temptime))
+            {
+                result.setErrorMessage("無效的衛教起始時間");
+            }
+            if (!DateTime.TryParse(string.Format(timesample, data.DateEnd), out temptime))
+            {
+                result.setErrorMessage("無效的衛教結束時間");
+            }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;

@@ -84,13 +84,13 @@
                     <td class="line-d0 va_m w150">上課開始時間<span class="red">*</span></td>
                     <td class="txt_l">
                         <input name="TimeStart" type="text" value="<%=Model.TimeStart %>" size="20">
-                        （例：1900） </td>
+                        （例：19:00） </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 va_m w150">上課結束時間<span class="red">*</span></td>
                     <td class="txt_l">
                         <input name="TimeEnd" type="text" value="<%=Model.TimeEnd %>" size="20">
-                        （例：2000） </td>
+                        （例：20:00） </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 top">備註</td>
@@ -112,7 +112,7 @@
                 <tr class="line-d top">
                     <td class="line-d0 va_m">狀態</td>
                     <td class="txt_l va_m">
-                        <input type="checkbox" value="1" name="HasTail" <%=(Model.HasTail == 1)?"checked":"" %> /> 前台是否顯示問題</td>
+                        <input type="checkbox" value="1" name="HasTail" <%=(Model.HasTail == 1)?"checked":"" %> /> 是否顯示問卷</td>
                 </tr>                <tr class="line-d">
                     <td class="line-d0">上/下架</td>
                     <td class="txt_l">

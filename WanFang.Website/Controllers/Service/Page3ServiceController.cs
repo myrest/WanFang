@@ -58,6 +58,16 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("上課結束時間不得為空白");
             }
+            string timesample = "2000/01/01 {0}";
+            DateTime temptime;
+            if (!DateTime.TryParse(string.Format(timesample, data.TimeStart), out temptime))
+            {
+                result.setErrorMessage("無效的上課開始時間");
+            }
+            if (!DateTime.TryParse(string.Format(timesample, data.TimeEnd), out temptime))
+            {
+                result.setErrorMessage("無效的上課結束時間");
+            }
             if (result.JsonReturnCode > -1)
             {
                 data.LastUpdate = DateTime.Now;

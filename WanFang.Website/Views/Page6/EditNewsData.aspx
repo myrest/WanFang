@@ -20,9 +20,40 @@
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
         }
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+        List<WanFang.Domain.Webservice.CostDetailInformation> AllCost = new List<WanFang.Domain.Webservice.CostDetailInformation>() { };
+        if (!string.IsNullOrEmpty(Model.DeptName))
+        {
+            AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(EnumHelper.GetEnumByName<WS_Dept_type>(Model.DeptName));
+        }
     %>
     <script>
+        $(function () {
+            $('#DeptName').change(ChangeDept);
+        });
+
+        function ChangeDept() {
+            $this = $(this);
+            var Cost = $this.val();
+            var param = { CostCode: Cost };
+            utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
+                if (data.code > 0) {
+                    $('#CostName').html('');
+                    $('#CostName').append(new Option('請選擇', "", true, true));
+                    if (data.list != undefined) {
+                        $.each(data.list, function (index, ele) {
+                            $('#CostName').append(new Option(ele.CostName, ele.CostName, false, false));
+                        });
+                    }
+                } else {
+                    utility.showPopUp(data.msg, 1);
+                }
+            });
+        }
+
         function Save() {
+            var DeptName = $('#DeptName option:selected').text();
+            $('#DeptName').html('');
+            $('#DeptName').append(new Option(DeptName, DeptName, true, true));
             var param = $('#form1 :not([name^=Content])').serialize();
             var inst = FCKeditorAPI.GetInstance("Content1");
             param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
@@ -68,7 +99,7 @@
                               {
                                   string selected = string.Empty;
                                   if (item.Value == Model.DeptName) selected = "selected";
-                                  Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Value, selected, item.Value));
+                                  Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
                               }
                           %>
                       </select>
@@ -77,7 +108,20 @@
                 <tr class="line-d">
                     <td class="line-d0 top">發表科別代號</td>
                     <td>
-                        <input name="Cost" type="text" value="<%=Model.Cost %>" size="50" /></td>
+                        <select name="Cost" id="CostName">
+                          <%
+                              foreach (var item in AllCost)
+                              {
+                                  string selected = string.Empty;
+                                  if (item.CostName == Model.Cost)
+                                  {
+                                      selected = "selected";
+                                  }
+                                  Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.CostName, selected, item.CostName));
+                              }
+                          %>
+                        </select>
+                    </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 va_m w150">標題<span class="red">*</span></td>
