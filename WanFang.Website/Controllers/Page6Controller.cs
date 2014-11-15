@@ -74,6 +74,7 @@ namespace WanFang.Website.Controllers
             if (PermissionCheck != null) return PermissionCheck;
 
             if (filter.Title == "請輸入衛教標題搜尋") filter.Title = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.EduType) && filter.EduType.StartsWith("請選擇")) filter.EduType = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };

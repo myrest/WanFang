@@ -71,6 +71,9 @@ namespace WanFang.Website.Controllers
             if (PermissionCheck != null) return PermissionCheck;
 
             if (!string.IsNullOrEmpty(filter.Q_question) && filter.Q_question.StartsWith("請輸入")) filter.Q_question = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.Q_type) && filter.Q_type.StartsWith("請選擇")) filter.Q_type = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請選擇")) filter.CostName = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.Dept) && filter.Dept.StartsWith("請選擇")) filter.Dept = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;

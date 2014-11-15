@@ -111,7 +111,7 @@
                     <%=item.nhi_code%>
                 </td>
                 <td>
-                    <%=item.nhi_type%>
+                    <%=item.nhi_cname%>
                 </td>
                 <td class="txt_c">
                     <%=item.hit %>

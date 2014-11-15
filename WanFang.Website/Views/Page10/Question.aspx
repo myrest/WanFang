@@ -66,14 +66,14 @@
         <div class="bg-s">
             <p>
                 類 別：
-                <select name="op_type">
+                <select name="Q_type">
                     <option>請選擇</option>
                     <option>營養諮詢</option>
                 </select>
             </p>
             <p>
                 門診類別：
-                <select name="DeptName" id="DeptName">
+                <select name="Dept" id="DeptName">
                     <option>請選擇</option>
                     <%
                         foreach (var item in Dept)

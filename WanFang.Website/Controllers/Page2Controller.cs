@@ -43,6 +43,8 @@ namespace WanFang.Website.Controllers
             if (PermissionCheck != null) return PermissionCheck;
 
             if (!string.IsNullOrEmpty(filter.Subject) && filter.Subject.StartsWith("請輸入")) filter.Subject = null;
+            if (!string.IsNullOrEmpty(filter.DiaryType) && filter.DiaryType.StartsWith("全部顯示")) filter.DiaryType = null;
+            
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
