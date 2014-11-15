@@ -51,11 +51,7 @@ namespace WanFang.Core.MVC.BaseController
             ViewData["IsDeptOnly"] = true;
             if (sessionData != null && sessionData.trading != null && sessionData.trading.IsVerifier)
             {
-                string Verify = filterContext.RequestContext.HttpContext.Request["Verify"];
-                if (!string.IsNullOrEmpty(Verify))
-                {
-                    ViewData["Verify"] = true;
-                }
+                ViewData["Verify"] = true;
             }
 
             if (sessionData != null && sessionData.trading != null)

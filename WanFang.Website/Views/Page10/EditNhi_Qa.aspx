@@ -12,6 +12,7 @@
         }
         else
         {
+            Model.nhi_con = Model.nhi_con ?? "";
             Model.nhi_con = Model.nhi_con.Replace("\n\r", "");
             Model.nhi_con = Model.nhi_con.Replace("\n", "");
             Model.nhi_con = Model.nhi_con.Replace("\r", "");

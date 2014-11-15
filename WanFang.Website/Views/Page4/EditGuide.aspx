@@ -12,15 +12,17 @@
         }
         else
         {
-            Model.ContentBody1 = Model.ContentBody1.Replace("\n\r", "");
+            Model.ContentBody1 = Model.ContentBody1 ?? "";
+            Model.ContentBody2 = Model.ContentBody2 ?? "";
+            Model.ContentBody3 = Model.ContentBody3 ?? "";
             Model.ContentBody1 = Model.ContentBody1.Replace("\n", "");
             Model.ContentBody1 = Model.ContentBody1.Replace("\r", "");
-            Model.ContentBody2 = Model.ContentBody1.Replace("\n\r", "");
-            Model.ContentBody2 = Model.ContentBody1.Replace("\n", "");
-            Model.ContentBody2 = Model.ContentBody1.Replace("\r", "");
-            Model.ContentBody3 = Model.ContentBody1.Replace("\n\r", "");
-            Model.ContentBody3 = Model.ContentBody1.Replace("\n", "");
-            Model.ContentBody3 = Model.ContentBody1.Replace("\r", "");
+            Model.ContentBody2 = Model.ContentBody2.Replace("\n\r", "");
+            Model.ContentBody2 = Model.ContentBody2.Replace("\n", "");
+            Model.ContentBody2 = Model.ContentBody2.Replace("\r", "");
+            Model.ContentBody3 = Model.ContentBody3.Replace("\n\r", "");
+            Model.ContentBody3 = Model.ContentBody3.Replace("\n", "");
+            Model.ContentBody3 = Model.ContentBody3.Replace("\r", "");
         }
     %>
     <script>

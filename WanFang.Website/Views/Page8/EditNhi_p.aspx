@@ -12,6 +12,7 @@
         }
         else
         {
+            Model.warnings = Model.warnings ?? "";
             Model.warnings = Model.warnings.Replace("\n\r", "");
             Model.warnings = Model.warnings.Replace("\n", "");
             Model.warnings = Model.warnings.Replace("\r", "");

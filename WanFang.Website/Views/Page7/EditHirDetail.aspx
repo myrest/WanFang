@@ -12,6 +12,7 @@
         }
         else
         {
+            Model.Condition = Model.Condition ?? "";
             Model.Condition = Model.Condition.Replace("\n\r", "");
             Model.Condition = Model.Condition.Replace("\n", "");
             Model.Condition = Model.Condition.Replace("\r", "");

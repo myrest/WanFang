@@ -12,6 +12,7 @@
         }
         else
         {
+            Model.Q_ans = Model.Q_ans ?? "";
             Model.Q_ans = Model.Q_ans.Replace("\n\r", "");
             Model.Q_ans = Model.Q_ans.Replace("\n", "");
             Model.Q_ans = Model.Q_ans.Replace("\r", "");

@@ -13,6 +13,9 @@
         }
         else
         {
+            Model.Content1 = Model.Content1 ?? "";
+            Model.Content2 = Model.Content2 ?? "";
+            Model.Content3 = Model.Content3 ?? "";
             Model.Content1 = Model.Content1.Replace("\n\r", "");
             Model.Content1 = Model.Content1.Replace("\n", "");
             Model.Content1 = Model.Content1.Replace("\r", "");

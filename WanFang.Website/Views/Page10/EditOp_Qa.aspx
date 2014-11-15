@@ -12,6 +12,7 @@
         }
         else
         {
+            Model.op_content = Model.op_content ?? "";
             Model.op_content = Model.op_content.Replace("\n\r", "");
             Model.op_content = Model.op_content.Replace("\n", "");
             Model.op_content = Model.op_content.Replace("\r", "");

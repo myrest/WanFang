@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
+        string VeriferClass = IsVerifer ? "" : " hide ";
+        
         List<WanFang.Domain.AboutContent_Info> Model = ViewData["Model"] as List<WanFang.Domain.AboutContent_Info>;
         List<WanFang.Domain.About_Info> About = ViewData["About"] as List<WanFang.Domain.About_Info>;
         List<WanFang.Domain.AboutCategory_Info> Categoary = ViewData["Categoary"] as List<WanFang.Domain.AboutCategory_Info>;
@@ -113,7 +116,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/About/EditAboutContent/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>
@@ -180,7 +183,7 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>?Verify=1';"
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/About/EditAboutContent/<%=item.AboutContentId %>?Verify=1';"
                         value="審核">
                 </td>
             </tr>
