@@ -7,14 +7,19 @@
             %>
             <script>
                 page = {
-                    goprev: function () {
-                        var pagenum = parseInt($('#CurrentPage').val(), 10) - 1;
+                    totalpage : parseInt('<%=Page.TotalPages %>',10)
+                    ,goprev: function () {
+                        var currentpage = parseInt($('#CurrentPage').val(), 10);
+                        if (currentpage <= 1) return;
+                        var pagenum = currentpage - 1;
                         if (pagenum < 1) pagenum = 1;
                         $('#CurrentPage').val(pagenum);
                         $('#form1').submit();
                     },
                     gonext: function () {
-                        var pagenum = parseInt($('#CurrentPage').val(), 10) + 1;
+                        var currentpage = parseInt($('#CurrentPage').val(), 10);
+                        if (currentpage >= page.totalpage) return;
+                        var pagenum = currentpage + 1;
                         if (pagenum < <%= Page.TotalPages %> ) pagenum = <%= Page.TotalPages %> ;
                         $('#CurrentPage').val(pagenum);
                         $('#form1').submit();
@@ -34,7 +39,7 @@
             </script>
             <input type="hidden" name="CurrentPage" id="CurrentPage" value="<%=CurrentPage %>" />
 
-            &nbsp; <a href="#" class="prev">&#171;上一頁</a>&nbsp;
+            &nbsp; <a href="javascript:void(0);" class="prev">&#171;上一頁</a>&nbsp;
             <%
                 for (int i = 1; i <= Page.TotalPages; i++)
                 {
@@ -48,5 +53,5 @@
                     }
                 }
             %>
-            <a href="#" class="next">下一頁&#187;</a>&nbsp;<!-- <a href="#">&nbsp;最後一頁&nbsp;</a> -->
+            <a href="javascript:void(0);" class="next">下一頁&#187;</a>&nbsp;<!-- <a href="#">&nbsp;最後一頁&nbsp;</a> -->
             <%=Page.CurrentPage %>/<%=Page.TotalPages %>
