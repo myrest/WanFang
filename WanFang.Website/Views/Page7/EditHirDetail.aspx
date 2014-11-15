@@ -5,6 +5,7 @@
 <%@ Import Namespace="WanFang.Domain.Constancy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.HirDetail_Info Model = ViewData["Model"] as WanFang.Domain.HirDetail_Info;
         if (Model == null)
         {
@@ -169,10 +170,8 @@
                 <tr class="line-d">
                     <td class="line-d0">發佈狀態</td>
                     <td>
-                        <select name="IsActive">
-                            <option value="0" <%=(Model.IsActive == 0) ? "selected" : "" %>>無效關閉此職缺</option>
-                            <option value="1" <%=(Model.IsActive == 1) ? "selected" : "" %>>有效</option>
-                        </select></td>
+                        <%=(Model.IsActive == 0) ? "無效關閉此職缺" : "有效"%>
+                    </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0">更新日期</td>
@@ -180,7 +179,17 @@
                 </tr>
             </table>
         <div class="txt_c mag15" id="sendadd">
-            <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
+        <%
+            if (EditForVerifier)
+            {
+                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+            }
+            else
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+        %>
         </div>
         <!--main end-->
     </div>

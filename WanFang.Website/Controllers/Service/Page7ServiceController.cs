@@ -63,6 +63,19 @@ namespace WanFang.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = HdMan.GetBySN(data.HirDetailId);
+                verdata.IsActive = 1;
+                HdMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
             if (data.PublishDate == DateTime.MinValue)
             {
                 result.setErrorMessage("發布日期格式錯誤，正確格式為YYYY/MM/DD");

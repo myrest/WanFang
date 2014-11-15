@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
-        bool IsVerifer = (bool)ViewData["Verify"];
+        bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.AboutContent_Info Model = ViewData["Model"] as WanFang.Domain.AboutContent_Info;
         List<WanFang.Domain.About_Info> About = ViewData["About"] as List<WanFang.Domain.About_Info>;
         List<WanFang.Domain.AboutCategory_Info> Categoary = ViewData["Categoary"] as List<WanFang.Domain.AboutCategory_Info>;
@@ -267,7 +267,7 @@
             </table>
         <div class="txt_c mag15" id="sendadd">
         <%
-            if (IsVerifer)
+            if (EditForVerifier)
             {
                 Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
                 Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");

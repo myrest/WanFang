@@ -33,7 +33,7 @@
                 });
             </script>
             <input type="hidden" name="CurrentPage" id="CurrentPage" value="<%=CurrentPage %>" />
-            <!-- &nbsp;<a href="#">&nbsp;第一頁&nbsp;</a> -->
+
             &nbsp; <a href="#" class="prev">&#171;上一頁</a>&nbsp;
             <%
                 for (int i = 1; i <= Page.TotalPages; i++)

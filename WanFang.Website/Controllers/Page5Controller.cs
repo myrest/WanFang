@@ -73,7 +73,9 @@ namespace WanFang.Website.Controllers
             var PermissionCheck = CheckPermission("團隊介紹管理");
             if (PermissionCheck != null) return PermissionCheck;
 
-            if (filter.KeyWord == "請輸入關鍵字搜尋") filter.KeyWord = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.KeyWord) && filter.KeyWord.StartsWith("請輸入")) filter.KeyWord = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請選擇")) filter.CostName = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.DeptName) && filter.DeptName.StartsWith("請選擇")) filter.DeptName = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -101,6 +103,8 @@ namespace WanFang.Website.Controllers
             if (PermissionCheck != null) return PermissionCheck;
 
             if (!string.IsNullOrEmpty(filter.ContentBody) && filter.ContentBody.StartsWith("請輸入")) filter.ContentBody = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請選擇")) filter.CostName = null;
+            if (filter != null && !string.IsNullOrEmpty(filter.DeptName) && filter.DeptName.StartsWith("請選擇")) filter.DeptName = null;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };

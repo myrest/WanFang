@@ -57,6 +57,7 @@ namespace WanFang.Website.Controllers
 
             if (!string.IsNullOrEmpty(filter.JobTitle) && filter.JobTitle.StartsWith("請")) filter.JobTitle = null;
             if (!string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請輸入")) filter.CostName = null;
+            if (!string.IsNullOrEmpty(filter.HirName) && filter.HirName.StartsWith("請選擇")) filter.HirName = null;
             ViewData["Filter"] = filter;
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;

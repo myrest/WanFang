@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
+        string VeriferClass = IsVerifer ? "" : " hide ";
+
         List<WanFang.Domain.Pilates_Info> Model = ViewData["Model"] as List<WanFang.Domain.Pilates_Info>;
         WanFang.Domain.Pilates_Filter filter = ViewData["Filter"] as WanFang.Domain.Pilates_Filter;
     %>
@@ -61,7 +64,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page3/EditPilates/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>
@@ -134,6 +137,8 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
                         value="編輯">
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>?Verify=1';"
+                        value="審核">
                 </td>
             </tr>
             <%

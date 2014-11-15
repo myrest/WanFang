@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
+        string VeriferClass = IsVerifer ? "" : " hide ";
+
         List<WanFang.Domain.Doc_Info> Model = ViewData["Model"] as List<WanFang.Domain.Doc_Info>;
         WanFang.Domain.Doc_Filter filter = ViewData["Filter"] as WanFang.Domain.Doc_Filter;
         //Dictionary<string, string> Dept = ViewData["AllDept"] as Dictionary<string, string>;
@@ -104,7 +107,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page5/EditDoc/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>
@@ -165,6 +168,8 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page5/EditDoc/<%=item.DocId %>';"
                         value="編輯">
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page5/EditDoc/<%=item.DocId %>?Verify=1';"
+                        value="審核">
                 </td>
             </tr>
             <%

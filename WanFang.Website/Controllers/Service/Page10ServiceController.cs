@@ -36,10 +36,19 @@ namespace WanFang.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
-            /*if (data.PublishDate == DateTime.MinValue)
+            if (data.IsActive == 1)
             {
-                result.setErrorMessage("發布日期格式錯誤，正確格式為YYYY/MM/DD");
-            }*/
+                //審核專用
+                var verdata = OQMan.GetBySN(data.Op_QaId);
+                verdata.IsActive = 1;
+                OQMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
             if (string.IsNullOrEmpty(data.op_title))
             {
                 result.setErrorMessage("問題標題不得為空白");

@@ -34,6 +34,20 @@ namespace WanFang.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = NcMan.GetBySN(data.NormallContentId);
+                verdata.IsActive = 1;
+                NcMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
+
             if (string.IsNullOrEmpty(data.UnitName))
             {
                 result.setErrorMessage("單元名稱不得為空白");

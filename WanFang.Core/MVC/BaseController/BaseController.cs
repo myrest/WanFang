@@ -47,11 +47,17 @@ namespace WanFang.Core.MVC.BaseController
 
         protected override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            ViewData["Verify"] = false;
+            ViewData["Verify"] = false;//Is Has verify 
+            ViewData["EditForVerifier"] = false;//Is verify for edit.
             ViewData["IsDeptOnly"] = true;
             if (sessionData != null && sessionData.trading != null && sessionData.trading.IsVerifier)
             {
                 ViewData["Verify"] = true;
+                string EditForVerifier = filterContext.RequestContext.HttpContext.Request["Verify"];
+                if (!string.IsNullOrEmpty(EditForVerifier))
+                {
+                    ViewData["EditForVerifier"] = true;
+                }
             }
 
             if (sessionData != null && sessionData.trading != null)

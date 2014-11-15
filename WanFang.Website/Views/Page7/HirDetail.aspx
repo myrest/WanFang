@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
+        string VeriferClass = IsVerifer ? "" : " hide ";
+
         List<WanFang.Domain.HirDetail_Info> Model = ViewData["Model"] as List<WanFang.Domain.HirDetail_Info>;
         WanFang.Domain.HirDetail_Filter filter = ViewData["Filter"] as WanFang.Domain.HirDetail_Filter;
 
@@ -42,8 +45,12 @@
         <!--main begin-->
         <div class="bg-s">
             <p>
-                上下架：
-                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+                發佈狀態：
+                <select name="IsActive" id="IsActive">
+                    <option>請選擇</option>
+                    <option value="0" <%=(filter.IsActive == 0) ? "selected" : "" %>>無效關閉此職缺</option>
+                    <option value="1" <%=(filter.IsActive == 1) ? "selected" : "" %>>有效</option>
+                </select>
             </p>
             <p>
                 職缺類別：
@@ -75,7 +82,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3" onclick="window.location = '/Page7/EditHirDetail/';"
                         value="新增資料">
-                    <input type="button" class="submit3" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>
@@ -136,6 +143,8 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>';"
                         value="編輯">
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>?Verify=1';"
+                        value="審核">
                 </td>
             </tr>
             <%

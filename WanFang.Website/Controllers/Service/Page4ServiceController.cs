@@ -21,7 +21,7 @@ namespace WanFang.Website.Controllers.Service
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(Page4ServiceController));
 
-        private static readonly Guide_Manager DiaryMan = new Guide_Manager();
+        private static readonly Guide_Manager GuideMan = new Guide_Manager();
 
         public Page4ServiceController()
             : base(Permission.Public)
@@ -34,6 +34,19 @@ namespace WanFang.Website.Controllers.Service
         {
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = GuideMan.GetBySN(data.GuideId);
+                verdata.IsActive = 1;
+                GuideMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
             if (string.IsNullOrEmpty(data.ItemName))
             {
                 result.setErrorMessage("項目名稱不得為空白");
@@ -42,15 +55,15 @@ namespace WanFang.Website.Controllers.Service
             {
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
-                var olddata = DiaryMan.GetBySN(data.GuideId);
+                var olddata = GuideMan.GetBySN(data.GuideId);
                 checkUploadfiles(data, olddata);
                 if (data.GuideId > 0)
                 {
-                    DiaryMan.Update(data);
+                    GuideMan.Update(data);
                 }
                 else
                 {
-                    DiaryMan.Insert(data);
+                    GuideMan.Insert(data);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

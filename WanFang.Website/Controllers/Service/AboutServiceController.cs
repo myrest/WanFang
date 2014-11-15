@@ -196,6 +196,20 @@ namespace WanFang.Website.Controllers.Service
             //check is there are any data under the categoary.
             ResultBase result = new ResultBase();
             result.setMessage("Done");
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = AboutTeamMan.GetBySN(data.AboutTeamId);
+                verdata.IsActive = 1;
+                AboutTeamMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
+
             if (data.SortNum == null)
             {
                 result.setErrorMessage("順序不得為空白");

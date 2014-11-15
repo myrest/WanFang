@@ -5,6 +5,7 @@
 <%@ Import Namespace="WanFang.Domain.Constancy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.CostUnit_Info Model = ViewData["Model"] as WanFang.Domain.CostUnit_Info;
         if (Model == null)
         {
@@ -174,7 +175,7 @@
                     上/下架
                 </td>
                 <td class="txt_l">
-                    <% =UrlExtension.GenerIsActive(Model.IsActive)%>
+                    <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
                 </td>
             </tr>
             <tr class="line-d">
@@ -183,7 +184,17 @@
             </tr>
         </table>
         <div class="txt_c mag15" id="sendadd">
-            <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
+        <%
+            if (EditForVerifier)
+            {
+                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+            }
+            else
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+        %>
         </div>
         <!--main end-->
     </div>
