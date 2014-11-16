@@ -16,11 +16,29 @@
         {
             Model = new WanFang.Domain.User_Info();
         }
+
+        if (string.IsNullOrEmpty(DeptName) && Model.IsVerifier == 1)
+        {
+            DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(WSDept);
+        }
     %>
     <script>
         $(function () {
             $('#DeptName').change(ChangeDept);
+            $('#IsVerifier').change(ChangeToVerifier);
         });
+
+        function ChangeToVerifier() {
+            if ($('input[name="IsVerifier"]:checked').length > 0) {
+                $('input[name="Permission"]').prop('checked', true);
+                $('input[name="PermissionType"]').first().prop('checked', true);
+                $('input[name="PermissionType"]').last().prop('checked', false);
+                $('#DeptName option').last().prop('selected', true);
+                $('#PermissionSetting').hide();
+            } else {
+                $('#PermissionSetting').show();
+            }
+        }
 
         function ChangeDept() {
             $this = $(this);
@@ -106,10 +124,10 @@
                 <tr class="va_m line-d">
                     <td class="line-d0">特別設定</td>
                     <td class="txt_l">
-                        <input type="checkbox" value="1" name="IsVerifier" <%=Model.IsVerifier == 0?"":"checked" %> />具有審核權
+                        <input type="checkbox" value="1" id="IsVerifier" name="IsVerifier" <%=Model.IsVerifier == 0?"":"checked" %> />具有審核權
                     </td>
                 </tr>
-                <tr class="line-d">
+                <tr class="line-d <%=(Model.IsVerifier == 1) ? "hide" : "" %>" id="PermissionSetting">
                     <td class="line-d0 w150 top">管理權限<span class="red">*</span>
                         <br />
                         <span class="red">(權限二則一)</span></td>

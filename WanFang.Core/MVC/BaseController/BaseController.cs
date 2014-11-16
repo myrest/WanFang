@@ -50,6 +50,7 @@ namespace WanFang.Core.MVC.BaseController
             ViewData["Verify"] = false;//Is Has verify 
             ViewData["EditForVerifier"] = false;//Is verify for edit.
             ViewData["IsDeptOnly"] = true;
+            ViewData["Permission"] = string.Empty;
             if (sessionData != null && sessionData.trading != null && sessionData.trading.IsVerifier)
             {
                 ViewData["Verify"] = true;
@@ -63,6 +64,7 @@ namespace WanFang.Core.MVC.BaseController
             if (sessionData != null && sessionData.trading != null)
             {
                 ViewData["IsDeptOnly"] = sessionData.trading.IsDeptOnly;
+                ViewData["Permission"] = sessionData.trading.Permissions;
             }
             base.OnResultExecuting(filterContext);
             //add P3P header to make sure the pages inside other frames able to use cookies
