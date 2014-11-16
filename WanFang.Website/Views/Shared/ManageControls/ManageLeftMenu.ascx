@@ -13,7 +13,7 @@
    
 %>
 <ul id="menu">
-<%if (!IsDeptOnly)
+<%if (!IsDeptOnly || Verify)
   {
       %>
     <li class="<%=menus[0] %> <%=(Permission.IndexOf("首頁及時資訊管理") > -1) ? "" : "hide" %>">"><a href="javascript:void(0);">首頁及時資訊管理</a>
@@ -81,7 +81,8 @@
     </li>
       <%
   }
-  else
+  
+  if (IsDeptOnly)
   {
     %>
     <!--特色醫療-->
@@ -95,7 +96,7 @@
     <%
   }
 
-  if (!IsDeptOnly)
+  if (!IsDeptOnly || Verify)
   {
     %>
     <!--尋問台-->

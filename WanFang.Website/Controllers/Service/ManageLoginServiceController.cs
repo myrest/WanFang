@@ -50,6 +50,14 @@ namespace WanFang.Website.Controllers.Service
                 {
                     throw new Exception("私領域權限未設定");
                 }
+
+                if (user.IsVerifier == 1)//具有審核權，也可以具有公領域權限
+                {
+                    if (user.Permission != null)
+                    {
+                        trading.Permissions = user.Permission.Split(",".ToArray()).ToList();
+                    }
+                }
             }
             else
             {

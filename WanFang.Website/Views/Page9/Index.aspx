@@ -7,9 +7,9 @@
     <%
         bool IsVerifer = (bool)ViewData["Verify"];
         string VeriferClass = IsVerifer ? "" : " hide ";
+        string CanNotEdit = IsVerifer ? " hide " : "";
 
-        WanFang.BLL.CostUnit_Manager man = new WanFang.BLL.CostUnit_Manager();
-        var data = man.GetByParameter(new WanFang.Domain.CostUnit_Filter() { }, null, null, "SortNum");
+        var data = ViewData["Model"] as List<WanFang.Domain.CostUnit_Info>;
     
     %>
     <script>
@@ -66,7 +66,7 @@
                     <input name="button2" type="button" class="submit" value="取消全選" onclick="unselectAll(this.form);">
                     --點選以下項目來進行維護
                 </td>
-                <td class="w70 txt_r">
+                <td class="txt_r">
                     <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Page9/EditCostUnit/';"
                         value="新增資料">
                     <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
@@ -134,7 +134,7 @@
                     <%=item.LastUpdate%>
                 </td>
                 <td>
-                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>';"
+                    <input name="bt_edit" type="button" class="submit <%=CanNotEdit %>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>';"
                         value="編輯">
                     <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>?Verify=1';"
                         value="審核">

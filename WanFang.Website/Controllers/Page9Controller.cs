@@ -52,6 +52,15 @@ namespace WanFang.Website.Controllers
             }
             else
             {
+                WanFang.BLL.CostUnit_Manager man = new WanFang.BLL.CostUnit_Manager();
+                CostUnit_Filter filter = new CostUnit_Filter() { }; 
+                if (!sessionData.trading.IsVerifier)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                }
+
+                var data = man.GetByParameter(filter, null, null, "SortNum");
+                ViewData["Model"] = data;
                 return View();
             }
         }

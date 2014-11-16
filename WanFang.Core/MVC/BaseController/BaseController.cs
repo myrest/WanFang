@@ -24,16 +24,9 @@ namespace WanFang.Core.MVC.BaseController
 
         protected ActionResult CheckPermission(string UnitName)
         {
-            if (sessionData.trading.IsDeptOnly)
+            if (!sessionData.trading.Permissions.Contains(UnitName))
             {
                 return View("~/Views/Manage/PermissionDeny.aspx");
-            }
-            else
-            {
-                if (!sessionData.trading.Permissions.Contains(UnitName))
-                {
-                    return View("~/Views/Manage/PermissionDeny.aspx");
-                }
             }
             return null;
         }
