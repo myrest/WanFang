@@ -166,9 +166,17 @@ namespace WanFang.DAL.AboutService
                 {
                     SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
                 }
+                if (!string.IsNullOrEmpty(filter.UnitName))
+                {
+                    SQLStr.Append(" AND UnitName=@0", filter.UnitName);
+                }
                 if (!string.IsNullOrEmpty(filter.Description))
                 {
                     SQLStr.Append(" AND Description=@0", filter.Description);
+                }
+                if (filter.OpenType.HasValue)
+                {
+                    SQLStr.Append(" AND OpenType=@0", filter.OpenType.Value);
                 }
                 if (filter.DisplayType.HasValue)
                 {

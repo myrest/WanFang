@@ -20,6 +20,7 @@ namespace WanFang.Website.Controllers
         private static readonly AboutCategory_Manager AboutCateMan = new AboutCategory_Manager();
         private static readonly AboutContent_Manager AboutContMan = new AboutContent_Manager();
         private static readonly AboutTeam_Manager AboutTeamMan = new AboutTeam_Manager();
+        private static readonly AboutService_Manager AboutSrv = new AboutService_Manager();
 
         public AboutController()
             : base(Permission.Private)
@@ -147,6 +148,39 @@ namespace WanFang.Website.Controllers
             return View(model);
         }
 
+        public ActionResult AboutService(AboutService_Filter filter, Rest.Core.Paging Page)
+        {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
+            if (!string.IsNullOrEmpty(filter.UnitName) && filter.UnitName.StartsWith("請輸入")) filter.UnitName = null;
+            ViewData["Filter"] = filter;
+
+            Rest.Core.Paging page = new Rest.Core.Paging() { };
+            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+            List<AboutService_Info> data = AboutSrv.GetByParameter(filter, page, null, "SortNum");
+            ViewData["Model"] = data;
+            ViewData["Page"] = page;
+            return View();
+        }
+
+        public ActionResult EditAboutService(string id)
+        {
+            var PermissionCheck = CheckPermission("關於萬芳管理");
+            if (PermissionCheck != null) return PermissionCheck;
+            //Clear old information
+            if (sessionData.trading.UploadFiles != null && sessionData.trading.UploadFiles.Count > 0)
+            {
+                //Clear old information
+                sessionData.trading.UploadFiles.Where(x => x.Key.StartsWith("AboutService")).ToList().ForEach(x =>
+                {
+                    sessionData.trading.UploadFiles.Remove(x.Key);
+                });
+            }
+
+            var model = AboutSrv.GetBySN(Convert.ToInt32(id));
+            ViewData["Model"] = model;
+            return View(model);
+        }
 
     }
 }

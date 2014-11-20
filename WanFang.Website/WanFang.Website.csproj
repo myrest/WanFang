@@ -1378,6 +1378,8 @@
     <Content Include="Scripts\ckeditor\themes\default\theme.js" />
     <Content Include="Views\About\Categoary.aspx" />
     <Content Include="Views\About\Content.aspx" />
+    <Content Include="Views\About\AboutService.aspx" />
+    <Content Include="Views\About\EditAboutService.aspx" />
     <Content Include="Views\About\EditAboutTeam.aspx" />
     <Content Include="Views\About\Team.aspx" />
     <Content Include="Views\About\EditAboutContent.aspx" />

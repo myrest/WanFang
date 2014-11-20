@@ -16,7 +16,7 @@
 <%if (!IsDeptOnly || Verify)
   {
       %>
-    <li class="<%=menus[0] %> <%=(Permission.IndexOf("首頁及時資訊管理") > -1) ? "" : "hide" %>">"><a href="javascript:void(0);">首頁及時資訊管理</a>
+    <li class="<%=menus[0] %> <%=(Permission.IndexOf("首頁及時資訊管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">首頁及時資訊管理</a>
         <ul>
             <li><a href="/Page0/EditHomePage">首頁及時資訊管理</a></li></ul>
     </li>
@@ -29,6 +29,7 @@
                 <li class="menu_s"><a href="/About/Content">關於萬芳圖文管理</a></li>
             </li>
             <li><a href="/About/Team">管理團隊管理</a></li>
+            <li><a href="/About/AboutService">服務專區管理</a></li>
         </ul>
     </li>
     <!--最新消息-->
@@ -100,7 +101,7 @@
   {
     %>
     <!--尋問台-->
-    <li class="<%=menus[10] %> <%=(Permission.IndexOf("") > -1) ? "詢問台管理" : "hide" %>"><a href="javascript:void(0);">詢問台管理</a>
+    <li class="<%=menus[10] %> <%=(Permission.IndexOf("詢問台管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">詢問台管理</a>
         <ul>
             <li><a href="/Page10/Op_Qa">就醫問答集管理</a></li>
             <li><a href="/Page10/Question">健康諮詢查詢管理</a></li>

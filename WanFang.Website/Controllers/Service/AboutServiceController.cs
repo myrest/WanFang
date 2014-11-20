@@ -24,6 +24,7 @@ namespace WanFang.Website.Controllers.Service
         private static readonly AboutCategory_Manager AboutCatMan = new AboutCategory_Manager();
         private static readonly AboutContent_Manager AboutContMan = new AboutContent_Manager();
         private static readonly AboutTeam_Manager AboutTeamMan = new AboutTeam_Manager();
+        private static readonly AboutService_Manager AboutSrv = new AboutService_Manager();
 
         public AboutServiceController()
             : base(Permission.Public)
@@ -278,6 +279,109 @@ namespace WanFang.Website.Controllers.Service
             {
                 NewData.Photo2 = OldData.Photo2;
             }
+        }
+
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public JsonResult SaveAboutService(AboutService_Info data)
+        {
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = AboutSrv.GetBySN(data.AboutServiceId);
+                verdata.IsActive = 1;
+                AboutSrv.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
+            //check is there are any data under the categoary.
+            if (data.UnitName == null || data.UnitName.Trim().Length == 0)
+            {
+                result.setErrorMessage("單元名稱不得為空白");
+            }
+            if (result.JsonReturnCode > -1)
+            {
+                data.LastUpdate = DateTime.Now;
+                data.LastUpdator = sessionData.trading.LoginId;
+
+                if (data.AboutServiceId > 0)
+                {
+                    var olddata = AboutSrv.GetBySN(data.AboutServiceId);
+                    checkSrvUploadfiles(data, olddata);
+
+                    AboutSrv.Update(data);
+                }
+                else
+                {
+                    checkSrvUploadfiles(data, new AboutService_Info() { });
+                    AboutSrv.Insert(data);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        private void checkSrvUploadfiles(AboutService_Info NewData, AboutService_Info OldData)
+        {
+            string Prefix = string.Empty;
+            Prefix = "AboutServiceImage1";
+            if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
+            {
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                {
+                    NewData.Image1 = string.Empty;
+                }
+                else
+                {
+                    NewData.Image1 = CopyFile(sessionData.trading.UploadFiles[Prefix]);
+                }
+            }
+            else
+            {
+                NewData.Image1 = OldData.Image1;
+            }
+
+            Prefix = "AboutServiceImage2";
+            if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
+            {
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                {
+                    NewData.Image2 = string.Empty;
+                }
+                else
+                {
+                    NewData.Image2 = CopyFile(sessionData.trading.UploadFiles[Prefix]);
+                }
+            }
+            else
+            {
+                NewData.Image2 = OldData.Image2;
+            }
+
+            Prefix = "AboutServiceImage3";
+            if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
+            {
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                {
+                    NewData.Image3 = string.Empty;
+                }
+                else
+                {
+                    NewData.Image3 = CopyFile(sessionData.trading.UploadFiles[Prefix]);
+                }
+            }
+            else
+            {
+                NewData.Image3 = OldData.Image3;
+            }
+
         }
 
         private string CopyFile(string Source)

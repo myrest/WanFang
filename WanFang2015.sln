@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanFang.Core", "WanFang.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WanFang.Website", "WanFang.Website\WanFang.Website.csproj", "{7472181A-EAAB-4364-B606-F657B7F4A0A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zUnitTest.RestCore", "..\WanfangUI\UnitTest.Rest.Core\zUnitTest.RestCore.csproj", "{2DD7D94B-D64B-46EE-A117-2F1359B76A75}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = 4444.vsmdi
@@ -72,12 +70,6 @@ Global
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7472181A-EAAB-4364-B606-F657B7F4A0A9}.Release|x86.ActiveCfg = Release|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DD7D94B-D64B-46EE-A117-2F1359B76A75}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
