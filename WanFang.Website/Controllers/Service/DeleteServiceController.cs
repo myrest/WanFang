@@ -21,6 +21,7 @@ namespace WanFang.Website.Controllers.Service
         private static readonly AboutCategory_Manager AboutCatMan = new AboutCategory_Manager();
         private static readonly AboutContent_Manager AboutContMan = new AboutContent_Manager();
         private static readonly AboutTeam_Manager AboutTeamMan = new AboutTeam_Manager();
+        private static readonly AboutService_Manager AboutSrv = new AboutService_Manager();
 
         private static readonly User_Manager UserMan = new User_Manager();
         private static readonly WebDownload_Manager WebDownloadman = new WebDownload_Manager();
@@ -121,6 +122,23 @@ namespace WanFang.Website.Controllers.Service
                 {
                     int sn = Convert.ToInt32(x);
                     AboutTeamMan.Delete(sn);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteAboutService(string[] id)
+        {
+            //check is there are any data under the categoary.
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (id != null)
+            {
+                foreach (string x in id)
+                {
+                    int sn = Convert.ToInt32(x);
+                    AboutSrv.Delete(sn);
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
