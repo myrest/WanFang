@@ -9,8 +9,9 @@ using WanFang.Core.Constancy;
 using WanFang.Core.MVC.BaseController;
 using WanFang.Core.Utility;
 using WanFang.Domain;
-using WanFang.Domain.Constancy;
+
 using WanFang.Website.Models;
+using Rest.Core.Constancy;
 
 namespace WanFang.Website.Controllers.Service
 {
