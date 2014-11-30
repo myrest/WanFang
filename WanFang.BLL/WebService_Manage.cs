@@ -5,9 +5,8 @@ using System.Text;
 using WanFang.BLL.WanfangWebService;
 using System.Data;
 using WanFang.Domain.Webservice;
-
+using WanFang.Domain.Constancy;
 using Rest.Core.Utility;
-using Rest.Core.Constancy;
 
 namespace WanFang.BLL
 {

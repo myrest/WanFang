@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Web;
 using WanFang.Core.Constancy;
-
+using WanFang.Domain.Constancy;
 using System.Collections.Generic;
-using Rest.Core.Constancy;
 
 namespace WanFang.Core
 {

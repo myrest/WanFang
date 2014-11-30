@@ -8,8 +8,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using WanFang.Domain.Webservice;
-using Rest.Core.Constancy;
-
+using WanFang.Domain.Constancy;
 
 
 namespace WanFang.Website.Controllers

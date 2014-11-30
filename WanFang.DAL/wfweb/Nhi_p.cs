@@ -1,5 +1,5 @@
 using WanFang.Domain;
-
+using WanFang.Domain.Constancy;
 using Rest.Core.Constancy;
 using Rest.Core;
 using System;

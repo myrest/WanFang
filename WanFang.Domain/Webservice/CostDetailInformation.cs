@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Rest.Core.Constancy;
-
+using WanFang.Domain.Constancy;
 
 namespace WanFang.Domain.Webservice
 {
