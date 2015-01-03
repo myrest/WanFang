@@ -335,7 +335,6 @@ namespace WanFang.Website.Controllers.Service
         [HttpPost]
         public JsonResult SaveNews(CostNews_Info data)
         {
-            data.DeptName = getDeptName(sessionData.trading.Dept.Value);
             ResultBase result = new ResultBase();
             result.setMessage("Done");
             if (string.IsNullOrEmpty(data.Subject))
@@ -361,6 +360,10 @@ namespace WanFang.Website.Controllers.Service
                     //一但有任何異動，自動下架
                     data.IsActive = 0;
                 }
+                //限制只能修改該單元之資料
+                data.DeptName = getDeptName(sessionData.trading.Dept.Value);
+                data.CostId = sessionData.trading.CostId;
+
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
                 var olddata = CostNewsMan.GetBySN(data.CostNewsId);
@@ -368,10 +371,12 @@ namespace WanFang.Website.Controllers.Service
                 if (data.CostNewsId > 0)
                 {
                     CostNewsMan.Update(data);
+                    result.setMessage(data.CostNewsId.ToString());
                 }
                 else
                 {
-                    CostNewsMan.Insert(data);
+                    var NewId = CostNewsMan.Insert(data);
+                    result.setMessage(NewId.ToString());
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

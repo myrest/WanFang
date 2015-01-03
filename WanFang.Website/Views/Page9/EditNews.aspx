@@ -35,18 +35,33 @@
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);
     %>
     <script>
-        function Save() {
-            var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
+        function Preview() {
+            var previewUrl = FrontEndUrl + '/p9_medical_news_detail.aspx?pv=1&cu=' + $('#pkId').val();
+            $('#previewform').attr('action', previewUrl);
+            $('#previewform').submit();
+            $('#wordIsActive').text('下架');
+        }
+        function Save(SaveType) {
+            if (SaveType == 1) {
+                Preview();
+            } else {
+                var param = $('#form1 :not([name^=Content])').serialize();
+                var inst = FCKeditorAPI.GetInstance("Content1");
+                param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
 
-            utility.service("Page9Service/SaveNews", param, "POST", function (data) {
-                if (data.code > 0) {
-                    utility.showPopUp("資料已儲存", 1, GoBack);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
-            });
+                utility.service("Page9Service/SaveNews", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        $('#pkId').val(data.msg);
+                        if (SaveType == 0) {
+                            utility.showPopUp("資料已儲存", 1, GoBack);
+                        } else {
+                            Preview();
+                        }
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                });
+            }
         }
 
         function GoBack() {
@@ -54,7 +69,7 @@
             window.location.href = redirto;
         }
     </script>
-    <input type="hidden" name="CostNewsId" value="<%=Model.CostNewsId %>" />
+    <input type="hidden" name="CostNewsId" id="pkId" value="<%=Model.CostNewsId %>" />
     <div id="title">
         <div class="float-l">
             <h1>
@@ -93,6 +108,11 @@
                                     {
                                         selected = "selected";
                                     }
+                                    if (!string.IsNullOrEmpty(Model.CostId) && item.CostCode.Trim() == Model.CostId)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    
                                     Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
                                 }
                             %>
@@ -171,6 +191,14 @@
                         </span>
                         <span class="red">&#187檔案名稱，請以英數字字元命名(不接受中文檔名及特殊字元)。</span>&nbsp;</td>
                 </tr>
+                <tr class="line-d top">
+                    <td class="line-d0">
+                        上/下架
+                    </td>
+                    <td class="txt_l" id="wordIsActive">
+                        <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
+                    </td>
+                </tr>
                 <tr class="line-d">
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
@@ -181,11 +209,13 @@
             if (EditForVerifier)
             {
                 Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
-                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save(0);\" />");
+                Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"submit\" id=\"Preview\" value=\"預覽\" onclick=\"Save(1);\" />");
             }
             else
             {
-                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save(0);\" />");
+                Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"submit\" id=\"Preview\" value=\"儲存並預覽\" onclick=\"Save(2);\" />");
             }
         %>
         </div>
@@ -196,4 +226,6 @@
     <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <form action="#" target="preview" id="previewform" method="post">
+    </form>
 </asp:Content>
