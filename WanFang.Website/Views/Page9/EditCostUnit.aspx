@@ -129,6 +129,11 @@
                                 {
                                     selected = "selected";
                                 }
+                                if (!string.IsNullOrEmpty(Model.CostId) && item.CostCode.Trim() == Model.CostId)
+                                {
+                                    selected = "selected";
+                                }
+                                    
                                 Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
                             }
                         %>
@@ -241,7 +246,6 @@
     <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
-        <form action="#" target="preview" id="previewform" method="post">
+    <form action="#" target="preview" id="previewform" method="post">
     </form>
-
 </asp:Content>

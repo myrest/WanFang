@@ -77,17 +77,43 @@ namespace WanFang.Website.Controllers.Service
                 checkUploadfiles(data, olddata);
                 if (data.DeptName.Length == 1)
                 {
-                    //insert new data.
-                    data.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(data.DeptName));
-                }
-                if (data.NewsId > 0)
-                {
-                    NewsDataMan.Update(data);
+                    //DeptName is real DeptCode
+                    data.DeptCode = data.DeptName;
+                    //Get DeptName from DeptCode
+                    data.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(data.DeptCode));
                 }
                 else
                 {
-                    NewsDataMan.Insert(data);
+                    //Get DeptCode from DeptName
+                    var allenum = Enum.GetValues(typeof(WS_Dept_type)).Cast<WS_Dept_type>();
+                    var deptobj = allenum.Where(x=> EnumHelper.GetEnumDescription<WS_Dept_type>(x) == data.DeptName).FirstOrDefault();
+                    if (deptobj != null)
+                    {
+                        data.DeptCode = deptobj.ToString();
+                    }
                 }
+                //get costid from costname
+                WS_Dept_type depttype = EnumHelper.GetEnumByName<WS_Dept_type>(data.DeptCode);
+                var CostObject = new WebService_Manage().GetAllDetailCostcerter(depttype).Where(x => data.Cost.Trim() == x.CostName.Trim()).FirstOrDefault();
+                if (CostObject != null)
+                {
+                    data.CostId = CostObject.CostCode;
+                    if (data.NewsId > 0)
+                    {
+                        NewsDataMan.Update(data);
+                        result.setMessage(data.NewsId.ToString());
+                    }
+                    else
+                    {
+                        var newId = NewsDataMan.Insert(data);
+                        result.setMessage(newId.ToString());
+                    }
+                }
+                else
+                {
+                    result.setException(new Exception(string.Format("查無科別代碼({0})", data.Cost)), "SaveNewsData");
+                }
+
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
