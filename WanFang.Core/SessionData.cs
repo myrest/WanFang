@@ -65,5 +65,6 @@ namespace WanFang.Core
 
         public bool IsVerifier { get; set; }
 
+        public string CostId { get; set; }
     }
 }

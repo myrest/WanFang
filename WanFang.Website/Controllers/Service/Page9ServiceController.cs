@@ -39,7 +39,6 @@ namespace WanFang.Website.Controllers.Service
         [HttpPost]
         public JsonResult SaveCostUnit(CostUnit_Info data)
         {
-            data.DeptName = getDeptName(sessionData.trading.Dept.Value);
             ResultBase result = new ResultBase();
             result.setMessage("Done");
             if (data.IsActive == 1)
@@ -55,6 +54,9 @@ namespace WanFang.Website.Controllers.Service
                 //一但有任何異動，自動下架
                 data.IsActive = 0;
             }
+            //限制只能修改該單元之資料
+            data.DeptName = getDeptName(sessionData.trading.Dept.Value);
+            data.CostId = sessionData.trading.CostId;
             if (string.IsNullOrEmpty(data.UnitName))
             {
                 result.setErrorMessage("單元名稱不得為空白");

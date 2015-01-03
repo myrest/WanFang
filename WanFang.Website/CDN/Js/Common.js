@@ -1,5 +1,5 @@
 /// <reference path="lib/jquery-1.4.4-vsdoc.js" />
-var ClockTimeout = 60;
+var FrontEndUrl = 'http://192.168.52.110';
 var utility = {
     stopRequest: false,
     templateCache: new Object()
@@ -382,7 +382,7 @@ var utility = {
         utility.ajaxQuiet("ManageLoginService/Logout", null, cb);
     }
     , logoutToHomePage: function () {
-        var cb = function () { window.parent.location = 'http://www.wanfang.gov.tw'; }
+        var cb = function () { window.parent.location = FrontEndUrl; }
         utility.ajaxQuiet("ManageLoginService/Logout", null, cb);
     }
     , CheckOnFocus: function () {//設定欄位初始值

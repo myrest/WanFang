@@ -46,6 +46,11 @@ namespace WanFang.Website.Controllers.Service
                 if (!string.IsNullOrEmpty(user.DeptName))
                 {
                     trading.Dept = EnumHelper.GetEnumByName<WS_Dept_type>(user.DeptName);
+                    if (!string.IsNullOrEmpty(user.CostName))
+                    {
+                        var cost = new WebService_Manage().GetAllDetailCostcerter(trading.Dept.Value);
+                        trading.CostId = cost.Where(x => x.CostName.Trim() == user.CostName.Trim()).FirstOrDefault().CostCode;
+                    }
                 }
                 else
                 {

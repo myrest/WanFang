@@ -34,10 +34,15 @@
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);
     %>
     <script>
+        function Preview() {
+            var previewUrl = FrontEndUrl + '/p9_medical_detail.aspx?pv=1&cu=' + $('#pkId').val();
+            $('#previewform').attr('action', previewUrl);
+            $('#previewform').submit();
+            $('#wordIsActive').text('下架');
+        }
         function Save(SaveType) {
-            var previewUrl = '/p9_medical_detail.aspx?pv=1&cu=';
-            if (SaveType == 2) {
-                window.open(previewUrl + $('#pkId').val(), 'Preview');
+            if (SaveType == 1) {
+                Preview();
             } else {
                 var param = $('#form1 :not([name^=Content])').serialize();
                 var inst = FCKeditorAPI.GetInstance("Content1");
@@ -45,15 +50,15 @@
 
                 utility.service("Page9Service/SaveCostUnit", param, "POST", function (data) {
                     if (data.code > 0) {
+                        $('#pkId').val(data.msg);
                         if (SaveType == 0) {
                             utility.showPopUp("資料已儲存", 1, GoBack);
                         } else {
-                            window.open(previewUrl + $('#pkId').val(), 'Preview');
+                            Preview();
                         }
                     } else {
                         utility.showPopUp(data.msg, 1);
                     }
-                    $('#pkId').val(data.msg);
                 });
             }
         }
@@ -205,7 +210,7 @@
                 <td class="line-d0">
                     上/下架
                 </td>
-                <td class="txt_l">
+                <td class="txt_l" id="wordIsActive">
                     <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
                 </td>
             </tr>
@@ -224,7 +229,7 @@
             }
             else
             {
-                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save(0);\" />");
                 Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"submit\" id=\"Preview\" value=\"儲存並預覽\" onclick=\"Save(2);\" />");
             }
         %>
@@ -236,4 +241,7 @@
     <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+        <form action="#" target="preview" id="previewform" method="post">
+    </form>
+
 </asp:Content>
