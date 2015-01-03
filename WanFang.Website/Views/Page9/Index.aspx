@@ -53,7 +53,7 @@
             </p>
             <p>
                 關鍵字：
-                <input name="Category" type="text" value="請輸入單元名稱搜尋" onclick="this.value = '';" size="30"
+                <input name="UnitName" type="text" value="請輸入單元名稱搜尋" onclick="this.value = '';" size="30"
                     id="Category" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
@@ -67,7 +67,7 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class="txt_r">
-                    <input name="Add" id="Add" type="button" class="submit3" onclick="window.location = '/Page9/EditCostUnit/';"
+                    <input name="Add" id="Add" type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page9/EditCostUnit/';"
                         value="新增資料">
                     <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
@@ -116,9 +116,7 @@
                 </td>
                 <td class="txt_c">
                     <%
-                    WS_Dept_type WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(item.DeptName);
-                    string DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(WSDept);
-                    Response.Write(DeptName);
+                    Response.Write(item.DeptName);
                     %>
                 </td>
                 <td class="txt_c">
@@ -134,9 +132,9 @@
                     <%=item.LastUpdate%>
                 </td>
                 <td>
-                    <input name="bt_edit" type="button" class="submit <%=CanNotEdit %>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>';"
+                    <input name="bt_edit" type="button" class="submit  <%= CanNotEdit%>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>?Verify=1';"
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page9/EditCostUnit/<%=item.CostUnitId %>?Verify=1';"
                         value="審核">
                 </td>
             </tr>

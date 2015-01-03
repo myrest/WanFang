@@ -20,7 +20,6 @@ namespace WanFang.Website.Controllers.Service
         //
         // GET: /LoginServiced/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(Page5ServiceController));
-        private static readonly Doc_Manager DocMan = new Doc_Manager();
         private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
         private static readonly TeamIntroduce_Manager TeamMan = new TeamIntroduce_Manager();
 
@@ -32,118 +31,6 @@ namespace WanFang.Website.Controllers.Service
         private string getDeptName(WS_Dept_type DeptType)
         {
             return EnumHelper.GetEnumDescription<WS_Dept_type>(DeptType);
-        }
-
-        [ValidateInput(false)]
-        [HttpPost]
-        public JsonResult SaveDoc(Doc_Info data)
-        {
-            if (data.conf_date == DateTime.MinValue)
-            {
-                DateTime newdt = DateTime.MinValue;
-                DateTime.TryParse("1974/01/01", out newdt);
-                data.conf_date = newdt;
-            }
-            //data.DeptName = getDeptName(sessionData.trading.Dept.Value);
-            ResultBase result = new ResultBase();
-            result.setMessage("Done");
-            if (data.IsActive == 1)
-            {
-                //審核專用
-                var verdata = DocMan.GetBySN(data.DocId);
-                verdata.IsActive = 1;
-                DocMan.Update(verdata);
-                return Json(result, JsonRequestBehavior.DenyGet);
-            }
-            else
-            {
-                //一但有任何異動，自動下架
-                data.IsActive = 0;
-            }
-            if (string.IsNullOrEmpty(data.DeptName) || data.DeptName.StartsWith("請選擇"))
-            {
-                result.setErrorMessage("門診類別為必選");
-            }
-            if (string.IsNullOrEmpty(data.CostName) || data.CostName.StartsWith("請選擇"))
-            {
-                result.setErrorMessage("科別為必選");
-            }
-            if (string.IsNullOrEmpty(data.DocName))
-            {
-                result.setErrorMessage("醫師中文名字不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.DocCode))
-            {
-                result.setErrorMessage("醫師員編不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.MainMajor1))
-            {
-                result.setErrorMessage("主治項目不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.school))
-            {
-                result.setErrorMessage("學歷不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.career))
-            {
-                result.setErrorMessage("經歷不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.ncareer))
-            {
-                result.setErrorMessage("現職不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.school))
-            {
-                result.setErrorMessage("學歷不得為空白");
-            }
-            if (string.IsNullOrEmpty(data.otime))
-            {
-                result.setErrorMessage("門診時段不得為空白");
-            }
-            if (result.JsonReturnCode > -1)
-            {
-                data.Dept = data.DeptName;
-                data.DeptName = getDeptName(EnumHelper.GetEnumByName<WS_Dept_type>(data.Dept));
-                data.LastUpdate = DateTime.Now;
-                data.LastUpdator = sessionData.trading.LoginId;
-                var olddata = DocMan.GetBySN(data.DocId);
-                checkUploadfiles(data, olddata);
-                if (string.IsNullOrEmpty(data.pic))
-                {
-                    result.setErrorMessage("醫師照片必需上傳");
-                }
-                if (data.DocId > 0)
-                {
-                    DocMan.Update(data);
-                }
-                else
-                {
-                    DocMan.Insert(data);
-                }
-            }
-            return Json(result, JsonRequestBehavior.DenyGet);
-        }
-
-        private void checkUploadfiles(Doc_Info NewData, Doc_Info OldData)
-        {
-            if (OldData == null) OldData = new Doc_Info();
-            string Prefix = string.Empty;
-            Prefix = "DocPic";
-            if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
-            {
-                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
-                {
-                    NewData.pic = string.Empty;
-                }
-                else
-                {
-                    NewData.pic = CopyFile(sessionData.trading.UploadFiles[Prefix]);
-                }
-            }
-            else
-            {
-                NewData.pic = OldData.pic;
-            }
         }
 
         [ValidateInput(false)]

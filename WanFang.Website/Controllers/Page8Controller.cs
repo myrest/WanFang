@@ -8,6 +8,7 @@ using System.Linq;
 using WanFang.Domain;
 using System.Collections.Generic;
 using WanFang.Domain.Constancy;
+using System.Web;
 
 
 namespace WanFang.Website.Controllers
@@ -49,6 +50,10 @@ namespace WanFang.Website.Controllers
             Rest.Core.Paging page = new Rest.Core.Paging() { };
             if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
             List<Nhi_p_Info> data = Nhi_pMan.GetByParameter(filter, page, null, "nhi_date desc");
+            data.ForEach(x =>
+            {
+                x.nhi_cname = System.Web.HttpUtility.HtmlEncode(x.nhi_cname);
+            });
             ViewData["Model"] = data;
             ViewData["Page"] = page;
             return View();
@@ -59,6 +64,8 @@ namespace WanFang.Website.Controllers
             //Clear old data.
             ClearOldData("Nhi_p");
             var model = Nhi_pMan.GetBySN(Convert.ToInt32(id));
+            model = Extension.HtmlSave(model) as Nhi_p_Info;
+            
             ViewData["Model"] = model;
             return View();
         }

@@ -17,24 +17,54 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
         WS_Dept_type WSDept = (WS_Dept_type)ViewData["Dept"];
         string DeptName = ViewData["DeptName"].ToString();
+        if (!string.IsNullOrEmpty(Model.DeptName))
+        {
+            DeptName = Model.DeptName;
+            var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+            var _tmp = Dept.Where(x => x.Value == Model.DeptName).FirstOrDefault();
+            if (_tmp.Key != null)
+            {
+                WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(_tmp.Key);
+            }
+        }
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);
     %>
     <script>
-        function Save() {
-            var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
+        function Save(SaveType) {
+            var previewUrl = '/p9_medical_detail.aspx?pv=1&cu=';
+            if (SaveType == 2) {
+                window.open(previewUrl + $('#pkId').val(), 'Preview');
+            } else {
+                var param = $('#form1 :not([name^=Content])').serialize();
+                var inst = FCKeditorAPI.GetInstance("Content1");
+                param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
 
-            utility.service("Page9Service/SaveCostUnit", param, "POST", function (data) {
-                if (data.code > 0) {
-                    utility.showPopUp("資料已儲存", 1, GoBack);
-                } else {
-                    utility.showPopUp(data.msg, 1);
-                }
-            });
+                utility.service("Page9Service/SaveCostUnit", param, "POST", function (data) {
+                    if (data.code > 0) {
+                        if (SaveType == 0) {
+                            utility.showPopUp("資料已儲存", 1, GoBack);
+                        } else {
+                            window.open(previewUrl + $('#pkId').val(), 'Preview');
+                        }
+                    } else {
+                        utility.showPopUp(data.msg, 1);
+                    }
+                    $('#pkId').val(data.msg);
+                });
+            }
+        }
+
+        function togTrContent(isHomePage) {
+            var $block = $('#trcontent');
+            if (isHomePage == 1) {
+                $block.hide();
+            } else {
+                $block.show();
+            }
         }
 
         function GoBack() {
@@ -42,7 +72,7 @@
             window.location.href = redirto;
         }
     </script>
-    <input type="hidden" name="CostUnitId" value="<%=Model.CostUnitId %>" />
+    <input type="hidden" name="CostUnitId" id="pkId" value="<%=Model.CostUnitId %>" />
     <div id="title">
         <div class="float-l">
             <h1>
@@ -79,7 +109,11 @@
                     科別
                 </td>
                 <td class="txt_l">
-                    <select name="CostName" id="CostName">
+                    <%
+                        string CostName = (string.IsNullOrEmpty(Model.CostName)) ? ViewData["CostName"].ToString() : Model.CostName;
+                    %>
+                    <input type="hidden" name="CostName" value="<%=CostName %>" /><%=CostName %>
+                    <!-- select name="CostName" id="CostName">
                         <%
                             WanFang.BLL.WebService_Manage service = new WanFang.BLL.WebService_Manage();
                             var cost = service.GetAllDetailCostcerter(WSDept);
@@ -93,7 +127,7 @@
                                 Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
                             }
                         %>
-                    </select>
+                    </!-->
                 </td>
             </tr>
             <tr class="line-d">
@@ -104,7 +138,7 @@
                     <input name="UnitName" type="text" value="<%=Model.UnitName %>" size="50">
                 </td>
             </tr>
-            <tr class="line-d">
+            <tr class="line-d <% =(Model.IsHomePage == 1) ? "hide" : "" %>" id="trcontent">
                 <td class="line-d0 top">
                     內容<span class="red">*</span>
                 </td>
@@ -133,8 +167,7 @@
                                 圖1：
                             </td>
                             <td>
-                                <input type="file" id="CostUnitImage1" size="30"/>
-                                <%=UrlExtension.PreviewImage(Model.Image1, "CostUnitImage1")%>
+                                <%=UrlExtension.PreviewImage(Model.Image1, "CostUnitImage1", !EditForVerifier)%>
                                 <span class="red">建議尺寸：寬800px，高535px</span>
                             </td>
                         </tr>
@@ -143,8 +176,7 @@
                                 圖2：
                             </td>
                             <td>
-                                <input type="file" id="CostUnitImage2" size="30"/>
-                                <%=UrlExtension.PreviewImage(Model.Image2, "CostUnitImage2")%>
+                                <%=UrlExtension.PreviewImage(Model.Image2, "CostUnitImage2", !EditForVerifier)%>
                                 <span class="red">建議尺寸：寬800px，高535px</span>
                             </td>
                         </tr>
@@ -153,8 +185,7 @@
                                 圖3：
                             </td>
                             <td>
-                                <input type="file" id="CostUnitImage3" size="30"/>
-                                <%=UrlExtension.PreviewImage(Model.Image3, "CostUnitImage3")%>
+                                <%=UrlExtension.PreviewImage(Model.Image3, "CostUnitImage3", !EditForVerifier)%>
                                 <span class="red">建議尺寸：寬800px，高535px</span>
                             </td>
                         </tr>
@@ -166,8 +197,8 @@
                     是否為首頁
                 </td>
                 <td class="txt_l">
-                    <input type="radio" value="1" name="IsHomePage" <%=(Model.IsHomePage) == 1 ? "checked" : "" %>/>是
-                    <input type="radio" value="0" name="IsHomePage" <%=(Model.IsHomePage) == 0 ? "checked" : "" %>/>否
+                    <input type="radio" value="1" name="IsHomePage" <%=(Model.IsHomePage) == 1 ? "checked" : "" %> onclick="togTrContent(1);" />是
+                    <input type="radio" value="0" name="IsHomePage" <%=(Model.IsHomePage) == 0 ? "checked" : "" %> onclick="togTrContent(0);" />否
                 </td>
             </tr>
             <tr class="line-d top">
@@ -188,11 +219,13 @@
             if (EditForVerifier)
             {
                 Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
-                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save(0);\" />");
+                Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"submit\" id=\"Preview\" value=\"預覽\" onclick=\"Save(1);\" />");
             }
             else
             {
                 Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+                Response.Write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"submit\" id=\"Preview\" value=\"儲存並預覽\" onclick=\"Save(2);\" />");
             }
         %>
         </div>

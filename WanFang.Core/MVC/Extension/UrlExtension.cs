@@ -68,16 +68,35 @@ namespace WanFang.Core.MVC.Extensions
         #endregion
 
         #region 檔案處理
-        public static string PreviewImage(string ImageFileName, string TargetID)
+        public static string PreviewImage(string ImageFileName, string TargetID, bool ShowButton = true)
         {
             string rtn = string.Empty;
-            if (!string.IsNullOrEmpty(ImageFileName))
+            if (ShowButton)
             {
-                rtn = "---[<a class=\"previewimage\" target=\"_blank\" href=\"" + ImageFileName + "\">預覽</a>][<a href=\"javascript:void(0);\" class=\"deleteimage clickable \" target=\"" + TargetID + "\">刪</a>]";
+                rtn = "<input type=\"file\" id=\"" + TargetID + "\" size=\"30\"/>";
+                if (!string.IsNullOrEmpty(ImageFileName))
+                {
+                    rtn += "---[<a class=\"previewimage\" target=\"_blank\" href=\"" + ImageFileName + "\">預覽</a>][<a href=\"javascript:void(0);\" class=\"deleteimage clickable \" target=\"" + TargetID + "\">刪</a>]";
+                }
+                else
+                {
+                    rtn += "---[<a class=\"previewimage\" target=\"_blank\">預覽</a>][<a class=\"deleteimage\" target=\"" + TargetID + "\">刪</a>]";
+                }
             }
             else
             {
-                rtn = "---[<a class=\"previewimage\" target=\"_blank\">預覽</a>][<a class=\"deleteimage\" target=\"" + TargetID + "\">刪</a>]";
+                if (!string.IsNullOrEmpty(ImageFileName))
+                {
+                    if (ImageFileName.Length > 15)
+                    {
+                        rtn = ImageFileName.Substring(0, 4) + "..." + ImageFileName.Substring(ImageFileName.Length - 10);
+                    }
+                    else
+                    {
+                        rtn = ImageFileName;
+                    }
+                    rtn += "---[<a class=\"previewimage\" target=\"_blank\" href=\"" + ImageFileName + "\">預覽</a>]";
+                }
             }
             return rtn;
         }

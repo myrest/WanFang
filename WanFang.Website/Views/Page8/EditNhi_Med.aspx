@@ -37,10 +37,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">藥品公告專區管理</div>            </h1>
+                    <div class="tt-r">藥品公告專區管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp健保專區管理&nbsp&#187&nbsp藥品公告專區管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp健保專區管理&nbsp&#187&nbsp藥品公告專區管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -53,7 +55,6 @@
                 <tr class="line-d">
                     <td class="line-d0 top">藥品照片_舊 <span class="red">*</span></td>
                     <td>
-                                    <input type="file" id="Nhi_MedImageOld" size="30"/>
                                     <%=UrlExtension.PreviewImage(Model.ImageOld, "Nhi_MedImageOld")%>
                     <span class="red">建議尺寸：寬332px，高248px</span></td>
                 </tr>
@@ -110,7 +111,6 @@
                 <tr class="line-d">
                     <td class="line-d0 top">藥品照片_新 <span class="red">*</span></td>
                     <td>
-                            <input type="file" id="Nhi_MedImage" size="30"/>
                             <%=UrlExtension.PreviewImage(Model.Image, "Nhi_MedImage")%>
                             <span class="red">建議尺寸：寬332px，高248px</span></td>
                 </tr>
@@ -174,7 +174,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->

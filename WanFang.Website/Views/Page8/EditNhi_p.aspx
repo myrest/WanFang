@@ -13,9 +13,11 @@
         else
         {
             Model.warnings = Model.warnings ?? "";
+            Model.warnings = System.Web.HttpUtility.HtmlDecode(Model.warnings);
             Model.warnings = Model.warnings.Replace("\n\r", "");
             Model.warnings = Model.warnings.Replace("\n", "");
             Model.warnings = Model.warnings.Replace("\r", "");
+            Model.warnings = Model.warnings.Replace("'", "\\'");
         }
     %>
     <script>
@@ -44,10 +46,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">健保專區項目管理</div>            </h1>
+                    <div class="tt-r">健保專區項目管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp健保專區管理&nbsp&#187&nbsp健保專區項目管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp健保專區管理&nbsp&#187&nbsp健保專區項目管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -62,7 +66,8 @@
                             <option <%=(Model.nhi_code == "自費特材品項") ? "selected" : "" %>>自費特材品項 </option>
                             <option <%=(Model.nhi_code == "人工心律調節器") ? "selected" : "" %>>人工心律調節器 </option>
                         </select></td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 va_m">品項名稱<span class="red">*</span></td>
                     <td class="txt_l">
                         <input name="nhi_type" type="text" value="<%=Model.nhi_type %>" size="50">
@@ -151,7 +156,8 @@
                     <td class="line-d0">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->

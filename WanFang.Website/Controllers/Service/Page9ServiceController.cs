@@ -23,6 +23,7 @@ namespace WanFang.Website.Controllers.Service
         private static readonly CostUnit_Manager CostUnitman = new CostUnit_Manager();
         private static readonly WebDownload_Manager DownloadMan = new WebDownload_Manager();
         private static readonly CostNews_Manager CostNewsMan = new CostNews_Manager();
+        private static readonly Doc_Manager DocMan = new Doc_Manager();
 
         public Page9ServiceController()
             : base(Permission.Public)
@@ -58,7 +59,7 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("單元名稱不得為空白");
             }
-            if (string.IsNullOrEmpty(data.ContentBody))
+            if (string.IsNullOrEmpty(data.ContentBody) && data.IsHomePage == 0)
             {
                 result.setErrorMessage("內容不得為空白");
             }
@@ -71,14 +72,129 @@ namespace WanFang.Website.Controllers.Service
                 if (data.CostUnitId > 0)
                 {
                     CostUnitman.Update(data);
+                    result.setMessage(data.CostUnitId.ToString());
                 }
                 else
                 {
-                    CostUnitman.Insert(data);
+                    var newId = CostUnitman.Insert(data);
+                    result.setMessage(newId.ToString());
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);
         }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public JsonResult SaveDoc(Doc_Info data)
+        {
+            if (data.conf_date == DateTime.MinValue)
+            {
+                DateTime newdt = DateTime.MinValue;
+                DateTime.TryParse("1974/01/01", out newdt);
+                data.conf_date = newdt;
+            }
+            //data.DeptName = getDeptName(sessionData.trading.Dept.Value);
+            ResultBase result = new ResultBase();
+            result.setMessage("Done");
+            if (data.IsActive == 1)
+            {
+                //審核專用
+                var verdata = DocMan.GetBySN(data.DocId);
+                verdata.IsActive = 1;
+                DocMan.Update(verdata);
+                return Json(result, JsonRequestBehavior.DenyGet);
+            }
+            else
+            {
+                //一但有任何異動，自動下架
+                data.IsActive = 0;
+            }
+            if (string.IsNullOrEmpty(data.DeptName) || data.DeptName.StartsWith("請選擇"))
+            {
+                result.setErrorMessage("門診類別為必選");
+            }
+            if (string.IsNullOrEmpty(data.CostName) || data.CostName.StartsWith("請選擇"))
+            {
+                result.setErrorMessage("科別為必選");
+            }
+            if (string.IsNullOrEmpty(data.DocName))
+            {
+                result.setErrorMessage("醫師中文名字不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.DocCode))
+            {
+                result.setErrorMessage("醫師員編不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.MainMajor1))
+            {
+                result.setErrorMessage("主治項目不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.school))
+            {
+                result.setErrorMessage("學歷不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.career))
+            {
+                result.setErrorMessage("經歷不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.ncareer))
+            {
+                result.setErrorMessage("現職不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.school))
+            {
+                result.setErrorMessage("學歷不得為空白");
+            }
+            if (string.IsNullOrEmpty(data.otime))
+            {
+                result.setErrorMessage("門診時段不得為空白");
+            }
+            if (result.JsonReturnCode > -1)
+            {
+                data.Dept = data.DeptName;
+                data.DeptName = getDeptName(EnumHelper.GetEnumByName<WS_Dept_type>(data.Dept));
+                data.LastUpdate = DateTime.Now;
+                data.LastUpdator = sessionData.trading.LoginId;
+                var olddata = DocMan.GetBySN(data.DocId);
+                checkDocUploadfiles(data, olddata);
+                if (string.IsNullOrEmpty(data.pic))
+                {
+                    result.setErrorMessage("醫師照片必需上傳");
+                }
+                if (data.DocId > 0)
+                {
+                    DocMan.Update(data);
+                }
+                else
+                {
+                    DocMan.Insert(data);
+                }
+            }
+            return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        private void checkDocUploadfiles(Doc_Info NewData, Doc_Info OldData)
+        {
+            if (OldData == null) OldData = new Doc_Info();
+            string Prefix = string.Empty;
+            Prefix = "DocPic";
+            if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
+            {
+                if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
+                {
+                    NewData.pic = string.Empty;
+                }
+                else
+                {
+                    NewData.pic = CopyFile(sessionData.trading.UploadFiles[Prefix]);
+                }
+            }
+            else
+            {
+                NewData.pic = OldData.pic;
+            }
+        }
+
 
         private void checkUploadfiles(CostUnit_Info NewData, CostUnit_Info OldData)
         {
@@ -150,10 +266,36 @@ namespace WanFang.Website.Controllers.Service
             }
             if (result.JsonReturnCode > -1)
             {
+                if (data.IsActive == 1)
+                {
+                    //審核專用
+                    var verdata = DocMan.GetBySN(data.WebDownLoadID);
+                    verdata.IsActive = 1;
+                    DocMan.Update(verdata);
+                    return Json(result, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    //一但有任何異動，自動下架
+                    data.IsActive = 0;
+                }
+
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
                 var olddata = DownloadMan.GetBySN(data.WebDownLoadID);
-                checkUploadfilesWDD(data, olddata);
+                //check must has uploaded files.
+                try
+                {
+                    checkUploadfilesWDD(data, olddata);
+                    if (string.IsNullOrEmpty(data.File1))
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception)
+                {
+                    result.setErrorMessage("檔案必需上傳。");
+                }
                 if (data.WebDownLoadID > 0)
                 {
                     DownloadMan.Update(data);
@@ -204,6 +346,19 @@ namespace WanFang.Website.Controllers.Service
             }
             if (result.JsonReturnCode > -1)
             {
+                if (data.IsActive == 1)
+                {
+                    //審核專用
+                    var verdata = CostNewsMan.GetBySN(data.CostNewsId);
+                    verdata.IsActive = 1;
+                    CostNewsMan.Update(verdata);
+                    return Json(result, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    //一但有任何異動，自動下架
+                    data.IsActive = 0;
+                }
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
                 var olddata = CostNewsMan.GetBySN(data.CostNewsId);

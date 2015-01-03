@@ -4,6 +4,7 @@
     <%
         bool IsVerifer = (bool)ViewData["Verify"];
         string VeriferClass = IsVerifer ? "" : " hide ";
+        string CanNotEdit = IsVerifer ? " hide " : "";
 
         List<WanFang.Domain.CostKeyword_Info> Model = ViewData["Model"] as List<WanFang.Domain.CostKeyword_Info>;
         WanFang.Domain.CostKeyword_Filter filter = ViewData["Filter"] as WanFang.Domain.CostKeyword_Filter;
@@ -104,7 +105,7 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input type="button" class="submit3" onclick="window.location = '/Page5/EditCostKeyword/';"
+                    <input type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page5/EditCostKeyword/';"
                         value="新增資料">
                     <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
@@ -153,9 +154,9 @@
                     <%=item.LastUpdate %>
                 </td>
                 <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page5/EditCostKeyword/<%=item.CostKeywordId %>';"
+                    <input name="bt_edit" type="button" class="submit <%= CanNotEdit%>" onclick="window.location='/Page5/EditCostKeyword/<%=item.CostKeywordId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page5/EditCostKeyword/<%=item.CostKeywordId %>?Verify=1';"
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page5/EditCostKeyword/<%=item.CostKeywordId %>?Verify=1';"
                         value="審核">
                 </td>
             </tr>

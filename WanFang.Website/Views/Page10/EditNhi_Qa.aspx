@@ -16,6 +16,7 @@
             Model.nhi_con = Model.nhi_con.Replace("\n\r", "");
             Model.nhi_con = Model.nhi_con.Replace("\n", "");
             Model.nhi_con = Model.nhi_con.Replace("\r", "");
+            Model.nhi_con = Model.nhi_con.Replace("'", "\\'");
         }
     %>
     <script>
@@ -44,10 +45,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">健保部分給付問答集管理</div>            </h1>
+                    <div class="tt-r">健保部分給付問答集管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp詢問台管理&nbsp&#187&nbsp健保部分給付問答集管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp詢問台管理&nbsp&#187&nbsp健保部分給付問答集管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -88,7 +91,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->

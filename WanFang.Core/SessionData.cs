@@ -57,6 +57,8 @@ namespace WanFang.Core
 
         public WS_Dept_type? Dept { get; set; }
 
+        public string CostName { get; set; }
+
         public Dictionary<string, string> UploadFiles { get; set; }
 
         public List<string> Permissions { get; set; }

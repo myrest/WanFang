@@ -17,6 +17,7 @@
             Model.Condition = Model.Condition.Replace("\n\r", "");
             Model.Condition = Model.Condition.Replace("\n", "");
             Model.Condition = Model.Condition.Replace("\r", "");
+            Model.Condition = Model.Condition.Replace("'", "\\'");
         }
         var categoary = new WanFang.BLL.HirCategory_Manager().GetAll();
 
@@ -75,10 +76,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">人員募集項目管理</div>            </h1>
+                    <div class="tt-r">人員募集項目管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp人員募集管理&nbsp&#187&nbsp人員募集項目管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp人員募集管理&nbsp&#187&nbsp人員募集項目管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">

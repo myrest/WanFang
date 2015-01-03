@@ -65,12 +65,9 @@ namespace WanFang.Domain
         /// </summary>
         public int IsHomePage { get; set; }
         /// <summary>
-        /// 圖片上傳4(特色醫療單元管理)
-        /// </summary>
-        public int IsActive { get; set; }
-        /// <summary>
         /// 上/下架
         /// </summary>
+        public int IsActive { get; set; }
         public DateTime LastUpdate { get; set; }
         /// <summary>
         /// 更新日期

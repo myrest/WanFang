@@ -15,6 +15,7 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
     %>
     <script>
@@ -102,16 +103,13 @@
                             <tr class="no_line">
                                 <td class="w50">清單圖：</td>
                                 <td>
-                                    <input type="file" id="TeamPhoto1" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Photo1, "TeamPhoto1")%>
+                                    <%=UrlExtension.PreviewImage(Model.Photo1, "TeamPhoto1", !EditForVerifier)%>
                                     <span class="red">建議尺寸：寬120px，高145px</span></td>
                             </tr>
                             <tr class="no_line">
                                 <td>內容圖：</td>
                                 <td>
-                                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                                    <input type="file" id="TeamPhoto2" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Photo2, "TeamPhoto2")%>
+                                    <%=UrlExtension.PreviewImage(Model.Photo2, "TeamPhoto2", !EditForVerifier)%>
                                     <span class="red">建議尺寸：寬230px，高346px</span></td>
                             </tr>
                         </table>
@@ -132,7 +130,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
         <%
             if (EditForVerifier)
             {

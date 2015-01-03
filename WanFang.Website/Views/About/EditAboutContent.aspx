@@ -25,6 +25,9 @@
             Model.Content3 = Model.Content3.Replace("\n\r", "");
             Model.Content3 = Model.Content3.Replace("\n", "");
             Model.Content3 = Model.Content3.Replace("\r", "");
+            Model.Content1 = Model.Content1.Replace("'", "\\'");
+            Model.Content2 = Model.Content2.Replace("'", "\\'");
+            Model.Content3 = Model.Content3.Replace("'", "\\'");
         }
         string DDlstr = "{" + Environment.NewLine;
         About.ForEach(x =>
@@ -175,8 +178,7 @@
                             <tr class="no_line">
                                 <td valign="top">&nbsp;</td>
                                 <td>圖1：
-                                    <input type="file" id="ContentImage1" size="30"/>
-                                    <%=UrlExtension.PreviewImage(Model.Image1, "ContentImage1")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image1, "ContentImage1", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">
@@ -202,8 +204,7 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>圖2：
-                                    <input type="file" id="ContentImage2" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage2")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage2", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">
@@ -229,8 +230,7 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>圖3：
-                                    <input type="file" id="ContentImage3" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage3")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "ContentImage3", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">

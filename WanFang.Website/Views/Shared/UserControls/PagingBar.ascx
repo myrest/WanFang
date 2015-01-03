@@ -29,12 +29,16 @@
                         var pagenum = $this.attr('p');
                         $('#CurrentPage').val(pagenum);
                         $('#form1').submit();
+                    },
+                    SearchSubmit:function(){
+                        $('#CurrentPage').val(1);
                     }
                 };
                 $(function () {
                     $('.prev').click(page.goprev);
                     $('.next').click(page.gonext);
                     $('.toapge').click(page.topage);
+                    $('#Submit').click(page.SearchSubmit);
                 });
             </script>
             <input type="hidden" name="CurrentPage" id="CurrentPage" value="<%=CurrentPage %>" />

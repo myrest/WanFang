@@ -17,6 +17,7 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
         List<WanFang.Domain.Webservice.CostDetailInformation> AllCost = new List<WanFang.Domain.Webservice.CostDetailInformation>() { };
         var ALLDept = new WanFang.BLL.WebService_Manage().GetAllDept();
@@ -87,10 +88,13 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                <div class="tt-r">團隊介紹</div>            </h1>
+                <div class="tt-r">團隊介紹</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp團隊介紹        </div>        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp團隊介紹
+        </div>
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -169,23 +173,20 @@
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖1：</td>
                                 <td>
-                                    <input type="file" id="TeamIntroduceImage1" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image1, "TeamIntroduceImage1")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image1, "TeamIntroduceImage1", !EditForVerifier)%>
                                 </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖2：</td>
                                 <td>
-                                    <input type="file" id="TeamIntroduceImage2" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image2, "TeamIntroduceImage2")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "TeamIntroduceImage2", !EditForVerifier)%>
                                     </td>
                                 <!--新欄位-->
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖3：</td>
                                 <td>
-                                    <input type="file" id="TeamIntroduceImage3" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image3, "TeamIntroduceImage3")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image3, "TeamIntroduceImage3", !EditForVerifier)%>
 
                                     </td>
                                 <!--新欄位-->
@@ -193,8 +194,7 @@
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖4：</td>
                                 <td>
-                                    <input type="file" id="TeamIntroduceImage4" size="30" />
-                                    <%=UrlExtension.PreviewImage(Model.Image4, "TeamIntroduceImage4")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image4, "TeamIntroduceImage4", !EditForVerifier)%>
                                     </td>
                                 <!--新欄位-->
                             </tr>
@@ -212,7 +212,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
         <%
             if (EditForVerifier)
             {

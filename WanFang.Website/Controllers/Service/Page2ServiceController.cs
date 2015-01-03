@@ -60,6 +60,7 @@ namespace WanFang.Website.Controllers.Service
                 data.LastUpdator = sessionData.trading.LoginId;
                 var olddata = DiaryMan.GetBySN(data.DiaryDataID);
                 checkUploadfiles(data, olddata);
+                data.Hit = olddata.Hit;
                 if (data.DiaryDataID > 0)
                 {
                     DiaryMan.Update(data);

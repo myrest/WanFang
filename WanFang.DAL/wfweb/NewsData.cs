@@ -170,6 +170,10 @@ namespace WanFang.DAL.NewsData
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
+                if (!string.IsNullOrEmpty(filter.CostId))
+                {
+                    SQLStr.Append(" AND CostId like @0", filter.CostId);
+                }
                 if (!string.IsNullOrEmpty(filter.Cost))
                 {
                     SQLStr.Append(" AND Cost=@0", filter.Cost);
@@ -210,9 +214,17 @@ namespace WanFang.DAL.NewsData
                 {
                     SQLStr.Append(" AND IsShowOnTeam=@0", filter.IsShowOnTeam.Value);
                 }
+                if (filter.IsPrivate.HasValue)
+                {
+                    SQLStr.Append(" AND IsPrivate=@0", filter.IsPrivate.Value);
+                }
                 if (filter.Hit.HasValue)
                 {
                     SQLStr.Append(" AND Hit=@0", filter.Hit.Value);
+                }
+                if (filter.IsActive.HasValue)
+                {
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
                 }
                 if (filter.LastUpdate.HasValue)
                 {

@@ -168,7 +168,7 @@ namespace WanFang.DAL.NormallContent
                 }
                 if (!string.IsNullOrEmpty(filter.UnitName))
                 {
-                    SQLStr.Append(" AND UnitName=@0", filter.UnitName);
+                    SQLStr.Append(" AND UnitName like @0", "%" + filter.UnitName + "%");
                 }
                 if (filter.OpenType.HasValue)
                 {

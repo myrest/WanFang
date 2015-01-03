@@ -24,6 +24,12 @@ namespace WanFang.Website.Controllers
             : base(Permission.Private)
         {
             ViewData["MenuItem"] = 6;
+            if (sessionData.trading != null && sessionData.trading.Dept != null && sessionData.trading.Dept.HasValue)
+            {
+                ViewData["Dept"] = sessionData.trading.Dept.Value;//WS_Dept_type
+                ViewData["DeptName"] = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                ViewData["CostName"] = sessionData.trading.CostName;
+            }
         }
 
         public ActionResult NewsData(NewsData_Filter filter, Rest.Core.Paging Page)
@@ -32,6 +38,9 @@ namespace WanFang.Website.Controllers
             if (PermissionCheck != null) return PermissionCheck;
 
             if (filter.Title == "請輸入標題搜尋") filter.Title = null;
+            if (filter.DeptName == "請選擇") filter.DeptName = null;
+            //公領域
+            filter.IsPrivate = 0;
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -39,7 +48,41 @@ namespace WanFang.Website.Controllers
             List<NewsData_Info> data = NewsDataMan.GetByParameter(filter, page, null, "PublishDate desc");
             ViewData["Model"] = data;
             ViewData["Page"] = page;
+            ViewData["DeptName"] = filter.DeptName;//不預設搜尋條件
             return View();
+        }
+
+        public ActionResult NewsDataPrivate(NewsData_Filter filter, Rest.Core.Paging Page)
+        {
+            ViewData["MenuItem"] = 9;
+            if (!sessionData.trading.Dept.HasValue)
+            {
+                return View("~/Views/Manage/PermissionDeny.aspx");
+            }
+            else
+            {
+                if (filter.Title == "請輸入標題搜尋") filter.Title = null;
+                if (filter.DeptName == "請選擇") filter.DeptName = null;
+                //私領域
+                filter.IsPrivate = 1;
+                if (!sessionData.trading.IsVerifier)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    filter.Cost = sessionData.trading.CostName;
+                }
+                else
+                {
+                    ViewData["DeptName"] = filter.DeptName;//不預設搜尋條件
+                }
+                ViewData["Filter"] = filter;
+
+                Rest.Core.Paging page = new Rest.Core.Paging() { };
+                if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+                List<NewsData_Info> data = NewsDataMan.GetByParameter(filter, page, null, "PublishDate desc");
+                ViewData["Model"] = data;
+                ViewData["Page"] = page;
+                return View("~/Views/Page6/NewsData.aspx");
+            }
         }
 
         private void ClearOldData(string Prefix)
@@ -54,16 +97,30 @@ namespace WanFang.Website.Controllers
             }
         }
 
-        public ActionResult EditNewsData(string id)
+        public ActionResult EditNewsData(string id, string IsPrivate)
         {
             //Clear old data.
             ClearOldData("NewsDataImage");
             var model = NewsDataMan.GetBySN(Convert.ToInt32(id));
+            if (IsPrivate == "1")
+            {
+                ViewData["MenuItem"] = 9;
+                //私領域預設直接載入該診別
+                ViewData["DeptType"] = sessionData.trading.Dept.Value;
+                if (model == null)
+                {
+                    model = new NewsData_Info();
+                    model.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    model.Cost = sessionData.trading.CostName;
+                }
+            }
+            else
+            {
+                //公領域直接載入該診別
+                ViewData["DeptType"] = null;
+            }
+            ViewData["IsPrivate"] = (IsPrivate == "1");
             ViewData["Model"] = model;
-
-            WebService_Manage service = new WanFang.BLL.WebService_Manage();
-            var Dept = service.GetAllDept();
-            ViewData["AllDept"] = Dept;
             
             return View();
         }

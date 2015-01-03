@@ -16,6 +16,7 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
     %>
     <script>
@@ -44,10 +45,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">最新消息項目管理</div>            </h1>
+                    <div class="tt-r">最新消息項目管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp最新消息管理&nbsp&#187&nbsp最新消息項目管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp最新消息管理&nbsp&#187&nbsp最新消息項目管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -60,21 +63,25 @@
                             <option <%=(Model.DiaryType == "新聞稿")?"selected":"" %>>新聞稿</option>
                         </select></td>
                     <!--新聞類型-->
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 va_m">類別代碼</td>
                     <td class="txt_l">
                         <input name="DiaryTypeCode" type="text" size="5" value="<%=Model.DiaryTypeCode %>" ></td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 va_m">發布日期<span class="red">*</span></td>
                     <td class="txt_l">
                         <input name="PublishDate" type="text" size="10" value="<%=(Model.PublishDate == DateTime.MinValue) ? "" : Model.PublishDate.ToString("yyyy/MM/dd")%>" />
                     </td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 w150 va_m">發布主題<span class="red">*</span></td>
                     <td class="txt_l">
                         <input type="text" name="Subject" size="50" maxlength="255" value="<%=Model.Subject %>" >
                         （例：103年度老人體檢開跑!!）</td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 w150 top">發布內容 </td>
                     <td class="txt_l">
                         <script type="text/javascript">
@@ -94,28 +101,24 @@
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖1：</td>
                                 <td>
-                                    <input type="file" id="DiaryDataImage1" size="30"/>
                                     <%=UrlExtension.PreviewImage(Model.Image1, "DiaryDataImage1")%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖2：</td>
                                 <td>
-                                    <input type="file" id="DiaryDataImage2" size="30"/>
                                     <%=UrlExtension.PreviewImage(Model.Image2, "DiaryDataImage2")%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖3：</td>
                                 <td>
-                                    <input type="file" id="DiaryDataImage3" size="30"/>
                                     <%=UrlExtension.PreviewImage(Model.Image3, "DiaryDataImage3")%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖4：</td>
                                 <td>
-                                    <input type="file" id="DiaryDataImage4" size="30"/>
                                     <%=UrlExtension.PreviewImage(Model.Image4, "DiaryDataImage4")%>
                                     </td>
                             </tr>
@@ -126,7 +129,6 @@
                 <tr class="line-d">
                     <td class="line-d0 top">檔案上傳</td>
                     <td class="txt_l">
-                        <input type="file" id="DiaryDataFileDocument" size="30"/>
                         <%=UrlExtension.PreviewImage(Model.FileDocument, "DiaryDataFileDocument")%>
                     </td>
                 </tr>
@@ -152,11 +154,13 @@
                             <option value="0" <%=(Model.IsShowInHeader == 0)?"selected":"" %>>非首頁</option>
                         </select>
                     </td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->

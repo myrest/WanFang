@@ -20,15 +20,18 @@ namespace WanFang.Website.Controllers
         private static readonly CostUnit_Manager CostUman = new CostUnit_Manager();
         private static readonly WebDownload_Manager Downloadman = new WebDownload_Manager();
         private static readonly CostNews_Manager CostNewsMan = new CostNews_Manager();
+        private static readonly Doc_Manager DocMan = new Doc_Manager();
+
 
         public Page9Controller()
             : base(Permission.Private)
         {
             ViewData["MenuItem"] = 9;
-            if (sessionData.trading.Dept.HasValue)
+            if (sessionData.trading != null && sessionData.trading.Dept != null && sessionData.trading.Dept.HasValue)
             {
                 ViewData["Dept"] = sessionData.trading.Dept.Value;//WS_Dept_type
                 ViewData["DeptName"] = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                ViewData["CostName"] = sessionData.trading.CostName;
             }
         }
 
@@ -44,7 +47,48 @@ namespace WanFang.Website.Controllers
             }
         }
 
-        public ActionResult Index()
+        public ActionResult Doc(Doc_Filter filter, Rest.Core.Paging Page)
+        {
+            if (!sessionData.trading.Dept.HasValue)
+            {
+                return View("~/Views/Manage/PermissionDeny.aspx");
+            }
+            else
+            {
+                if (filter.DocName == "請輸入醫師中文名字或醫師員編搜尋") filter.DocName = null;
+                if (filter.CostName == "請選擇") filter.CostName = null;
+                if (filter.DeptName == "請選擇") filter.DeptName = null;
+                if (!sessionData.trading.IsVerifier)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    filter.CostName = sessionData.trading.CostName;
+                }
+                if (filter.DeptName != null && filter.DeptName.Length == 1)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(filter.DeptName));
+                }
+
+                ViewData["Filter"] = filter;
+
+                Rest.Core.Paging page = new Rest.Core.Paging() { };
+                if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+                List<Doc_Info> data = DocMan.GetByParameter(filter, page, null, "seq_id desc, DocId desc");
+                ViewData["Model"] = data;
+                ViewData["Page"] = page;
+                return View();
+            }
+        }
+
+        public ActionResult EditDoc(string id)
+        {
+            //Clear old data.
+            ClearOldData("DocPic");
+            var model = DocMan.GetBySN(Convert.ToInt32(id));
+            ViewData["Model"] = model;
+            return View();
+        }
+
+        public ActionResult Index(CostUnit_Filter filter)
         {
             if (!sessionData.trading.Dept.HasValue)
             {
@@ -53,13 +97,19 @@ namespace WanFang.Website.Controllers
             else
             {
                 WanFang.BLL.CostUnit_Manager man = new WanFang.BLL.CostUnit_Manager();
-                CostUnit_Filter filter = new CostUnit_Filter() { }; 
+                if (filter.UnitName == "請輸入單元名稱搜尋") filter.UnitName = null;
                 if (!sessionData.trading.IsVerifier)
                 {
                     filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    filter.CostName = sessionData.trading.CostName;
                 }
-
-                var data = man.GetByParameter(filter, null, null, "SortNum");
+                Rest.Core.Paging page = new Rest.Core.Paging() { ItemsPerPage = 9999 };
+                string sortingby = "SortNum";
+                if (sessionData.trading.IsVerifier)
+                {
+                    sortingby = "DeptName, CostName, SortNum";
+                }
+                var data = man.GetByParameter(filter, page, null, sortingby);
                 ViewData["Model"] = data;
                 return View();
             }
@@ -89,6 +139,12 @@ namespace WanFang.Website.Controllers
             else
             {
                 if (filter.DocumentName == "請輸入檔案名稱搜尋") filter.DocumentName = null;
+                if (!sessionData.trading.IsVerifier)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    filter.CostName = sessionData.trading.CostName;
+                }
+
                 ViewData["Filter"] = filter;
 
                 Rest.Core.Paging page = new Rest.Core.Paging() { };
@@ -119,6 +175,11 @@ namespace WanFang.Website.Controllers
             {
                 if (filter.Subject == "請輸入發布主題搜尋") filter.Subject = null;
                 ViewData["Filter"] = filter;
+                if (!sessionData.trading.IsVerifier)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                    filter.CostName = sessionData.trading.CostName;
+                }
 
                 Rest.Core.Paging page = new Rest.Core.Paging() { };
                 if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;

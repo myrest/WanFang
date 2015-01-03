@@ -13,6 +13,7 @@ namespace WanFang.Domain
         int NewsId { get; set; }
         DateTime PublishDate { get; set; }
         string DeptName { get; set; }
+        string CostId { get; set; }
         string Cost { get; set; }
         string Title { get; set; }
         string Author { get; set; }
@@ -23,6 +24,7 @@ namespace WanFang.Domain
         string Image3 { get; set; }
         string Image4 { get; set; }
         int IsShowOnTeam { get; set; }
+        int IsPrivate { get; set; }
         int Hit { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpadtor { get; set; }
@@ -50,6 +52,10 @@ namespace WanFang.Domain
         public string DeptName { get; set; }
         /// <summary>
         /// 發表科別代號
+        /// </summary>
+        public string CostId { get; set; }
+        /// <summary>
+        /// 發表科別名稱
         /// </summary>
         public string Cost { get; set; }
         /// <summary>
@@ -89,6 +95,10 @@ namespace WanFang.Domain
         /// </summary>
         public int IsShowOnTeam { get; set; }
         /// <summary>
+        /// 是否為私領域
+        /// </summary>
+        public int IsPrivate { get; set; }
+        /// <summary>
         /// 點閱率
         /// </summary>
         public int Hit { get; set; }
@@ -97,6 +107,11 @@ namespace WanFang.Domain
         /// </summary>
         public DateTime LastUpdate { get; set; }
         public string LastUpadtor { get; set; }
+        /// <summary>
+        /// 上/下架(新)
+        /// </summary>
+        public int IsActive { get; set; }
+
         #endregion
 
         #region Constructor
@@ -111,6 +126,7 @@ namespace WanFang.Domain
         public int? NewsId { get; set; }
         public DateTime? PublishDate { get; set; }
         public string DeptName { get; set; }
+        public string CostId { get; set; }
         public string Cost { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
@@ -121,9 +137,14 @@ namespace WanFang.Domain
         public string Image3 { get; set; }
         public string Image4 { get; set; }
         public int? IsShowOnTeam { get; set; }
+        public int? IsPrivate { get; set; }
         public int? Hit { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpadtor { get; set; }
+        /// <summary>
+        /// 上/下架(新)
+        /// </summary>
+        public int? IsActive { get; set; }
         //You can copy/modify above NewsData_Info field for search criteria
     }
     #endregion

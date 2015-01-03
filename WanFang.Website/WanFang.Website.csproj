@@ -76,9 +76,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -1422,8 +1420,8 @@
     <Content Include="Views\Page5\EditTeamIntroduce.aspx" />
     <Content Include="Views\Page5\EditCostKeyword.aspx" />
     <Content Include="Views\Page5\CostKeyword.aspx" />
-    <Content Include="Views\Page5\Doc.aspx" />
-    <Content Include="Views\Page5\EditDoc.aspx" />
+    <Content Include="Views\Page9\Doc.aspx" />
+    <Content Include="Views\Page9\EditDoc.aspx" />
     <Content Include="Views\Page6\EditEdu.aspx" />
     <Content Include="Views\Page6\Edu.aspx" />
     <Content Include="Views\Page6\EditNewsData.aspx" />
@@ -1505,6 +1503,7 @@
     <None Include="CDN\Plugins\Manage\skins\aqua\Thumbs.db" />
     <None Include="CDN\Plugins\Manage\test.php" />
     <None Include="CDN\Plugins\Manage\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\ckeditor\ckeditor.pack" />
     <None Include="Scripts\ckeditor\ckeditor.php" />
     <None Include="Scripts\ckeditor\ckeditor_php4.php" />

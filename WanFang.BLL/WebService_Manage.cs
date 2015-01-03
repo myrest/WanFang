@@ -50,11 +50,11 @@ namespace WanFang.BLL
                 {
                     rtn.Add(new CostDetailInformation()
                     {
-                        CostCode = item["costcode"].ToString(),
-                        CostName = item["costdesc"].ToString(),
-                        Sick = item["sick"].ToString(),
-                        ECostDesc = item["ecostdesc"].ToString(),
-                        ESick = item["esick"].ToString(),
+                        CostCode = item["costcode"].ToString().Trim(),
+                        CostName = item["costdesc"].ToString().Trim(),
+                        Sick = item["sick"].ToString().Trim(),
+                        ECostDesc = item["ecostdesc"].ToString().Trim(),
+                        ESick = item["esick"].ToString().Trim(),
                         DeptType = EnumHelper.GetEnumByName<WS_Dept_type>(item["dept_type"].ToString()),
                         OpdFlag = EnumHelper.GetEnumByName<WS_Opd_flag>(item["opd_flag"].ToString()),
                         WebFlag = item["web_flag"].ToString()

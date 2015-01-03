@@ -180,7 +180,7 @@ namespace WanFang.DAL.WebDownload
                 }
                 if (!string.IsNullOrEmpty(filter.DocumentName))
                 {
-                    SQLStr.Append(" AND DocumentName=@0", filter.DocumentName);
+                    SQLStr.Append(" AND DocumentName like @0", "%" + filter.DocumentName + "%");
                 }
                 if (filter.IsActive.HasValue)
                 {

@@ -202,6 +202,10 @@ namespace WanFang.DAL.CostNews
                 {
                     SQLStr.Append(" AND UploadFile=@0", filter.UploadFile);
                 }
+                if (filter.IsActive.HasValue)
+                {
+                    SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
+                }
                 if (filter.LastUpdate.HasValue)
                 {
                     SQLStr.Append(" AND LastUpdate=@0", filter.LastUpdate.Value);

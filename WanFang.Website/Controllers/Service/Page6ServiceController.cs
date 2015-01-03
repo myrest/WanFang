@@ -58,10 +58,28 @@ namespace WanFang.Website.Controllers.Service
             }
             if (result.JsonReturnCode > -1)
             {
+                if (data.IsActive == 1)
+                {
+                    //審核專用
+                    var verdata = NewsDataMan.GetBySN(data.NewsId);
+                    verdata.IsActive = 1;
+                    NewsDataMan.Update(verdata);
+                    return Json(result, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    //一但有任何異動，自動下架
+                    data.IsActive = 0;
+                }
                 data.LastUpdate = DateTime.Now;
                 data.LastUpadtor = sessionData.trading.LoginId;
                 var olddata = NewsDataMan.GetBySN(data.NewsId);
                 checkUploadfiles(data, olddata);
+                if (data.DeptName.Length == 1)
+                {
+                    //insert new data.
+                    data.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(data.DeptName));
+                }
                 if (data.NewsId > 0)
                 {
                     NewsDataMan.Update(data);

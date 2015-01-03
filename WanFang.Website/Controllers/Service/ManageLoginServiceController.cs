@@ -39,6 +39,7 @@ namespace WanFang.Website.Controllers.Service
             trading.UserName = user.UserName;
             trading.UserID = user.UserID;
             trading.IsVerifier = (user.IsVerifier == 1);
+            trading.CostName = user.CostName.Trim();
             if (user.PermissionType == 0)
             {
                 trading.IsDeptOnly = true;

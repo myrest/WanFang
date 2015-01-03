@@ -24,6 +24,9 @@
             Model.ContentBody3 = Model.ContentBody3.Replace("\n\r", "");
             Model.ContentBody3 = Model.ContentBody3.Replace("\n", "");
             Model.ContentBody3 = Model.ContentBody3.Replace("\r", "");
+            Model.ContentBody1 = Model.ContentBody1.Replace("'", "\\'");
+            Model.ContentBody2 = Model.ContentBody2.Replace("'", "\\'");
+            Model.ContentBody3 = Model.ContentBody3.Replace("'", "\\'");
         }
     %>
     <script>
@@ -103,7 +106,7 @@
                         </tr>
                         <tr class="no_line">
                             <td class="top">
-                                <input name="DisplayType" type="radio" value="1" <%=(Model.DisplayType == 0) ? "checked" : ""%> />
+                                <input name="DisplayType" type="radio" value="1" <%=(Model.DisplayType == 1) ? "checked" : ""%> />
                                 內容：
                             </td>
                             <td>
@@ -126,8 +129,7 @@
                             </td>
                             <td>
                                 圖1：
-                                <input type="file" id="GuideImage1" size="30" />
-                                <%=UrlExtension.PreviewImage(Model.Image1, "GuideImage1")%>
+                                <%=UrlExtension.PreviewImage(Model.Image1, "GuideImage1", !EditForVerifier)%>
                             </td>
                         </tr>
                         <tr class="no_line">
@@ -161,8 +163,7 @@
                             </td>
                             <td>
                                 圖2：
-                                <input type="file" id="GuideImage2" size="30" />
-                                <%=UrlExtension.PreviewImage(Model.Image2, "GuideImage2")%>
+                                <%=UrlExtension.PreviewImage(Model.Image2, "GuideImage2", !EditForVerifier)%>
                             </td>
                         </tr>
                         <tr class="no_line">
@@ -196,8 +197,7 @@
                             </td>
                             <td>
                                 圖3：
-                                <input type="file" id="GuideImage3" size="30" />
-                                <%=UrlExtension.PreviewImage(Model.Image3, "GuideImage3")%>
+                                <%=UrlExtension.PreviewImage(Model.Image3, "GuideImage3", !EditForVerifier)%>
                             </td>
                         </tr>
                         <tr class="no_line">

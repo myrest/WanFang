@@ -2,11 +2,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool IsVerifer = (bool)ViewData["Verify"];
+        string VeriferClass = IsVerifer ? "" : " hide ";
+        string CanNotEdit = IsVerifer ? " hide " : "";
+
         List<WanFang.Domain.NewsData_Info> Model = ViewData["Model"] as List<WanFang.Domain.NewsData_Info>;
         WanFang.Domain.NewsData_Filter filter = ViewData["Filter"] as WanFang.Domain.NewsData_Filter;
         //Dictionary<string, string> Dept = ViewData["AllDept"] as Dictionary<string, string>;
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         if (Model == null) Model = new List<WanFang.Domain.NewsData_Info>();
+        string DeptName = (ViewData["DeptName"] == null) ? "" : ViewData["DeptName"].ToString();
     %>
     <script>
         $(function () {
@@ -34,7 +39,8 @@
                     <img src="/CDN/Images/Manage/title-left.jpg" />
                 </div>
                 <div class="tt-r">
-                    醫療衛教管理</div>
+                    醫療衛教管理
+                </div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
@@ -47,23 +53,36 @@
     <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
+                <input type="hidden" id="DeptName" name="DeptName" value="<%=DeptName %>" />
             <p>
-                科&nbsp;&nbsp;&nbsp;&nbsp;別：
-                <input type="hidden" id="DeptName" name="DeptName" />
+                上下架：<%int? a = null; %>
+                <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
+            </p>
+                <%
+                    if (filter.IsPrivate.Value == 0)
+                   {
+                %>
+            <p>
+                診&nbsp;&nbsp;&nbsp;&nbsp;別：
                 <select name="Dept" id="Dept">
                     <option>請選擇</option>
                     <%
-                        foreach (var item in Dept)
-                        {
-                            string selected = string.Empty;
-                            Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Value, selected, item.Value));
-                        }
+                       foreach (var item in Dept)
+                       {
+                           string selected = string.Empty;
+                           if (item.Value == filter.DeptName) selected = "selected";
+                           Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Value, selected, item.Value));
+                       }
                     %>
                 </select>
             </p>
+                <%
+                   }
+                %>
+                <input type="hidden" name="IsPrivate" value="<%=filter.IsPrivate.Value %>" />
             <p>
                 關鍵字：
-                <input name="Title" type="text" value="請輸入標題搜尋" onclick="this.value = '';" size="30"
+                <input name="Title" type="text" value="<%=(string.IsNullOrEmpty(filter.Title)) ? "請輸入標題搜尋" : filter.Title %>" onclick="this.value = '';" size="30"
                     id="Title" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
@@ -77,33 +96,33 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input type="button" class="submit3" onclick="window.location = '/Page6/EditNewsData/';"
+                    <input name="Add" id="Add" type="button" class="submit3 <%= CanNotEdit%>" onclick="window.location='/Page6/EditNewsData/?IsPrivate=<%=filter.IsPrivate.Value%>';"
                         value="新增資料">
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
+                        value="待審核">
                 </td>
             </tr>
         </table>
         <table class="ww100" border="0" cellpadding="2" cellspacing="1">
             <tr class="form-content h30 txt_c">
-                <td class="w20">
-                    &nbsp;
+                <td class="w20">&nbsp;
                 </td>
-                <td class="w60">
-                    發佈日期
+                <td class="w60">發佈日期
                 </td>
-                <td>
-                    科別
+                <td>診別
                 </td>
-                <td>
-                    標題
+                <td>科別
                 </td>
-                <td class="w40">
-                    點閱數
+                <td>標題
                 </td>
-                <td class="w80">
-                    更新日期
+                <td class="w40">點閱數
                 </td>
-                <td class="w80">
-                    編輯
+                <td class="w100">
+                    上/下架
+                </td>
+                <td class="w80">更新日期
+                </td>
+                <td class="w80">編輯
                 </td>
             </tr>
             <%
@@ -120,18 +139,26 @@
                 <td class=" txt_c">
                     <%=item.DeptName %>
                 </td>
+                <td class=" txt_c">
+                    <%=item.Cost %>
+                </td>
                 <td>
                     <%=item.Title %>
                 </td>
                 <td class=" txt_c">
                     <%=item.Hit %>
                 </td>
+                <td>
+                    <%=(item.IsActive > 0) ? "上架" : "下架"%>
+                </td>
                 <td class=" txt_c">
                     <%=item.LastUpdate %>
                 </td>
                 <td class=" txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page6/EditNewsData/<%=item.NewsId %>';"
+                    <input name="bt_edit" type="button" class="submit <%= CanNotEdit%>" onclick="window.location='/Page6/EditNewsData/<%=item.NewsId %>?IsPrivate=<%=filter.IsPrivate.Value%>';"
                         value="編輯">
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page6/EditNewsData/<%=item.NewsId %>?IsPrivate=<%=filter.IsPrivate.Value%>&Verify=1';"
+                        value="審核">
                 </td>
             </tr>
             <%

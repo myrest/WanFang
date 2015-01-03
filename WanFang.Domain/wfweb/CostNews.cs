@@ -78,6 +78,10 @@ namespace WanFang.Domain
         /// </summary>
         public string UploadFile { get; set; }
         /// <summary>
+        /// 上/下架
+        /// </summary>
+        public int IsActive { get; set; }
+        /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime LastUpdate { get; set; }
@@ -104,6 +108,7 @@ namespace WanFang.Domain
         public string Image3 { get; set; }
         public string Image4 { get; set; }
         public string UploadFile { get; set; }
+        public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above CostNews_Info field for search criteria

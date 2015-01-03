@@ -168,7 +168,8 @@ namespace WanFang.DAL.User
                 }
                 if (!string.IsNullOrEmpty(filter.LoginId))
                 {
-                    SQLStr.Append(" AND LoginId like @0", "%" + filter.LoginId + "%");
+                    string _key = "%" + filter.LoginId + "%";
+                    SQLStr.Append(" AND LoginId like @0", _key);
                 }
                 if (!string.IsNullOrEmpty(filter.Password))
                 {

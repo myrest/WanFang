@@ -5,6 +5,7 @@
 <%@ Import Namespace="WanFang.Domain.Constancy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.CostNews_Info Model = ViewData["Model"] as WanFang.Domain.CostNews_Info;
         if (Model == null)
         {
@@ -16,9 +17,21 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
         WS_Dept_type WSDept = (WS_Dept_type)ViewData["Dept"];
         string DeptName = ViewData["DeptName"].ToString();
+        if (!string.IsNullOrEmpty(Model.DeptName))
+        {
+            DeptName = Model.DeptName;
+            var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+            var _tmp = Dept.Where(x => x.Value == Model.DeptName).FirstOrDefault();
+            if (_tmp.Key != null)
+            {
+                WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(_tmp.Key);
+            }
+        }
+        
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);
     %>
     <script>
@@ -65,7 +78,11 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m w150">科別</td>
                     <td class="txt_l">
-                        <select name="CostName" id="CostName">
+                    <%
+                        string CostName = (string.IsNullOrEmpty(Model.CostName)) ? ViewData["CostName"].ToString() : Model.CostName;
+                    %>
+                    <input type="hidden" name="CostName" value="<%=CostName %>" /><%=CostName %>
+                        <!-- select name="CostName" id="CostName">
                             <%
                                 WanFang.BLL.WebService_Manage service = new WanFang.BLL.WebService_Manage();
                                 var cost = service.GetAllDetailCostcerter(WSDept);
@@ -79,7 +96,7 @@
                                     Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
                                 }
                             %>
-                        </select>
+                        </!-->
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -114,29 +131,25 @@
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖1：</td>
                                 <td>
-                                    <input type="file" id="CostNewsImage1" size="30"/>
-                                    <%=UrlExtension.PreviewImage(Model.Image1, "CostNewsImage1")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image1, "CostNewsImage1", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖2：</td>
                                 <td>
-                                    <input type="file" id="CostNewsImage2" size="30"/>
-                                    <%=UrlExtension.PreviewImage(Model.Image2, "CostNewsImage2")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image2, "CostNewsImage2", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖3：</td>
                                 <td>
-                                    <input type="file" id="CostNewsImage3" size="30"/>
-                                    <%=UrlExtension.PreviewImage(Model.Image3, "CostNewsImage3")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image3, "CostNewsImage3", !EditForVerifier)%>
                                     </td>
                             </tr>
                             <tr class="no_line">
                                 <td class="line-d w50 top">圖4：</td>
                                 <td>
-                                    <input type="file" id="CostNewsImage4" size="30"/>
-                                    <%=UrlExtension.PreviewImage(Model.Image4, "CostNewsImage4")%>
+                                    <%=UrlExtension.PreviewImage(Model.Image4, "CostNewsImage4", !EditForVerifier)%>
                                     </td>
                             </tr>
                         </table>
@@ -146,8 +159,7 @@
                 <tr class="line-d">
                     <td class="line-d0 top">檔案上傳</td>
                     <td class="txt_l">
-                        <input type="file" id="CostNewsUploadFile" size="30"/>
-                        <%=UrlExtension.PreviewImage(Model.UploadFile, "DownLoadUploadFile")%>
+                        <%=UrlExtension.PreviewImage(Model.UploadFile, "DownLoadUploadFile", !EditForVerifier)%>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -163,8 +175,19 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
-            <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
+            </table>
+        <div class="txt_c mag15" id="sendadd">
+        <%
+            if (EditForVerifier)
+            {
+                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+            }
+            else
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+        %>
         </div>
         <!--main end-->
     </div>

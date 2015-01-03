@@ -17,6 +17,7 @@
             Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
             Model.ContentBody = Model.ContentBody.Replace("\n", "");
             Model.ContentBody = Model.ContentBody.Replace("\r", "");
+            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
     %>
     <script>
@@ -45,10 +46,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">其他課程管理</div>            </h1>
+                    <div class="tt-r">其他課程管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp其他課程管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -98,7 +101,8 @@
                     <td class="line-d0 top">備註</td>
                     <td>
                         <textarea name="Memo" cols="60" rows="3"><%=Model.Memo %></textarea></td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 w150 top">發布內容 </td>
                     <td class="txt_l">
                         <script type="text/javascript">
@@ -115,7 +119,8 @@
                     <td class="line-d0 va_m">狀態</td>
                     <td class="txt_l va_m">
                         <input type="checkbox" value="1" name="HasTail" <%=(Model.HasTail == 1)?"checked":"" %> /> 是否顯示問卷</td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0">上/下架</td>
                     <td class="txt_l">
                         <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
@@ -126,7 +131,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
         <%
             if (EditForVerifier)
             {

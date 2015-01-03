@@ -4,6 +4,7 @@
     <%
         bool IsVerifer = (bool)ViewData["Verify"];
         string VeriferClass = IsVerifer ? "" : " hide ";
+        string CanNotEdit = IsVerifer ? " hide " : "";
 
         List<WanFang.Domain.Pilates_Info> Model = ViewData["Model"] as List<WanFang.Domain.Pilates_Info>;
         WanFang.Domain.Pilates_Filter filter = ViewData["Filter"] as WanFang.Domain.Pilates_Filter;
@@ -62,7 +63,7 @@
                     --點選以下項目來進行維護
                 </td>
                 <td class=" txt_r">
-                    <input type="button" class="submit3" onclick="window.location = '/Page3/EditPilates/';"
+                    <input type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page3/EditPilates/';"
                         value="新增資料">
                     <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
                         value="待審核">
@@ -135,9 +136,9 @@
                     <%=(item.IsActive > 0) ? "上架" : "下架"%>
                 </td>
                 <td class="txt_c">
-                    <input name="bt_edit" type="button" class="submit" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
+                    <input name="bt_edit" type="button" class="submit <%= CanNotEdit%>" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %>" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>?Verify=1';"
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page3/EditPilates/<%=item.PilatesId %>?Verify=1';"
                         value="審核">
                 </td>
             </tr>

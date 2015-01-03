@@ -5,6 +5,7 @@
 <%@ Import Namespace="WanFang.Domain.Constancy" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
+        bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.WebDownload_Info Model = ViewData["Model"] as WanFang.Domain.WebDownload_Info;
         if (Model == null)
         {
@@ -12,6 +13,17 @@
         }
         WS_Dept_type WSDept = (WS_Dept_type)ViewData["Dept"];
         string DeptName = ViewData["DeptName"].ToString();
+        if (!string.IsNullOrEmpty(Model.DeptName))
+        {
+            DeptName = Model.DeptName;
+            var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+            var _tmp = Dept.Where(x => x.Value == Model.DeptName).FirstOrDefault();
+            if (_tmp.Key != null)
+            {
+                WSDept = EnumHelper.GetEnumByName<WS_Dept_type>(_tmp.Key);
+            }
+        }
+        
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(WSDept);
     %>
     <script>
@@ -63,7 +75,11 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m w150">科別</td>
                     <td class="txt_l">
-                        <select name="CostName" id="CostName">
+                    <%
+                        string CostName = (string.IsNullOrEmpty(Model.CostName)) ? ViewData["CostName"].ToString() : Model.CostName;
+                    %>
+                    <input type="hidden" name="CostName" value="<%=CostName %>" /><%=CostName %>
+                        <!-- select name="CostName" id="CostName">
                             <%
                                 WanFang.BLL.WebService_Manage service = new WanFang.BLL.WebService_Manage();
                                 var cost = service.GetAllDetailCostcerter(WSDept);
@@ -77,7 +93,7 @@
                                     Response.Write(string.Format("<option value=\"{0}\" {1} >{0}</option>", item.CostName, selected));
                                 }
                             %>
-                        </select>
+                        </!-->
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -88,8 +104,7 @@
                 <tr class="line-d">
                     <td class="line-d0 top">檔案上傳<span class="red">*</span></td>
                     <td>
-                        <input type="file" id="WebDownLoadFile1" size="30"/>
-                        <%=UrlExtension.PreviewImage(Model.File1, "WebDownLoadFile1")%>
+                        <%=UrlExtension.PreviewImage(Model.File1, "WebDownLoadFile1", !EditForVerifier)%>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -102,15 +117,26 @@
                 <tr class="line-d top">
                     <td class="line-d0">上/下架</td>
                     <td class="txt_l">
-                        <% =UrlExtension.GenerIsActive(Model.IsActive)%>
+                    <% =UrlExtension.GenerIsActive(Model.IsActive, true)%>
                     </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
-            <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
+            </table>
+        <div class="txt_c mag15" id="sendadd">
+        <%
+            if (EditForVerifier)
+            {
+                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+            }
+            else
+            {
+                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+            }
+        %>
         </div>
         <!--main end-->
     </div>

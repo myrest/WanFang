@@ -17,7 +17,6 @@ namespace WanFang.Website.Controllers
         //
         // GET: /Default/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(Page5Controller));
-        private static readonly Doc_Manager DocMan = new Doc_Manager();
         private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
         private static readonly TeamIntroduce_Manager TeamMan = new TeamIntroduce_Manager();
         
@@ -43,30 +42,6 @@ namespace WanFang.Website.Controllers
             }
         }
 
-        public ActionResult Doc(Doc_Filter filter, Rest.Core.Paging Page)
-        {
-            var PermissionCheck = CheckPermission("團隊介紹管理");
-            if (PermissionCheck != null) return PermissionCheck;
-
-            if (filter.DocName == "請輸入醫師中文名字或醫師員編搜尋") filter.DocName = null;
-            ViewData["Filter"] = filter;
-
-            Rest.Core.Paging page = new Rest.Core.Paging() { };
-            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-            List<Doc_Info> data = DocMan.GetByParameter(filter, page, null, "seq_id desc, DocId desc");
-            ViewData["Model"] = data;
-            ViewData["Page"] = page;
-            return View();
-        }
-
-        public ActionResult EditDoc(string id)
-        {
-            //Clear old data.
-            ClearOldData("DocPic");
-            var model = DocMan.GetBySN(Convert.ToInt32(id));
-            ViewData["Model"] = model;
-            return View();
-        }
 
         public ActionResult CostKeyword(CostKeyword_Filter filter, Rest.Core.Paging Page)
         {
@@ -105,6 +80,11 @@ namespace WanFang.Website.Controllers
             if (!string.IsNullOrEmpty(filter.ContentBody) && filter.ContentBody.StartsWith("請輸入")) filter.ContentBody = null;
             if (filter != null && !string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請選擇")) filter.CostName = null;
             if (filter != null && !string.IsNullOrEmpty(filter.DeptName) && filter.DeptName.StartsWith("請選擇")) filter.DeptName = null;
+            if (!string.IsNullOrEmpty(filter.DeptName))
+            {
+                filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(filter.DeptName));
+            }
+
             ViewData["Filter"] = filter;
 
             Rest.Core.Paging page = new Rest.Core.Paging() { };

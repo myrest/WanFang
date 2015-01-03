@@ -34,12 +34,11 @@ namespace WanFang.Website.Controllers
 
             //if (!string.IsNullOrEmpty(filter.op_title) && filter.op_title.StartsWith("請輸入")) filter.op_title = null;
             ViewData["Filter"] = filter;
-            Rest.Core.Paging page = new Rest.Core.Paging() { };
-            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
+            Page = new Rest.Core.Paging() { };
             Page.ItemsPerPage = 9999;//不分頁
-            List<HirCategory_Info> data = CHMan.GetByParameter(filter, page, null, "SortNum");
+            List<HirCategory_Info> data = CHMan.GetByParameter(filter, Page, null, "SortNum");
             ViewData["Model"] = data;
-            ViewData["Page"] = page;
+            ViewData["Page"] = Page;
             return View();
         }
 

@@ -53,7 +53,6 @@
     <li class="<%=menus[5] %> <%=(Permission.IndexOf("團隊介紹管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">團隊介紹管理</a>
         <ul>
             <li><a href="/page5/CostKeyword">科別關鍵字管理</a></li>
-            <li><a href="/page5/Doc">醫師詳細介紹管理</a></li>
             <li><a href="/page5/TeamIntroduce">團隊介紹管理</a></li>
         </ul>
     </li>
@@ -92,6 +91,8 @@
             <li><a href="/Page9/Index">單元管理</a></li>
             <li><a href="/Page9/DownLoad">檔案下載管理</a></li>
             <li><a href="/Page9/News">最新消息管理</a></li>
+            <li><a href="/Page6/NewsDataPrivate">醫療衛教管理</a></li>
+            <li><a href="/page9/Doc">醫師詳細介紹管理</a></li>
         </ul>
     </li>
     <%
