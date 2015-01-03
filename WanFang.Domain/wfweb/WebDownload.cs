@@ -13,6 +13,7 @@ namespace WanFang.Domain
         int WebDownLoadID { get; set; }
         int SortNum { get; set; }
         string CostName { get; set; }
+        string CostId { get; set; }
         string DeptName { get; set; }
         string File1 { get; set; }
         string DocumentName { get; set; }
@@ -41,6 +42,10 @@ namespace WanFang.Domain
         /// 門診
         /// </summary>
         public string CostName { get; set; }
+        /// <summary>
+        /// 科別代碼
+        /// </summary>
+        public string CostId { get; set; }
         /// <summary>
         /// 科別
         /// </summary>
@@ -79,6 +84,7 @@ namespace WanFang.Domain
         public int? WebDownLoadID { get; set; }
         public int? SortNum { get; set; }
         public string CostName { get; set; }
+        public string CostId { get; set; }
         public string DeptName { get; set; }
         public string File1 { get; set; }
         public string DocumentName { get; set; }

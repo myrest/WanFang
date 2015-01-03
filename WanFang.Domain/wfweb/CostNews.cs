@@ -12,6 +12,7 @@ namespace WanFang.Domain
     {
         int CostNewsId { get; set; }
         string CostName { get; set; }
+        string CostId { get; set; }
         string DeptName { get; set; }
         DateTime PublishDate { get; set; }
         string Subject { get; set; }
@@ -20,6 +21,7 @@ namespace WanFang.Domain
         string Image2 { get; set; }
         string Image3 { get; set; }
         string Image4 { get; set; }
+        int IsActive { get; set; }
         string UploadFile { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpdator { get; set; }
@@ -41,6 +43,10 @@ namespace WanFang.Domain
         /// 門診
         /// </summary>
         public string CostName { get; set; }
+        /// <summary>
+        /// 科別代碼
+        /// </summary>
+        public string CostId { get; set; }
         /// <summary>
         /// 科別
         /// </summary>
@@ -73,14 +79,11 @@ namespace WanFang.Domain
         /// 圖片上傳4(特色醫療最新消息管理)
         /// </summary>
         public string Image4 { get; set; }
+        public int IsActive { get; set; }
         /// <summary>
         /// 檔案上傳
         /// </summary>
         public string UploadFile { get; set; }
-        /// <summary>
-        /// 上/下架
-        /// </summary>
-        public int IsActive { get; set; }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -99,6 +102,7 @@ namespace WanFang.Domain
     {
         public int? CostNewsId { get; set; }
         public string CostName { get; set; }
+        public string CostId { get; set; }
         public string DeptName { get; set; }
         public DateTime? PublishDate { get; set; }
         public string Subject { get; set; }
@@ -107,8 +111,8 @@ namespace WanFang.Domain
         public string Image2 { get; set; }
         public string Image3 { get; set; }
         public string Image4 { get; set; }
-        public string UploadFile { get; set; }
         public int? IsActive { get; set; }
+        public string UploadFile { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpdator { get; set; }
         //You can copy/modify above CostNews_Info field for search criteria

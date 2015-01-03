@@ -166,6 +166,10 @@ namespace WanFang.DAL.CostNews
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
+                if (!string.IsNullOrEmpty(filter.CostId))
+                {
+                    SQLStr.Append(" AND CostId=@0", filter.CostId);
+                }
                 if (!string.IsNullOrEmpty(filter.DeptName))
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);
@@ -198,13 +202,13 @@ namespace WanFang.DAL.CostNews
                 {
                     SQLStr.Append(" AND Image4=@0", filter.Image4);
                 }
-                if (!string.IsNullOrEmpty(filter.UploadFile))
-                {
-                    SQLStr.Append(" AND UploadFile=@0", filter.UploadFile);
-                }
                 if (filter.IsActive.HasValue)
                 {
                     SQLStr.Append(" AND IsActive=@0", filter.IsActive.Value);
+                }
+                if (!string.IsNullOrEmpty(filter.UploadFile))
+                {
+                    SQLStr.Append(" AND UploadFile=@0", filter.UploadFile);
                 }
                 if (filter.LastUpdate.HasValue)
                 {

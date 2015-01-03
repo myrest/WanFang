@@ -170,6 +170,10 @@ namespace WanFang.DAL.NewsData
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);
                 }
+                if (!string.IsNullOrEmpty(filter.DeptCode))
+                {
+                    SQLStr.Append(" AND DeptCode=@0", filter.DeptCode);
+                }
                 if (!string.IsNullOrEmpty(filter.CostId))
                 {
                     SQLStr.Append(" AND CostId like @0", filter.CostId);

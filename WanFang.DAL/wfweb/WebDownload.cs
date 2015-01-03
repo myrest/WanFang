@@ -170,6 +170,10 @@ namespace WanFang.DAL.WebDownload
                 {
                     SQLStr.Append(" AND CostName=@0", filter.CostName);
                 }
+                if (!string.IsNullOrEmpty(filter.CostId))
+                {
+                    SQLStr.Append(" AND CostId=@0", filter.CostId);
+                }
                 if (!string.IsNullOrEmpty(filter.DeptName))
                 {
                     SQLStr.Append(" AND DeptName=@0", filter.DeptName);

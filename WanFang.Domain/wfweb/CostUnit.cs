@@ -13,6 +13,7 @@ namespace WanFang.Domain
         int CostUnitId { get; set; }
         int SortNum { get; set; }
         string CostName { get; set; }
+        string CostId { get; set; }
         string DeptName { get; set; }
         string UnitName { get; set; }
         string ContentBody { get; set; }
@@ -43,6 +44,10 @@ namespace WanFang.Domain
         /// </summary>
         public string CostName { get; set; }
         /// <summary>
+        /// 科別代碼
+        /// </summary>
+        public string CostId { get; set; }
+        /// <summary>
         /// 內容(特色醫療單元管理)
         /// </summary>
         public string DeptName { get; set; }
@@ -65,9 +70,12 @@ namespace WanFang.Domain
         /// </summary>
         public int IsHomePage { get; set; }
         /// <summary>
-        /// 上/下架
+        /// 圖片上傳4(特色醫療單元管理)
         /// </summary>
         public int IsActive { get; set; }
+        /// <summary>
+        /// 上/下架
+        /// </summary>
         public DateTime LastUpdate { get; set; }
         /// <summary>
         /// 更新日期
@@ -87,6 +95,7 @@ namespace WanFang.Domain
         public int? CostUnitId { get; set; }
         public int? SortNum { get; set; }
         public string CostName { get; set; }
+        public string CostId { get; set; }
         public string DeptName { get; set; }
         public string UnitName { get; set; }
         public string ContentBody { get; set; }

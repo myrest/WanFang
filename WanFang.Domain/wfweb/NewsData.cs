@@ -13,6 +13,7 @@ namespace WanFang.Domain
         int NewsId { get; set; }
         DateTime PublishDate { get; set; }
         string DeptName { get; set; }
+        string DeptCode { get; set; }
         string CostId { get; set; }
         string Cost { get; set; }
         string Title { get; set; }
@@ -26,6 +27,7 @@ namespace WanFang.Domain
         int IsShowOnTeam { get; set; }
         int IsPrivate { get; set; }
         int Hit { get; set; }
+        int IsActive { get; set; }
         DateTime LastUpdate { get; set; }
         string LastUpadtor { get; set; }
     }
@@ -50,6 +52,10 @@ namespace WanFang.Domain
         /// 發表科別中文名稱
         /// </summary>
         public string DeptName { get; set; }
+        /// <summary>
+        /// 診別代碼
+        /// </summary>
+        public string DeptCode { get; set; }
         /// <summary>
         /// 發表科別代號
         /// </summary>
@@ -103,15 +109,14 @@ namespace WanFang.Domain
         /// </summary>
         public int Hit { get; set; }
         /// <summary>
+        /// 是否上架
+        /// </summary>
+        public int IsActive { get; set; }
+        /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime LastUpdate { get; set; }
         public string LastUpadtor { get; set; }
-        /// <summary>
-        /// 上/下架(新)
-        /// </summary>
-        public int IsActive { get; set; }
-
         #endregion
 
         #region Constructor
@@ -126,6 +131,7 @@ namespace WanFang.Domain
         public int? NewsId { get; set; }
         public DateTime? PublishDate { get; set; }
         public string DeptName { get; set; }
+        public string DeptCode { get; set; }
         public string CostId { get; set; }
         public string Cost { get; set; }
         public string Title { get; set; }
@@ -139,12 +145,9 @@ namespace WanFang.Domain
         public int? IsShowOnTeam { get; set; }
         public int? IsPrivate { get; set; }
         public int? Hit { get; set; }
+        public int? IsActive { get; set; }
         public DateTime? LastUpdate { get; set; }
         public string LastUpadtor { get; set; }
-        /// <summary>
-        /// 上/下架(新)
-        /// </summary>
-        public int? IsActive { get; set; }
         //You can copy/modify above NewsData_Info field for search criteria
     }
     #endregion
