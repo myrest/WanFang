@@ -257,8 +257,8 @@
                             status[1] = (Model.status == 1) ? "selected" : "";
                         %>
                         <select name="status" id="status">
-                            <option value="0" <%=status[0] %>>在職</option>
-                            <option value="1" <%=status[1] %>>離職</option>
+                            <option value="0" <%=status[0] %>>離職</option>
+                            <option value="1" <%=status[1] %>>在職</option>
                         </select></td>
                 </tr>
 
