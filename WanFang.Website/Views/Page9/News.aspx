@@ -120,7 +120,7 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit <%= CanNotEdit%>" onclick="window.location='/Page9/EditNews/<%=item.CostNewsId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page9/EditNews/<%=item.CostNewsId %>&Verify=1';"
+                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page9/EditNews/<%=item.CostNewsId %>?Verify=1';"
                         value="審核">
                 </td>
             </tr>

@@ -36,7 +36,7 @@
     %>
     <script>
         function Preview() {
-            var previewUrl = FrontEndUrl + '/p9_medical_news_detail.aspx?pv=1&cu=' + $('#pkId').val();
+            var previewUrl = FrontEndUrl + '/p9_medical_news_detail.aspx?pv=1&cn=' + $('#pkId').val();
             $('#previewform').attr('action', previewUrl);
             $('#previewform').submit();
             $('#wordIsActive').text('下架');

@@ -50,7 +50,7 @@
             $('#DeptName').change(ChangeDept);
         });
         function Preview() {
-            var previewUrl = FrontEndUrl + '/p9_medical_education_detail.aspx?pv=1&cu=' + $('#pkId').val();
+            var previewUrl = FrontEndUrl + '/p9_medical_education_detail.aspx?pv=1&n=' + $('#pkId').val();
             $('#previewform').attr('action', previewUrl);
             $('#previewform').submit();
             $('#wordIsActive').text('下架');
