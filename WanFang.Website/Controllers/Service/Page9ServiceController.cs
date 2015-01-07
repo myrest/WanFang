@@ -163,13 +163,16 @@ namespace WanFang.Website.Controllers.Service
                 {
                     result.setErrorMessage("醫師照片必需上傳");
                 }
-                if (data.DocId > 0)
-                {
-                    DocMan.Update(data);
-                }
                 else
                 {
-                    DocMan.Insert(data);
+                    if (data.DocId > 0)
+                    {
+                        DocMan.Update(data);
+                    }
+                    else
+                    {
+                        DocMan.Insert(data);
+                    }
                 }
             }
             return Json(result, JsonRequestBehavior.DenyGet);

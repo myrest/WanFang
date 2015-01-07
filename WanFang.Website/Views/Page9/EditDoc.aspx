@@ -135,6 +135,14 @@
                     </td>
                 </tr>
                 <tr class="line-d">
+                    <td class="line-d0 va_m w150">
+                        順序<span class="red">*</span>
+                    </td>
+                    <td class="txt_l">
+                        <input name="SortNum" type="text" value="<%=Model.SortNum %>" size="10">
+                    </td>
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0 top">醫師中文名字<span class="red">*</span></td>
                     <td>
                         <input name="DocName" type="text" value="<%=Model.DocName %>" size="50" maxlength="255" /></td>

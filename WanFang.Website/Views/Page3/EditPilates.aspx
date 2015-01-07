@@ -60,11 +60,11 @@
                     <td class="line-d0 va_m">課程代號<span class="red">*</span></td>
                     <td class="txt_l">
                         <select name="RegID">
-                            <option <%=(Model.RegID == "P:Pilates核心復健" ? "selected" : "") %>>P:Pilates核心復健</option>
-                            <option <%=(Model.RegID == "M:孕婦健康瑜珈班" ? "selected" : "") %>>M:孕婦健康瑜珈班</option>
-                            <option <%=(Model.RegID == "Q:肩頸上背疼痛復健班" ? "selected" : "") %>>Q:肩頸上背疼痛復健班</option>
-                            <option <%=(Model.RegID == "C:兒童背部運動及姿態矯正班" ? "selected" : "") %>>C:兒童背部運動及姿態矯正班</option>
-                            <option <%=(Model.RegID == "O:有氧太P力" ? "selected" : "") %>>O:有氧太P力</option>
+                            <option <%=(Model.RegID == "Pilates核心復健" ? "selected" : "") %>>Pilates核心復健</option>
+                            <option <%=(Model.RegID == "孕婦健康瑜珈班" ? "selected" : "") %>>孕婦健康瑜珈班</option>
+                            <option <%=(Model.RegID == "肩頸上背疼痛復健班" ? "selected" : "") %>>肩頸上背疼痛復健班</option>
+                            <option <%=(Model.RegID == "兒童背部運動及姿態矯正班" ? "selected" : "") %>>兒童背部運動及姿態矯正班</option>
+                            <option <%=(Model.RegID == "有氧太P力" ? "selected" : "") %>>有氧太P力</option>
                         </select></td>
                 </tr>
                 <tr class="line-d">

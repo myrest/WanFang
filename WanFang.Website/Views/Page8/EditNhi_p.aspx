@@ -120,7 +120,7 @@
                         <input name="price_dif" type="text" value="<%=Model.price_dif %>" size="20" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0 top">警語<span class="red">*</span></td>
+                    <td class="line-d0 top">警語</td>
                     <td>
                         <div style="clear: both; padding: 3px 0px 3px 0px;" class="red">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
                         <br />

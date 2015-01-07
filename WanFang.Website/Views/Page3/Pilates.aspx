@@ -75,9 +75,6 @@
                 <td class="w20">
                     &nbsp;
                 </td>
-                <td class="w30">
-                    課程代號
-                </td>
                 <td class="w70">
                     課程名稱
                 </td>
@@ -110,9 +107,6 @@
             <tr class="top mous01 line-d va_m">
                 <td>
                     <input type="checkbox" name="id" value="<%=item.PilatesId %>" />
-                </td>
-                <td class="txt_c">
-                    <%=item.RegID.Substring(0,1) %>
                 </td>
                 <td class="txt_c">
                     <%=item.RegName %>

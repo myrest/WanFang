@@ -162,6 +162,10 @@ namespace WanFang.DAL.Doc
                 {
                     SQLStr.Append(" AND DocId=@0", filter.DocId.Value);
                 }
+                if (filter.SortNum.HasValue)
+                {
+                    SQLStr.Append(" AND SortNum=@0", filter.SortNum.Value);
+                }
                 if (!string.IsNullOrEmpty(filter.Cost))
                 {
                     SQLStr.Append(" AND Cost=@0", filter.Cost);

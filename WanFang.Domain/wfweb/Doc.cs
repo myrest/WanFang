@@ -11,6 +11,7 @@ namespace WanFang.Domain
     public interface IDoc_Info
     {
         int DocId { get; set; }
+        int SortNum { get; set; }
         string Cost { get; set; }
         string CostName { get; set; }
         string DeptName { get; set; }
@@ -58,6 +59,10 @@ namespace WanFang.Domain
         /// 流水號
         /// </summary>
         public int DocId { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int SortNum { get; set; }
         /// <summary>
         /// 科別代號
         /// </summary>
@@ -196,6 +201,7 @@ namespace WanFang.Domain
     public class Doc_Filter
     {
         public int? DocId { get; set; }
+        public int? SortNum { get; set; }
         public string Cost { get; set; }
         public string CostName { get; set; }
         public string DeptName { get; set; }

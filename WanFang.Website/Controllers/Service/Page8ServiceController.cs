@@ -79,10 +79,6 @@ namespace WanFang.Website.Controllers.Service
             {
                 result.setErrorMessage("自付差額不得為空白");
             }
-            if (string.IsNullOrEmpty(data.warnings))
-            {
-                result.setErrorMessage("警語不得為空白");
-            }
             if (data.nhi_date == DateTime.MinValue)
             {
                 result.setErrorMessage("發布日期格式錯誤，正確格式為YYYY/MM/DD");
