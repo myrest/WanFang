@@ -33,7 +33,7 @@ namespace WanFang.Domain.Constancy
         [Description("醫事部門")]
         E,
 
-        [Description("教育部門")]
+        [Description("教學研究部門")]
         K
     }
 

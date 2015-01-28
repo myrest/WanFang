@@ -8,8 +8,19 @@
 
         List<WanFang.Domain.Doc_Info> Model = ViewData["Model"] as List<WanFang.Domain.Doc_Info>;
         WanFang.Domain.Doc_Filter filter = ViewData["Filter"] as WanFang.Domain.Doc_Filter;
-        //Dictionary<string, string> Dept = ViewData["AllDept"] as Dictionary<string, string>;
-        var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+        Dictionary<string, string> Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
+        List<WanFang.Domain.Webservice.CostDetailInformation> Costs = null;
+        //if filter's DeptName != null, need list down the cost
+        if (!string.IsNullOrEmpty(filter.DeptName))
+        {
+            var DirDeptCode = Dept.Where(x => x.Value.Trim() == filter.DeptName).FirstOrDefault();
+            if (!string.IsNullOrEmpty(DirDeptCode.Key))
+            {
+                WanFang.Domain.Constancy.WS_Dept_type depttype =
+                    Rest.Core.Utility.EnumHelper.GetEnumByName<WanFang.Domain.Constancy.WS_Dept_type>(DirDeptCode.Key);
+                Costs = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(depttype);
+            }
+        }
         if (Model == null) Model = new List<WanFang.Domain.Doc_Info>();
     %>
     <script>
@@ -81,6 +92,7 @@
                         foreach (var item in Dept)
                         {
                             string selected = string.Empty;
+                            if (item.Value.Trim() == filter.DeptName) selected = " selected ";
                             Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
                         }
                     %>
@@ -88,11 +100,25 @@
                 科別：
                 <select name="CostName" id="CostName">
                     <option>請選擇</option>
+                    <%
+                        if (Costs != null)
+                        {
+                            Costs.ForEach(x =>
+                            {
+                                string selected = "";
+                                if (!string.IsNullOrEmpty(filter.CostName) && x.CostName.Trim() == filter.CostName.Trim())
+                                {
+                                    selected = " selected ";
+                                }
+                                Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", x.CostName, selected, x.CostName));
+                            });
+                        }
+                    %>
                 </select>
             </p>
             <p>
                 關鍵字：
-                <input name="DocName" type="text" value="請輸入醫師中文名字或醫師員編搜尋" onclick="this.value = '';"
+                <input name="DocName" type="text" value="<%=(string.IsNullOrEmpty(filter.DocName)) ? "請輸入醫師中文名字或醫師員編搜尋" : filter.DocName %>" onclick="this.value = '';"
                     size="30" id="DocName" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>
@@ -108,7 +134,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page9/EditDoc/';"
                         value="新增資料">
-                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);$('#CurrentPage').val(1);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>

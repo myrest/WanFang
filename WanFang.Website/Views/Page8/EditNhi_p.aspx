@@ -61,7 +61,7 @@
                     <td class="txt_l">
                         <select name="nhi_code" id="nhi_code">
                             <option <%=(Model.nhi_code == "塗藥血管支架") ? "selected" : "" %>>塗藥血管支架</option>
-                            <option <%=(Model.nhi_code == "陶瓷人工髖關節組件") ? "selected" : "" %>>陶瓷人工髖關節組件</option>
+                            <option <%=(Model.nhi_code == "人工髖關節組件") ? "selected" : "" %>>人工髖關節組件</option>
                             <option <%=(Model.nhi_code == "特殊功能人工水晶體") ? "selected" : "" %>>特殊功能人工水晶體</option>
                             <option <%=(Model.nhi_code == "自費特材品項") ? "selected" : "" %>>自費特材品項 </option>
                             <option <%=(Model.nhi_code == "人工心律調節器") ? "selected" : "" %>>人工心律調節器 </option>
@@ -81,41 +81,41 @@
                 <tr class="line-d">
                     <td class="line-d0">英文品名 / 許可證號<span class="red">*</span></td>
                     <td>
-                        <input name="nhi_ename" ype="text" value="<%=Model.nhi_ename %>" size="100" /></td>
+                        <input name="nhi_ename" type="text" value="<%=Model.nhi_ename %>" size="100" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">院內代碼<span class="red">*</span></td>
+                    <td class="line-d0">院內代碼</td>
                     <td>
                         <input name="fee_code" type="text" value="<%=Model.fee_code %>" size="50" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">健保代碼<span class="red">*</span></td>
+                    <td class="line-d0">健保代碼</td>
                     <td>
                         <input name="HealthCode" type="text" value="<%=Model.HealthCode %>" size="50" /></td>
                     <!--新欄位-->
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">品項代碼 / 廠牌名稱<span class="red">*</span></td>
+                    <td class="line-d0">品項代碼 / 廠牌名稱</td>
                     <td>
                         <input name="mark_name" type="text" value="<%=Model.mark_name %>" size="50" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">計價單位<span class="red">*</span></td>
+                    <td class="line-d0">計價單位</td>
                     <td>
                         <input name="unit" type="text" value="<%=Model.unit %>" size="10" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">健保金額<span class="red">*</span></td>
+                    <td class="line-d0">健保金額</td>
                     <td>
                         <input name="nhi_cost" type="text" value="<%=Model.nhi_cost %>" size="20" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">自費金額<span class="red">*</span></td>
+                    <td class="line-d0">自費金額</td>
                     <td>
                         <input name="self_cost" type="text" value="<%=Model.self_cost %>" size="20" /></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0">自付差額<span class="red">*</span></td>
+                    <td class="line-d0">自付差額</td>
                     <td>
                         <input name="price_dif" type="text" value="<%=Model.price_dif %>" size="20" /></td>
                 </tr>

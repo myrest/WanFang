@@ -41,7 +41,7 @@
         <div class="bg-s">
             <p>
                 關鍵字：
-                <input name="CodeOld" type="text" value="請輸入健保代碼或中文品名搜尋" onclick="this.value = '';"
+                <input name="CodeOld" type="text" value="<%=(string.IsNullOrEmpty(filter.CodeOld)) ? "請輸入健保代碼或中文品名搜尋" : filter.CodeOld %>" onclick="this.value = '';"
                     size="30" id="CodeOld" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>

@@ -107,7 +107,7 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page5/EditTeamIntroduce/';"
                         value="新增資料">
-                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);this.form.submit();"
+                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);$('#CurrentPage').val(1);this.form.submit();"
                         value="待審核">
                 </td>
             </tr>

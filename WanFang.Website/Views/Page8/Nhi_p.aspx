@@ -43,16 +43,16 @@
                 特材類型：
                 <select name="nhi_code">
                     <option>請選擇</option>
-                    <option>塗藥血管支架</option>
-                    <option>陶瓷人工髖關節組件</option>
-                    <option>特殊功能人工水晶體</option>
-                    <option>自費特材品項 </option>
-                    <option>人工心律調節器 </option>
+                    <option <%=(filter.nhi_code == "塗藥血管支架") ? "selected" : "" %>>塗藥血管支架</option>
+                    <option <%=(filter.nhi_code == "人工髖關節組件") ? "selected" : "" %>>人工髖關節組件</option>
+                    <option <%=(filter.nhi_code == "特殊功能人工水晶體") ? "selected" : "" %>>特殊功能人工水晶體</option>
+                    <option <%=(filter.nhi_code == "自費特材品項") ? "selected" : "" %>>自費特材品項 </option>
+                    <option <%=(filter.nhi_code == "人工心律調節器") ? "selected" : "" %>>人工心律調節器 </option>
                 </select>
             </p>
             <p>
                 關鍵字：
-                <input name="nhi_cname" type="text" value="請輸入中文品名搜尋" onclick="this.value = '';"
+                <input name="nhi_cname" type="text" value="<%=(string.IsNullOrEmpty(filter.nhi_cname)) ? "請輸入中文品名搜尋" : filter.nhi_cname %>" onclick="this.value = '';"
                     size="30" id="nhi_cname" onkeydown="if(event.keyCode==13){this.form.submit();}" />
                 <input type="submit" class="submit" value="搜尋" id="Submit" />
             </p>

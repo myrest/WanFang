@@ -110,7 +110,7 @@
                                   foreach (var item in Dept)
                                   {
                                       string selected = string.Empty;
-                                      if (Model.Dept == item.Key)
+                                      if (Model.DeptName.Trim() == item.Value)
                                       {
                                           selected = "selected";
                                       }

@@ -150,7 +150,7 @@
                 <tr class="line-d">
                     <td class="line-d0 top">科別中文代號</td>
                     <td>
-                        <input name="DocCode" type="text" value="<%=Model.DocCode %>" size="30" maxlength="255" /></td>
+                        <input name="Cost" type="text" value="<%=Model.Cost %>" size="30" maxlength="255" /></td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 top">醫師英文名字</td>
@@ -251,7 +251,7 @@
                         <textarea name="ncareer" cols="60" rows="3"><%=Model.ncareer %></textarea></td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0 top">門診時段<span class="red">*</span></td>
+                    <td class="line-d0 top">門診時段</td>
                     <td>
                         <input name="otime" type="text" value="<%=Model.otime %>" size="90" maxlength="255" />
                     </td>

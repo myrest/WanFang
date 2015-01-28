@@ -53,31 +53,31 @@ namespace WanFang.Website.Controllers.Service
             }
             if (string.IsNullOrEmpty(data.fee_code))
             {
-                result.setErrorMessage("院內代碼不得為空白");
+                //result.setErrorMessage("院內代碼不得為空白");
             }
             if (string.IsNullOrEmpty(data.HealthCode))
             {
-                result.setErrorMessage("健保代碼不得為空白");
+                //result.setErrorMessage("健保代碼不得為空白");
             }
             if (string.IsNullOrEmpty(data.mark_name))
             {
-                result.setErrorMessage("品項代碼 / 廠牌名稱不得為空白");
+                //result.setErrorMessage("品項代碼 / 廠牌名稱不得為空白");
             }
             if (string.IsNullOrEmpty(data.unit))
             {
-                result.setErrorMessage("計價單位不得為空白");
+                //result.setErrorMessage("計價單位不得為空白");
             }
             if (string.IsNullOrEmpty(data.nhi_cost))
             {
-                result.setErrorMessage("健保金額不得為空白");
+                //result.setErrorMessage("健保金額不得為空白");
             }
             if (string.IsNullOrEmpty(data.self_cost))
             {
-                result.setErrorMessage("自費金額不得為空白");
+                //result.setErrorMessage("自費金額不得為空白");
             }
             if (string.IsNullOrEmpty(data.price_dif))
             {
-                result.setErrorMessage("自付差額不得為空白");
+                //result.setErrorMessage("自付差額不得為空白");
             }
             if (data.nhi_date == DateTime.MinValue)
             {

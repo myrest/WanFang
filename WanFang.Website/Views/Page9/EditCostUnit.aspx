@@ -36,7 +36,12 @@
     <script>
         function Preview() {
             var previewUrl = FrontEndUrl + '/p9_medical_detail.aspx?pv=1&cu=' + $('#pkId').val();
-            $('#previewform').attr('action', previewUrl);
+            var previewHomePageUrl = FrontEndUrl + '/p9_medical.aspx?pv=1&cu=' + $('#pkId').val();
+            if ($('input[name=IsHomePage]:checked').val() == "1") {
+                $('#previewform').attr('action', previewHomePageUrl);
+            } else {
+                $('#previewform').attr('action', previewUrl);
+            }
             $('#previewform').submit();
             $('#wordIsActive').text('下架');
         }

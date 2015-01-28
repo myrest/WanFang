@@ -133,23 +133,26 @@ namespace Rest.Core.Utility
 
         public static object HtmlSave(object objSource)
         {
-            //step : 1 Get the type of source object and create a new instance of that type
-            Type typeSource = objSource.GetType();
-
-            //Step2 : Get all the properties of source object type
-            PropertyInfo[] propertyInfo = typeSource.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-            //Step : 3 Assign all source property to taget object 's properties
-            foreach (PropertyInfo property in propertyInfo)
+            if (objSource != null)
             {
-                //Check whether property can be written to
-                if (property.CanWrite)
+                //step : 1 Get the type of source object and create a new instance of that type
+                Type typeSource = objSource.GetType();
+
+                //Step2 : Get all the properties of source object type
+                PropertyInfo[] propertyInfo = typeSource.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+                //Step : 3 Assign all source property to taget object 's properties
+                foreach (PropertyInfo property in propertyInfo)
                 {
-                    //Step : 4 check whether property type is value type, enum or string type
-                    if (property.PropertyType.Equals(typeof(System.String)))
+                    //Check whether property can be written to
+                    if (property.CanWrite)
                     {
-                        string SafeString = System.Web.HttpUtility.HtmlEncode(property.GetValue(objSource, null));
-                        property.SetValue(objSource, SafeString, null);
+                        //Step : 4 check whether property type is value type, enum or string type
+                        if (property.PropertyType.Equals(typeof(System.String)))
+                        {
+                            string SafeString = System.Web.HttpUtility.HtmlEncode(property.GetValue(objSource, null));
+                            property.SetValue(objSource, SafeString, null);
+                        }
                     }
                 }
             }

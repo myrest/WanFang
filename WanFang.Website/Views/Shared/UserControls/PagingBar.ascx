@@ -20,7 +20,7 @@
                         var currentpage = parseInt($('#CurrentPage').val(), 10);
                         if (currentpage >= page.totalpage) return;
                         var pagenum = currentpage + 1;
-                        if (pagenum < <%= Page.TotalPages %> ) pagenum = <%= Page.TotalPages %> ;
+                        if (pagenum > <%= Page.TotalPages %> ) pagenum = <%= Page.TotalPages %> ;
                         $('#CurrentPage').val(pagenum);
                         $('#form1').submit();
                     },

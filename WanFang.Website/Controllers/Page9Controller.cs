@@ -173,7 +173,7 @@ namespace WanFang.Website.Controllers
             }
             else
             {
-                if (filter.Subject == "請輸入發布主題搜尋") filter.Subject = null;
+                if (!string.IsNullOrEmpty(filter.Subject) && filter.Subject.StartsWith("請輸入")) filter.Subject = null;
                 ViewData["Filter"] = filter;
                 if (!sessionData.trading.IsVerifier)
                 {
@@ -186,6 +186,7 @@ namespace WanFang.Website.Controllers
                 List<CostNews_Info> data = CostNewsMan.GetByParameter(filter, page, null, "PublishDate desc");
                 ViewData["Model"] = data;
                 ViewData["Page"] = page;
+                ViewData["Filter"] = filter;
                 return View();
             }
         }

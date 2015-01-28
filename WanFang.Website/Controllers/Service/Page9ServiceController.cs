@@ -149,12 +149,13 @@ namespace WanFang.Website.Controllers.Service
             }
             if (string.IsNullOrEmpty(data.otime))
             {
-                result.setErrorMessage("門診時段不得為空白");
+                //result.setErrorMessage("門診時段不得為空白");
             }
             if (result.JsonReturnCode > -1)
             {
                 data.Dept = data.DeptName;
                 data.DeptName = getDeptName(EnumHelper.GetEnumByName<WS_Dept_type>(data.Dept));
+                data.Cost = sessionData.trading.CostId;
                 data.LastUpdate = DateTime.Now;
                 data.LastUpdator = sessionData.trading.LoginId;
                 var olddata = DocMan.GetBySN(data.DocId);
