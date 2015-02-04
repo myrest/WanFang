@@ -275,9 +275,9 @@ namespace WanFang.Website.Controllers.Service
                 if (data.IsActive == 1)
                 {
                     //審核專用
-                    var verdata = DocMan.GetBySN(data.WebDownLoadID);
+                    var verdata = DownloadMan.GetBySN(data.WebDownLoadID);
                     verdata.IsActive = 1;
-                    DocMan.Update(verdata);
+                    DownloadMan.Update(verdata);
                     return Json(result, JsonRequestBehavior.DenyGet);
                 }
                 else

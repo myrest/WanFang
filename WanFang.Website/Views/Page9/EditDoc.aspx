@@ -26,6 +26,7 @@
         {
             AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(EnumHelper.GetEnumByName<WS_Dept_type>(Model.Dept));
         }
+        string CostName = (string.IsNullOrEmpty(Model.CostName)) ? ViewData["CostName"].ToString() : Model.CostName;
     %>
     <script>
         $(function () {
@@ -66,7 +67,7 @@
         }
 
         function GoBack() {
-            var redirto = utility.getRedirUrl('Page9', 'Doc') + '?' + (new Date()).getMilliseconds();
+            var redirto = utility.getRedirUrl('Page9', 'Doc') + '?DeptName=<%=WSDept.ToString()%>&CostName=<%=CostName%>&' + (new Date()).getMilliseconds();
             window.location.href = redirto;
         }
     </script>
@@ -114,9 +115,6 @@
                 <tr class="line-d">
                     <td class="line-d0 va_m">科別<span class="red">*</span></td>
                     <td class="txt_l">
-                    <%
-                        string CostName = (string.IsNullOrEmpty(Model.CostName)) ? ViewData["CostName"].ToString() : Model.CostName;
-                    %>
                     <input type="hidden" name="CostName" value="<%=CostName %>" /><%=CostName %>
                         <!-- select name="CostName" id="CostName">
                             <option>請選擇</option>
@@ -208,7 +206,7 @@
                     </td>
                 </tr>
                 <tr class="line-d">
-                    <td class="line-d0 top">主治項目<!-- 新欄位--><span class="red">*</span></td>
+                    <td class="line-d0 top">主治項目<!-- 新欄位--><span class="red">*</span>（醫師詳細內頁）</td>
                     <td>
                         <input name="MainMajor1" type="text" value="<%=Model.MainMajor1 %>" size="50" maxlength="255" />
                         <br />
@@ -225,7 +223,7 @@
                 </tr>
 
                 <tr class="line-d">
-                    <td class="line-d0 top">主治項目介紹<!-- 原主治項目--></td>
+                    <td class="line-d0 top">主治項目介紹<!-- 原主治項目-->（醫師列表）</td>
                     <td>
                         <textarea name="smain" cols="60" rows="3"><%=Model.smain %></textarea></td>
                 </tr>
