@@ -17,7 +17,6 @@ namespace WanFang.Website.Controllers
         //
         // GET: /Default/
         private static readonly SysLog Log = SysLog.GetLogger(typeof(Page5Controller));
-        private static readonly CostKeyword_Manager CostKeyMan = new CostKeyword_Manager();
         private static readonly TeamIntroduce_Manager TeamMan = new TeamIntroduce_Manager();
         
         
@@ -40,36 +39,6 @@ namespace WanFang.Website.Controllers
                     sessionData.trading.UploadFiles.Remove(x.Key);
                 });
             }
-        }
-
-
-        public ActionResult CostKeyword(CostKeyword_Filter filter, Rest.Core.Paging Page)
-        {
-            var PermissionCheck = CheckPermission("團隊介紹管理");
-            if (PermissionCheck != null) return PermissionCheck;
-
-            if (filter != null && !string.IsNullOrEmpty(filter.KeyWord) && filter.KeyWord.StartsWith("請輸入")) filter.KeyWord = null;
-            if (filter != null && !string.IsNullOrEmpty(filter.CostName) && filter.CostName.StartsWith("請選擇")) filter.CostName = null;
-            if (filter != null && !string.IsNullOrEmpty(filter.DeptName) && filter.DeptName.StartsWith("請選擇")) filter.DeptName = null;
-            ViewData["Filter"] = filter;
-
-            Rest.Core.Paging page = new Rest.Core.Paging() { };
-            if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-            List<CostKeyword_Info> data = CostKeyMan.GetByParameter(filter, page, null, "CostKeywordId desc");
-
-            WebService_Manage service = new WanFang.BLL.WebService_Manage();
-            var Dept = service.GetAllDept();
-            ViewData["AllDept"] = Dept;
-            ViewData["Model"] = data;
-            ViewData["Page"] = page;
-            return View();
-        }
-
-        public ActionResult EditCostKeyword(string id)
-        {
-            var model = CostKeyMan.GetBySN(Convert.ToInt32(id));
-            ViewData["Model"] = model;
-            return View();
         }
 
         public ActionResult TeamIntroduce(TeamIntroduce_Filter filter, Rest.Core.Paging Page)

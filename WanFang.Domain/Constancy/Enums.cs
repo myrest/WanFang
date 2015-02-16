@@ -12,10 +12,10 @@ namespace WanFang.Domain.Constancy
     /// </summary>
     public enum WS_Dept_type
     {
-        [Description("大內科")]
+        [Description("內科系")]
         M,
 
-        [Description("大外科")]
+        [Description("外科系")]
         S,
 
         [Description("婦兒科")]

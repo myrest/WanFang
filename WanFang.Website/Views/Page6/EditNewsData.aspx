@@ -280,7 +280,7 @@
                 <td><%=Model.LastUpdate %>--<%=Model.LastUpadtor %></td>
             </tr>
             <tr class="line-d">
-                <td class="line-d0 top">最後審核日期</td>
+                <td class="line-d0 top">最後審核日</td>
                 <td><%=(Model.VerifiedDate != null && Model.VerifiedDate != DateTime.MinValue) ? Model.VerifiedDate.ToString() : "" %></td>
             </tr>
         </table>
