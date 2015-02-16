@@ -39,6 +39,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = NcMan.GetBySN(data.NormallContentId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 NcMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

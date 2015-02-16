@@ -46,6 +46,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = CostUnitman.GetBySN(data.CostUnitId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 CostUnitman.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
@@ -103,6 +104,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = DocMan.GetBySN(data.DocId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 DocMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
@@ -277,6 +279,7 @@ namespace WanFang.Website.Controllers.Service
                     //審核專用
                     var verdata = DownloadMan.GetBySN(data.WebDownLoadID);
                     verdata.IsActive = 1;
+                    verdata.VerifiedDate = DateTime.Now;
                     DownloadMan.Update(verdata);
                     return Json(result, JsonRequestBehavior.DenyGet);
                 }
@@ -356,6 +359,7 @@ namespace WanFang.Website.Controllers.Service
                     //審核專用
                     var verdata = CostNewsMan.GetBySN(data.CostNewsId);
                     verdata.IsActive = 1;
+                    verdata.VerifiedDate = DateTime.Now;
                     CostNewsMan.Update(verdata);
                     return Json(result, JsonRequestBehavior.DenyGet);
                 }

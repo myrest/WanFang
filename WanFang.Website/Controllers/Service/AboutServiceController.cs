@@ -97,6 +97,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = AboutContMan.GetBySN(data.AboutContentId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 AboutContMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
@@ -202,6 +203,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = AboutTeamMan.GetBySN(data.AboutTeamId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 AboutTeamMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
@@ -294,6 +296,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = AboutSrv.GetBySN(data.AboutServiceId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 AboutSrv.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

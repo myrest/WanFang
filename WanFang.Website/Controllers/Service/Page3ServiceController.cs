@@ -39,6 +39,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = PilatesMan.GetBySN(data.PilatesId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 PilatesMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

@@ -45,6 +45,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = CostKeyMan.GetBySN(data.CostKeywordId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 CostKeyMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
@@ -94,6 +95,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = TeamMan.GetBySN(data.TeamIntroduceId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 TeamMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

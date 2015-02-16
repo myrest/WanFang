@@ -68,6 +68,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = HdMan.GetBySN(data.HirDetailId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 HdMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

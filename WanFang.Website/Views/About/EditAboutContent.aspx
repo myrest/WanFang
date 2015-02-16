@@ -264,6 +264,10 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
+                <tr class="line-d">
+                    <td class="line-d0 top">最後審核日</td>
+                    <td><%=(Model.VerifiedDate != null && Model.VerifiedDate != DateTime.MinValue) ? Model.VerifiedDate.ToString() : "" %></td>
+                </tr>
             </table>
         <div class="txt_c mag15" id="sendadd">
         <%

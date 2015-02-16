@@ -41,6 +41,7 @@ namespace WanFang.Website.Controllers.Service
                 //審核專用
                 var verdata = OQMan.GetBySN(data.Op_QaId);
                 verdata.IsActive = 1;
+                verdata.VerifiedDate = DateTime.Now;
                 OQMan.Update(verdata);
                 return Json(result, JsonRequestBehavior.DenyGet);
             }

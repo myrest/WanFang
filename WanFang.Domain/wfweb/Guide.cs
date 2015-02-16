@@ -106,7 +106,7 @@ namespace WanFang.Domain
         /// <summary>
         /// 審核時間
         /// </summary>
-        public DateTime VerifiedDate { get; set; }
+        public DateTime? VerifiedDate { get; set; }
         #endregion
 
         #region Constructor
