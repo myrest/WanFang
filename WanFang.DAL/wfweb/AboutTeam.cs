@@ -206,6 +206,10 @@ namespace WanFang.DAL.AboutTeam
                 {
                     SQLStr.Append(" AND LastUpdator=@0", filter.LastUpdator);
                 }
+                if (filter.VerifiedDate.HasValue)
+                {
+                    SQLStr.Append(" AND VerifiedDate=@0", filter.VerifiedDate.Value);
+                }
                 if (_orderby != "")
                     SQLStr.OrderBy(_orderby);
 

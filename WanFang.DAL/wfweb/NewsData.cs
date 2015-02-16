@@ -238,6 +238,10 @@ namespace WanFang.DAL.NewsData
                 {
                     SQLStr.Append(" AND LastUpadtor=@0", filter.LastUpadtor);
                 }
+                if (filter.VerifiedDate.HasValue)
+                {
+                    SQLStr.Append(" AND VerifiedDate=@0", filter.VerifiedDate.Value);
+                }
                 if (_orderby != "")
                     SQLStr.OrderBy(_orderby);
 
