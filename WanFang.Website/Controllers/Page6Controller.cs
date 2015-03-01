@@ -39,6 +39,16 @@ namespace WanFang.Website.Controllers
 
             if (filter.Title == "請輸入標題搜尋") filter.Title = null;
             if (filter.DeptName == "請選擇") filter.DeptName = null;
+            if (filter.Cost == "請選擇") filter.Cost = null;
+            if (!sessionData.trading.IsVerifier)
+            {
+                filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
+                filter.Cost = sessionData.trading.CostName;
+            }
+            if (filter.DeptName != null && filter.DeptName.Length == 1)
+            {
+                filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(filter.DeptName));
+            }
             //公領域
             filter.IsPrivate = 0;
             ViewData["Filter"] = filter;
@@ -63,8 +73,6 @@ namespace WanFang.Website.Controllers
             {
                 if (filter.Title == "請輸入標題搜尋") filter.Title = null;
                 if (filter.DeptName == "請選擇") filter.DeptName = null;
-                //私領域
-                filter.IsPrivate = 1;
                 if (!sessionData.trading.IsVerifier)
                 {
                     filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
@@ -74,6 +82,13 @@ namespace WanFang.Website.Controllers
                 {
                     ViewData["DeptName"] = filter.DeptName;//不預設搜尋條件
                 }
+                if (filter.DeptName != null && filter.DeptName.Length == 1)
+                {
+                    filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(EnumHelper.GetEnumByName<WS_Dept_type>(filter.DeptName));
+                }
+
+                //私領域
+                filter.IsPrivate = 1;
                 ViewData["Filter"] = filter;
 
                 Rest.Core.Paging page = new Rest.Core.Paging() { };

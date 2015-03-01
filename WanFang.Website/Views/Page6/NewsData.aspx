@@ -12,13 +12,26 @@
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         if (Model == null) Model = new List<WanFang.Domain.NewsData_Info>();
         string DeptName = (ViewData["DeptName"] == null) ? "" : ViewData["DeptName"].ToString();
+
+        List<WanFang.Domain.Webservice.CostDetailInformation> Costs = null;
+        //if filter's DeptName != null, need list down the cost
+        if (!string.IsNullOrEmpty(filter.DeptName))
+        {
+            var DirDeptCode = Dept.Where(x => x.Value.Trim() == filter.DeptName).FirstOrDefault();
+            if (!string.IsNullOrEmpty(DirDeptCode.Key))
+            {
+                WanFang.Domain.Constancy.WS_Dept_type depttype =
+                    Rest.Core.Utility.EnumHelper.GetEnumByName<WanFang.Domain.Constancy.WS_Dept_type>(DirDeptCode.Key);
+                Costs = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(depttype);
+            }
+        }
+        
     %>
     <script>
         $(function () {
-            $('#Dept').change(function () {
-                $('#DeptName').val($('#Dept option:selected').text());
-            });
+            $('#DeptName').change(ChangeDept);
         });
+
         function DeleteSelected() {
             var param = $('input[name="id"]:checked').serialize();
             utility.showPopUp('您確定要刪除嗎？', 3, function () {
@@ -29,6 +42,25 @@
                         utility.showPopUp(data.msg, 1);
                     }
                 });
+            });
+        }
+
+        function ChangeDept() {
+            $this = $(this);
+            var CostName = $this.val();
+            var param = { CostCode: CostName };
+            utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
+                if (data.code > 0) {
+                    $('#CostName').html('');
+                    $('#CostName').append(new Option('請選擇', "", true, true));
+                    if (data.list != undefined) {
+                        $.each(data.list, function (index, ele) {
+                            $('#CostName').append(new Option(ele.CostName, ele.CostName, false, false));
+                        });
+                    }
+                } else {
+                    utility.showPopUp(data.msg, 1);
+                }
             });
         }
     </script>
@@ -53,31 +85,48 @@
     <div id="mainpage">
         <!--main begin-->
         <div class="bg-s">
-                <input type="hidden" id="DeptName" name="DeptName" value="<%=DeptName %>" />
             <p>
                 上下架：<%int? a = null; %>
                 <%=WanFang.Core.MVC.Extensions.UrlExtension.GenerFilterIsActive(filter.IsActive) %>
             </p>
                 <%
-                    if (filter.IsPrivate.Value == 0)
+                    if (filter.IsPrivate.Value == 0 || IsVerifer)
                    {
                 %>
             <p>
-                診&nbsp;&nbsp;&nbsp;&nbsp;別：
-                <select name="Dept" id="Dept">
+                門診類別：
+                <select name="DeptName" id="DeptName">
                     <option>請選擇</option>
                     <%
-                       foreach (var item in Dept)
-                       {
-                           string selected = string.Empty;
-                           if (item.Value == filter.DeptName) selected = "selected";
-                           Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Value, selected, item.Value));
-                       }
+                        foreach (var item in Dept)
+                        {
+                            string selected = string.Empty;
+                            if (item.Value.Trim() == filter.DeptName) selected = " selected ";
+                            Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
+                        }
+                    %>
+                </select>
+                科別：
+                <select name="Cost" id="CostName">
+                    <option>請選擇</option>
+                    <%
+                        if (Costs != null)
+                        {
+                            Costs.ForEach(x =>
+                            {
+                                string selected = "";
+                                if (!string.IsNullOrEmpty(filter.Cost) && x.CostName.Trim() == filter.Cost.Trim())
+                                {
+                                    selected = " selected ";
+                                }
+                                Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", x.CostName, selected, x.CostName));
+                            });
+                        }
                     %>
                 </select>
             </p>
                 <%
-                   }
+                    }
                 %>
                 <input type="hidden" name="IsPrivate" value="<%=filter.IsPrivate.Value %>" />
             <p>
