@@ -1,5 +1,5 @@
 /// <reference path="lib/jquery-1.4.4-vsdoc.js" />
-var FrontEndUrl = 'http://192.168.52.110';
+var FrontEndUrl = 'http://www.wanfang.org.tw';
 var utility = {
     stopRequest: false,
     templateCache: new Object()
