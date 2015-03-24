@@ -7,9 +7,14 @@
     <%
         bool EditForVerifier = (bool)ViewData["EditForVerifier"];
         WanFang.Domain.HirDetail_Info Model = ViewData["Model"] as WanFang.Domain.HirDetail_Info;
+        var categoary = new WanFang.BLL.HirCategory_Manager().GetAll();
+        var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         if (Model == null)
         {
             Model = new WanFang.Domain.HirDetail_Info();
+            Model.Dept = Dept.FirstOrDefault().Key;
+            Model.DeptName = Dept.FirstOrDefault().Value;
+            Model.CostName = "";
         }
         else
         {
@@ -19,9 +24,6 @@
             Model.Condition = Model.Condition.Replace("\r", "");
             Model.Condition = Model.Condition.Replace("'", "\\'");
         }
-        var categoary = new WanFang.BLL.HirCategory_Manager().GetAll();
-
-        var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(EnumHelper.GetEnumByName<WS_Dept_type>(Model.Dept));
         
     %>
@@ -76,62 +78,62 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">人員募集項目管理</div>
+                <div class="tt-r">人員募集項目管理</div>
             </h1>
         </div>
         <div id="nav" class="txt_r">
             <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp人員募集管理&nbsp&#187&nbsp人員募集項目管理
         <p class="clear">
         </p>
-    </div>
-    <div id="mainpage">
+        </div>
+        <div id="mainpage">
             <table cellspacing="1" cellpadding="2" width="100%" border="0">
                 <tr class="line-d">
                     <td class="line-d0 va_m">職缺類別代號<span class="red">*</span></td>
                     <td class="line-d txt_l">
-                          <select name="HirCategoryId" id="HirCategoryId">
-                              <%
-                                  foreach (var item in categoary)
-                                  {
-                                      string selected = (item.HirCategoryId == Model.HirCategoryId) ? "selected" : "";
-                                      Response.Write(string.Format("<option {0} value=\"{1}\">{2}</option>", selected, item.HirCategoryId, item.CategoryName));
-                                  }
-                              %>
-                          </select>
+                        <select name="HirCategoryId" id="HirCategoryId">
+                            <%
+                                foreach (var item in categoary)
+                                {
+                                    string selected = (item.HirCategoryId == Model.HirCategoryId) ? "selected" : "";
+                                    Response.Write(string.Format("<option {0} value=\"{1}\">{2}</option>", selected, item.HirCategoryId, item.CategoryName));
+                                }
+                            %>
+                        </select>
                     </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0 w150 va_m">職缺單位<span class="red">*</span></td>
                     <td class="line-d txt_l">
                         <input type="hidden" id="DeptName" name="DeptName" value="<%=Model.DeptName %>" />
-                          <select name="Dept" id="Dept">
-                              <option>請選擇</option>
-                              <%
-                                  foreach (var item in Dept)
-                                  {
-                                      string selected = string.Empty;
-                                      if (Model.DeptName.Trim() == item.Value)
-                                      {
-                                          selected = "selected";
-                                      }
-                                      Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
-                                  }
-                              %>
-                          </select>
-                            <select name="CostName" id="CostName">
-                                <option>請選擇</option>
-                              <%
-                                  foreach (var item in AllCost)
-                                  {
-                                      string selected = string.Empty;
-                                      if (item.CostName == Model.CostName)
-                                      {
-                                          selected = "selected";
-                                      }
-                                      Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.CostName, selected, item.CostName));
-                                  }
-                              %>
-                            </select>
+                        <select name="Dept" id="Dept">
+                            <option>請選擇</option>
+                            <%
+                                foreach (var item in Dept)
+                                {
+                                    string selected = string.Empty;
+                                    if (Model.DeptName.Trim() == item.Value)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.Key, selected, item.Value));
+                                }
+                            %>
+                        </select>
+                        <select name="CostName" id="CostName">
+                            <option>請選擇</option>
+                            <%
+                                foreach (var item in AllCost)
+                                {
+                                    string selected = string.Empty;
+                                    if (item.CostName == Model.CostName)
+                                    {
+                                        selected = "selected";
+                                    }
+                                    Response.Write(string.Format("<option value=\"{0}\" {1} >{2}</option>", item.CostName, selected, item.CostName));
+                                }
+                            %>
+                        </select>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -173,33 +175,36 @@
                 <tr class="line-d">
                     <td class="line-d0">發佈狀態</td>
                     <td>
-                        <%=(Model.IsActive == 0) ? "無效關閉此職缺" : "有效"%>
+                        <select name="IsActive">
+                            <option value="0" <%=(Model.IsActive == 0) ? "selected" : "" %>>無效，關閉此職缺</option>
+                            <option value="1" <%=(Model.IsActive == 1) ? "selected" : "" %>>有效</option>
+                        </select>
                     </td>
                 </tr>
                 <tr class="line-d">
                     <td class="line-d0">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            <tr class="line-d">
-                <td class="line-d0 top">最後審核日</td>
-                <td><%=(Model.VerifiedDate != null && Model.VerifiedDate != DateTime.MinValue) ? Model.VerifiedDate.ToString() : "" %></td>
-            </tr>
+                <tr class="line-d">
+                    <td class="line-d0 top">最後審核日</td>
+                    <td><%=(Model.VerifiedDate != null && Model.VerifiedDate != DateTime.MinValue) ? Model.VerifiedDate.ToString() : "" %></td>
+                </tr>
             </table>
-        <div class="txt_c mag15" id="sendadd">
-        <%
-            if (EditForVerifier)
-            {
-                Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
-                Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
-            }
-            else
-            {
-                Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
-            }
-        %>
+            <div class="txt_c mag15" id="sendadd">
+                <%
+                    if (EditForVerifier)
+                    {
+                        Response.Write("<input type=\"hidden\" name=\"IsActive\" value=\"1\" />");
+                        Response.Write("<input type=\"button\" class=\"submit submit3\" id=\"Submit\" value=\"通過審核\" onclick=\"Save();\" />");
+                    }
+                    else
+                    {
+                        Response.Write("<input type=\"button\" class=\"submit\" id=\"Submit\" value=\"送出\" onclick=\"Save();\" />");
+                    }
+                %>
+            </div>
+            <!--main end-->
         </div>
-        <!--main end-->
-    </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
     <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>

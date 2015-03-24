@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%
         bool IsVerifer = (bool)ViewData["Verify"];
+        IsVerifer = false;//this unit doen't need verify, so hard code here as not verifer.
         string VeriferClass = IsVerifer ? "" : " hide ";
         string CanNotEdit = IsVerifer ? " hide " : "";
 
@@ -55,12 +56,13 @@
             </p>
             <p>
                 職缺類別：
-                <select name="HirName">
-                    <option selected="selected">請選擇</option>
+                <select name="HirCategoryId">
+                    <option>請選擇</option>
                     <%
                         foreach (var item in categoary)
                         {
-                            Response.Write(string.Format("<option>{0}</option>", item.CategoryName));
+                            string selected = (item.HirCategoryId == filter.HirCategoryId) ? "selected" : "";
+                            Response.Write(string.Format("<option {0} value=\"{1}\">{2}</option>", selected, item.HirCategoryId, item.CategoryName));
                         }
                     %>
                 </select>
@@ -83,8 +85,6 @@
                 <td class=" txt_r">
                     <input type="button" class="submit3 <%=CanNotEdit %>" onclick="window.location = '/Page7/EditHirDetail/';"
                         value="新增資料">
-                    <input type="button" class="submit3 <%=VeriferClass %>" onclick="$('#IsActive').val(0);$('#CurrentPage').val(1);this.form.submit();"
-                        value="待審核">
                 </td>
             </tr>
         </table>
@@ -144,8 +144,6 @@
                 <td class="txt_c">
                     <input name="bt_edit" type="button" class="submit <%= CanNotEdit%>" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>';"
                         value="編輯">
-                    <input name="bt_edit" type="button" class="submit4 <%=VeriferClass %> <%=(item.IsActive == 1) ? " hide " : "" %>" onclick="window.location='/Page7/EditHirDetail/<%=item.HirDetailId %>?Verify=1';"
-                        value="審核">
                 </td>
             </tr>
             <%
