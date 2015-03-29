@@ -45,6 +45,7 @@
                     <option>全部顯示</option>
                     <option>訊息公告</option>
                     <option>新聞稿</option>
+                    <option>人資公告</option>
                 </select>
             </p>
             <p>

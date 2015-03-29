@@ -89,7 +89,7 @@
                             var oFCKeditor = new FCKeditor('ContentBody');
                             oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                             oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '200';
+                            oFCKeditor.Height = '250';
                             oFCKeditor.Value = '<%=Model.ContentBody%>';
                             oFCKeditor.Create();
                         </script>

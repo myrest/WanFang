@@ -61,6 +61,7 @@
                         <select name="DiaryType">
                             <option <%=(Model.DiaryType == "訊息公告")?"selected":"" %>>訊息公告</option>
                             <option <%=(Model.DiaryType == "新聞稿")?"selected":"" %>>新聞稿</option>
+                            <option <%=(Model.DiaryType == "人資公告")?"selected":"" %>>人資公告</option>
                         </select></td>
                     <!--新聞類型-->
                 </tr>
@@ -88,7 +89,7 @@
                             var oFCKeditor = new FCKeditor('Content1');
                             oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                             oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '200';
+                            oFCKeditor.Height = '250';
                             oFCKeditor.Value = '<%=Model.ContentBody %>';
                             oFCKeditor.Create();
                         </script>

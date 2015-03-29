@@ -112,7 +112,7 @@
                                         var oFCKeditor = new FCKeditor('Content1');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.ContentBody1 %>';
                                         oFCKeditor.Create();
                                     </script>
@@ -138,7 +138,7 @@
                                         var oFCKeditor = new FCKeditor('Content2');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.ContentBody2 %>';
                                         oFCKeditor.Create();
                                     </script>
@@ -164,7 +164,7 @@
                                         var oFCKeditor = new FCKeditor('Content3');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.ContentBody3 %>';
                                         oFCKeditor.Create();
                                     </script>

@@ -60,10 +60,11 @@
             utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
                 if (data.code > 0) {
                     $('#CostName').html('');
-                    $('#CostName').append(new Option('請選擇', "", true, true));
+                    $("#CostName").append($('<option value="" selected>請選擇</option>'));
+
                     if (data.list != undefined) {
                         $.each(data.list, function (index, ele) {
-                            $('#CostName').append(new Option(ele.CostName, ele.CostName, false, false));
+                            $("#CostName").append($("<option></option>").attr("value", ele.CostName).text(ele.CostName));
                         });
                     }
                 } else {
@@ -160,7 +161,7 @@
                             var oFCKeditor = new FCKeditor('Content1');
                             oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                             oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '200';
+                            oFCKeditor.Height = '250';
                             oFCKeditor.Value = '<%=Model.Condition %>';
                             oFCKeditor.Create();
                         </script>

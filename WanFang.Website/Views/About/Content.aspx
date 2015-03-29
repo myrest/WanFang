@@ -44,10 +44,10 @@
             var AboutId = $this.val();
             var data = DDLMenu[AboutId];
             $('#AboutCategoryId').html('');
-            $('#AboutCategoryId').append(new Option('全部顯示', "", true, true));
+            $("#AboutCategoryId").append($("<option></option>").attr("value", "").text("全部顯示"));
             if (data != undefined){
                 $.each(data, function (index, ele) {
-                    $('#AboutCategoryId').append(new Option(ele, index, false, false));
+                    $("#AboutCategoryId").append($("<option></option>").attr("value", index).text(ele));
                 });                
             }
         }

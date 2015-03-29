@@ -48,10 +48,10 @@
             utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
                 if (data.code > 0) {
                     $('#CostName').html('');
-                    $('#CostName').append(new Option('請選擇', "", true, true));
+                    $("#CostName").append($("<option></option>").attr("value", "").text("請選擇"));
                     if (data.list != undefined) {
                         $.each(data.list, function (index, ele) {
-                            $('#CostName').append(new Option(ele.CostName, ele.CostCode, false, false));
+                            $("#CostName").append($("<option></option>").attr("value", ele.CostCode).text(ele.CostName));
                         });
                     }
                 } else {
@@ -63,7 +63,7 @@
         function Save() {
             var CostName = $('#CostName option:selected').text();
             $('#CostName').html('');
-            $('#CostName').append(new Option(CostName, CostName, true, true));
+            $("#CostName").append($("<option></option>").attr("value", CostName).text(CostName));
             var param = $('#form1 :not([name^=Content])').serialize();
             var inst = FCKeditorAPI.GetInstance("Content1");
             param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
@@ -160,7 +160,7 @@
                             var oFCKeditor = new FCKeditor('Content1');
                             oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                             oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '200';
+                            oFCKeditor.Height = '250';
                             oFCKeditor.Value = '<%=Model.ContentBody %>';
                             oFCKeditor.Create();
                         </script>

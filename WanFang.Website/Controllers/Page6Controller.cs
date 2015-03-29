@@ -40,7 +40,7 @@ namespace WanFang.Website.Controllers
             if (filter.Title == "請輸入標題搜尋") filter.Title = null;
             if (filter.DeptName == "請選擇") filter.DeptName = null;
             if (filter.Cost == "請選擇") filter.Cost = null;
-            if (!sessionData.trading.IsVerifier)
+            if (!sessionData.trading.IsVerifier && sessionData.trading.Dept != null)
             {
                 filter.DeptName = EnumHelper.GetEnumDescription<WS_Dept_type>(sessionData.trading.Dept.Value);
                 filter.Cost = sessionData.trading.CostName;

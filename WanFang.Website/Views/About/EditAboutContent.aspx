@@ -54,10 +54,10 @@
             var AboutId = $this.val();
             var data = DDLMenu[AboutId];
             $('#AboutCategoryId').html('');
-            $('#AboutCategoryId').append(new Option('全部顯示', "", true, true));
+            $("#AboutCategoryId").append($("<option></option>").attr("value", "").text("全部顯示"));
             if (data != undefined){
                 $.each(data, function (index, ele) {
-                    $('#AboutCategoryId').append(new Option(ele, index, false, false));
+                    $("#AboutCategoryId").append($("<option></option>").attr("value", index).text(ele));
                 });                
             }
         }
@@ -169,7 +169,7 @@
                                         var oFCKeditor = new FCKeditor('Content1');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.Content1 %>';
                                         oFCKeditor.Create();
                                     </script>
@@ -195,7 +195,7 @@
                                         var oFCKeditor = new FCKeditor('Content2');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.Content2 %>';
                                         oFCKeditor.Create();
                                     </script>
@@ -221,7 +221,7 @@
                                         var oFCKeditor = new FCKeditor('Content3');
                                         oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                                         oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '200';
+                                        oFCKeditor.Height = '250';
                                         oFCKeditor.Value = '<%=Model.Content3 %>';
                                         oFCKeditor.Create();
                                     </script>

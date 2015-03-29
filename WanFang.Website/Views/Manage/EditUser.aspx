@@ -47,10 +47,10 @@
             utility.service("ManageService/GetDeptInfo", param, "POST", function (data) {
                 if (data.code > 0) {
                     $('#CostName').html('');
-                    $('#CostName').append(new Option('請選擇', "", true, true));
+                    $("#CostName").append($("<option></option>").attr("value", "").text("請選擇"));
                     if (data.list != undefined) {
                         $.each(data.list, function (index, ele) {
-                            $('#CostName').append(new Option(ele.CostName, ele.CostName, false, false));
+                            $("#CostName").append($("<option></option>").attr("value", ele.CostName).text(ele.CostName));
                         });
                     }
                 } else {
@@ -208,7 +208,8 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %> -- <% =Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->
