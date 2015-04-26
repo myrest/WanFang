@@ -334,7 +334,7 @@ namespace WanFang.Website.Controllers.Service
         private void checkSrvUploadfiles(AboutService_Info NewData, AboutService_Info OldData)
         {
             string Prefix = string.Empty;
-            Prefix = "AboutServiceImage1";
+            Prefix = "ContentImage1";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
@@ -351,7 +351,7 @@ namespace WanFang.Website.Controllers.Service
                 NewData.Image1 = OldData.Image1;
             }
 
-            Prefix = "AboutServiceImage2";
+            Prefix = "ContentImage2";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)
@@ -368,7 +368,7 @@ namespace WanFang.Website.Controllers.Service
                 NewData.Image2 = OldData.Image2;
             }
 
-            Prefix = "AboutServiceImage3";
+            Prefix = "ContentImage3";
             if (sessionData.trading.UploadFiles.Keys.Contains(Prefix))
             {
                 if (string.Compare("DELETE", sessionData.trading.UploadFiles[Prefix], true) == 0)

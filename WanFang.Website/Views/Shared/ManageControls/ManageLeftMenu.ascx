@@ -13,21 +13,20 @@
    
 %>
 <ul id="menu">
-<%if (!IsDeptOnly || Verify)
-  {
+    <%if (!IsDeptOnly || Verify)
+      {
       %>
     <li class="<%=menus[0] %> <%=(Permission.IndexOf("首頁及時資訊管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">首頁及時資訊管理</a>
         <ul>
-            <li><a href="/Page0/EditHomePage">首頁及時資訊管理</a></li></ul>
+            <li><a href="/Page0/EditHomePage">首頁及時資訊管理</a></li>
+        </ul>
     </li>
     <!--關於萬芳-->
     <li class="<%=menus[1] %> <%=(Permission.IndexOf("關於萬芳管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">關於萬芳管理</a>
         <ul>
-            <li><a href="javascript:void(0);">關於萬芳管理</a>
-                <li class="menu_s"><a href="/About/Index">關於萬芳類別管理</a></li>
-                <li class="menu_s"><a href="/About/Categoary">關於萬芳系列管理</a></li>
-                <li class="menu_s"><a href="/About/Content">關於萬芳圖文管理</a></li>
-            </li>
+            <li><a href="/About/Index">關於萬芳類別管理</a></li>
+            <li><a href="/About/Categoary">關於萬芳系列管理</a></li>
+            <li><a href="/About/Content">關於萬芳圖文管理</a></li>
             <li><a href="/About/Team">管理團隊管理</a></li>
             <li><a href="/About/AboutService">服務專區管理</a></li>
         </ul>
@@ -47,7 +46,8 @@
     <!--就醫指南-->
     <li class="<%=menus[4] %> <%=(Permission.IndexOf("就醫指南管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">就醫指南管理</a>
         <ul>
-            <li><a href="/Page4/Guide">就醫指南管理</a></li></ul>
+            <li><a href="/Page4/Guide">就醫指南管理</a></li>
+        </ul>
     </li>
     <!--團隊介紹-->
     <li class="<%=menus[5] %> <%=(Permission.IndexOf("團隊介紹管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">團隊介紹管理</a>
@@ -69,7 +69,8 @@
         <ul>
             <li><a href="/Page7/HirCategory">人員募集類別管理</a></li>
             <li><a href="/Page7/HirDetail">人員募集項目管理</a></li>
-            <li><a href="/NormallContent/Page7Content">人員募集圖文管理</a></li></ul>
+            <li><a href="/NormallContent/Page7Content">人員募集圖文管理</a></li>
+        </ul>
     </li>
     <!--健保專區-->
     <li class="<%=menus[8] %> <%=(Permission.IndexOf("健保專區管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">健保專區管理</a>
@@ -79,11 +80,11 @@
             <li><a href="/NormallContent/Page8Content">健保專區圖文管理</a></li>
         </ul>
     </li>
-      <%
-  }
-  
-  if (IsDeptOnly)
-  {
+    <%
+      }
+
+      if (IsDeptOnly)
+      {
     %>
     <!--特色醫療-->
     <li class="<%=menus[9] %>"><a href="javascript:void(0);">特色醫療管理</a>
@@ -97,10 +98,10 @@
         </ul>
     </li>
     <%
-  }
+      }
 
-  if (!IsDeptOnly || Verify)
-  {
+      if (!IsDeptOnly || Verify)
+      {
     %>
     <!--尋問台-->
     <li class="<%=menus[10] %> <%=(Permission.IndexOf("詢問台管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">詢問台管理</a>
@@ -113,20 +114,23 @@
     <!--表尾資料管理-->
     <li class="<%=menus[11] %> <%=(Permission.IndexOf("表尾資料管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">表尾資料管理</a>
         <ul>
-            <li><a href="/Page11/EditFooter">表尾資料管理</a></li></ul>
+            <li><a href="/Page11/EditFooter">表尾資料管理</a></li>
+        </ul>
     </li>
     <!--員工帳號管理-->
     <li class="<%=menus[12] %> <%=(Permission.IndexOf("員工帳號管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">員工帳號管理</a>
         <ul>
-            <li><a href="/Manage/UserListing">員工帳號管理</a></li></ul>
+            <li><a href="/Manage/UserListing">員工帳號管理</a></li>
+        </ul>
     </li>
     <%
-  }
+      }
     %>
     <!--密碼變更-->
     <li class="<%=menus[13] %>"><a href="javascript:void(0);">密碼變更</a>
         <ul>
-            <li><a href="/Manage/ChangePassword">密碼變更</a></li></ul>
+            <li><a href="/Manage/ChangePassword">密碼變更</a></li>
+        </ul>
     </li>
     <!--登出-->
     <li><a href="javascript:void(0);" onclick="javascript:utility.logout();" class="">登出</a></li>

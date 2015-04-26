@@ -12,18 +12,18 @@ namespace WanFang.DAL.Doc
     #region interface
     public interface IDoc_Repo
     {
-        Doc_Info GetBySN(long DocId);
-        IEnumerable<Doc_Info> GetAll();
+        Doc_Info GetBySN(int DocId);
+        List<Doc_Info> GetAll();
         List<Doc_Info> GetByParam(Doc_Filter Filter);
         List<Doc_Info> GetByParam(Doc_Filter Filter, Paging Page);
         List<Doc_Info> GetByParam(Doc_Filter Filter, string _orderby);
         List<Doc_Info> GetByParam(Doc_Filter Filter, string _orderby, Paging Page);
         List<Doc_Info> GetByParam(Doc_Filter Filter, string[] fieldNames, string _orderby, Paging Page);
         List<Doc_Info> GetByParam(Doc_Filter Filter, Paging Page, string[] fieldNames, string _orderby);
-        long Insert(Doc_Info data);
-        int Update(long DocId, Doc_Info data, IEnumerable<string> columns);
+        int Insert(Doc_Info data);
+        int Update(int DocId, Doc_Info data, List<string> columns);
         int Update(Doc_Info data);
-        int Delete(long DocId);
+        int Delete(int DocId);
     }
     #endregion
 
@@ -31,7 +31,7 @@ namespace WanFang.DAL.Doc
     public class Doc_Repo
     {
         #region Operation: Select
-        public Doc_Info GetBySN(long DocId)
+        public Doc_Info GetBySN(int DocId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -44,13 +44,13 @@ namespace WanFang.DAL.Doc
             }
         }
 
-        public IEnumerable<Doc_Info> GetAll()
+        public List<Doc_Info> GetAll()
         {
             using (var db = new DBExecutor().GetDatabase())
             {
                 var SQLStr = Rest.Core.PetaPoco.Sql.Builder
                     .Append("SELECT * FROM db_Doc");
-                var result = db.Query<Doc_Info>(SQLStr);
+                var result = db.Query<Doc_Info>(SQLStr).ToList();
 
                 return result;
             }
@@ -99,15 +99,15 @@ namespace WanFang.DAL.Doc
         #endregion
 
         #region Operation: Insert
-        public long Insert(Doc_Info data)
+        public int Insert(Doc_Info data)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
-                long NewID = 0;
+                int NewID = 0;
                 var result = db.Insert(data);
                 if (result != null)
                 {
-                    long.TryParse(result.ToString(), out NewID);
+                    int.TryParse(result.ToString(), out NewID);
                 }
                 return NewID;
             }
@@ -115,7 +115,7 @@ namespace WanFang.DAL.Doc
         #endregion
 
         #region Operation: Update
-        public int Update(long DocId, Doc_Info data, IEnumerable<string> columns)
+        public int Update(int DocId, Doc_Info data, List<string> columns)
         {
             using (var db = new DBExecutor().GetDatabase())
             {
@@ -133,7 +133,7 @@ namespace WanFang.DAL.Doc
         #endregion
 
         #region Operation: Delete
-        public int Delete(long DocId)
+        public int Delete(int DocId)
         {
             using (var db = new DBExecutor().GetDatabase())
             {

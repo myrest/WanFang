@@ -18,7 +18,7 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Select
-        public Doc_Info GetBySN(long DocId)
+        public Doc_Info GetBySN(int DocId)
         {
             return new Doc_Repo().GetBySN(DocId);
         }
@@ -60,9 +60,9 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Raw Insert
-        public long Insert(Doc_Info data)
+        public int Insert(Doc_Info data)
         {
-            long newID = 0;
+            int newID = 0;
             try
             {
                 newID = new Doc_Repo().Insert(data);
@@ -76,7 +76,7 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Raw Update
-        public bool Update(long DocId, Doc_Info data, IEnumerable<string> columns)
+        public bool Update(int DocId, Doc_Info data, List<string> columns)
         {
             return new Doc_Repo().Update(DocId, data, columns) > 0;
         }
@@ -88,14 +88,14 @@ namespace WanFang.BLL
         #endregion
 
         #region Operation: Delete
-        public int Delete(long DocId)
+        public int Delete(int DocId)
         {
             return new Doc_Repo().Delete(DocId);
         }
         #endregion
 
         #region public functions
-        public bool IsExist(long DocId)
+        public bool IsExist(int DocId)
         {
             return (GetBySN(DocId) != null);
         }
