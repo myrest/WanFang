@@ -156,6 +156,9 @@
                 <td>
                     醫師員編
                 </td>
+                <td>
+                     排序
+                </td>
                 <td class="w60">
                     上/下架
                 </td>
@@ -187,6 +190,9 @@
                     <%=item.DocCode %>
                 </td>
                 <td class="txt_c">
+                    <%=item.SortNum %>
+                </td>
+                <td class="txt_c">
                     <%=(item.IsActive > 0) ? "上架" : "下架"%>
                 </td>
                 <td class="txt_c">
@@ -210,7 +216,7 @@
         <br />
         <span class="red">[注意事項]</span><br>
         1. 每10筆分1頁<br>
-        2. 排序：流水號（由大至小）
+        2. 排序：排序、科別、醫師員編（由小至大）
         <br />
         <!--main end-->
     </div>

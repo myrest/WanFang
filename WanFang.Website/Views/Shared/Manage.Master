@@ -41,8 +41,6 @@
     </div>
     <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
     <script src="/CDN/Js/Manage/manage.js"></script>
-    <!-- script language="JavaScript" src="fckeditor/fckeditor.js"></script -->
-    <script src="/CDN/Plugins/Manage/ckeditor/ckeditor.js"></script>
     <script src="/CDN/Plugins/Manage/calendar.js"></script>
     <script src="/CDN/Plugins/Manage/calendar-setup.js"></script>
     <script src="/CDN/Plugins/Manage/lang/calendar-big5-utf8.js"></script>

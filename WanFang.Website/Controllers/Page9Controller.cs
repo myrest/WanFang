@@ -72,7 +72,7 @@ namespace WanFang.Website.Controllers
 
                 Rest.Core.Paging page = new Rest.Core.Paging() { };
                 if (Page.CurrentPage > 0) page.CurrentPage = Page.CurrentPage;
-                List<Doc_Info> data = DocMan.GetByParameter(filter, page, null, "seq_id desc, DocId desc");
+                List<Doc_Info> data = DocMan.GetByParameter(filter, page, null, "DeptName, SortNum, CostName, DocCode");
                 ViewData["Model"] = data;
                 ViewData["Page"] = page;
                 return View();

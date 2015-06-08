@@ -143,7 +143,7 @@
                             var oFCKeditor = new FCKeditor('Content1');
                             oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
                             oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '250';
+                            oFCKeditor.Height = '450';
                             oFCKeditor.Value = '<%=Model.Q_ans %>';
                             oFCKeditor.Create();
                         </script>
