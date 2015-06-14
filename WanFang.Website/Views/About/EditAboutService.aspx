@@ -14,26 +14,14 @@
             Model.ContentBody1 = Model.ContentBody1 ?? "";
             Model.ContentBody2 = Model.ContentBody2 ?? "";
             Model.ContentBody3 = Model.ContentBody3 ?? "";
-            Model.ContentBody1 = Model.ContentBody1.Replace("\n\r", "");
-            Model.ContentBody1 = Model.ContentBody1.Replace("\n", "");
-            Model.ContentBody1 = Model.ContentBody1.Replace("\r", "");
-            Model.ContentBody2 = Model.ContentBody2.Replace("\n\r", "");
-            Model.ContentBody2 = Model.ContentBody2.Replace("\n", "");
-            Model.ContentBody2 = Model.ContentBody2.Replace("\r", "");
-            Model.ContentBody3 = Model.ContentBody3.Replace("\n\r", "");
-            Model.ContentBody3 = Model.ContentBody3.Replace("\n", "");
-            Model.ContentBody3 = Model.ContentBody3.Replace("\r", "");
-            Model.ContentBody1 = Model.ContentBody1.Replace("'", "\\'");
-            Model.ContentBody2 = Model.ContentBody2.Replace("'", "\\'");
-            Model.ContentBody3 = Model.ContentBody3.Replace("'", "\\'");
         }
     %>
     <script>
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            for (var i = 0; i < 3; i++) {
-                var inst = FCKeditorAPI.GetInstance("Content" + (i + 1));
-                param += "&ContentBody" + (i + 1) + "=" + encodeURIComponent(inst.GetHTML());
+            for (var i = 1; i <= 3; i++) {
+                var editorContent = Contents[i].getData();
+                param += "&ContentBody" + (i) + "=" + encodeURIComponent(editorContent);
             }
 
             utility.service("AboutService/SaveAboutService", param, "POST", function (data) {
@@ -108,14 +96,7 @@
                                 <td>
                                     <div class="red cp">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
                                     內容1：<br />
-                                    <script type="text/javascript">
-                                        var oFCKeditor = new FCKeditor('Content1');
-                                        oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                                        oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '450';
-                                        oFCKeditor.Value = '<%=Model.ContentBody1 %>';
-                                        oFCKeditor.Create();
-                                    </script>
+                                    <textarea id="Content1" name="Content1"><%=Model.ContentBody1 %></textarea>
                                 </td>
                             </tr>
                             <tr class="no_line">
@@ -134,14 +115,7 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>內容2：<br />
-                                    <script type="text/javascript">
-                                        var oFCKeditor = new FCKeditor('Content2');
-                                        oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                                        oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '450';
-                                        oFCKeditor.Value = '<%=Model.ContentBody2 %>';
-                                        oFCKeditor.Create();
-                                    </script>
+                                    <textarea id="Content2" name="Content2"><%=Model.ContentBody2 %></textarea>
                                 </td>
                             </tr>
                             <tr class="no_line">
@@ -160,14 +134,7 @@
                             <tr class="no_line">
                                 <td class="top">&nbsp;</td>
                                 <td>內容3：<br />
-                                    <script type="text/javascript">
-                                        var oFCKeditor = new FCKeditor('Content3');
-                                        oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                                        oFCKeditor.Width = '100%';
-                                        oFCKeditor.Height = '450';
-                                        oFCKeditor.Value = '<%=Model.ContentBody3 %>';
-                                        oFCKeditor.Create();
-                                    </script>
+                                    <textarea id="Content3" name="Content3"><%=Model.ContentBody3 %></textarea>
                                 </td>
                             </tr>
                             <tr class="no_line">
@@ -229,7 +196,16 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
-    <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 3; i++) {
+                Contents[i] = CKEDITOR.editor.replace('Content' + i, {});
+            }
+        });
+
+    </script>
 </asp:Content>

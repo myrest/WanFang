@@ -37,10 +37,12 @@
             <h1>
                 <div class="float-l">
                     <img src="/CDN/Images/Manage/title-left.jpg" /></div>
-                    <div class="tt-r">人員募集類別代號管理</div>            </h1>
+                    <div class="tt-r">人員募集類別代號管理</div>
+            </h1>
         </div>
         <div id="nav" class="txt_r">
-            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp人員募集管理&nbsp&#187&nbsp人員募集類別代號管理        <p class="clear">
+            <img src="/CDN/Images/Manage/icon01.gif" hspace="5" border="0" align="absmiddle"><a href="login.aspx">後端管理系統</a>&nbsp&#187&nbsp人員募集管理&nbsp&#187&nbsp人員募集類別代號管理
+        <p class="clear">
         </p>
     </div>
     <div id="mainpage">
@@ -56,7 +58,8 @@
                     <td class="txt_l">
                         <input type="text" name="CategoryName" size="50" maxlength="255" value="<%=Model.CategoryName %>" >
                         （例：V:主治醫師）</td>
-                </tr>                <tr class="line-d">
+                </tr>
+                <tr class="line-d">
                     <td class="line-d0">上/下架</td>
                     <td class="txt_l">
                         <% =UrlExtension.GenerIsActive(Model.IsActive)%>
@@ -67,14 +70,15 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
         <!--main end-->
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
-    <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
 </asp:Content>

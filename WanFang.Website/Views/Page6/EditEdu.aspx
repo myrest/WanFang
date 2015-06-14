@@ -6,7 +6,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <script language="JavaScript" src="/CDN/Plugins/Manage/calendar.js"></script>
 <script language="JavaScript" src="/CDN/Plugins/Manage/calendar-setup.js"></script>
-<script language="JavaScript" src="/CDN/Plugins/Manage/lang/calendar-big5-utf8.js"></script>
+<script language="JavaScript" src="/CDN/Plugins/Manage/lang/calendar-big5-utf8.js"></script>
+
     <%
         WanFang.Domain.Edu_Info Model = ViewData["Model"] as WanFang.Domain.Edu_Info;
         if (Model == null)
@@ -48,7 +49,8 @@
         <p class="clear">
         </p>
     </div>
-    <div id="mainpage">            <table cellspacing="1" cellpadding="2" class="ww100" border="0">
+    <div id="mainpage">
+            <table cellspacing="1" cellpadding="2" class="ww100" border="0">
                 <tr class="line-d">
                     <td class="line-d0 va_m">衛教類別<span class="red">*</span></td>
                     <td class="txt_l">
@@ -108,13 +110,14 @@
                     <td class="line-d0 top">更新日期</td>
                     <td><%=Model.LastUpdate %>--<%=Model.LastUpdator %></td>
                 </tr>
-            </table>        <div class="txt_c mag15" id="sendadd">
+            </table>
+        <div class="txt_c mag15" id="sendadd">
             <input type="button" class="submit" id="Submit" value="送出" onclick="Save();" />
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="header" runat="server">
-    <script type="text/javascript" src="/CDN/Plugins/Manage/fckeditor/fckeditor.js"></script>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
 </asp:Content>
