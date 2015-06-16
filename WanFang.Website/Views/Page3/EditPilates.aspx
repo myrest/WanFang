@@ -14,17 +14,14 @@
         else
         {
             Model.ContentBody = Model.ContentBody ?? "";
-            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
-            Model.ContentBody = Model.ContentBody.Replace("\n", "");
-            Model.ContentBody = Model.ContentBody.Replace("\r", "");
-            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
     %>
     <script>
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
+            var i = '1';
+            var editorContent = Contents[i].getData();
+            param += "&ContentBody=" + encodeURIComponent(editorContent);
 
             utility.service("Page3Service/SavePilates", param, "POST", function (data) {
                 if (data.code > 0) {
@@ -105,14 +102,7 @@
                 <tr class="line-d">
                     <td class="line-d0 w150 top">發布內容 </td>
                     <td class="txt_l">
-                        <script type="text/javascript">
-                            var oFCKeditor = new FCKeditor('Content1');
-                            oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                            oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '450';
-                            oFCKeditor.Value = '<%=Model.ContentBody %>';
-                            oFCKeditor.Create();
-                        </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.ContentBody %></textarea>
                     </td>
                 </tr>
                 <tr class="line-d top">
@@ -156,4 +146,12 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+    </script>
 </asp:Content>

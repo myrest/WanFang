@@ -14,17 +14,14 @@
         {
             Model.warnings = Model.warnings ?? "";
             Model.warnings = System.Web.HttpUtility.HtmlDecode(Model.warnings);
-            Model.warnings = Model.warnings.Replace("\n\r", "");
-            Model.warnings = Model.warnings.Replace("\n", "");
-            Model.warnings = Model.warnings.Replace("\r", "");
-            Model.warnings = Model.warnings.Replace("'", "\\'");
         }
     %>
     <script>
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&warnings" + "=" + encodeURIComponent(inst.GetHTML());
+            var i = '1';
+            var editorContent = Contents[i].getData();
+            param += "&warnings=" + encodeURIComponent(editorContent);
 
             utility.service("Page8Service/SaveNhi_p", param, "POST", function (data) {
                 if (data.code > 0) {
@@ -124,14 +121,7 @@
                     <td>
                         <div style="clear: both; padding: 3px 0px 3px 0px;" class="red">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
                         <br />
-                        <script type="text/javascript">
-                            var oFCKeditor = new FCKeditor('Content1');
-                            oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                            oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '450';
-                            oFCKeditor.Value = '<%=Model.warnings %>';
-                            oFCKeditor.Create();
-                        </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.warnings %></textarea>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -167,4 +157,12 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+    </script>
 </asp:Content>

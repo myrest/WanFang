@@ -13,10 +13,6 @@
         else
         {
             Model.Q_ans = Model.Q_ans ?? "";
-            Model.Q_ans = Model.Q_ans.Replace("\n\r", "");
-            Model.Q_ans = Model.Q_ans.Replace("\n", "");
-            Model.Q_ans = Model.Q_ans.Replace("\r", "");
-            Model.Q_ans = Model.Q_ans.Replace("'", "\\'");
         }
 
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
@@ -30,8 +26,9 @@
 
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&Q_ans" + "=" + encodeURIComponent(inst.GetHTML());
+            var i = '1';
+            var editorContent = Contents[i].getData();
+            param += "&Q_ans=" + encodeURIComponent(editorContent);
 
             utility.service("Page10Service/SaveQuestion", param, "POST", function (data) {
                 if (data.code > 0) {
@@ -139,14 +136,7 @@
                     <td class="line-d0 top">回覆內容<span class="red">*</span></td>
                     <td>斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。
                              <br />
-                        <script type="text/javascript">
-                            var oFCKeditor = new FCKeditor('Content1');
-                            oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                            oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '450';
-                            oFCKeditor.Value = '<%=Model.Q_ans %>';
-                            oFCKeditor.Create();
-                        </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.Q_ans %></textarea>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -176,4 +166,12 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+    </script>
 </asp:Content>

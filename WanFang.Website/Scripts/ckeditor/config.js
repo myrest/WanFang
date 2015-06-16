@@ -29,6 +29,6 @@ CKEDITOR.editorConfig = function (config) {
 
 function updateValue(value) {
     // this gets called from the popup window and updates the field with a new value 
-    $(".cke_dialog_ui_input_text")[1].value = value
+    $('.cke_dialog:visible .cke_dialog_ui_input_text')[1].value = value
 }
 

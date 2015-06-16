@@ -13,17 +13,14 @@
         else
         {
             Model.nhi_con = Model.nhi_con ?? "";
-            Model.nhi_con = Model.nhi_con.Replace("\n\r", "");
-            Model.nhi_con = Model.nhi_con.Replace("\n", "");
-            Model.nhi_con = Model.nhi_con.Replace("\r", "");
-            Model.nhi_con = Model.nhi_con.Replace("'", "\\'");
         }
     %>
     <script>
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&nhi_con" + "=" + encodeURIComponent(inst.GetHTML());
+            var i = '1';
+            var editorContent = Contents[i].getData();
+            param += "&nhi_con=" + encodeURIComponent(editorContent);
 
             utility.service("Page10Service/SaveNhi_Qa", param, "POST", function (data) {
                 if (data.code > 0) {
@@ -71,14 +68,7 @@
                     <td class="line-d0 top">回覆內容<span class="red">*</span></td>
                     <td>斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。
                              <br />
-                        <script type="text/javascript">
-                            var oFCKeditor = new FCKeditor('Content1');
-                            oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                            oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '450';
-                            oFCKeditor.Value = '<%=Model.nhi_con %>';
-                            oFCKeditor.Create();
-                        </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.nhi_con %></textarea>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -102,4 +92,12 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+    </script>
 </asp:Content>

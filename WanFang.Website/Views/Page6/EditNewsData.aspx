@@ -19,10 +19,6 @@
         else
         {
             Model.ContentBody = Model.ContentBody ?? "";
-            Model.ContentBody = Model.ContentBody.Replace("\n\r", "");
-            Model.ContentBody = Model.ContentBody.Replace("\n", "");
-            Model.ContentBody = Model.ContentBody.Replace("\r", "");
-            Model.ContentBody = Model.ContentBody.Replace("'", "\\'");
         }
         var Dept = new WanFang.BLL.WebService_Manage().GetAllDept();
         List<WanFang.Domain.Webservice.CostDetailInformation> AllCost = new List<WanFang.Domain.Webservice.CostDetailInformation>() { };
@@ -82,8 +78,9 @@
                 $('#DeptName').html('');
                 $("#DeptName").append($("<option></option>").attr("value", DeptName).text(DeptName));
                 var param = $('#form1 :not([name^=Content])').serialize();
-                var inst = FCKeditorAPI.GetInstance("Content1");
-                param += "&ContentBody" + "=" + encodeURIComponent(inst.GetHTML());
+                var i = '1';
+                var editorContent = Contents[i].getData();
+                param += "&ContentBody=" + encodeURIComponent(editorContent);
 
                 utility.service("Page6Service/SaveNewsData", param, "POST", function (data) {
                     if (data.code > 0) {
@@ -213,14 +210,7 @@
                 <td>
                     <div style="clear: both; padding: 3px 0px 3px 0px;" class="red">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
                     <br />
-                    <script type="text/javascript">
-                        var oFCKeditor = new FCKeditor('Content1');
-                        oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                        oFCKeditor.Width = '100%';
-                        oFCKeditor.Height = '450';
-                        oFCKeditor.Value = '<%=Model.ContentBody %>';
-                        oFCKeditor.Create();
-                    </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.ContentBody %></textarea>
                 </td>
             </tr>
             <tr class="line-d">
@@ -308,4 +298,13 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
     <form action="#" target="preview" id="previewform" method="post">
     </form>
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+
+    </script>
 </asp:Content>

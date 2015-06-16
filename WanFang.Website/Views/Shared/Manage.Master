@@ -10,7 +10,6 @@
     <% Html.RenderPartial("~/Views/Shared/UserControls/CssReferences.ascx"); %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link type="text/css" href="/CDN/css/style.css" rel="stylesheet" />
-    <link href="/CDN/Plugins/Manage/skins/aqua/theme.css" rel="stylesheet" type="text/css">
     <title>萬芳醫院後端系統 </title>
 </head>
 <body>
@@ -41,9 +40,6 @@
     </div>
     <% Html.RenderPartial("~/Views/Shared/UserControls/ScriptReferences.ascx"); %>
     <script src="/CDN/Js/Manage/manage.js"></script>
-    <script src="/CDN/Plugins/Manage/calendar.js"></script>
-    <script src="/CDN/Plugins/Manage/calendar-setup.js"></script>
-    <script src="/CDN/Plugins/Manage/lang/calendar-big5-utf8.js"></script>
     <script src="/CDN/Js/Manage/menu.js"></script>
     <script src="/CDN/Js/Manage/w.js"></script>
     <asp:ContentPlaceHolder ID="JSContent" runat="server" />

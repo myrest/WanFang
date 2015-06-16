@@ -19,10 +19,6 @@
         else
         {
             Model.Condition = Model.Condition ?? "";
-            Model.Condition = Model.Condition.Replace("\n\r", "");
-            Model.Condition = Model.Condition.Replace("\n", "");
-            Model.Condition = Model.Condition.Replace("\r", "");
-            Model.Condition = Model.Condition.Replace("'", "\\'");
         }
         var AllCost = new WanFang.BLL.WebService_Manage().GetAllDetailCostcerter(EnumHelper.GetEnumByName<WS_Dept_type>(Model.Dept));
         
@@ -34,8 +30,9 @@
 
         function Save() {
             var param = $('#form1 :not([name^=Content])').serialize();
-            var inst = FCKeditorAPI.GetInstance("Content1");
-            param += "&Condition" + "=" + encodeURIComponent(inst.GetHTML());
+            var i = '1';
+            var editorContent = Contents[i].getData();
+            param += "&Condition=" + encodeURIComponent(editorContent);
             param += "&HirName" + "=" + $('#HirCategoryId option:selected').text();
 
             utility.service("Page7Service/SaveHirDetail", param, "POST", function (data) {
@@ -157,14 +154,7 @@
                     <td>
                         <div style="clear: both; padding: 3px 0px 3px 0px;" class="red">斷行：先按住「Shift 鍵」不放,再按「Enter 鍵」。</div>
                         <br />
-                        <script type="text/javascript">
-                            var oFCKeditor = new FCKeditor('Content1');
-                            oFCKeditor.BasePath = "/CDN/Plugins/Manage/fckeditor/";
-                            oFCKeditor.Width = '100%';
-                            oFCKeditor.Height = '450';
-                            oFCKeditor.Value = '<%=Model.Condition %>';
-                            oFCKeditor.Create();
-                        </script>
+                        <textarea id="ContentBody" name="ContentBody"><%=Model.Condition %></textarea>
                     </td>
                 </tr>
                 <tr class="line-d">
@@ -211,4 +201,12 @@
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="JSContent" runat="server">
+    <script>
+        var Contents = [];
+        $(function () {
+            for (var i = 1; i <= 1; i++) {
+                Contents[i] = CKEDITOR.editor.replace('ContentBody', {});
+            }
+        });
+    </script>
 </asp:Content>
