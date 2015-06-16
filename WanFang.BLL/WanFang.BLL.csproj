@@ -75,6 +75,7 @@
     <Compile Include="wfweb\Op_Qa.cs" />
     <Compile Include="wfweb\Pilates.cs" />
     <Compile Include="wfweb\Question.cs" />
+    <Compile Include="wfweb\Report.cs" />
     <Compile Include="wfweb\TeamIntroduce.cs" />
     <Compile Include="wfweb\User.cs" />
     <Compile Include="wfweb\WebDownload.cs" />

@@ -3,7 +3,7 @@
 <%@ OutputCache Duration="43200" VaryByParam="None" VaryByCustom="pageurl" Shared="true" %>
 <%
     int CurrentMenuNum = (int)ViewData["MenuItem"];
-    string[] menus = new string[14];
+    string[] menus = new string[15];
     menus[CurrentMenuNum] = "Menu_Default";
 
     bool IsDeptOnly = (bool)ViewData["IsDeptOnly"];
@@ -103,7 +103,7 @@
       if (!IsDeptOnly || Verify)
       {
     %>
-    <!--尋問台-->
+    <!--詢問台-->
     <li class="<%=menus[10] %> <%=(Permission.IndexOf("詢問台管理") > -1) ? "" : "hide" %>"><a href="javascript:void(0);">詢問台管理</a>
         <ul>
             <li><a href="/Page10/Op_Qa">就醫問答集管理</a></li>
@@ -126,6 +126,12 @@
     <%
       }
     %>
+    <!--報表-->
+    <li class="<%=menus[14] %>"><a href="javascript:void(0);">報表</a>
+        <ul>
+            <li><a href="/Page14/Report">網站流瀏覽記錄</a></li>
+        </ul>
+    </li>
     <!--密碼變更-->
     <li class="<%=menus[13] %>"><a href="javascript:void(0);">密碼變更</a>
         <ul>

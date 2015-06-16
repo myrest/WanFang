@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\Page14Controller.cs" />
     <Compile Include="Controllers\Page7Controller.cs" />
     <Compile Include="Controllers\Page11Controller.cs" />
     <Compile Include="Controllers\Page10Controller.cs" />
@@ -582,6 +583,8 @@
     <Content Include="Views\About\EditAboutCategoary.aspx" />
     <Content Include="Views\About\EditAbout.aspx" />
     <Content Include="Views\About\Index.aspx" />
+    <Content Include="Views\Page14\Report.aspx" />
+    <Content Include="Views\Page14\ReportDetail.aspx" />
     <Content Include="Views\Default\UploadPartial.aspx" />
     <Content Include="Views\Manage\ChangePassword.aspx" />
     <Content Include="Views\Page7\EditHirCategory.aspx" />
